@@ -1,4 +1,6 @@
-import { motion, useState } from 'framer-motion'
+// BENAR: Memisahkan modul sesuai dengan sumbernya
+import { useState } from 'react';
+import { motion } from 'framer-motion';
 
 const tools = [
   { name: "React.js", icon: "⚛️", category: "Frontend" },
