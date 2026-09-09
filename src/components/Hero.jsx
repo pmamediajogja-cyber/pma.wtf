@@ -1,258 +1,318 @@
-import { useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 
-const personalInfo = {
-  name: "Imam Falahi",
-  title: "IT Operations & Legal Compliance Specialist",
-  email: "mobho@ymail.com",
-  phone: "+62 878 8780 999",
-  location: "Sleman, DI Yogyakarta",
-  github: "https://github.com/tugelanboto19",
-  portfolio: "https://pma.wtf",
-  photo: "/images/profile.jpg",
-  cv: "/cv/CV_IMAM_FALAHI_JUNI_2026.pdf",
-}
-
-const aboutMe = {
-  greeting: "Hello, I'm",
-  stats: [
-    { label: "Experience", value: "6+ Years" },
-    { label: "Projects", value: "200+" },
-    { label: "Legal Docs", value: "15K+" },
-    { label: "GPA", value: "3.82" },
-  ]
-}
-
 export default function Hero() {
-  const canvasRef = useRef(null)
-
-  useEffect(() => {
-    const canvas = canvasRef.current
-    if (!canvas) return
-    const ctx = canvas.getContext('2d')
-    canvas.width = window.innerWidth
-    canvas.height = window.innerHeight
-
-    const particles = []
-    for (let i = 0; i < 50; i++) {
-      particles.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.5,
-        vy: (Math.random() - 0.5) * 0.5,
-        size: Math.random() * 2 + 0.5,
-        alpha: Math.random() * 0.5 + 0.1,
-      })
-    }
-
-    const animate = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
-      particles.forEach(p => {
-        p.x += p.vx; p.y += p.vy
-        if (p.x < 0 || p.x > canvas.width) p.vx *= -1
-        if (p.y < 0 || p.y > canvas.height) p.vy *= -1
-        ctx.beginPath()
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(0, 240, 255, ${p.alpha})`
-        ctx.fill()
-      })
-      // Connections
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x
-          const dy = particles[i].y - particles[j].y
-          const dist = Math.sqrt(dx * dx + dy * dy)
-          if (dist < 120) {
-            ctx.beginPath()
-            ctx.moveTo(particles[i].x, particles[i].y)
-            ctx.lineTo(particles[j].x, particles[j].y)
-            ctx.strokeStyle = `rgba(0, 240, 255, ${0.05 * (1 - dist / 120)})`
-            ctx.lineWidth = 0.5
-            ctx.stroke()
-          }
-        }
-      }
-      requestAnimationFrame(animate)
-    }
-    animate()
-
-    const handleResize = () => {
-      canvas.width = window.innerWidth
-      canvas.height = window.innerHeight
-    }
-    window.addEventListener('resize', handleResize)
-    return () => window.removeEventListener('resize', handleResize)
-  }, [])
-
-  const scrollToCV = () => document.getElementById('cv')?.scrollIntoView({ behavior: 'smooth' })
-
-  const containerVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        delay: 0.2,
-        staggerChildren: 0.1,
-      },
-    },
-  }
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
-  }
-
   return (
-    <section id="hero" style={{
-      position: 'relative',
-      minHeight: '100vh',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      overflow: 'hidden'
-    }}>
-      {/* Canvas Particles */}
-      <canvas ref={canvasRef} style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }} />
+    <section
+      id="hero"
+      style={{
+        position: 'relative',
+        minHeight: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        overflow: 'hidden',
+      }}
+    >
+      {/* Ambient cyan glow */}
+      <div
+        style={{
+          position: 'absolute',
+          left: '-12%',
+          top: '20%',
+          width: 520,
+          height: 520,
+          borderRadius: '50%',
+          background: 'rgba(0, 240, 255, 0.045)',
+          filter: 'blur(140px)',
+          pointerEvents: 'none',
+        }}
+      />
 
-      {/* Grid */}
-      <div className="bg-cyber-grid" style={{ position: 'absolute', inset: 0, opacity: 0.2 }} />
+      {/* Ambient purple glow */}
+      <div
+        style={{
+          position: 'absolute',
+          right: '-12%',
+          bottom: '5%',
+          width: 560,
+          height: 560,
+          borderRadius: '50%',
+          background: 'rgba(123, 47, 247, 0.055)',
+          filter: 'blur(150px)',
+          pointerEvents: 'none',
+        }}
+      />
 
-      {/* Gradient Orbs */}
-      <div style={{
-        position: 'absolute', top: '25%', left: '25%',
-        width: 400, height: 400, borderRadius: '50%',
-        background: 'linear-gradient(135deg, rgba(0, 240, 255, 0.1), rgba(0, 255, 255, 0.1))',
-        filter: 'blur(120px)',
-        animation: 'float 6s ease-in-out infinite'
-      }} />
-      <div style={{
-        position: 'absolute', bottom: '25%', right: '25%',
-        width: 400, height: 400, borderRadius: '50%',
-        background: 'linear-gradient(135deg, rgba(123, 47, 247, 0.1), rgba(255, 0, 255, 0.1))',
-        filter: 'blur(120px)',
-        animation: 'float 6s ease-in-out infinite',
-        animationDelay: '3s'
-      }} />
-
-      {/* Content */}
-      <motion.div
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-        style={{ position: 'relative', zIndex: 10, textAlign: 'center' }}
+      {/* Main content */}
+      <div
+        className="container-custom"
+        style={{
+          position: 'relative',
+          zIndex: 2,
+          width: '100%',
+        }}
       >
-        {/* Status Badge */}
-        <motion.div
-          variants={itemVariants}
-          className="badge badge-neon"
+        <div
           style={{
-            margin: '0 auto 2rem',
-            width: 'fit-content'
+            maxWidth: 1050,
+            marginLeft: 'auto',
+            marginRight: 'auto',
           }}
         >
-          <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#00ff88', display: 'inline-block' }} />
-          SYSTEM ONLINE — Ready for Operations
-        </motion.div>
+          {/* Section label */}
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            style={{
+              fontFamily: "'Orbitron', monospace",
+              fontSize: 11,
+              letterSpacing: '0.18em',
+              color: '#00f0ff',
+              marginBottom: '2.5rem',
+            }}
+          >
+            01 / PMA.WTF
+          </motion.div>
 
-        {/* Greeting */}
-        <motion.div
-          variants={itemVariants}
-        >
-          <p style={{ fontSize: '1.25rem', color: '#9ca3af', marginBottom: '0.5rem' }}>
-            {aboutMe.greeting}
-          </p>
-        </motion.div>
+          {/* Main headline */}
+          <motion.h1
+            initial={{ opacity: 0, y: 35 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.8,
+              delay: 0.1,
+              ease: 'easeOut',
+            }}
+            className="font-orbitron"
+            style={{
+              margin: 0,
+              fontSize: 'clamp(4rem, 10vw, 9rem)',
+              lineHeight: 0.86,
+              fontWeight: 700,
+              letterSpacing: '-0.045em',
+              textTransform: 'uppercase',
+            }}
+          >
+            <span
+              style={{
+                display: 'block',
+                color: '#f5f5f5',
+              }}
+            >
+              DIGITAL
+            </span>
 
-        {/* Name */}
-        <motion.div
-          variants={itemVariants}
-        >
-          <h1 className="font-orbitron" style={{
-            fontSize: 'clamp(2.5rem, 8vw, 6rem)',
-            fontWeight: 900,
-            marginBottom: '1rem',
-            lineHeight: 1.1
-          }}>
-            <span className="text-gradient">{personalInfo.name}</span>
-          </h1>
-        </motion.div>
+            <span
+              style={{
+                display: 'block',
+                color: 'transparent',
+                WebkitTextStroke: '1.5px rgba(255,255,255,0.65)',
+                textStroke: '1.5px rgba(255,255,255,0.65)',
+              }}
+            >
+              CREATIVE HUB.
+            </span>
+          </motion.h1>
 
-        {/* Role Tags */}
-        <motion.div
-          variants={itemVariants}
-          style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '12px', marginBottom: '1.5rem' }}
-        >
-          <span className="font-jetbrains badge badge-secondary" style={{
-            padding: '8px 16px', fontSize: 14
-          }}>
-            &lt; IT Operations /&gt;
-          </span>
-          <span style={{ color: '#4b5563', display: 'none' }}>✦</span>
-          <span className="font-jetbrains badge badge-pulse" style={{
-            padding: '8px 16px', fontSize: 14
-          }}>
-            &lt; Legal Compliance /&gt;
-          </span>
-        </motion.div>
+          {/* Description */}
+          <motion.div
+            initial={{ opacity: 0, y: 25 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.7,
+              delay: 0.35,
+            }}
+            style={{
+              maxWidth: 850,
+              marginTop: '2rem',
+            }}
+          >
+            <p
+              style={{
+                margin: 0,
+                color: '#9aa1ad',
+                fontSize: 'clamp(15px, 1.6vw, 20px)',
+                lineHeight: 1.75,
+              }}
+            >
+              <strong style={{ color: '#d5d9df' }}>
+                PMA.WTF
+              </strong>{' '}
+              is a digital creative hub operating under{' '}
+              <strong style={{ color: '#d5d9df' }}>
+                PT PMA Media Yogyakarta.
+              </strong>
+            </p>
 
-        {/* Tagline */}
-        <motion.div
-          variants={itemVariants}
-        >
-          <p style={{ color: '#6b7280', maxWidth: 600, margin: '0 auto 2.5rem', fontSize: '1rem' }}>
-            Bridging the gap between{' '}
-            <span className="text-gradient">technology</span> and{' '}
-            <span className="text-gradient">law</span> — automating workflows while ensuring regulatory precision.
-          </p>
-        </motion.div>
+            <p
+              style={{
+                margin: '0.35rem 0 0',
+                color: '#777f8b',
+                fontSize: 'clamp(14px, 1.4vw, 18px)',
+                lineHeight: 1.75,
+              }}
+            >
+              Bringing together digital products, design,
+              technology, creative work, and professional
+              services in one place.
+            </p>
+          </motion.div>
 
-        {/* CTA Buttons */}
-        <motion.div
-          variants={itemVariants}
-          style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '16px' }}
-        >
-          <button onClick={scrollToCV} className="btn-primary">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2 2V8z" />
-              <polyline points="14 2 14 8 20 8" />
-              <line x1="16" y1="13" x2="8" y2="13" />
-              <line x1="16" y1="17" x2="8" y2="17" />
-            </svg>
-            View CV
-          </button>
-          <a href={personalInfo.github} target="_blank" rel="noopener noreferrer" className="btn-outline">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWeight="2">
-              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
-            </svg>
-            Explore Projects
-          </a>
-        </motion.div>
+          {/* Action buttons */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.6,
+              delay: 0.55,
+            }}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              flexWrap: 'wrap',
+              gap: '1.8rem',
+              marginTop: '2.5rem',
+            }}
+          >
+            {/* Contact */}
+            <a
+              href="#contact"
+              style={{
+                color: '#00f0ff',
+                textDecoration: 'none',
+                fontFamily: "'Orbitron', monospace",
+                fontSize: 12,
+                letterSpacing: '0.05em',
+                transition: 'opacity 0.3s',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.opacity = '0.65'
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.opacity = '1'
+              }}
+            >
+              Contact ↗
+            </a>
 
-        {/* Stats */}
-        <motion.div
-          variants={itemVariants}
-        >
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(2, 1fr)',
-            gap: '16px',
-            maxWidth: 600,
-            margin: '4rem auto 0'
-          }}>
-            {aboutMe.stats.map((stat, i) => (
-              <div key={stat.label} className="glass-card" style={{ padding: '1rem', textAlign: 'center' }}>
-                <div className="font-orbitron text-gradient" style={{ fontSize: 'clamp(1.5rem, 4vw, 2rem)', fontWeight: 'bold' }}>
-                  {stat.value}
-                </div>
-                <div style={{ fontSize: 12, color: '#6b7280', marginTop: 4, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                  {stat.label}
-                </div>
-              </div>
-            ))}
-          </div>
-        </motion.div>
+            {/* View Profile */}
+            <a
+              href="#about"
+              style={{
+                color: '#00f0ff',
+                textDecoration: 'none',
+                fontFamily: "'Orbitron', monospace",
+                fontSize: 12,
+                letterSpacing: '0.05em',
+                transition: 'opacity 0.3s',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.opacity = '0.65'
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.opacity = '1'
+              }}
+            >
+              View Profile ↗
+            </a>
+          </motion.div>
+        </div>
+      </div>
+
+      {/* Bottom metadata */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{
+          duration: 1,
+          delay: 1,
+        }}
+        style={{
+          position: 'absolute',
+          left: 'max(2rem, calc((100vw - 1200px) / 2))',
+          bottom: '2rem',
+          zIndex: 2,
+          fontFamily: "'Orbitron', monospace",
+          fontSize: 9,
+          letterSpacing: '0.15em',
+          color: '#4f5661',
+        }}
+      >
+        PT PMA MEDIA YOGYAKARTA
       </motion.div>
+
+      {/* Scroll indicator */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{
+          duration: 1,
+          delay: 1.2,
+        }}
+        style={{
+          position: 'absolute',
+          right: '2rem',
+          bottom: '2rem',
+          display: 'flex',
+          alignItems: 'center',
+          gap: 10,
+          color: '#4f5661',
+          fontFamily: "'Orbitron', monospace",
+          fontSize: 9,
+          letterSpacing: '0.12em',
+        }}
+      >
+        <span>SCROLL</span>
+
+        <span
+          style={{
+            display: 'block',
+            width: 45,
+            height: 1,
+            background:
+              'linear-gradient(90deg, #00f0ff, transparent)',
+          }}
+        />
+      </motion.div>
+
+      {/* Mobile adjustments */}
+      <style>{`
+        @media (max-width: 768px) {
+          #hero {
+            min-height: 100svh;
+            padding-top: 80px;
+          }
+
+          #hero .container-custom {
+            padding-left: 1.25rem;
+            padding-right: 1.25rem;
+          }
+
+          #hero h1 {
+            font-size: clamp(3.2rem, 16vw, 6rem) !important;
+            line-height: 0.9 !important;
+          }
+
+          #hero p {
+            font-size: 14px !important;
+          }
+
+          #hero > div:last-of-type {
+            display: none;
+          }
+        }
+
+        @media (max-width: 480px) {
+          #hero h1 {
+            font-size: 3.15rem !important;
+          }
+
+          #hero .container-custom {
+            padding-left: 1rem;
+            padding-right: 1rem;
+          }
+        }
+      `}</style>
     </section>
   )
 }
