@@ -1,229 +1,491 @@
-import { useState } from 'react'
+import { motion } from 'framer-motion'
 
-const personalInfo = {
-  cv: "/cv/CV_IMAM_FALAHI_JUNI_2026.pdf",
-  cvFileName: "CV_Imam_Falahi_2026.pdf",
-}
+const cvFile = '/cv/CV_IMAM_FALAHI_September_2026.pdf'
 
 const experiences = [
   {
-    id: 1, role: "IT Support & Legal Administration",
-    company: "Notaris & PPAT Endri Purwani, S.H., M.Kn.",
-    location: "Sleman", period: "2020 – Present", type: "Full-time",
+    number: '01',
+    role: 'IT SUPPORT & ADMINISTRASI LEGAL',
+    company: 'Notaris & PPAT Endri Purwani, S.H., M.Kn.',
+    location: 'Sleman',
+    period: '2020 — PRESENT',
+    type: 'FULL-TIME',
+    description:
+      'Mengelola infrastruktur IT kantor, hardware, software, jaringan lokal, troubleshooting, keamanan database, serta administrasi legal dan pertanahan.',
     highlights: [
-      "Manage full IT infrastructure with encrypted security protocols",
-      "Handle comprehensive land legality cycle and rights transfer",
-      "Process 1,500+ Fiduciary Guarantee documents/month at zero error rate"
+      'IT Support & Infrastruktur Sistem',
+      'Administrasi PPAT & Pertanahan',
+      'Registrasi Jaminan Fidusia Perbankan',
+      'Pengelolaan dokumen legal bervolume tinggi',
     ],
-    color: "#00f0ff"
   },
+
   {
-    id: 2, role: "Business Licensing Consultant",
-    company: "PMA Media", location: "Sleman",
-    period: "2020 – Present", type: "Consultant",
+    number: '02',
+    role: 'KONSULTAN PERIZINAN & REGULASI',
+    company: 'PT PMA Media Yogyakarta',
+    location: 'Sleman',
+    period: '2020 — PRESENT',
+    type: 'CONSULTANT',
+    description:
+      'Menangani konsultasi dan eksekusi legalitas usaha secara end-to-end melalui sistem OSS RBA, NPWP, SIMBG/PBG, serta pendampingan kepatuhan regulasi.',
     highlights: [
-      "End-to-end business licensing via OSS RBA system",
-      "NPWP activation and Building Permit approvals via SIMBG",
-      "Strategic mentoring for MSMEs on regulatory compliance"
+      'OSS RBA',
+      'NPWP Badan / Pribadi',
+      'SIMBG / PBG',
+      'Pendampingan UMKM & Korporasi',
     ],
-    color: "#7b2ff7"
   },
+
   {
-    id: 3, role: "IT & Digital Marketing Specialist",
-    company: "Omah Kopi Mrisen", location: "Sleman",
-    period: "2021 – Present", type: "Part-time",
+    number: '03',
+    role: 'IT & DIGITAL MARKETING SPECIALIST',
+    company: 'Omah Kopi Mrisen',
+    location: 'Sleman',
+    period: '2021 — PRESENT',
+    type: 'PART-TIME',
+    description:
+      'Mengelola IT operasional, POS, jaringan, administrasi, HR operations, digital marketing, fotografi, desain grafis, serta kampanye media sosial.',
     highlights: [
-      "IT operations including POS system and network architecture",
-      "Employee recruitment cycles and automated attendance systems",
-      "Brand visibility through photography, design, and data-driven campaigns"
+      'POS & LAN/WLAN',
+      'HR Operations',
+      'Automated Attendance',
+      'Digital Marketing & Creative',
     ],
-    color: "#ffd700"
   },
+
   {
-    id: 4, role: "Graphic Designer",
-    company: "PT. INDOKOM", location: "Sleman",
-    period: "2013 – 2014", type: "Full-time",
+    number: '04',
+    role: 'DESAIN GRAFIS',
+    company: 'PT. INDOKOM',
+    location: 'Sleman',
+    period: '2013 — 2014',
+    type: 'FULL-TIME',
+    description:
+      'Memproduksi aset visual untuk branding produk korporat serta kebutuhan kampanye pemasaran digital multimedia.',
     highlights: [
-      "High-resolution visual assets for corporate product branding",
-      "Multimedia digital marketing campaigns across distribution channels"
+      'Corporate Branding',
+      'Graphic Design',
+      'Digital Campaign',
+      'Multimedia Production',
     ],
-    color: "#00ff88"
-  }
+  },
 ]
 
-const skillCategories = [
+const skills = [
   {
-    title: "⚡ Legal & Administration",
-    color: "#00f0ff",
-    skills: ["OSS RBA & SIMBG Systems", "Fiduciary Guarantee Registration", "Land Administration & Regulation", "Legal Document Management", "NPWP Processing", "Microsoft Office Suite"]
+    title: 'LEGAL & ADMINISTRATION',
+    items: [
+      'OSS RBA',
+      'SIMBG / PBG',
+      'Jaminan Fidusia',
+      'Administrasi Pertanahan',
+      'Pemetaan Lahan',
+      'NPWP',
+      'Microsoft Office',
+      'Document Management',
+    ],
   },
+
   {
-    title: "🖥️ IT & Infrastructure",
-    color: "#7b2ff7",
-    skills: ["IT Technical Support", "Network Maintenance (LAN/WLAN)", "Hardware Troubleshooting", "OS Administration", "Database Security", "Web Development"]
+    title: 'IT & INFRASTRUCTURE',
+    items: [
+      'IT Technical Support',
+      'LAN / WLAN',
+      'Hardware Troubleshooting',
+      'Windows',
+      'Linux',
+      'macOS / UNIX',
+      'Database Security',
+      'Web Development',
+      'Visual Studio Code',
+      'AutoCAD',
+    ],
   },
+
   {
-    title: "🔌 IoT & Innovation",
-    color: "#00ff88",
-    skills: ["IoT Development (ESP32)", "Sensor Integration"]
+    title: 'IOT & INNOVATION',
+    items: [
+      'ESP32',
+      'Microcontroller',
+      'Sensor Integration',
+    ],
   },
+
   {
-    title: "🎨 Digital & Creative Media",
-    color: "#ffd700",
-    skills: ["Digital Marketing", "Adobe Creative Suite", "CorelDRAW", "Canva", "Professional Photography", "Video Editing"]
-  }
+    title: 'DIGITAL & CREATIVE',
+    items: [
+      'Digital Marketing',
+      'Adobe Creative Suite',
+      'CorelDRAW',
+      'Canva',
+      'Photography',
+      'Video Editing',
+    ],
+  },
+]
+
+const professionalTraits = [
+  'Logical Data Analysis',
+  'Hardware / Software Problem Solving',
+  'Adaptability',
+  'Regulatory Understanding',
+  'Administrative Accuracy',
+  'Structured Data Handling',
 ]
 
 export default function CVSection() {
-  const [showPDF, setShowPDF] = useState(false)
-  const [expandedExp, setExpandedExp] = useState(null)
-
   return (
-    <section id="cv" className="section-padding" style={{ position: 'relative', overflow: 'hidden' }}>
-      <div style={{ position: 'absolute', top: 0, left: 0, width: '50%', height: '50%', background: 'rgba(0,240,255,0.05)', borderRadius: '50%', filter: 'blur(150px)' }} />
-      
-      <div className="container-custom" style={{ position: 'relative', zIndex: 10 }}>
-        
-        {/* Section Header */}
-        <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-          <div className="badge" style={{ background: 'rgba(0,240,255,0.1)', border: '1px solid rgba(0,240,255,0.2)', color: '#00f0ff', margin: '0 auto 1rem', width: 'fit-content' }}>
-            Curriculum Vitae
-          </div>
-          <h2 className="font-orbitron" style={{ fontSize: 'clamp(1.8rem, 4vw, 3rem)', fontWeight: 'bold', color: 'white', marginBottom: '0.5rem' }}>
-            Professional <span className="text-gradient">Track Record</span>
-          </h2>
-          <p style={{ color: '#6b7280' }}>6+ years of experience bridging IT operations and legal compliance</p>
-          <div style={{ width: 80, height: 4, background: 'linear-gradient(90deg, #00f0ff, #7b2ff7)', margin: '1rem auto 0', borderRadius: 2 }} />
-        </div>
+    <main className="cv-page">
 
-        {/* Buttons */}
-        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '16px', marginBottom: '3rem' }}>
-          <a href={personalInfo.cv} download={personalInfo.cvFileName} className="btn-primary">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-              <polyline points="7 10 12 15 17 10" />
-              <line x1="12" y1="15" x2="12" y2="3" />
-            </svg>
-            Download CV (PDF)
-          </a>
-          <button onClick={() => setShowPDF(true)} className="btn-outline">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
-              <circle cx="12" cy="12" r="3" />
-            </svg>
-            Preview CV
-          </button>
-        </div>
+      {/* =========================================
+          CV HEADER
+      ========================================== */}
+      <section className="cv-hero">
 
-        {/* PDF Modal */}
-        {showPDF && (
-          <div style={{
-            position: 'fixed', inset: 0, zIndex: 100,
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            padding: '1rem', background: 'rgba(0,0,0,0.8)', backdropFilter: 'blur(10px)'
-          }} onClick={() => setShowPDF(false)}>
-            <div style={{
-              position: 'relative', width: '100%', maxWidth: 900,
-              height: '85vh', background: 'white', borderRadius: 16,
-              overflow: 'hidden'
-            }} onClick={e => e.stopPropagation()}>
-              <button onClick={() => setShowPDF(false)}
-                style={{
-                  position: 'absolute', top: 16, right: 16, zIndex: 10,
-                  padding: 8, borderRadius: '50%', background: 'rgba(0,0,0,0.5)',
-                  color: 'white', border: 'none', cursor: 'pointer'
-                }}>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
-                </svg>
-              </button>
-              <iframe src={personalInfo.cv} style={{ width: '100%', height: '100%', border: 'none' }} title="CV Preview" />
+        <div className="cv-container">
+
+          <motion.div
+            initial={{ opacity: 0, y: 25 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+          >
+
+            <span className="cv-eyebrow">
+              PMA MEDIA / PROFESSIONAL PROFILE
+            </span>
+
+            <h1>
+              IMAM
+              <br />
+              <em>FALAHI.</em>
+            </h1>
+
+            <p className="cv-title">
+              INFORMATICS GRADUATE
+              <br />
+              TECHNICAL SUPPORT · BUSINESS & OPERATIONS
+            </p>
+
+            <div className="cv-contact-line">
+              <span>SLEMAN, DI YOGYAKARTA</span>
+              <span>087 888 780 999</span>
+              <span>mobho@ymail.com</span>
             </div>
-          </div>
-        )}
 
-        {/* Experience */}
-        <div style={{ marginBottom: '4rem' }}>
-          <h3 className="font-orbitron" style={{ fontSize: '1.25rem', color: '#00f0ff', marginBottom: '2rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-            💼 Professional Experience
-          </h3>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-            {experiences.map(exp => (
-              <div key={exp.id}>
-                <button onClick={() => setExpandedExp(expandedExp === exp.id ? null : exp.id)}
-                  className="glass-card" style={{
-                    width: '100%', textAlign: 'left', padding: '1.5rem', border: 'none', color: 'white', cursor: 'pointer'
-                  }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', gap: '1rem' }}>
-                    <div>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
-                        <div style={{ width: 12, height: 12, borderRadius: '50%', background: exp.color }} />
-                        <span className="font-jetbrains" style={{
-                          fontSize: 11, padding: '2px 8px', borderRadius: 999,
-                          background: `${exp.color}15`, border: `1px solid ${exp.color}30`,
-                          color: exp.color
-                        }}>
-                          {exp.type}
-                        </span>
-                      </div>
-                      <h4 style={{ fontWeight: 600, fontSize: '1.1rem' }}>{exp.role}</h4>
-                      <p style={{ color: '#9ca3af', fontSize: 14 }}>{exp.company}</p>
-                      <div style={{ display: 'flex', gap: 16, marginTop: 8, fontSize: 12, color: '#6b7280' }}>
-                        <span>📅 {exp.period}</span>
-                        <span>📍 {exp.location}</span>
-                      </div>
-                    </div>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"
-                      style={{ transform: expandedExp === exp.id ? 'rotate(180deg)' : 'none', transition: 'transform 0.3s', color: '#6b7280', flexShrink: 0 }}>
-                      <polyline points="6 9 12 15 18 9" />
-                    </svg>
-                  </div>
-                  {expandedExp === exp.id && (
-                    <div style={{ marginTop: '1rem', paddingTop: '1rem', borderTop: '1px solid rgba(255,255,255,0.1)' }}>
-                      <ul style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-                        {exp.highlights.map((h, j) => (
-                          <li key={j} style={{ display: 'flex', gap: 8, fontSize: 13, color: '#9ca3af' }}>
-                            <span style={{ width: 6, height: 6, borderRadius: '50%', background: exp.color, marginTop: 6, flexShrink: 0 }} />
-                            <span>{h}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-                </button>
-              </div>
-            ))}
+          </motion.div>
+
+          <div className="cv-hero-side">
+
+            <div>
+              <span>EDUCATION</span>
+              <strong>S.Kom INFORMATICS</strong>
+            </div>
+
+            <div>
+              <span>GPA</span>
+              <strong>3.82 / CUM LAUDE</strong>
+            </div>
+
+            <div>
+              <span>PORTFOLIO</span>
+              <strong>PMA.WTF</strong>
+            </div>
+
           </div>
+
         </div>
 
-        {/* Skills */}
-        <div>
-          <h3 className="font-orbitron" style={{ fontSize: '1.25rem', color: '#a78bfa', marginBottom: '2rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-            ⚡ Skills & Expertise
-          </h3>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '16px' }}>
-            {skillCategories.map(cat => (
-              <div key={cat.title} className="glass-card" style={{ padding: '1.5rem' }}>
-                <h4 className="font-orbitron" style={{ fontSize: 12, color: cat.color, marginBottom: '1rem' }}>
-                  {cat.title}
-                </h4>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-                  {cat.skills.map((skill, j) => (
-                    <span key={j} style={{
-                      padding: '6px 12px', borderRadius: 8, fontSize: 12,
-                      background: `${cat.color}10`,
-                      border: `1px solid ${cat.color}20`,
-                      color: cat.color,
-                    }}>
-                      {skill}
-                    </span>
+      </section>
+
+
+      {/* =========================================
+          SUMMARY
+      ========================================== */}
+      <section className="cv-section">
+
+        <div className="cv-container">
+
+          <div className="cv-section-label">
+            <span>01 / SUMMARY</span>
+          </div>
+
+          <div className="cv-summary-grid">
+
+            <h2>
+              TECHNICAL
+              <br />
+              <em>+ PRACTICAL.</em>
+            </h2>
+
+            <div>
+
+              <p>
+                Lulusan Sarjana Informatika dari Universitas Siber
+                Muhammadiyah dengan predikat Cum Laude dan pengalaman
+                profesional lintas bidang dalam teknologi informasi,
+                operasional, administrasi, serta layanan teknis.
+              </p>
+
+              <p>
+                Terbiasa berinteraksi dengan kebutuhan pengguna dan
+                klien, memberikan dukungan teknis, menjelaskan proses
+                dan solusi, serta mengelola pekerjaan secara terstruktur
+                dan berorientasi pada hasil.
+              </p>
+
+              <p>
+                Memiliki kemampuan analisis, komunikasi, pemecahan
+                masalah, dan adaptasi terhadap produk maupun sistem
+                baru. Memiliki ketertarikan untuk berkembang pada
+                bidang Product Specialist, khususnya dalam memahami
+                produk teknis, memberikan solusi kepada pelanggan,
+                serta mendukung pemasaran dan pengembangan bisnis.
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      {/* =========================================
+          EXPERIENCE
+      ========================================== */}
+      <section className="cv-section">
+
+        <div className="cv-container">
+
+          <div className="cv-section-label">
+            <span>02 / EXPERIENCE</span>
+          </div>
+
+          <div className="cv-experience-list">
+
+            {experiences.map((experience, index) => (
+
+              <motion.article
+                key={experience.number}
+                className="cv-experience"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{
+                  duration: 0.5,
+                  delay: index * 0.06,
+                }}
+              >
+
+                <div className="cv-exp-number">
+                  {experience.number}
+                </div>
+
+                <div className="cv-exp-main">
+
+                  <div className="cv-exp-heading">
+
+                    <div>
+                      <span className="cv-exp-type">
+                        {experience.type}
+                      </span>
+
+                      <h3>{experience.role}</h3>
+
+                      <h4>{experience.company}</h4>
+                    </div>
+
+                    <div className="cv-exp-date">
+                      <span>{experience.period}</span>
+                      <span>{experience.location}</span>
+                    </div>
+
+                  </div>
+
+                  <p>{experience.description}</p>
+
+                  <div className="cv-highlights">
+                    {experience.highlights.map(item => (
+                      <span key={item}>{item}</span>
+                    ))}
+                  </div>
+
+                </div>
+
+              </motion.article>
+
+            ))}
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      {/* =========================================
+          EDUCATION
+      ========================================== */}
+      <section className="cv-section">
+
+        <div className="cv-container">
+
+          <div className="cv-section-label">
+            <span>03 / EDUCATION</span>
+          </div>
+
+          <div className="cv-education">
+
+            <div className="cv-education-year">
+              2022 — 2026
+            </div>
+
+            <div>
+
+              <span>UNIVERSITAS SIBER MUHAMMADIYAH</span>
+
+              <h2>
+                SARJANA INFORMATIKA
+              </h2>
+
+              <p>
+                Konsentrasi Sistem Informasi & Analisis Data.
+              </p>
+
+              <div className="cv-education-meta">
+                <strong>GPA 3.82</strong>
+                <strong>CUM LAUDE</strong>
+                <span>
+                  Association Rule Mining
+                </span>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      {/* =========================================
+          SKILLS
+      ========================================== */}
+      <section className="cv-section">
+
+        <div className="cv-container">
+
+          <div className="cv-section-label">
+            <span>04 / SKILLS</span>
+          </div>
+
+          <div className="cv-skills-grid">
+
+            {skills.map(group => (
+
+              <div className="cv-skill-group" key={group.title}>
+
+                <h3>{group.title}</h3>
+
+                <div>
+                  {group.items.map(skill => (
+                    <span key={skill}>{skill}</span>
                   ))}
                 </div>
+
               </div>
+
             ))}
+
           </div>
+
         </div>
-      </div>
-    </section>
+
+      </section>
+
+
+      {/* =========================================
+          PROFESSIONAL TRAITS
+      ========================================== */}
+      <section className="cv-section">
+
+        <div className="cv-container">
+
+          <div className="cv-section-label">
+            <span>05 / PROFESSIONAL TRAITS</span>
+          </div>
+
+          <div className="cv-traits">
+
+            {professionalTraits.map((trait, index) => (
+
+              <div key={trait}>
+
+                <span>
+                  {String(index + 1).padStart(2, '0')}
+                </span>
+
+                <strong>{trait}</strong>
+
+              </div>
+
+            ))}
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      {/* =========================================
+          DOWNLOAD
+      ========================================== */}
+      <section className="cv-download">
+
+        <div className="cv-container">
+
+          <span>06 / DOCUMENT</span>
+
+          <h2>
+            NEED THE
+            <br />
+            <em>FULL CV?</em>
+          </h2>
+
+          <p>
+            Download atau buka versi PDF CV terbaru
+            Imam Falahi — September 2026.
+          </p>
+
+          <div className="cv-download-actions">
+
+            <a
+              href={cvFile}
+              target="_blank"
+              rel="noreferrer"
+              className="cv-button primary"
+            >
+              OPEN PDF <span>↗</span>
+            </a>
+
+            <a
+              href={cvFile}
+              download
+              className="cv-button secondary"
+            >
+              DOWNLOAD CV <span>↓</span>
+            </a>
+
+          </div>
+
+        </div>
+
+      </section>
+
+    </main>
   )
 }
