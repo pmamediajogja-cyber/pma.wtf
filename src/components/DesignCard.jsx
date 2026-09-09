@@ -3,13 +3,13 @@ export default function DesignCard({ design }) {
 
   return (
     <article className="design-card">
-      <div className="design-card-media">
-        <div className="design-card-placeholder" aria-label={design.title + ' preview placeholder'}>
+      <a className="design-card-media" href={'/design/' + design.id} aria-label={'Open ' + design.title}>
+        <div className="design-card-placeholder">
           <span>{design.id}</span>
           <small>ARTWORK PREVIEW</small>
         </div>
         <span className="design-card-badge">{design.type}</span>
-      </div>
+      </a>
       <div className="design-card-info">
         <div>
           <span className="design-card-category">{design.category}</span>
@@ -18,7 +18,9 @@ export default function DesignCard({ design }) {
         <strong>{label}</strong>
       </div>
       <p>{design.description}</p>
-      <a href="#contact" className="design-card-link">{design.type === 'FREE' ? 'GET FREE DESIGN' : 'VIEW PRODUCT'} ↗</a>
+      <a href={'/design/' + design.id} className="design-card-link">
+        {design.type === 'FREE' ? 'VIEW FREE DESIGN' : 'VIEW PREMIUM PRODUCT'} ↗
+      </a>
     </article>
   )
 }
