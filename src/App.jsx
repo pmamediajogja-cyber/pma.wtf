@@ -1,16 +1,12 @@
 import { useEffect, useState } from 'react'
+import DesignCard from './components/DesignCard'
+import { designs } from './data/designs'
 
 const navItems = [
   ['Designs', '#designs'],
   ['Services', '#services'],
   ['Journal', '#journal'],
   ['About', '#about'],
-]
-
-const pillars = [
-  { number: '01', title: 'FREE DESIGNS', text: 'Useful downloads from the PMA design archive.', tag: 'FREE' },
-  { number: '02', title: 'PREMIUM WORK', text: 'Print-ready artwork and digital products.', tag: 'SHOP' },
-  { number: '03', title: 'SERVICES', text: 'Design, digital and creative work for clients.', tag: 'HIRE' },
 ]
 
 function App() {
@@ -48,7 +44,7 @@ function App() {
           <div className="hero-copy reveal">
             <div className="eyebrow"><span className="status-dot" /> DIGITAL CREATIVE / YOGYAKARTA</div>
             <h1>MAKE SOMETHING<br /><em>WORTH CLICKING.</em></h1>
-            <p className="hero-lead">Designs, digital products, creative work and ideas — built under <strong>PMA Media Yogyakarta.</strong></p>
+            <p className="hero-lead">Designs, digital products, creative work and ideas — built under <strong>PT PMA Media Yogyakarta.</strong></p>
             <div className="hero-actions">
               <a className="button button-primary" href="#designs">Explore designs <span>↗</span></a>
               <a className="button button-ghost" href="#about">Who is PMA?</a>
@@ -66,20 +62,15 @@ function App() {
 
         <section id="designs" className="section-wrap section-block">
           <div className="section-heading">
-            <div><span className="section-index">01 /</span><h2>THE WORK</h2></div>
-            <p>A growing library of original designs — some free, some premium.</p>
+            <div><span className="section-index">01 / DESIGNS</span><h2>THE WORK</h2></div>
+            <p>Original graphic work, released as free downloads and premium digital products.</p>
           </div>
-          <div className="pillar-grid">
-            {pillars.map((item) => (
-              <a className="pillar-card" href={item.tag === 'HIRE' ? '#services' : '#contact'} key={item.number}>
-                <div className="card-top"><span>{item.number}</span><span className="card-tag">{item.tag}</span></div>
-                <div className="card-art"><span>{item.number}</span></div>
-                <h3>{item.title}</h3>
-                <p>{item.text}</p>
-                <span className="card-arrow">VIEW <b>↗</b></span>
-              </a>
-            ))}
+
+          <div className="design-grid">
+            {designs.map((design) => <DesignCard key={design.id} design={design} />)}
           </div>
+
+          <div className="section-note">THE LIBRARY WILL GROW / FREE + PREMIUM</div>
         </section>
 
         <section id="services" className="section-wrap section-block split-section">
@@ -98,7 +89,7 @@ function App() {
 
         <section id="journal" className="section-wrap section-block journal-section">
           <div className="section-heading">
-            <div><span className="section-index">03 /</span><h2>JOURNAL</h2></div>
+            <div><span className="section-index">03 / JOURNAL</span><h2>JOURNAL</h2></div>
             <p>Notes on design, technology, creative work and building things online.</p>
           </div>
           <div className="journal-placeholder">
