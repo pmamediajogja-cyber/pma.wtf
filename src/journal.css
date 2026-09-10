@@ -112,7 +112,8 @@
   border: 1px solid var(--line);
   background: linear-gradient(145deg, rgba(16,18,22,.88), rgba(10,11,14,.78));
   padding: 0 20px 19px;
-  transition: transform .35s cubic-bezier(.22,1,.36,1), border-color .35s ease, background .35s ease;
+  cursor: pointer;
+  transition: transform .35s cubic-bezier(.22,1,.36,1), border-color .35s ease, background .35s ease, box-shadow .35s ease;
 }
 
 .journal-card::before {
@@ -127,12 +128,16 @@
   z-index: 4;
 }
 
-.journal-card:hover {
+.journal-card:hover,
+.journal-card:focus-visible {
   transform: translateY(-5px);
   border-color: rgba(100,232,255,.34);
+  box-shadow: 0 18px 45px rgba(0,0,0,.22);
+  outline: none;
 }
 
-.journal-card:hover::before { width: 100%; }
+.journal-card:hover::before,
+.journal-card:focus-visible::before { width: 100%; }
 .journal-card > * { position: relative; z-index: 1; }
 
 .journal-card-visual {
@@ -152,7 +157,8 @@
   transition: transform .6s cubic-bezier(.22,1,.36,1), opacity .35s ease;
 }
 
-.journal-card:hover .journal-card-visual img { transform: scale(1.045); }
+.journal-card:hover .journal-card-visual img,
+.journal-card:focus-visible .journal-card-visual img { transform: scale(1.045); }
 
 .journal-card-visual::after {
   content: "";
