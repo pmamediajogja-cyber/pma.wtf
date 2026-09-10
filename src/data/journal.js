@@ -89,6 +89,51 @@ const journalArticles = [
       "Pandangan PMA: tombol download adalah bagian dari security boundary. Edukasi pengguna tetap penting, tetapi perusahaan sebaiknya tidak menggantungkan keamanan hanya pada kehati-hatian manusia. Sistem harus didesain agar satu klik yang salah tidak otomatis berubah menjadi kompromi seluruh endpoint."
     ],
   },
+  {
+    id: "007",
+    date: "10 SEP 2026",
+    tag: "STREETWEAR / FIT",
+    title: "Streetwear Is Getting More Intentional",
+    excerpt: "Oversized is still alive, but the stronger streetwear look in 2026 is less about wearing everything bigger and more about controlling proportion, fabric and silhouette.",
+    source: "The 10/10 Boys",
+    url: "https://the1010boys.com/blog/streetwear-trends-2026/",
+    review: [
+      "Streetwear tidak sedang meninggalkan oversized fit. Yang berubah adalah cara oversized dipakai. Tren 2026 bergerak dari sekadar mengambil ukuran lebih besar menuju siluet yang memang dirancang oversized: bahu lebih terkontrol, badan boxy, sleeve yang punya bentuk, dan proporsi yang tetap terlihat sengaja.",
+      "Menurut kami, ini penting untuk desainer graphic tee. Artwork yang bagus bisa kehilangan impact kalau ditempel pada garment dengan proporsi yang tidak mendukung. Graphic placement harus membaca bentuk tubuh dan konstruksi kaos. Back print besar, chest graphic kecil, atau typography di sleeve semuanya punya fungsi berbeda ketika silhouette berubah.",
+      "Streetwear yang lebih matang juga membuat material menjadi bagian dari desain. Heavyweight cotton, washed texture, struktur kain dan kemampuan garment mempertahankan bentuk dapat membuat graphic sederhana terlihat jauh lebih premium. Artinya, nilai sebuah desain tidak berhenti pada file artwork.",
+      "Pandangan PMA: jangan mengejar oversized hanya karena sedang populer. Bangun silhouette terlebih dahulu, kemudian biarkan graphic mengikuti karakter garment. Untuk brand kecil, pendekatan ini justru bisa menjadi pembeda karena produk terlihat designed, bukan sekadar kaos kosong yang diberi print besar."
+    ],
+  },
+  {
+    id: "008",
+    date: "10 SEP 2026",
+    tag: "STREETWEAR / GRAPHIC",
+    title: "The Graphic Tee Is Back — But It Has to Say Something",
+    excerpt: "Graphic tees are gaining cultural momentum again, with personality, nostalgia, fandom and humor replacing generic logo-heavy design as the stronger visual language.",
+    source: "Vogue",
+    url: "https://www.vogue.com/slideshow/the-graphic-t-shirts-that-won-summer",
+    review: [
+      "Graphic T-shirt kembali menjadi salah satu titik paling menarik dalam fashion 2026. Vogue menyoroti pergeseran menuju graphic tee yang lebih ekspresif: referensi fandom, olahraga lokal, band-style imagery, humor, nostalgia, dan artwork yang terasa punya personality. Ini menarik karena selama beberapa tahun fashion sempat bergerak kuat ke arah minimalisme dan quiet luxury.",
+      "Bagi kami, kebangkitan graphic tee bukan berarti semua desain harus kembali menjadi ramai. Justru pelajarannya adalah graphic harus mempunyai alasan untuk ada. Sebuah artwork bisa bekerja karena cerita, referensi budaya, typography, komposisi atau rasa nostalgia yang langsung dikenali — bukan karena jumlah elemen di dalamnya.",
+      "Ini juga membuka peluang besar bagi brand kecil. Mereka tidak harus memenangkan permainan logo melawan perusahaan besar. Mereka bisa membangun identitas lewat visual yang terasa spesifik: kota tertentu, subkultur tertentu, humor internal, arsip olahraga, musik, otomotif, horror, atau cerita personal yang diterjemahkan menjadi artwork.",
+      "Pandangan PMA: graphic tee yang kuat seharusnya membuat orang ingin melihatnya dua kali. Bukan sekadar 'bagus', tetapi membuat seseorang bertanya, mengenali sesuatu, atau merasa bahwa desain itu mewakili dirinya. Di situlah artwork berubah dari dekorasi menjadi identity."
+    ],
+  },
+  {
+    id: "009",
+    date: "10 SEP 2026",
+    tag: "STREETWEAR / CULTURE",
+    title: "Why Streetwear Is Moving Beyond the Logo",
+    excerpt: "The next phase of streetwear is being shaped by niche collaborations, craftsmanship and cultural credibility rather than simply putting a bigger logo on a garment.",
+    source: "GQ",
+    url: "https://www.gq.com/story/supreme-apresse-collaboration-09-08-2026",
+    review: [
+      "Kolaborasi Supreme dengan label Jepang A.Presse menunjukkan satu hal menarik tentang streetwear 2026: hype masih penting, tetapi kredibilitas desain semakin menentukan. Kolaborasi tersebut justru menarik karena tidak memaksa logo Supreme menjadi pusat seluruh koleksi. Ada ruang untuk tailoring, military-inspired M-65, hoodie, leather jacket, hingga graphic tee yang lebih restrained.",
+      "Menurut kami, ini menunjukkan evolusi streetwear dari 'brand recognition' menuju 'design recognition'. Konsumen yang sudah terlalu sering melihat logo besar mulai mencari alasan lain untuk tertarik: siapa yang membuatnya, referensinya apa, bagaimana materialnya, bagaimana potongannya, dan apakah kolaborasinya punya cerita yang masuk akal.",
+      "Buat brand independen, ini adalah kabar baik. Kita tidak harus meniru skala perusahaan besar. Justru kolaborasi kecil dengan fotografer, illustrator, musisi, komunitas otomotif, skater, tattoo artist, atau creative scene lokal bisa menghasilkan cultural value yang jauh lebih autentik daripada sekadar mengejar logo.",
+      "Pandangan PMA: streetwear yang kuat bukan tentang seberapa keras sebuah brand berteriak. Ia tentang seberapa jelas dunia yang dibangun brand tersebut. Kalau visual, garment, cerita, komunitas dan cara rilisnya konsisten, logo bahkan bisa menjadi elemen paling kecil dari sebuah identity yang besar."
+    ],
+  },
 ];
 
 export default journalArticles;
