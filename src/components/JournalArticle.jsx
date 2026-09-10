@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import journalMedia from "../data/journalMedia";
 
 export default function JournalArticle({ article, onBack }) {
   useEffect(() => {
@@ -7,7 +8,9 @@ export default function JournalArticle({ article, onBack }) {
 
   if (!article) return null;
 
-  const illustration = `/journal/${article.id}.svg`;
+  const media = journalMedia[article.id];
+  const fallback = `/journal/${article.id}.svg`;
+  const image = media?.image || fallback;
 
   return (
     <main className="journal-article-page">
@@ -20,8 +23,15 @@ export default function JournalArticle({ article, onBack }) {
         </div>
 
         <div className="journal-article-hero">
-          <img src={illustration} alt={`${article.title} — PMA editorial illustration`} />
-          <span className="journal-article-hero-label">PMA ORIGINAL / EDITORIAL ILLUSTRATION</span>
+          <img
+            src={image}
+            alt={`${article.title} — ${media?.credit || "PMA editorial image"}`}
+            onError={(event) => {
+              if (event.currentTarget.src.endsWith(fallback)) return;
+              event.currentTarget.src = fallback;
+            }}
+          />
+          <span className="journal-article-hero-label">REAL SOURCE IMAGE / {media?.credit || "PMA EDITORIAL"}</span>
         </div>
 
         <h1>{article.title}</h1>
