@@ -3,12 +3,12 @@ import journalMedia from "../data/journalMedia";
 import journalTags from "../data/journalTags";
 
 const englishLegacyIds = new Set(["010", "011", "012", "013", "014", "015", "016", "017", "018"]);
+const SITE_URL = "https://pma.wtf";
 
 function buildIndonesianReview(article) {
   if (englishLegacyIds.has(article.id)) {
     const isCyber = article.category === "CYBERSECURITY";
     const isAi = article.category === "AI & TECHNOLOGY";
-    const isStreetwear = article.category === "STREETWEAR & CULTURE";
 
     return [
       `Artikel "${article.title}" dari ${article.source} menarik karena memperlihatkan bagaimana sebuah perkembangan teknologi atau budaya dapat mempunyai dampak yang lebih besar ketika masuk ke penggunaan sehari-hari. Sumber tersebut menjadi titik awal untuk melihat persoalan ini bukan hanya sebagai berita, tetapi sebagai perubahan yang perlu dipahami dari sisi praktik.`,
@@ -55,31 +55,88 @@ function buildIndonesianReview(article) {
   return base;
 }
 
+function parseArticleDate(date) {
+  const months = { JAN: "01", FEB: "02", MAR: "03", APR: "04", MAY: "05", JUN: "06", JUL: "07", AUG: "08", SEP: "09", OCT: "10", NOV: "11", DEC: "12" };
+  const match = String(date || "").match(/^(\d{2})\s+([A-Z]{3})\s+(\d{4})$/);
+  if (!match || !months[match[2]]) return undefined;
+  return `${match[3]}-${months[match[2]]}-${match[1]}`;
+}
+
+function upsertMeta(attribute, key, content) {
+  let node = document.head.querySelector(`meta[${attribute}="${key}"]`);
+  if (!node) {
+    node = document.createElement("meta");
+    node.setAttribute(attribute, key);
+    document.head.appendChild(node);
+  }
+  node.setAttribute("content", content);
+}
+
 export default function JournalArticle({ article, onBack }) {
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "instant" });
-
-    if (!article) return undefined;
-
-    const description = `${article.title}. ${article.excerpt}`.slice(0, 300);
-    let meta = document.querySelector('meta[name="description"]');
-    if (!meta) {
-      meta = document.createElement("meta");
-      meta.name = "description";
-      document.head.appendChild(meta);
-    }
-    meta.setAttribute("content", description);
-
-    return undefined;
-  }, [article?.id]);
-
-  if (!article) return null;
-
-  const media = journalMedia[article.id];
-  const seo = journalTags[article.id] || { tags: [], hashtags: [] };
+  const media = article ? journalMedia[article.id] : null;
+  const seo = article ? (journalTags[article.id] || { tags: [], hashtags: [] }) : { tags: [], hashtags: [] };
   const fallback = "/journal/001.svg";
   const image = media?.image || fallback;
-  const review = buildIndonesianReview(article);
+  const canonicalUrl = article ? `${SITE_URL}/journal/${article.id}` : SITE_URL;
+  const publishedDate = article ? parseArticleDate(article.date) : undefined;
+  const review = article ? buildIndonesianReview(article) : [];
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "instant" });
+    if (!article) return undefined;
+
+    const description = article.excerpt || `PMA Journal review: ${article.title}`;
+    document.title = `${article.title} — PMA Journal`;
+    upsertMeta("name", "description", description);
+    upsertMeta("name", "robots", "index,follow,max-image-preview:large");
+    upsertMeta("property", "og:title", `${article.title} — PMA Journal`);
+    upsertMeta("property", "og:description", description);
+    upsertMeta("property", "og:type", "article");
+    upsertMeta("property", "og:url", canonicalUrl);
+    upsertMeta("property", "og:site_name", "PMA.WTF");
+    upsertMeta("property", "og:image", media?.image || `${SITE_URL}${fallback}`);
+    upsertMeta("name", "twitter:card", "summary_large_image");
+    upsertMeta("name", "twitter:title", `${article.title} — PMA Journal`);
+    upsertMeta("name", "twitter:description", description);
+    upsertMeta("name", "twitter:image", media?.image || `${SITE_URL}${fallback}`);
+
+    let canonical = document.head.querySelector('link[rel="canonical"]');
+    if (!canonical) {
+      canonical = document.createElement("link");
+      canonical.rel = "canonical";
+      document.head.appendChild(canonical);
+    }
+    canonical.href = canonicalUrl;
+
+    let structuredData = document.head.querySelector("#pma-journal-jsonld");
+    if (!structuredData) {
+      structuredData = document.createElement("script");
+      structuredData.id = "pma-journal-jsonld";
+      structuredData.type = "application/ld+json";
+      document.head.appendChild(structuredData);
+    }
+
+    structuredData.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      headline: article.title,
+      description,
+      image: [media?.image || `${SITE_URL}${fallback}`],
+      ...(publishedDate ? { datePublished: publishedDate, dateModified: publishedDate } : {}),
+      author: { "@type": "Organization", name: "PMA Media Yogyakarta", url: `${SITE_URL}/profile` },
+      publisher: { "@type": "Organization", name: "PMA Media Yogyakarta", url: SITE_URL },
+      mainEntityOfPage: { "@type": "WebPage", "@id": canonicalUrl },
+      articleSection: article.category,
+      keywords: seo.tags.join(", ")
+    });
+
+    return () => {
+      const node = document.head.querySelector("#pma-journal-jsonld");
+      if (node) node.remove();
+    };
+  }, [article?.id, article?.title, article?.excerpt, article?.category, article?.date, canonicalUrl, media?.image, publishedDate, seo.tags]);
+
+  if (!article) return null;
 
   return (
     <main className="journal-article-page">
@@ -104,10 +161,9 @@ export default function JournalArticle({ article, onBack }) {
         </div>
 
         <h1>{article.title}</h1>
-
         <p className="journal-article-excerpt">{article.excerpt}</p>
 
-        <div className="journal-article-tags" aria-label="Topik artikel">
+        <div className="journal-article-tags" aria-label="Topik dan hashtag artikel">
           <div className="journal-tags-label">TOPICS / SEO TAGS</div>
           <div className="journal-tags-list">
             {seo.tags.map((tag) => <span key={tag}>{tag}</span>)}
@@ -121,18 +177,14 @@ export default function JournalArticle({ article, onBack }) {
         <div className="journal-article-grid">
           <article>
             <div className="journal-review-label">PMA REVIEW / OUR TAKE</div>
-            {review.map((paragraph, index) => (
-              <p key={index}>{paragraph}</p>
-            ))}
+            {review.map((paragraph, index) => <p key={index}>{paragraph}</p>)}
           </article>
 
           <aside className="journal-source-card">
             <div className="source-label">ORIGINAL SOURCE</div>
             <strong>{article.source}</strong>
             <a href={article.url} target="_blank" rel="noreferrer">READ SOURCE ↗</a>
-            <div className="source-note">
-              PMA editorial content is an independent review and interpretation of the linked source.
-            </div>
+            <div className="source-note">PMA editorial content is an independent review and interpretation of the linked source.</div>
           </aside>
         </div>
       </div>
