@@ -25,6 +25,40 @@ function reveal(element, options = {}) {
   );
 }
 
+function hoverMotion(element, hover = {}, rest = {}) {
+  if (!element) return () => {};
+
+  const enter = () =>
+    animate(element, {
+      scale: hover.scale ?? 1.015,
+      y: hover.y ?? -5,
+      x: hover.x ?? 0,
+      rotateZ: hover.rotateZ ?? 0,
+    }, {
+      duration: 0.28,
+      ease: [0.16, 1, 0.3, 1],
+    });
+
+  const leave = () =>
+    animate(element, {
+      scale: rest.scale ?? 1,
+      y: rest.y ?? 0,
+      x: rest.x ?? 0,
+      rotateZ: rest.rotateZ ?? 0,
+    }, {
+      duration: 0.45,
+      ease: [0.16, 1, 0.3, 1],
+    });
+
+  element.addEventListener("pointerenter", enter);
+  element.addEventListener("pointerleave", leave);
+
+  return () => {
+    element.removeEventListener("pointerenter", enter);
+    element.removeEventListener("pointerleave", leave);
+  };
+}
+
 export default function AnimeHomeScroll() {
   const { scrollY } = useScroll();
   const reduceMotion = useReducedMotion();
@@ -94,7 +128,37 @@ export default function AnimeHomeScroll() {
         observer.observe(element);
       });
 
-    const cleanup = () => observer.disconnect();
+    const cleanupHover = [];
+
+    document.querySelectorAll(".design-card").forEach((element) => {
+      cleanupHover.push(
+        hoverMotion(element, { y: -8, scale: 1.018, rotateZ: 0.35 })
+      );
+    });
+
+    document.querySelectorAll(".service-row").forEach((element) => {
+      cleanupHover.push(
+        hoverMotion(element, { x: 12, y: 0, scale: 1.005 })
+      );
+    });
+
+    document.querySelectorAll(".button, .contact-email").forEach((element) => {
+      cleanupHover.push(
+        hoverMotion(element, { y: -3, scale: 1.025 })
+      );
+    });
+
+    document.querySelectorAll(".filter-button").forEach((element) => {
+      cleanupHover.push(
+        hoverMotion(element, { y: -2, scale: 1.04 })
+      );
+    });
+
+    const cleanup = () => {
+      observer.disconnect();
+      cleanupHover.forEach((fn) => fn());
+    };
+
     return cleanup;
   }, [reduceMotion]);
 
@@ -106,7 +170,6 @@ export default function AnimeHomeScroll() {
     const square = document.querySelector(".hero-scroll-square");
     const cue = document.querySelector(".scroll-cue");
 
-    // Motion-driven scroll parallax. The values are intentionally visible but restrained.
     const heroY = Math.min(latest * 0.22, 170);
     const heroScale = Math.max(0.9, 1 - latest / 4200);
     const metaY = Math.min(latest * 0.11, 85);
