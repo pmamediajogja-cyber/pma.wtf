@@ -53,6 +53,23 @@ function Home() {
       </header>
 
       <main id="top">
+        <div
+          className="home-light-wash"
+          aria-hidden="true"
+          style={{
+            position: "fixed",
+            inset: 0,
+            pointerEvents: "none",
+            zIndex: 1,
+            background: [
+              "radial-gradient(circle at 72% 16%, rgba(100,232,255,0.10), transparent 28%)",
+              "radial-gradient(circle at 28% 34%, rgba(107,92,255,0.07), transparent 25%)",
+              "linear-gradient(180deg, rgba(255,255,255,0.025), transparent 38%)",
+            ].join(","),
+            mixBlendMode: "screen",
+          }}
+        />
+
         {/* HERO */}
         <section className="hero section-wrap">
           <div className="hero-scroll-square" aria-hidden="true" />
