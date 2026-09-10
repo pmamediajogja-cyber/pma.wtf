@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import DesignDetail from "./components/DesignDetail";
 import Profile from "./components/Profile";
@@ -11,6 +11,10 @@ import JournalArticle from "./components/JournalArticle";
 
 import designs from "./data/designs";
 import journalArticles from "./data/journal";
+import journalMore from "./data/journalMore";
+import journalMedia from "./data/journalMedia";
+
+const allJournalArticles = [...journalArticles, ...journalMore];
 
 const navItems = [
   ["Designs", "#designs"],
@@ -26,10 +30,22 @@ const journalGroups = [
 ];
 
 function JournalCard({ article, goToJournal }) {
+  const media = journalMedia[article.id];
+  const fallback = `/journal/${article.id}.svg`;
+
   return (
     <article className="journal-card">
       <div className="journal-card-visual">
-        <img src={`/journal/${article.id}.svg`} alt="" loading="lazy" />
+        <img
+          src={media?.image || fallback}
+          alt={media?.credit ? `${article.title} — ${media.credit}` : `${article.title} — PMA editorial image`}
+          loading="lazy"
+          onError={(event) => {
+            if (event.currentTarget.src.endsWith(fallback)) return;
+            event.currentTarget.src = fallback;
+          }}
+        />
+        <span className="journal-image-badge">REAL SOURCE IMAGE</span>
       </div>
       <div className="journal-card-meta"><span>{article.id} / {article.tag}</span><span>{article.date}</span></div>
       <h3>{article.title}</h3>
@@ -39,6 +55,39 @@ function JournalCard({ article, goToJournal }) {
         <a href={article.url} target="_blank" rel="noreferrer">Source ↗</a>
       </div>
     </article>
+  );
+}
+
+function JournalRail({ articles, goToJournal }) {
+  const railRef = useRef(null);
+  const [paused, setPaused] = useState(false);
+
+  const move = (direction) => {
+    const rail = railRef.current;
+    if (!rail) return;
+    const amount = Math.min(520, Math.max(300, rail.clientWidth * 0.72));
+    rail.scrollBy({ left: direction * amount, behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    if (paused || articles.length < 5) return undefined;
+    const timer = window.setInterval(() => move(1), 5200);
+    return () => window.clearInterval(timer);
+  }, [paused, articles.length]);
+
+  return (
+    <div className="journal-rail-wrap">
+      <button className="journal-rail-button journal-rail-prev" type="button" onClick={() => move(-1)} aria-label="Previous journal articles">←</button>
+      <div
+        className="journal-rail"
+        ref={railRef}
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => setPaused(false)}
+      >
+        {articles.map((article) => <JournalCard key={article.id} article={article} goToJournal={goToJournal} />)}
+      </div>
+      <button className="journal-rail-button journal-rail-next" type="button" onClick={() => move(1)} aria-label="Next journal articles">→</button>
+    </div>
   );
 }
 
@@ -128,26 +177,27 @@ function Home({ goToJournal }) {
           </div>
 
           <div className="journal-groups">
-            {journalGroups.map((group) => {
-              const articles = journalArticles.filter((article) => article.category === group.key);
+            {journalGroups.map((group, groupIndex) => {
+              const articles = allJournalArticles.filter((article) => article.category === group.key);
               return (
                 <section className="journal-group" key={group.key}>
                   <div className="journal-group-heading">
                     <div>
-                      <span className="journal-group-index">{String(journalGroups.indexOf(group) + 1).padStart(2, "0")} / {articles.length} ARTICLES</span>
+                      <span className="journal-group-index">{String(groupIndex + 1).padStart(2, "0")} / {articles.length} ARTICLES</span>
                       <h3>{group.label}</h3>
                     </div>
-                    <p>{group.note}</p>
+                    <div className="journal-group-tools">
+                      <p>{group.note}</p>
+                      <span className="journal-rail-hint">AUTO-SCROLL / HOVER TO PAUSE</span>
+                    </div>
                   </div>
-                  <div className="journal-rail">
-                    {articles.map((article) => <JournalCard key={article.id} article={article} goToJournal={goToJournal} />)}
-                  </div>
+                  <JournalRail articles={articles} goToJournal={goToJournal} />
                 </section>
               );
             })}
           </div>
 
-          <div className="section-note">PMA JOURNAL / ORIGINAL EDITORIAL + EXTERNAL SOURCES</div>
+          <div className="section-note">PMA JOURNAL / REAL EDITORIAL IMAGERY + EXTERNAL SOURCES</div>
         </section>
 
         <section id="contact" className="section-wrap contact-section">
@@ -176,7 +226,7 @@ function App() {
     if (path === "/cv") title = "CV — Imam Falahi";
     const journalMatch = path.match(/^\/journal\/(.+)$/);
     if (journalMatch) {
-      const article = journalArticles.find((item) => item.id === journalMatch[1]);
+      const article = allJournalArticles.find((item) => item.id === journalMatch[1]);
       if (article) title = `${article.title} — PMA Journal`;
     }
     document.title = title;
@@ -185,7 +235,7 @@ function App() {
   const designMatch = path.match(/^\/design\/(.+)$/);
   const design = designMatch ? designs.find((item) => item.id === designMatch[1]) : null;
   const journalMatch = path.match(/^\/journal\/(.+)$/);
-  const journalArticle = journalMatch ? journalArticles.find((item) => item.id === journalMatch[1]) : null;
+  const journalArticle = journalMatch ? allJournalArticles.find((item) => item.id === journalMatch[1]) : null;
 
   const goTo = (target) => {
     window.history.pushState({}, "", target);
