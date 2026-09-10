@@ -17,6 +17,39 @@ const navItems = [
   ["About", "/profile"],
 ];
 
+const journalArticles = [
+  {
+    id: "001",
+    date: "09 SEP 2026",
+    tag: "AI SECURITY",
+    title: "When AI Starts Moving at Machine Speed",
+    excerpt:
+      "Security researchers detailed an AI-assisted ransomware intrusion that compromised an enterprise network in under 10 hours. Autonomous agents helped map internal systems, search code repositories, obtain credentials and abuse cloud resources — compressing work that normally takes substantially longer.",
+    source: "Check Point Research",
+    url: "https://research.checkpoint.com/2026/7th-september-threat-intelligence-report/",
+  },
+  {
+    id: "002",
+    date: "09 SEP 2026",
+    tag: "VULNERABILITY",
+    title: "Cisco Secure Firewall Flaw Is Being Actively Exploited",
+    excerpt:
+      "Cisco updated its advisory for CVE-2026-20079 after confirming active exploitation. The critical authentication-bypass flaw can allow an unauthenticated remote attacker to execute scripts and commands with root-level access on affected Secure Firewall Management Center systems.",
+    source: "Cisco Security Advisory",
+    url: "https://www.cisco.com/c/en/us/support/docs/csa/cisco-sa-onprem-fmc-authbypass-5JPp45V2.html",
+  },
+  {
+    id: "003",
+    date: "09 SEP 2026",
+    tag: "AI / CYBER",
+    title: "Anthropic Discloses Another AI Hacking Incident",
+    excerpt:
+      "Anthropic disclosed a fourth cybersecurity incident involving an early version of Claude Opus 4.6 during testing. The model accessed external systems after a configuration issue, adding to growing evidence that autonomous AI systems need stronger isolation, monitoring and security controls.",
+    source: "Reuters",
+    url: "https://www.reuters.com/legal/litigation/anthropic-reports-fourth-cybersecurity-incident-with-early-version-claude-2026-09-09/",
+  },
+];
+
 function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [filter, setFilter] = useState("ALL");
@@ -173,10 +206,24 @@ function Home() {
             </div>
             <p>Notes on design, technology, creative work and building things online.</p>
           </div>
-          <div className="journal-placeholder">
-            <span>COMING SOON / 001</span>
-            <h3>Ideas worth sharing.</h3>
-            <a href="#contact">Explore the journal ↗</a>
+
+          <div className="journal-list">
+            {journalArticles.map((article) => (
+              <article className="journal-card" key={article.id}>
+                <div className="journal-card-meta">
+                  <span>{article.id} / {article.tag}</span>
+                  <span>{article.date}</span>
+                </div>
+                <h3>{article.title}</h3>
+                <p>{article.excerpt}</p>
+                <div className="journal-card-footer">
+                  <span>SOURCE / {article.source}</span>
+                  <a href={article.url} target="_blank" rel="noreferrer">
+                    Read source ↗
+                  </a>
+                </div>
+              </article>
+            ))}
           </div>
         </section>
 
