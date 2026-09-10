@@ -1,7 +1,5 @@
 import { useEffect } from "react";
-import { animate } from "animejs/animation";
-import { onScroll } from "animejs/events";
-import { stagger } from "animejs/utils";
+import { animate, onScroll, stagger } from "animejs";
 
 export default function AnimeHomeScroll() {
   useEffect(() => {
