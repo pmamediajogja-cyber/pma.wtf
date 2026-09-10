@@ -31,10 +31,26 @@ const journalGroups = [
 
 function JournalCard({ article, goToJournal }) {
   const media = journalMedia[article.id];
-  const fallback = `/journal/${article.id}.svg`;
+  const fallback = "/journal/001.svg";
+
+  const openReview = () => goToJournal(article.id);
+
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      openReview();
+    }
+  };
 
   return (
-    <article className="journal-card">
+    <article
+      className="journal-card"
+      role="link"
+      tabIndex={0}
+      aria-label={`Buka review PMA: ${article.title}`}
+      onClick={openReview}
+      onKeyDown={handleKeyDown}
+    >
       <div className="journal-card-visual">
         <img
           src={media?.image || fallback}
@@ -51,8 +67,8 @@ function JournalCard({ article, goToJournal }) {
       <h3>{article.title}</h3>
       <p>{article.excerpt}</p>
       <div className="journal-card-footer">
-        <button onClick={() => goToJournal(article.id)}>Read PMA review ↗</button>
-        <a href={article.url} target="_blank" rel="noreferrer">Source ↗</a>
+        <button type="button" onClick={(event) => { event.stopPropagation(); openReview(); }}>Read PMA review ↗</button>
+        <a href={article.url} target="_blank" rel="noreferrer" onClick={(event) => event.stopPropagation()}>Source ↗</a>
       </div>
     </article>
   );
