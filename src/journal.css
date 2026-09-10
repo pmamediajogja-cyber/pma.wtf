@@ -317,7 +317,49 @@
   letter-spacing: -.07em;
 }
 
-.journal-article-excerpt { max-width: 780px; color: var(--soft); font-size: 18px; line-height: 1.7; margin: 0 0 55px; }
+.journal-article-excerpt { max-width: 780px; color: var(--soft); font-size: 18px; line-height: 1.7; margin: 0 0 35px; }
+
+.journal-article-tags {
+  max-width: 900px;
+  margin: 0 0 55px;
+  padding: 16px 0 0;
+  border-top: 1px solid var(--line);
+}
+
+.journal-tags-label,
+.journal-hashtags-label {
+  color: #656c76;
+  font: 8px/1.3 "DM Mono", monospace;
+  letter-spacing: .12em;
+  margin-bottom: 10px;
+}
+
+.journal-hashtags-label { margin-top: 17px; }
+
+.journal-tags-list,
+.journal-hashtags-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.journal-tags-list span,
+.journal-hashtags-list span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 25px;
+  padding: 5px 8px;
+  border: 1px solid var(--line);
+  background: rgba(16,18,22,.56);
+  color: #aeb5bf;
+  font: 8px/1.2 "DM Mono", monospace;
+  letter-spacing: .03em;
+}
+
+.journal-hashtags-list span {
+  border-color: rgba(100,232,255,.18);
+  color: var(--accent);
+}
 
 .journal-article-grid { display: grid; grid-template-columns: minmax(0, 1fr) 260px; gap: 55px; }
 
