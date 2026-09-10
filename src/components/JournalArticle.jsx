@@ -27,7 +27,6 @@ function buildIndonesianReview(article) {
   const isAi = article.category === "AI & TECHNOLOGY";
   const isStreetwear = article.category === "STREETWEAR & CULTURE";
 
-  // Legacy English articles get a fresh PMA-style editorial instead of a stiff translation.
   if (englishLegacyIds.has(article.id)) {
     const opening = isCyber
       ? `Ada alasan kenapa "${article.title}" layak diperhatikan. Berita seperti ini memang gampang lewat di timeline, apalagi ketika setiap minggu ada saja update soal celah, malware, atau serangan baru. Tapi kalau diperhatikan sedikit lebih dekat, ada pola yang cukup jelas: cara kita bekerja dengan teknologi ikut mengubah cara risiko muncul.`
@@ -64,7 +63,6 @@ function buildIndonesianReview(article) {
 
   const base = Array.isArray(article.review) ? article.review.map(humanizeParagraph) : [];
 
-  // Give every article a more natural editorial opening without changing the source facts.
   if (base.length) {
     const lead = isCyber
       ? "Ada satu bagian dari berita ini yang menurut kami paling layak diperhatikan:"
@@ -121,6 +119,7 @@ export default function JournalArticle({ article, onBack }) {
   const canonicalUrl = article ? `${SITE_URL}/journal/${article.id}` : SITE_URL;
   const publishedDate = article ? parseArticleDate(article.date) : undefined;
   const review = article ? buildIndonesianReview(article) : [];
+  const isOriginal = article?.source === "PMA Original";
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "instant" });
@@ -198,7 +197,7 @@ export default function JournalArticle({ article, onBack }) {
               event.currentTarget.src = fallback;
             }}
           />
-          <span className="journal-article-hero-label">REAL SOURCE IMAGE / {media?.credit || "PMA EDITORIAL"}</span>
+          <span className="journal-article-hero-label">{isOriginal ? "PMA ORIGINAL" : `REAL SOURCE IMAGE / ${media?.credit || "PMA EDITORIAL"}`}</span>
         </div>
 
         <h1>{article.title}</h1>
@@ -222,10 +221,10 @@ export default function JournalArticle({ article, onBack }) {
           </article>
 
           <aside className="journal-source-card">
-            <div className="source-label">ORIGINAL SOURCE</div>
-            <strong>{article.source}</strong>
-            <a href={article.url} target="_blank" rel="noreferrer">READ SOURCE ↗</a>
-            <div className="source-note">PMA editorial content is an independent review and interpretation of the linked source.</div>
+            <div className="source-label">{isOriginal ? "PMA ORIGINAL" : "ORIGINAL SOURCE"}</div>
+            <strong>{isOriginal ? "PMA Media Yogyakarta" : article.source}</strong>
+            {!isOriginal && <a href={article.url} target="_blank" rel="noreferrer">READ SOURCE ↗</a>}
+            <div className="source-note">{isOriginal ? "Original editorial content written and published by PMA Media Yogyakarta." : "PMA editorial content is an independent review and interpretation of the linked source."}</div>
           </aside>
         </div>
       </div>
