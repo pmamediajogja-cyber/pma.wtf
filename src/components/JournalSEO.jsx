@@ -27,7 +27,7 @@ export default function JournalSEO({ article, allArticles = [], mode = "breadcru
       "@type": "BreadcrumbList",
       itemListElement: [
         { "@type": "ListItem", position: 1, name: "PMA.WTF", item: SITE_URL },
-        { "@type": "ListItem", position: 2, name: "Journal", item: `${SITE_URL}/#journal` },
+        { "@type": "ListItem", position: 2, name: "Journal", item: `${SITE_URL}/journal` },
         { "@type": "ListItem", position: 3, name: article.category },
         { "@type": "ListItem", position: 4, name: article.title, item: `${SITE_URL}/journal/${article.id}` }
       ]
@@ -60,7 +60,7 @@ export default function JournalSEO({ article, allArticles = [], mode = "breadcru
         <nav className="journal-breadcrumb" aria-label="Breadcrumb">
           <a href="/">PMA.WTF</a>
           <span>/</span>
-          <a href="/#journal">JOURNAL</a>
+          <a href="/journal">JOURNAL</a>
           <span>/</span>
           <span>{article.category}</span>
           <span>/</span>
