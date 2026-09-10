@@ -101,11 +101,14 @@ function Home({ goToJournal }) {
         <section id="journal" className="section-wrap section-block journal-section">
           <div className="section-heading">
             <div><span className="section-index">03 / JOURNAL</span><h2>JOURNAL</h2></div>
-            <p>Cybersecurity stories, technical developments and PMA's take on what they mean in practice.</p>
+            <p>Cybersecurity stories, technical developments, streetwear culture and PMA's take on what they mean in practice.</p>
           </div>
           <div className="journal-list">
             {journalArticles.map((article) => (
               <article className="journal-card" key={article.id}>
+                <div className="journal-card-visual">
+                  <img src={`/journal/${article.id}.svg`} alt="" loading="lazy" />
+                </div>
                 <div className="journal-card-meta"><span>{article.id} / {article.tag}</span><span>{article.date}</span></div>
                 <h3>{article.title}</h3>
                 <p>{article.excerpt}</p>
