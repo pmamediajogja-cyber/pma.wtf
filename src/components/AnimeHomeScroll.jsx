@@ -1,222 +1,131 @@
 import { useEffect } from "react";
-import { animate, onScroll, stagger } from "animejs";
+import {
+  animate,
+  useMotionValueEvent,
+  useReducedMotion,
+  useScroll,
+} from "framer-motion";
+
+function reveal(element, options = {}) {
+  if (!element) return;
+
+  animate(
+    element,
+    {
+      opacity: [0, 1],
+      y: [options.y ?? 44, 0],
+      scale: [options.scale ?? 0.97, 1],
+      ...(options.x !== undefined ? { x: [options.x, 0] } : {}),
+    },
+    {
+      duration: options.duration ?? 0.8,
+      delay: options.delay ?? 0,
+      ease: [0.16, 1, 0.3, 1],
+    }
+  );
+}
 
 export default function AnimeHomeScroll() {
+  const { scrollY } = useScroll();
+  const reduceMotion = useReducedMotion();
+
   useEffect(() => {
-    const animations = [];
+    if (reduceMotion) return;
 
-    // HERO: obvious entrance animation so the Home page immediately feels alive.
     const heroCopy = document.querySelector(".hero-copy");
-    if (heroCopy) {
-      animations.push(
-        animate(heroCopy, {
-          opacity: [0, 1],
-          translateY: [70, 0],
-          duration: 1100,
-          ease: "out(4)",
-        })
-      );
-    }
-
     const eyebrow = document.querySelector(".hero .eyebrow");
-    if (eyebrow) {
-      animations.push(
-        animate(eyebrow, {
-          opacity: [0, 1],
-          translateX: [-35, 0],
-          duration: 750,
-          delay: 180,
-          ease: "out(4)",
-        })
-      );
-    }
-
     const heroTitle = document.querySelector(".hero h1");
-    if (heroTitle) {
-      animations.push(
-        animate(heroTitle, {
-          opacity: [0, 1],
-          translateY: [45, 0],
-          scale: [0.94, 1],
-          duration: 950,
-          delay: 280,
-          ease: "out(4)",
-        })
-      );
-    }
-
     const heroLead = document.querySelector(".hero-lead");
-    if (heroLead) {
-      animations.push(
-        animate(heroLead, {
-          opacity: [0, 1],
-          translateY: [25, 0],
-          duration: 700,
-          delay: 520,
-          ease: "out(4)",
-        })
-      );
-    }
-
     const heroActions = document.querySelector(".hero-actions");
-    if (heroActions) {
-      animations.push(
-        animate(heroActions, {
-          opacity: [0, 1],
-          translateY: [25, 0],
-          duration: 700,
-          delay: 650,
-          ease: "out(4)",
-        })
-      );
-    }
-
-    const metaLines = document.querySelectorAll(".hero-meta .meta-line");
-    if (metaLines.length) {
-      animations.push(
-        animate(metaLines, {
-          opacity: [0, 1],
-          translateX: [35, 0],
-          delay: stagger(90, { start: 850 }),
-          duration: 650,
-          ease: "out(4)",
-        })
-      );
-    }
-
-    const scrollCue = document.querySelector(".scroll-cue");
-    if (scrollCue) {
-      animations.push(
-        animate(scrollCue, {
-          opacity: [0, 1],
-          translateY: [12, 0],
-          duration: 600,
-          delay: 1250,
-          ease: "out(3)",
-        })
-      );
-    }
-
-    // HERO PARALLAX: large enough to actually notice while scrolling.
-    if (heroCopy) {
-      animations.push(
-        animate(heroCopy, {
-          translateY: [0, 180],
-          scale: [1, 0.9],
-          ease: "linear",
-          autoplay: onScroll({
-            enter: "top top",
-            leave: "bottom top",
-            sync: 0.45,
-          }),
-        })
-      );
-    }
-
     const heroMeta = document.querySelector(".hero-meta");
-    if (heroMeta) {
-      animations.push(
-        animate(heroMeta, {
-          translateY: [0, 90],
-          ease: "linear",
-          autoplay: onScroll({
-            enter: "top top",
-            leave: "bottom top",
-            sync: 0.4,
-          }),
-        })
-      );
-    }
-
+    const scrollCue = document.querySelector(".scroll-cue");
     const square = document.querySelector(".hero-scroll-square");
+
+    reveal(eyebrow, { x: -30, y: 0, duration: 0.65 });
+    reveal(heroTitle, { y: 52, scale: 0.94, delay: 0.12, duration: 0.95 });
+    reveal(heroLead, { y: 24, delay: 0.3, duration: 0.7 });
+    reveal(heroActions, { y: 22, delay: 0.42, duration: 0.7 });
+    reveal(heroMeta, { x: 34, y: 0, delay: 0.5, duration: 0.75 });
+    reveal(scrollCue, { y: 12, delay: 0.8, duration: 0.55 });
+
+    if (heroCopy) {
+      animate(
+        heroCopy,
+        { opacity: [0, 1], y: [70, 0] },
+        { duration: 1.05, ease: [0.16, 1, 0.3, 1] }
+      );
+    }
+
     if (square) {
-      animations.push(
-        animate(square, {
-          translateX: [0, 260],
-          translateY: [0, 100],
-          rotate: [0, 240],
-          scale: [1, 1.35],
-          ease: "linear",
-          autoplay: onScroll({
-            enter: "top top",
-            leave: "bottom top",
-            sync: 0.5,
-          }),
-        })
+      animate(
+        square,
+        { rotate: [0, 18], scale: [0.82, 1] },
+        { duration: 1.4, ease: [0.16, 1, 0.3, 1] }
       );
     }
 
-    // CARDS: stronger entrance with scale + rotation, but no opacity dimming.
-    const cards = document.querySelectorAll(".design-card");
-    if (cards.length) {
-      animations.push(
-        animate(cards, {
-          translateY: [90, 0],
-          scale: [0.9, 1],
-          rotateZ: [-2, 0],
-          delay: stagger(90),
-          ease: "out(4)",
-          autoplay: onScroll({
-            enter: "bottom-=120 bottom",
-            leave: "top+=80 top",
-            sync: 0.35,
-          }),
-        })
-      );
-    }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
 
-    // SERVICES: each row tracks the scroll with a visible horizontal shift.
-    const serviceRows = document.querySelectorAll(".service-row");
-    if (serviceRows.length) {
-      animations.push(
-        animate(serviceRows, {
-          translateX: [100, 0],
-          delay: stagger(70),
-          ease: "out(4)",
-          autoplay: onScroll({
-            enter: "bottom-=100 bottom",
-            leave: "top+=100 top",
-            sync: 0.3,
-          }),
-        })
-      );
-    }
+          const element = entry.target;
+          const delay = Number(element.dataset.motionDelay || 0);
+          reveal(element, {
+            y: Number(element.dataset.motionY || 55),
+            x: Number(element.dataset.motionX || 0),
+            scale: Number(element.dataset.motionScale || 0.96),
+            delay,
+            duration: 0.78,
+          });
+          observer.unobserve(element);
+        });
+      },
+      { threshold: 0.14, rootMargin: "0px 0px -8% 0px" }
+    );
 
-    const journal = document.querySelector(".journal-placeholder");
-    if (journal) {
-      animations.push(
-        animate(journal, {
-          translateY: [100, 0],
-          scale: [0.96, 1],
-          ease: "out(4)",
-          autoplay: onScroll({
-            enter: "bottom-=100 bottom",
-            leave: "top+=100 top",
-            sync: 0.3,
-          }),
-        })
-      );
-    }
+    document
+      .querySelectorAll(
+        ".section-heading, .design-card, .service-row, .journal-placeholder, .contact-section"
+      )
+      .forEach((element, index) => {
+        element.style.opacity = "0";
+        element.dataset.motionDelay = String((index % 4) * 0.07);
+        observer.observe(element);
+      });
 
-    const contact = document.querySelector(".contact-section");
-    if (contact) {
-      animations.push(
-        animate(contact, {
-          translateY: [80, 0],
-          ease: "out(4)",
-          autoplay: onScroll({
-            enter: "bottom-=100 bottom",
-            leave: "top+=100 top",
-            sync: 0.3,
-          }),
-        })
-      );
-    }
+    const cleanup = () => observer.disconnect();
+    return cleanup;
+  }, [reduceMotion]);
 
-    return () => {
-      animations.forEach((animation) => animation.pause?.());
-    };
-  }, []);
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    if (reduceMotion) return;
+
+    const hero = document.querySelector(".hero-copy");
+    const meta = document.querySelector(".hero-meta");
+    const square = document.querySelector(".hero-scroll-square");
+    const cue = document.querySelector(".scroll-cue");
+
+    // Motion-driven scroll parallax. The values are intentionally visible but restrained.
+    const heroY = Math.min(latest * 0.22, 170);
+    const heroScale = Math.max(0.9, 1 - latest / 4200);
+    const metaY = Math.min(latest * 0.11, 85);
+    const squareX = Math.min(latest * 0.34, 250);
+    const squareRotate = Math.min(latest * 0.24, 230);
+
+    if (hero) {
+      hero.style.transform = `translate3d(0, ${heroY}px, 0) scale(${heroScale})`;
+    }
+    if (meta) {
+      meta.style.transform = `translate3d(0, ${metaY}px, 0)`;
+    }
+    if (square) {
+      square.style.transform = `translate3d(${squareX}px, ${latest * 0.13}px, 0) rotate(${squareRotate}deg) scale(${1 + Math.min(latest / 5200, 0.34)})`;
+    }
+    if (cue) {
+      cue.style.opacity = String(Math.max(0, 1 - latest / 260));
+    }
+  });
 
   return null;
 }
