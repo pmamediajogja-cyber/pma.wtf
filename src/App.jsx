@@ -7,6 +7,8 @@ import PageControls from "./components/PageControls";
 import AnimeEffects from "./components/AnimeEffects";
 import AnimeHomeScroll from "./components/AnimeHomeScroll";
 import JournalArticle from "./components/JournalArticle";
+import JournalSEO from "./components/JournalSEO";
+import "./journalSeo.css";
 import designs from "./data/designs";
 import journalArticles from "./data/journal";
 import journalMore from "./data/journalMore";
@@ -76,7 +78,7 @@ function App() {
   const designMatch = path.match(/^\/design\/(.+)$/); const design = designMatch ? designs.find((item) => item.id === designMatch[1]) : null; const journalMatch = path.match(/^\/journal\/(.+)$/); const journalArticle = journalMatch ? allJournalArticles.find((item) => item.id === journalMatch[1]) : null;
   const goTo = (target) => { window.history.pushState({}, "", target); setPath(target); window.scrollTo({ top: 0, behavior: "instant" }); };
   if (designMatch) return <div className="site-shell"><div className="ambient ambient-one" /><div className="ambient ambient-two" /><div className="grid-overlay" /><AnimeEffects /><PageControls showBack /><DesignDetail design={design} /></div>;
-  if (journalMatch) return <div className="site-shell"><div className="ambient ambient-one" /><div className="ambient ambient-two" /><div className="grid-overlay" /><AnimeEffects /><PageControls showBack /><JournalArticle article={journalArticle} onBack={() => goTo("/")} /><footer className="site-footer"><span>© 2026 PMA MEDIA YOGYAKARTA</span><span>PMA.WTF / DIGITAL CREATIVE HUB</span></footer></div>;
+  if (journalMatch) return <div className="site-shell"><div className="ambient ambient-one" /><div className="ambient ambient-two" /><div className="grid-overlay" /><AnimeEffects /><PageControls showBack /><JournalSEO article={journalArticle} allArticles={allJournalArticles} mode="breadcrumb" /><JournalArticle article={journalArticle} onBack={() => goTo("/")} /><JournalSEO article={journalArticle} allArticles={allJournalArticles} mode="related" /><footer className="site-footer"><span>© 2026 PMA MEDIA YOGYAKARTA</span><span>PMA.WTF / DIGITAL CREATIVE HUB</span></footer></div>;
   if (path === "/profile") return <div className="site-shell"><div className="ambient ambient-one" /><div className="ambient ambient-two" /><div className="grid-overlay" /><AnimeEffects /><PageControls showBack /><Profile /><footer className="site-footer"><span>© 2026 PMA MEDIA YOGYAKARTA</span><span>PMA.WTF / DIGITAL CREATIVE HUB</span></footer></div>;
   if (path === "/cv") return <div className="site-shell"><div className="ambient ambient-one" /><div className="ambient ambient-two" /><div className="grid-overlay" /><AnimeEffects /><PageControls showBack /><CVSection /><footer className="site-footer"><span>© 2026 PMA MEDIA YOGYAKARTA</span><span>PMA.WTF / DIGITAL CREATIVE HUB</span></footer></div>;
   return <div className="site-shell"><div className="ambient ambient-one" /><div className="ambient ambient-two" /><div className="grid-overlay" /><AnimeEffects /><AnimeHomeScroll /><PageControls /><Home goToJournal={(id) => goTo(`/journal/${id}`)} /><footer className="site-footer"><span>© 2026 PMA MEDIA YOGYAKARTA</span><span>PMA.WTF / DIGITAL CREATIVE HUB</span></footer></div>;
