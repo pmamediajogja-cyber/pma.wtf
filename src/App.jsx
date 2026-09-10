@@ -4,6 +4,8 @@ import DesignDetail from "./components/DesignDetail";
 import Profile from "./components/Profile";
 import CVSection from "./components/CVSection";
 import DesignCard from "./components/DesignCard";
+import PageControls from "./components/PageControls";
+import AnimeEffects from "./components/AnimeEffects";
 
 import designs from "./data/designs";
 
@@ -380,6 +382,8 @@ function App() {
         <div className="ambient ambient-two" />
         <div className="grid-overlay" />
 
+        <AnimeEffects />
+        <PageControls showBack />
         <DesignDetail
           design={design}
         />
@@ -394,6 +398,8 @@ function App() {
         <div className="ambient ambient-two" />
         <div className="grid-overlay" />
 
+        <AnimeEffects />
+        <PageControls showBack />
         <Profile />
 
         <footer className="site-footer">
@@ -416,6 +422,8 @@ function App() {
         <div className="ambient ambient-two" />
         <div className="grid-overlay" />
 
+        <AnimeEffects />
+        <PageControls showBack />
         <CVSection />
 
         <footer className="site-footer">
@@ -437,6 +445,8 @@ function App() {
       <div className="ambient ambient-two" />
       <div className="grid-overlay" />
 
+      <AnimeEffects />
+      <PageControls />
       <Home />
 
       <footer className="site-footer">
