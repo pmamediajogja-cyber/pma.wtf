@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import journalMedia from "../data/journalMedia";
+import journalTags from "../data/journalTags";
 
 const englishLegacyIds = new Set(["010", "011", "012", "013", "014", "015", "016", "017", "018"]);
 
@@ -14,8 +15,8 @@ function buildIndonesianReview(article) {
       isCyber
         ? "Dari sudut pandang keamanan, hal terpenting adalah memahami bahwa risiko jarang berdiri sendiri. Satu celah, konfigurasi yang keliru, atau kebiasaan pengguna dapat menjadi bagian dari rangkaian kejadian yang lebih panjang. Karena itu, pertahanan yang baik perlu melihat konteks, memantau perubahan, dan menyiapkan respons sebelum masalah berkembang menjadi insiden besar."
         : isAi
-          ? "Dari sudut pandang teknologi, perkembangan seperti ini menunjukkan bahwa kemampuan sistem bukan satu-satunya ukuran keberhasilan. Akses, batasan, data, lingkungan eksekusi, dan cara manusia mengawasi sistem sama pentingnya. Teknologi yang semakin kuat membutuhkan desain yang semakin jelas mengenai apa yang boleh dan tidak boleh dilakukan.":
-          "Dari sudut pandang streetwear, perkembangan seperti ini menunjukkan bahwa tren yang kuat biasanya tidak muncul hanya dari satu logo atau satu bentuk visual. Ada hubungan antara siluet, material, referensi budaya, fungsi, dan cara sebuah produk dibawa ke komunitas. Ketika elemen-elemen tersebut saling mendukung, identitas produk terasa lebih kuat.",
+          ? "Dari sudut pandang teknologi, perkembangan seperti ini menunjukkan bahwa kemampuan sistem bukan satu-satunya ukuran keberhasilan. Akses, batasan, data, lingkungan eksekusi, dan cara manusia mengawasi sistem sama pentingnya. Teknologi yang semakin kuat membutuhkan desain yang semakin jelas mengenai apa yang boleh dan tidak boleh dilakukan."
+          : "Dari sudut pandang streetwear, perkembangan seperti ini menunjukkan bahwa tren yang kuat biasanya tidak muncul hanya dari satu logo atau satu bentuk visual. Ada hubungan antara siluet, material, referensi budaya, fungsi, dan cara sebuah produk dibawa ke komunitas. Ketika elemen-elemen tersebut saling mendukung, identitas produk terasa lebih kuat.",
       isCyber
         ? "Pelajaran praktisnya adalah jangan menunggu sebuah ancaman terlihat sempurna sebelum bertindak. Inventaris aset, pembaruan perangkat lunak, pengaturan hak akses, pencatatan aktivitas, segmentasi jaringan, dan edukasi pengguna memang terlihat sederhana, tetapi kombinasi kontrol tersebut dapat memperkecil ruang gerak masalah. Keamanan yang matang justru sering dibangun dari kebiasaan yang konsisten."
         : isAi
@@ -57,11 +58,25 @@ function buildIndonesianReview(article) {
 export default function JournalArticle({ article, onBack }) {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "instant" });
+
+    if (!article) return undefined;
+
+    const description = `${article.title}. ${article.excerpt}`.slice(0, 300);
+    let meta = document.querySelector('meta[name="description"]');
+    if (!meta) {
+      meta = document.createElement("meta");
+      meta.name = "description";
+      document.head.appendChild(meta);
+    }
+    meta.setAttribute("content", description);
+
+    return undefined;
   }, [article?.id]);
 
   if (!article) return null;
 
   const media = journalMedia[article.id];
+  const seo = journalTags[article.id] || { tags: [], hashtags: [] };
   const fallback = "/journal/001.svg";
   const image = media?.image || fallback;
   const review = buildIndonesianReview(article);
@@ -91,6 +106,17 @@ export default function JournalArticle({ article, onBack }) {
         <h1>{article.title}</h1>
 
         <p className="journal-article-excerpt">{article.excerpt}</p>
+
+        <div className="journal-article-tags" aria-label="Topik artikel">
+          <div className="journal-tags-label">TOPICS / SEO TAGS</div>
+          <div className="journal-tags-list">
+            {seo.tags.map((tag) => <span key={tag}>{tag}</span>)}
+          </div>
+          <div className="journal-hashtags-label">HASHTAGS</div>
+          <div className="journal-hashtags-list">
+            {seo.hashtags.map((hashtag) => <span key={hashtag}>{hashtag}</span>)}
+          </div>
+        </div>
 
         <div className="journal-article-grid">
           <article>
