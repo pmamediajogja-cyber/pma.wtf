@@ -5,49 +5,90 @@ import journalTags from "../data/journalTags";
 const englishLegacyIds = new Set(["010", "011", "012", "013", "014", "015", "016", "017", "018"]);
 const SITE_URL = "https://pma.wtf";
 
-function buildIndonesianReview(article) {
-  if (englishLegacyIds.has(article.id)) {
-    const isCyber = article.category === "CYBERSECURITY";
-    const isAi = article.category === "AI & TECHNOLOGY";
+function humanizeParagraph(text) {
+  return String(text || "")
+    .replace(/^Pandangan PMA:\s*/i, "Kalau ditarik ke sudut pandang PMA, ")
+    .replace(/^Kesimpulan PMA:\s*/i, "Kalau harus diringkas, ")
+    .replace(/^Menurut kami,\s*/i, "Yang menurut kami menarik, ")
+    .replace(/^Pelajaran praktisnya adalah\s*/i, "Kalau dibawa ke praktik, ")
+    .replace(/^Hal terpenting adalah\s*/i, "Bagian yang paling penting justru ")
+    .replace(/^Dengan demikian,\s*/i, "Jadi, ")
+    .replace(/^Oleh karena itu,\s*/i, "Karena itu, ")
+    .replace(/menunjukkan bahwa/g, "memperlihatkan bahwa")
+    .replace(/dapat menjadi/g, "bisa menjadi")
+    .replace(/dapat dilakukan/g, "bisa dilakukan")
+    .replace(/perlu dilakukan/g, "sebaiknya dilakukan")
+    .replace(/tidak hanya/g, "bukan cuma")
+    .replace(/semakin penting/g, "makin penting");
+}
 
-    return [
-      `Artikel "${article.title}" dari ${article.source} menarik karena memperlihatkan bagaimana sebuah perkembangan teknologi atau budaya dapat mempunyai dampak yang lebih besar ketika masuk ke penggunaan sehari-hari. Sumber tersebut menjadi titik awal untuk melihat persoalan ini bukan hanya sebagai berita, tetapi sebagai perubahan yang perlu dipahami dari sisi praktik.`,
-      isCyber
-        ? "Dari sudut pandang keamanan, hal terpenting adalah memahami bahwa risiko jarang berdiri sendiri. Satu celah, konfigurasi yang keliru, atau kebiasaan pengguna dapat menjadi bagian dari rangkaian kejadian yang lebih panjang. Karena itu, pertahanan yang baik perlu melihat konteks, memantau perubahan, dan menyiapkan respons sebelum masalah berkembang menjadi insiden besar."
-        : isAi
-          ? "Dari sudut pandang teknologi, perkembangan seperti ini menunjukkan bahwa kemampuan sistem bukan satu-satunya ukuran keberhasilan. Akses, batasan, data, lingkungan eksekusi, dan cara manusia mengawasi sistem sama pentingnya. Teknologi yang semakin kuat membutuhkan desain yang semakin jelas mengenai apa yang boleh dan tidak boleh dilakukan."
-          : "Dari sudut pandang streetwear, perkembangan seperti ini menunjukkan bahwa tren yang kuat biasanya tidak muncul hanya dari satu logo atau satu bentuk visual. Ada hubungan antara siluet, material, referensi budaya, fungsi, dan cara sebuah produk dibawa ke komunitas. Ketika elemen-elemen tersebut saling mendukung, identitas produk terasa lebih kuat.",
-      isCyber
-        ? "Pelajaran praktisnya adalah jangan menunggu sebuah ancaman terlihat sempurna sebelum bertindak. Inventaris aset, pembaruan perangkat lunak, pengaturan hak akses, pencatatan aktivitas, segmentasi jaringan, dan edukasi pengguna memang terlihat sederhana, tetapi kombinasi kontrol tersebut dapat memperkecil ruang gerak masalah. Keamanan yang matang justru sering dibangun dari kebiasaan yang konsisten."
-        : isAi
-          ? "Pelajaran praktisnya adalah memperlakukan kemampuan baru sebagai sesuatu yang perlu diuji secara bertahap. Sebelum sebuah sistem diberi akses lebih luas, perlu ada pengujian skenario gagal, batas hak akses, pencatatan aktivitas, dan mekanisme penghentian. Dengan begitu, peningkatan kemampuan tidak otomatis berarti peningkatan risiko tanpa kendali."
-          : "Pelajaran praktisnya adalah melihat desain sebagai satu sistem, bukan kumpulan elemen yang berdiri sendiri. Grafik, ukuran, posisi, bahan, warna, siluet, dan konteks pemakaian harus saling menguatkan. Pendekatan ini membuat sebuah produk terasa lebih disengaja dan tidak sekadar mengikuti tren yang sedang ramai.",
-      `Dalam konteks PMA, hal yang paling menarik dari "${article.title}" adalah ruang untuk menerjemahkan informasi menjadi keputusan desain atau teknologi yang lebih konkret. Berita memberi kita konteks, tetapi nilai tambah muncul ketika kita bertanya: apa yang berubah, siapa yang terdampak, dan apa yang sebaiknya dilakukan setelah mengetahui perubahan tersebut.`,
-      isCyber
-        ? "Kesimpulan PMA: keamanan bukan satu fitur yang dipasang lalu selesai. Ia adalah proses berulang yang membutuhkan pemantauan, pembaruan, pengujian, dan disiplin operasional. Semakin penting sebuah sistem bagi bisnis, semakin kecil ruang yang boleh diberikan kepada asumsi bahwa semuanya akan selalu berjalan normal."
-        : isAi
-          ? "Kesimpulan PMA: semakin kuat sebuah sistem AI, semakin penting pula lingkungan pengaman di sekelilingnya. Kemampuan yang tinggi perlu diimbangi batas akses, pengawasan, pengujian, dan tanggung jawab yang jelas. Bukan hanya modelnya yang harus pintar, tetapi sistem di sekelilingnya juga harus dirancang dengan matang."
-          : "Kesimpulan PMA: streetwear yang kuat tidak selalu membutuhkan desain yang paling ramai. Yang lebih penting adalah memiliki alasan yang jelas di balik setiap keputusan visual. Ketika cerita, garment, grafik, dan budaya bertemu dengan proporsi yang tepat, produk dapat terasa relevan tanpa kehilangan identitasnya."
-    ];
+function buildIndonesianReview(article) {
+  const isCyber = article.category === "CYBERSECURITY";
+  const isAi = article.category === "AI & TECHNOLOGY";
+  const isStreetwear = article.category === "STREETWEAR & CULTURE";
+
+  // Legacy English articles get a fresh PMA-style editorial instead of a stiff translation.
+  if (englishLegacyIds.has(article.id)) {
+    const opening = isCyber
+      ? `Ada alasan kenapa "${article.title}" layak diperhatikan. Berita seperti ini memang gampang lewat di timeline, apalagi ketika setiap minggu ada saja update soal celah, malware, atau serangan baru. Tapi kalau diperhatikan sedikit lebih dekat, ada pola yang cukup jelas: cara kita bekerja dengan teknologi ikut mengubah cara risiko muncul.`
+      : isAi
+        ? `Yang bikin "${article.title}" menarik bukan sekadar teknologinya yang baru. Yang lebih menarik adalah apa yang terjadi ketika kemampuan tersebut mulai bertemu dengan data, akses, dan keputusan manusia. Di titik itu, AI berhenti menjadi sekadar fitur dan mulai menjadi bagian dari cara sebuah sistem bekerja.`
+        : `Kalau melihat "${article.title}" sekilas, mungkin kesannya cuma soal tren fashion yang sedang bergerak. Padahal ada cerita yang lebih menarik di belakangnya: bagaimana siluet, material, referensi budaya, dan cara sebuah brand berbicara kepada komunitas ikut menentukan apakah sebuah produk terasa relevan atau cuma ikut ramai.`;
+
+    const middleOne = isCyber
+      ? "Masalahnya, serangan modern jarang datang dengan tulisan besar bertuliskan 'ini serangan'. Banyak yang terlihat seperti aktivitas biasa sampai kita melihat konteksnya. Karena itu, keamanan tidak cukup mengandalkan satu alarm atau satu software. Yang dibutuhkan adalah beberapa lapisan yang saling melengkapi dan orang yang benar-benar memperhatikan ketika ada sesuatu yang terasa tidak normal."
+      : isAi
+        ? "Di sinilah pembahasannya mulai menarik. Model yang hebat belum tentu menjadi produk yang aman. Akses jaringan, credential, filesystem, API, permission, dan cara manusia mengawasi sistem ikut menentukan seberapa jauh sebuah AI bisa bertindak. Kemampuan dan batasan harus dirancang sebagai satu paket."
+        : "Buat desainer, bagian ini justru lebih menarik daripada sekadar menyebut tren. Sebuah garment punya bahasa sendiri. Fit, bahan, graphic placement, warna, dan detail kecil bisa membuat desain yang sama terasa sangat berbeda ketika benar-benar dipakai. Tren yang bagus biasanya memberi ruang untuk interpretasi, bukan memaksa semua orang meniru satu formula.";
+
+    const middleTwo = isCyber
+      ? "Kalau dibawa ke praktik, banyak langkahnya sebenarnya tidak spektakuler: update sistem, cek hak akses, pisahkan jaringan penting, pantau aktivitas admin, simpan log, dan siapkan respons kalau sesuatu benar-benar terjadi. Kedengarannya biasa. Justru karena biasa, bagian ini sering dilewatkan. Padahal pertahanan yang konsisten biasanya jauh lebih berguna daripada satu solusi ajaib."
+      : isAi
+        ? "Kalau teknologi seperti ini mau dipakai lebih luas, pendekatannya sebaiknya bertahap. Beri akses seperlunya, uji skenario yang salah, catat tindakan agent atau sistem, dan pastikan ada cara untuk menghentikannya. Kita tidak perlu membuat AI tidak berguna. Kita hanya perlu memastikan satu kesalahan tidak berubah menjadi masalah yang jauh lebih besar."
+        : "Kalau diterapkan ke brand kecil, pelajarannya cukup jelas: jangan mengejar tren mentah-mentah. Ambil idenya, lalu terjemahkan dengan bahasa sendiri. Bisa lewat siluet, material, ilustrasi, typography, humor, atau referensi budaya yang memang dekat dengan identitas brand. Di situlah sebuah produk mulai terasa punya karakter.";
+
+    const pmA = isCyber
+      ? `Dari sisi PMA, "${article.title}" mengingatkan pada satu hal sederhana: security itu bukan pekerjaan sekali jadi. Sistem berubah, orang berubah, software berubah, dan cara attacker bekerja juga ikut berubah. Jadi yang perlu dibangun bukan rasa aman palsu, melainkan kebiasaan untuk terus mengecek apakah pertahanan kita masih masuk akal.`
+      : isAi
+        ? `Dari sisi PMA, bagian paling menarik dari "${article.title}" justru ada pada pertanyaan yang muncul setelah teknologinya bekerja. Siapa yang mengawasi? Apa yang boleh dilakukan? Apa yang terjadi kalau sistem salah? Pertanyaan seperti ini mungkin kurang seksi dibanding demo fitur baru, tetapi justru di sinilah kualitas sebuah produk sering ditentukan.`
+        : `Dari sisi PMA, "${article.title}" menunjukkan bahwa identitas tidak harus dibangun dengan suara paling keras. Brand yang kuat biasanya tahu apa yang ingin diceritakan, siapa yang ingin diajak bicara, dan elemen mana yang cukup ditampilkan tanpa berlebihan. Detail kecil sering kali lebih tahan lama daripada sekadar mengejar hype.`;
+
+    const closing = isCyber
+      ? "Pada akhirnya, ancaman baru tidak selalu membutuhkan pertahanan yang benar-benar baru. Kadang yang dibutuhkan adalah disiplin untuk menjalankan hal-hal dasar dengan lebih serius. Teknologi boleh makin rumit, tetapi prinsipnya tetap sama: tahu apa yang kita punya, tahu siapa yang bisa mengaksesnya, dan tahu apa yang harus dilakukan ketika sesuatu mulai keluar jalur."
+      : isAi
+        ? "Jadi, semakin pintar teknologinya, semakin penting juga lingkungan di sekelilingnya. AI yang bagus memang menarik, tetapi AI yang bisa digunakan dengan aman jauh lebih berguna. Kemampuan boleh terus naik; batas, pengawasan, dan tanggung jawab juga harus ikut naik."
+        : "Jadi, streetwear yang menarik bukan selalu yang paling ramai. Yang lebih penting adalah rasa bahwa setiap keputusan memang punya alasan. Ketika garment, graphic, cerita, dan budaya bertemu dengan proporsi yang tepat, produk bisa terlihat santai sekaligus punya pendirian.";
+
+    return [opening, middleOne, middleTwo, pmA, closing];
   }
 
-  const base = Array.isArray(article.review) ? [...article.review] : [];
-  const isStreetwear = article.category === "STREETWEAR & CULTURE";
-  const isAi = article.category === "AI & TECHNOLOGY";
+  const base = Array.isArray(article.review) ? article.review.map(humanizeParagraph) : [];
+
+  // Give every article a more natural editorial opening without changing the source facts.
+  if (base.length) {
+    const lead = isCyber
+      ? "Ada satu bagian dari berita ini yang menurut kami paling layak diperhatikan:"
+      : isAi
+        ? "Yang bikin topik ini menarik sebenarnya bukan cuma soal AI-nya:"
+        : isStreetwear
+          ? "Kalau dibaca lebih jauh, yang menarik dari cerita ini bukan cuma soal tren:"
+          : "Ada satu hal yang cukup menarik dari cerita ini:";
+    base[0] = `${lead} ${base[0].charAt(0).toLowerCase()}${base[0].slice(1)}`;
+  }
 
   while (base.length < 5) {
     const index = base.length;
     if (index === 3) {
       base.push(
         isStreetwear
-          ? `Kalau dibawa ke konteks desain, "${article.title}" mengingatkan bahwa sebuah produk tidak cukup hanya terlihat menarik di layar. Siluet, material, ukuran grafik, penempatan artwork, dan cara produk dipakai harus dibaca sebagai satu kesatuan. Keputusan kecil pada garment dapat mengubah seluruh karakter visual ketika produk benar-benar dikenakan.`
+          ? `Kalau dibawa ke meja desain, "${article.title}" mengingatkan bahwa artwork tidak hidup sendirian. Ukuran print, posisi gambar, warna garment, bahan, dan bentuk tubuh semuanya ikut menentukan hasil akhirnya. Sesuatu yang terlihat biasa di artboard bisa berubah total ketika benar-benar dipakai.`
           : isAi
-            ? `Kalau dibawa ke konteks teknologi, "${article.title}" memperlihatkan pentingnya membangun batas yang jelas antara kemampuan sistem dan tindakan yang boleh dilakukan. Semakin besar akses sebuah teknologi, semakin penting pula pencatatan aktivitas, pengujian skenario gagal, pembatasan hak akses, dan mekanisme penghentian ketika perilaku sistem mulai keluar dari tujuan awal.`
-            : `Kalau dibawa ke konteks operasional, "${article.title}" menunjukkan bahwa masalah teknologi perlu diterjemahkan menjadi tindakan yang bisa dilakukan. Inventaris aset, pengaturan akses, pemantauan, pembaruan, dan prosedur respons sering kali lebih menentukan daripada sekadar mengetahui bahwa sebuah risiko memang ada.`
+            ? `Kalau dibawa ke praktik teknologi, "${article.title}" memperlihatkan kenapa kemampuan baru sebaiknya datang bersama batas yang jelas. Akses secukupnya, log yang rapi, pengujian skenario gagal, dan tombol untuk menghentikan sistem terdengar sederhana, tapi justru hal-hal seperti ini yang membuat teknologi lebih siap dipakai di dunia nyata.`
+            : `Kalau dibawa ke praktik, "${article.title}" menunjukkan bahwa informasi baru akan jauh lebih berguna ketika diterjemahkan menjadi tindakan. Kita bisa tahu sebuah risiko ada, tetapi pertanyaan berikutnya tetap penting: apa yang harus dicek, siapa yang bertanggung jawab, dan apa yang dilakukan kalau kondisi berubah?`
       );
     } else {
       base.push(
-        `Pandangan tambahan PMA terhadap "${article.title}": informasi seperti ini akan lebih berguna ketika tidak berhenti sebagai konsumsi berita. Kita perlu melihat dampaknya terhadap cara bekerja, cara merancang produk, cara mengelola risiko, dan cara mengambil keputusan. Dari sana, sebuah berita dapat berubah menjadi bahan evaluasi yang benar-benar bisa dipakai.`
+        `Buat PMA, bagian yang menarik dari "${article.title}" justru ada pada pertanyaan setelah beritanya selesai dibaca. Apa yang berubah? Apa dampaknya ke cara kita bekerja atau merancang sesuatu? Dan apakah ada kebiasaan lama yang ternyata sudah waktunya diperbaiki? Di situlah sebuah berita mulai punya nilai praktis.`
       );
     }
   }
