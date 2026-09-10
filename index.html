@@ -13,6 +13,26 @@
     <meta property="og:url" content="https://pma.wtf/" />
     <meta property="og:site_name" content="PMA.WTF" />
     <title>PMA.WTF — Digital Creative Hub</title>
+    <script>
+      (async function clearStaleServiceWorker() {
+        if (!('serviceWorker' in navigator)) return;
+        try {
+          const registrations = await navigator.serviceWorker.getRegistrations();
+          const hadRegistration = registrations.length > 0;
+          await Promise.all(registrations.map((registration) => registration.unregister()));
+          if ('caches' in window) {
+            const cacheNames = await caches.keys();
+            await Promise.all(cacheNames.map((name) => caches.delete(name)));
+          }
+          if (hadRegistration && sessionStorage.getItem('pma-sw-cleaned') !== '1') {
+            sessionStorage.setItem('pma-sw-cleaned', '1');
+            window.location.reload();
+          }
+        } catch (error) {
+          console.warn('PMA service worker cleanup skipped:', error);
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>
