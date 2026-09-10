@@ -2,7 +2,7 @@ import { useEffect } from "react";
 
 const SITE_URL = "https://pma.wtf";
 
-export default function JournalSEO({ article, allArticles = [] }) {
+export default function JournalSEO({ article, allArticles = [], mode = "breadcrumb" }) {
   const related = article
     ? [
         ...allArticles.filter((item) => item.category === article.category && item.id !== article.id),
@@ -11,7 +11,7 @@ export default function JournalSEO({ article, allArticles = [] }) {
     : [];
 
   useEffect(() => {
-    if (!article) return undefined;
+    if (!article || mode !== "related") return undefined;
 
     const scriptId = "pma-journal-breadcrumb-jsonld";
     let structuredData = document.head.querySelector(`#${scriptId}`);
@@ -50,12 +50,12 @@ export default function JournalSEO({ article, allArticles = [] }) {
       const node = document.head.querySelector(`#${scriptId}`);
       if (node) node.remove();
     };
-  }, [article?.id, article?.title, article?.category, article?.date]);
+  }, [article?.id, article?.title, article?.category, article?.date, mode]);
 
   if (!article) return null;
 
-  return (
-    <>
+  if (mode === "breadcrumb") {
+    return (
       <div className="journal-seo-wrap">
         <nav className="journal-breadcrumb" aria-label="Breadcrumb">
           <a href="/">PMA.WTF</a>
@@ -67,28 +67,28 @@ export default function JournalSEO({ article, allArticles = [] }) {
           <strong>{article.title}</strong>
         </nav>
       </div>
+    );
+  }
 
-      {related.length > 0 && (
-        <section className="journal-related section-wrap" aria-labelledby="journal-related-title">
-          <div className="journal-related-heading">
-            <div>
-              <span className="section-index">05 / KEEP READING</span>
-              <h2 id="journal-related-title">RELATED JOURNAL</h2>
-            </div>
-            <p>More PMA articles from the same editorial universe.</p>
-          </div>
-          <div className="journal-related-grid">
-            {related.map((item) => (
-              <a className="journal-related-card" href={`/journal/${item.id}`} key={item.id}>
-                <span>{item.id} / {item.category}</span>
-                <h3>{item.title}</h3>
-                <p>{item.excerpt}</p>
-                <strong>READ ARTICLE ↗</strong>
-              </a>
-            ))}
-          </div>
-        </section>
-      )}
-    </>
-  );
+  return related.length > 0 ? (
+    <section className="journal-related section-wrap" aria-labelledby="journal-related-title">
+      <div className="journal-related-heading">
+        <div>
+          <span className="section-index">05 / KEEP READING</span>
+          <h2 id="journal-related-title">RELATED JOURNAL</h2>
+        </div>
+        <p>More PMA articles from the same editorial universe.</p>
+      </div>
+      <div className="journal-related-grid">
+        {related.map((item) => (
+          <a className="journal-related-card" href={`/journal/${item.id}`} key={item.id}>
+            <span>{item.id} / {item.category}</span>
+            <h3>{item.title}</h3>
+            <p>{item.excerpt}</p>
+            <strong>READ ARTICLE ↗</strong>
+          </a>
+        ))}
+      </div>
+    </section>
+  ) : null;
 }
