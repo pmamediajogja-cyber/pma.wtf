@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 
+import "./journal.css";
 import DesignDetail from "./components/DesignDetail";
 import Profile from "./components/Profile";
 import CVSection from "./components/CVSection";
