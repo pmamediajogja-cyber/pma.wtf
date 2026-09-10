@@ -19,6 +19,29 @@ const navItems = [
   ["About", "/profile"],
 ];
 
+const journalGroups = [
+  { key: "CYBERSECURITY", label: "CYBERSECURITY", note: "Threats, vulnerabilities, identity and defensive practice." },
+  { key: "AI & TECHNOLOGY", label: "AI & TECHNOLOGY", note: "Agents, infrastructure, governance and what changes next." },
+  { key: "STREETWEAR & CULTURE", label: "STREETWEAR & CULTURE", note: "Fits, graphics, drops and the culture around the garment." },
+];
+
+function JournalCard({ article, goToJournal }) {
+  return (
+    <article className="journal-card">
+      <div className="journal-card-visual">
+        <img src={`/journal/${article.id}.svg`} alt="" loading="lazy" />
+      </div>
+      <div className="journal-card-meta"><span>{article.id} / {article.tag}</span><span>{article.date}</span></div>
+      <h3>{article.title}</h3>
+      <p>{article.excerpt}</p>
+      <div className="journal-card-footer">
+        <button onClick={() => goToJournal(article.id)}>Read PMA review ↗</button>
+        <a href={article.url} target="_blank" rel="noreferrer">Source ↗</a>
+      </div>
+    </article>
+  );
+}
+
 function Home({ goToJournal }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [filter, setFilter] = useState("ALL");
@@ -103,22 +126,28 @@ function Home({ goToJournal }) {
             <div><span className="section-index">03 / JOURNAL</span><h2>JOURNAL</h2></div>
             <p>Cybersecurity stories, technical developments, streetwear culture and PMA's take on what they mean in practice.</p>
           </div>
-          <div className="journal-list">
-            {journalArticles.map((article) => (
-              <article className="journal-card" key={article.id}>
-                <div className="journal-card-visual">
-                  <img src={`/journal/${article.id}.svg`} alt="" loading="lazy" />
-                </div>
-                <div className="journal-card-meta"><span>{article.id} / {article.tag}</span><span>{article.date}</span></div>
-                <h3>{article.title}</h3>
-                <p>{article.excerpt}</p>
-                <div className="journal-card-footer">
-                  <button onClick={() => goToJournal(article.id)}>Read the PMA review ↗</button>
-                  <a href={article.url} target="_blank" rel="noreferrer">Read source ↗</a>
-                </div>
-              </article>
-            ))}
+
+          <div className="journal-groups">
+            {journalGroups.map((group) => {
+              const articles = journalArticles.filter((article) => article.category === group.key);
+              return (
+                <section className="journal-group" key={group.key}>
+                  <div className="journal-group-heading">
+                    <div>
+                      <span className="journal-group-index">{String(journalGroups.indexOf(group) + 1).padStart(2, "0")} / {articles.length} ARTICLES</span>
+                      <h3>{group.label}</h3>
+                    </div>
+                    <p>{group.note}</p>
+                  </div>
+                  <div className="journal-rail">
+                    {articles.map((article) => <JournalCard key={article.id} article={article} goToJournal={goToJournal} />)}
+                  </div>
+                </section>
+              );
+            })}
           </div>
+
+          <div className="section-note">PMA JOURNAL / ORIGINAL EDITORIAL + EXTERNAL SOURCES</div>
         </section>
 
         <section id="contact" className="section-wrap contact-section">
