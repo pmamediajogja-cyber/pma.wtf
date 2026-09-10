@@ -2368,3 +2368,94 @@ h2 em {
     flex-direction: column;
   }
 }
+
+/* =========================================================
+   PAGE CONTROLS
+========================================================= */
+
+.page-controls {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.page-control {
+  width: 52px;
+  height: 52px;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 3px;
+  background: rgba(8,9,12,.78);
+  color: #f5f7fa;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  cursor: pointer;
+  transition: .25s ease;
+}
+
+.page-control span {
+  font-size: 18px;
+  line-height: 1;
+}
+
+.page-control small {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 7px;
+  letter-spacing: .12em;
+  color: #69717d;
+}
+
+.page-control:hover {
+  transform: translateY(-3px);
+  border-color: rgba(0,240,255,.45);
+  color: #00f0ff;
+  box-shadow: 0 0 24px rgba(0,240,255,.08);
+}
+
+.page-control-top {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  pointer-events: none;
+}
+
+.page-control-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.page-control-back {
+  border-color: rgba(255,255,255,.10);
+}
+
+@media (max-width: 760px) {
+  .page-controls {
+    right: 14px;
+    bottom: 14px;
+  }
+
+  .page-control {
+    width: 46px;
+    height: 46px;
+  }
+}
+
+/* Anime.js initial states are applied at runtime. */
+.profile-section,
+.cv-section,
+.approach-grid > div,
+.strength-list > div,
+.cv-skill-group,
+.cv-traits > div {
+  will-change: transform, opacity;
+}
