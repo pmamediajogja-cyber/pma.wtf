@@ -4,6 +4,7 @@ import {
   useMotionValueEvent,
   useReducedMotion,
   useScroll,
+  useSpring,
 } from "framer-motion";
 
 const EASE = "easeOut";
@@ -40,7 +41,7 @@ function hoverMotion(element, hover = {}, rest = {}) {
         rotateZ: hover.rotateZ ?? 0,
       },
       {
-        duration: 0.28,
+        duration: 0.32,
         ease: EASE,
       }
     );
@@ -55,7 +56,7 @@ function hoverMotion(element, hover = {}, rest = {}) {
         rotateZ: rest.rotateZ ?? 0,
       },
       {
-        duration: 0.42,
+        duration: 0.48,
         ease: EASE,
       }
     );
@@ -69,8 +70,21 @@ function hoverMotion(element, hover = {}, rest = {}) {
   };
 }
 
+function prepareLayer(element) {
+  if (!element) return;
+  element.style.willChange = "transform, opacity";
+  element.style.backfaceVisibility = "hidden";
+  element.style.transformStyle = "preserve-3d";
+}
+
 export default function AnimeHomeScroll() {
   const { scrollY } = useScroll();
+  const smoothScrollY = useSpring(scrollY, {
+    stiffness: 105,
+    damping: 30,
+    mass: 0.55,
+    restDelta: 0.001,
+  });
   const reduceMotion = useReducedMotion();
 
   useEffect(() => {
@@ -84,6 +98,8 @@ export default function AnimeHomeScroll() {
     const heroMeta = document.querySelector(".hero-meta");
     const scrollCue = document.querySelector(".scroll-cue");
     const square = document.querySelector(".hero-scroll-square");
+
+    [heroCopy, heroMeta, square, scrollCue].forEach(prepareLayer);
 
     reveal(eyebrow, { x: -55, y: 0, duration: 0.7 });
     reveal(heroTitle, { y: 95, scale: 0.9, delay: 0.1, duration: 1.05 });
@@ -115,6 +131,7 @@ export default function AnimeHomeScroll() {
 
           const element = entry.target;
           const delay = Number(element.dataset.motionDelay || 0);
+          prepareLayer(element);
           reveal(element, {
             y: Number(element.dataset.motionY || 75),
             x: Number(element.dataset.motionX || 0),
@@ -141,38 +158,40 @@ export default function AnimeHomeScroll() {
     const cleanupHover = [];
 
     document.querySelectorAll(".design-card").forEach((element) => {
+      prepareLayer(element);
       cleanupHover.push(
         hoverMotion(element, { y: -12, scale: 1.035, rotateZ: 0.6 })
       );
     });
 
     document.querySelectorAll(".service-row").forEach((element) => {
+      prepareLayer(element);
       cleanupHover.push(
         hoverMotion(element, { x: 22, y: 0, scale: 1.008 })
       );
     });
 
     document.querySelectorAll(".button, .contact-email").forEach((element) => {
+      prepareLayer(element);
       cleanupHover.push(
         hoverMotion(element, { y: -5, scale: 1.045 })
       );
     });
 
     document.querySelectorAll(".filter-button").forEach((element) => {
+      prepareLayer(element);
       cleanupHover.push(
         hoverMotion(element, { y: -3, scale: 1.07 })
       );
     });
 
-    const cleanup = () => {
+    return () => {
       observer.disconnect();
       cleanupHover.forEach((fn) => fn());
     };
-
-    return cleanup;
   }, [reduceMotion]);
 
-  useMotionValueEvent(scrollY, "change", (latest) => {
+  useMotionValueEvent(smoothScrollY, "change", (latest) => {
     if (reduceMotion) return;
 
     const hero = document.querySelector(".hero-copy");
@@ -184,13 +203,14 @@ export default function AnimeHomeScroll() {
     const ambientOne = document.querySelector(".ambient-one");
     const ambientTwo = document.querySelector(".ambient-two");
 
-    const heroY = Math.min(latest * 0.38, 290);
-    const heroScale = Math.max(0.84, 1 - latest / 2600);
-    const heroRotate = Math.min(latest * 0.012, 3.5);
-    const metaY = Math.min(latest * 0.2, 130);
-    const squareX = Math.min(latest * 0.62, 520);
-    const squareY = Math.min(latest * 0.2, 170);
-    const squareRotate = Math.min(latest * 0.55, 360);
+    const heroY = Math.min(latest * 0.30, 225);
+    const heroScale = Math.max(0.88, 1 - latest / 3300);
+    const heroRotate = Math.min(latest * 0.009, 3.2);
+    const metaY = Math.min(latest * 0.15, 100);
+    const squareX = Math.min(latest * 0.48, 400);
+    const squareY = Math.min(latest * 0.16, 135);
+    const squareRotate = Math.min(latest * 0.42, 300);
+    const squareScale = 1 + Math.min(latest / 3400, 0.42);
 
     if (hero) {
       hero.style.transform = `translate3d(0, ${heroY}px, 0) scale(${heroScale}) rotate(${heroRotate}deg)`;
@@ -199,20 +219,20 @@ export default function AnimeHomeScroll() {
       meta.style.transform = `translate3d(0, ${metaY}px, 0)`;
     }
     if (square) {
-      square.style.transform = `translate3d(${squareX}px, ${squareY}px, 0) rotate(${squareRotate}deg) scale(${1 + Math.min(latest / 2600, 0.55)})`;
+      square.style.transform = `translate3d(${squareX}px, ${squareY}px, 0) rotate(${squareRotate}deg) scale(${squareScale})`;
     }
     if (cue) {
-      cue.style.opacity = String(Math.max(0, 1 - latest / 180));
-      cue.style.transform = `translate3d(0, ${Math.min(latest * 0.4, 70)}px, 0)`;
+      cue.style.opacity = String(Math.max(0, 1 - latest / 220));
+      cue.style.transform = `translate3d(0, ${Math.min(latest * 0.32, 60)}px, 0)`;
     }
     if (grid) {
-      grid.style.transform = `translate3d(0, ${Math.min(latest * 0.08, 90)}px, 0)`;
+      grid.style.transform = `translate3d(0, ${Math.min(latest * 0.06, 70)}px, 0)`;
     }
     if (ambientOne) {
-      ambientOne.style.transform = `translate3d(${Math.min(latest * 0.12, 150)}px, ${Math.min(latest * 0.05, 70)}px, 0)`;
+      ambientOne.style.transform = `translate3d(${Math.min(latest * 0.09, 120)}px, ${Math.min(latest * 0.04, 55)}px, 0)`;
     }
     if (ambientTwo) {
-      ambientTwo.style.transform = `translate3d(${Math.min(latest * -0.1, 120)}px, ${Math.min(latest * 0.08, 110)}px, 0)`;
+      ambientTwo.style.transform = `translate3d(${Math.min(latest * -0.075, 95)}px, ${Math.min(latest * 0.06, 85)}px, 0)`;
     }
     if (shell) {
       shell.style.setProperty("--scroll-progress", String(Math.min(latest / 1200, 1)));
