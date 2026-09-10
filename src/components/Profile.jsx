@@ -49,6 +49,14 @@ const strengths = [
 ]
 
 export default function Profile() {
+  const goToCV = (event) => {
+    event.preventDefault();
+
+    window.history.pushState({}, "", "/cv");
+    window.dispatchEvent(new PopStateEvent("popstate"));
+    window.scrollTo({ top: 0, behavior: "instant" });
+  };
+
   return (
     <main className="pma-profile">
 
@@ -84,7 +92,11 @@ export default function Profile() {
                 WHAT WE DO <span>↓</span>
               </a>
 
-              <a href="/cv" className="profile-button secondary">
+              <a
+                href="/cv"
+                className="profile-button secondary"
+                onClick={goToCV}
+              >
                 VIEW MY CV <span>↗</span>
               </a>
             </div>
@@ -360,7 +372,11 @@ export default function Profile() {
             PMA Media Yogyakarta.
           </p>
 
-          <a href="/cv" className="profile-cv-button">
+          <a
+            href="/cv"
+            className="profile-cv-button"
+            onClick={goToCV}
+          >
             VIEW IMAM'S CV <span>↗</span>
           </a>
 
