@@ -8,6 +8,7 @@ import AnimeEffects from "./components/AnimeEffects";
 import AnimeHomeScroll from "./components/AnimeHomeScroll";
 import JournalArticle from "./components/JournalArticle";
 import JournalSEO from "./components/JournalSEO";
+import JournalHub from "./components/JournalHub";
 import "./journalSeo.css";
 import designs from "./data/designs";
 import journalArticles from "./data/journal";
@@ -16,7 +17,7 @@ import journalOriginal from "./data/journalOriginal";
 import journalMedia from "./data/journalMedia";
 
 const allJournalArticles = [...journalArticles, ...journalMore, ...journalOriginal];
-const navItems = [["Designs", "#designs"], ["Services", "#services"], ["Journal", "#journal"], ["About", "/profile"]];
+const navItems = [["Designs", "#designs"], ["Services", "#services"], ["Journal", "/journal"], ["About", "/profile"]];
 const journalGroups = [
   { key: "CYBERSECURITY", label: "CYBERSECURITY", note: "Threats, vulnerabilities, identity and defensive practice." },
   { key: "AI & TECHNOLOGY", label: "AI & TECHNOLOGY", note: "Agents, infrastructure, governance and what changes next." },
@@ -74,10 +75,11 @@ function Home({ goToJournal }) {
 function App() {
   const [path, setPath] = useState(window.location.pathname);
   useEffect(() => { const handlePopState = () => setPath(window.location.pathname); window.addEventListener("popstate", handlePopState); return () => window.removeEventListener("popstate", handlePopState); }, []);
-  useEffect(() => { let title = "PMA.WTF — Digital Creative Hub"; if (path === "/profile") title = "Profile — PMA.WTF"; if (path === "/cv") title = "CV — Imam Falahi"; const journalMatch = path.match(/^\/journal\/(.+)$/); if (journalMatch) { const article = allJournalArticles.find((item) => item.id === journalMatch[1]); if (article) title = `${article.title} — PMA Journal`; } document.title = title; }, [path]);
+  useEffect(() => { let title = "PMA.WTF — Digital Creative Hub"; if (path === "/profile") title = "Profile — PMA.WTF"; if (path === "/cv") title = "CV — Imam Falahi"; if (path === "/journal") title = "Journal — PMA.WTF"; const journalMatch = path.match(/^\/journal\/(.+)$/); if (journalMatch) { const article = allJournalArticles.find((item) => item.id === journalMatch[1]); if (article) title = `${article.title} — PMA Journal`; } document.title = title; }, [path]);
   const designMatch = path.match(/^\/design\/(.+)$/); const design = designMatch ? designs.find((item) => item.id === designMatch[1]) : null; const journalMatch = path.match(/^\/journal\/(.+)$/); const journalArticle = journalMatch ? allJournalArticles.find((item) => item.id === journalMatch[1]) : null;
   const goTo = (target) => { window.history.pushState({}, "", target); setPath(target); window.scrollTo({ top: 0, behavior: "instant" }); };
   if (designMatch) return <div className="site-shell"><div className="ambient ambient-one" /><div className="ambient ambient-two" /><div className="grid-overlay" /><AnimeEffects /><PageControls showBack /><DesignDetail design={design} /></div>;
+  if (path === "/journal") return <div className="site-shell"><div className="ambient ambient-one" /><div className="ambient ambient-two" /><div className="grid-overlay" /><AnimeEffects /><PageControls showBack /><JournalHub articles={allJournalArticles} onOpenArticle={(id) => goTo(`/journal/${id}`)} /><footer className="site-footer"><span>© 2026 PMA MEDIA YOGYAKARTA</span><span>PMA.WTF / DIGITAL CREATIVE HUB</span></footer></div>;
   if (journalMatch) return <div className="site-shell"><div className="ambient ambient-one" /><div className="ambient ambient-two" /><div className="grid-overlay" /><AnimeEffects /><PageControls showBack /><JournalSEO article={journalArticle} allArticles={allJournalArticles} mode="breadcrumb" /><JournalArticle article={journalArticle} onBack={() => goTo("/")} /><JournalSEO article={journalArticle} allArticles={allJournalArticles} mode="related" /><footer className="site-footer"><span>© 2026 PMA MEDIA YOGYAKARTA</span><span>PMA.WTF / DIGITAL CREATIVE HUB</span></footer></div>;
   if (path === "/profile") return <div className="site-shell"><div className="ambient ambient-one" /><div className="ambient ambient-two" /><div className="grid-overlay" /><AnimeEffects /><PageControls showBack /><Profile /><footer className="site-footer"><span>© 2026 PMA MEDIA YOGYAKARTA</span><span>PMA.WTF / DIGITAL CREATIVE HUB</span></footer></div>;
   if (path === "/cv") return <div className="site-shell"><div className="ambient ambient-one" /><div className="ambient ambient-two" /><div className="grid-overlay" /><AnimeEffects /><PageControls showBack /><CVSection /><footer className="site-footer"><span>© 2026 PMA MEDIA YOGYAKARTA</span><span>PMA.WTF / DIGITAL CREATIVE HUB</span></footer></div>;
