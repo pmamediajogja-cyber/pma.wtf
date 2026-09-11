@@ -42,7 +42,8 @@ jobs:
             cp dist/index.html "dist/$route/index.html"
           done
 
-          for id in $(seq -w 1 36); do
+          for n in $(seq 1 36); do
+            id=$(printf "%03d" "$n")
             mkdir -p "dist/journal/$id"
             cp dist/index.html "dist/journal/$id/index.html"
           done
