@@ -34,6 +34,19 @@ jobs:
       - name: Build Vite app
         run: npm run build
 
+      - name: Add static route entry points
+        run: |
+          set -e
+          for route in journal profile cv; do
+            mkdir -p "dist/$route"
+            cp dist/index.html "dist/$route/index.html"
+          done
+
+          for id in $(seq -w 1 36); do
+            mkdir -p "dist/journal/$id"
+            cp dist/index.html "dist/journal/$id/index.html"
+          done
+
       - name: Add SPA fallback
         run: cp dist/index.html dist/404.html
 
