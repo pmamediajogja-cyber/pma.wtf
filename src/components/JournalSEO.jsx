@@ -28,8 +28,7 @@ export default function JournalSEO({ article, allArticles = [], mode = "breadcru
       itemListElement: [
         { "@type": "ListItem", position: 1, name: "PMA.WTF", item: SITE_URL },
         { "@type": "ListItem", position: 2, name: "Journal", item: `${SITE_URL}/journal` },
-        { "@type": "ListItem", position: 3, name: article.category },
-        { "@type": "ListItem", position: 4, name: article.title, item: `${SITE_URL}/journal/${article.id}` }
+        { "@type": "ListItem", position: 3, name: article.title, item: `${SITE_URL}/journal/${article.id}` }
       ]
     });
 
