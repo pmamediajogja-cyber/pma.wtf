@@ -2,6 +2,13 @@ import { useEffect } from "react";
 
 const SITE_URL = "https://pma.wtf";
 
+function parseArticleDate(date) {
+  const months = { JAN: "01", FEB: "02", MAR: "03", APR: "04", MAY: "05", JUN: "06", JUL: "07", AUG: "08", SEP: "09", OCT: "10", NOV: "11", DEC: "12" };
+  const match = String(date || "").match(/^(\d{2})\s+([A-Z]{3})\s+(\d{4})$/);
+  if (!match || !months[match[2]]) return undefined;
+  return `${match[3]}-${months[match[2]]}-${match[1]}`;
+}
+
 export default function JournalSEO({ article, allArticles = [], mode = "breadcrumb" }) {
   const related = article
     ? [
@@ -32,20 +39,36 @@ export default function JournalSEO({ article, allArticles = [], mode = "breadcru
       ]
     });
 
-    const published = String(article.date || "").match(/^(\d{2})\s+([A-Z]{3})\s+(\d{4})$/);
-    if (published) {
-      const months = { JAN: "01", FEB: "02", MAR: "03", APR: "04", MAY: "05", JUN: "06", JUL: "07", AUG: "08", SEP: "09", OCT: "10", NOV: "11", DEC: "12" };
-      const isoDate = `${published[3]}-${months[published[2]]}-${published[1]}`;
+    const isoDate = parseArticleDate(article.date);
+    const isoDateTime = isoDate ? `${isoDate}T00:00:00+07:00` : undefined;
+
+    if (isoDateTime) {
       let publishedMeta = document.head.querySelector('meta[property="article:published_time"]');
       if (!publishedMeta) {
         publishedMeta = document.createElement("meta");
         publishedMeta.setAttribute("property", "article:published_time");
         document.head.appendChild(publishedMeta);
       }
-      publishedMeta.setAttribute("content", isoDate);
+      publishedMeta.setAttribute("content", isoDateTime);
     }
 
+    const syncArticleSchema = () => {
+      const articleSchema = document.head.querySelector("#pma-journal-jsonld");
+      if (!articleSchema || !isoDateTime) return;
+      try {
+        const data = JSON.parse(articleSchema.textContent || "{}");
+        data.datePublished = isoDateTime;
+        data.dateModified = isoDateTime;
+        articleSchema.textContent = JSON.stringify(data);
+      } catch {
+        // Leave the existing schema untouched if it cannot be parsed.
+      }
+    };
+
+    const timer = window.setTimeout(syncArticleSchema, 0);
+
     return () => {
+      window.clearTimeout(timer);
       const node = document.head.querySelector(`#${scriptId}`);
       if (node) node.remove();
     };
