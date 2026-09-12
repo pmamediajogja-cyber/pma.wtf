@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+<title id="title">TypeScript 7 and modern AI-assisted development</title>
+<desc id="desc">A cinematic developer workspace with TypeScript 7, code, WebStorm and AI-assisted development concepts.</desc>
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#070b12"/><stop offset=".55" stop-color="#101827"/><stop offset="1" stop-color="#05070c"/></linearGradient>
+  <linearGradient id="screen" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#111b2c"/><stop offset="1" stop-color="#070b12"/></linearGradient>
+  <linearGradient id="cyan" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#59e5ff"/><stop offset="1" stop-color="#258bff"/></linearGradient>
+  <linearGradient id="desk" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#161b24"/><stop offset="1" stop-color="#07090d"/></linearGradient>
+  <filter id="glow"><feGaussianBlur stdDeviation="12" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  <filter id="shadow"><feGaussianBlur in="SourceAlpha" stdDeviation="18"/><feOffset dy="18"/><feComponentTransfer><feFuncA type="linear" slope=".55"/></feComponentTransfer><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+</defs>
+<rect width="1600" height="900" fill="url(#bg)"/>
+<circle cx="1290" cy="180" r="210" fill="#2b5dff" opacity=".10" filter="url(#glow)"/>
+<circle cx="280" cy="240" r="180" fill="#39d8ff" opacity=".08" filter="url(#glow)"/>
+<path d="M0 650 C350 570 520 690 820 610 S1250 560 1600 640 V900 H0Z" fill="url(#desk)"/>
+<g opacity=".28" stroke="#4ddfff" fill="none"><path d="M0 130H1600"/><path d="M0 170H1600"/><path d="M70 0V900"/><path d="M1530 0V900"/></g>
+<!-- left poster -->
+<g transform="translate(70 105)"><rect width="270" height="355" rx="5" fill="#090d14" stroke="#293746"/><text x="28" y="55" fill="#eef7ff" font-family="Arial,sans-serif" font-size="28" font-weight="700">PMA.WTF</text><text x="28" y="105" fill="#59e5ff" font-family="monospace" font-size="17">DESIGN / CODE</text><text x="28" y="140" fill="#eef7ff" font-family="Arial" font-size="23">BUILD BETTER</text><text x="28" y="169" fill="#eef7ff" font-family="Arial" font-size="23">DIGITAL THINGS</text><path d="M28 205H235" stroke="#59e5ff"/><text x="28" y="250" fill="#a9b7c8" font-family="monospace" font-size="15">HUMAN + TOOL</text><text x="28" y="278" fill="#a9b7c8" font-family="monospace" font-size="15">THINK / REVIEW</text><text x="28" y="306" fill="#a9b7c8" font-family="monospace" font-size="15">SHIP / LEARN</text></g>
+<!-- monitors -->
+<g filter="url(#shadow)"><rect x="350" y="210" width="760" height="410" rx="10" fill="#030507" stroke="#354454" stroke-width="3"/><rect x="380" y="240" width="700" height="350" rx="4" fill="url(#screen)"/>
+<text x="415" y="282" fill="#59e5ff" font-family="monospace" font-size="18">pma-wtf / src / journal / Article.tsx</text>
+<text x="415" y="322" fill="#dce7f3" font-family="monospace" font-size="18">interface Article &#123;</text><text x="445" y="350" fill="#8cc7ff" font-family="monospace" font-size="17">id: number;</text><text x="445" y="377" fill="#8cc7ff" font-family="monospace" font-size="17">title: string;</text><text x="445" y="404" fill="#8cc7ff" font-family="monospace" font-size="17">category: string;</text><text x="445" y="431" fill="#8cc7ff" font-family="monospace" font-size="17">review: string[];</text><text x="415" y="469" fill="#dce7f3" font-family="monospace" font-size="18">&#125;</text>
+<text x="690" y="335" fill="#fff" font-family="Arial" font-size="44" font-weight="700">TypeScript <tspan fill="#4ba5ff">7</tspan></text><text x="690" y="372" fill="#9db0c5" font-family="Arial" font-size="20">FASTER TYPE CHECKING</text><text x="690" y="405" fill="#9db0c5" font-family="Arial" font-size="20">MODERN TOOLING</text><text x="690" y="438" fill="#9db0c5" font-family="Arial" font-size="20">LARGE CODEBASES</text><path d="M690 470 C770 420 830 520 900 455 S1010 430 1060 390" fill="none" stroke="url(#cyan)" stroke-width="5" opacity=".8"/></g>
+<rect x="670" y="620" width="120" height="90" rx="8" fill="#0a0e14" stroke="#354454"/><path d="M730 620V710" stroke="#354454"/><path d="M690 730H770" stroke="#354454" stroke-width="12"/>
+<!-- right AI panel -->
+<g filter="url(#shadow)"><rect x="1150" y="250" width="350" height="330" rx="12" fill="#080c13" stroke="#33485d" stroke-width="3"/><text x="1190" y="305" fill="#59e5ff" font-family="monospace" font-size="17">AI-ASSISTED WORKFLOW</text><text x="1190" y="350" fill="#fff" font-family="Arial" font-size="31" font-weight="700">Human + AI</text><g font-family="monospace" font-size="16"><rect x="1190" y="385" width="120" height="40" rx="20" fill="#132237" stroke="#3676b9"/><text x="1217" y="411" fill="#cdeaff">PROMPT</text><rect x="1335" y="385" width="120" height="40" rx="20" fill="#132237" stroke="#3676b9"/><text x="1360" y="411" fill="#cdeaff">GENERATE</text><rect x="1190" y="450" width="120" height="40" rx="20" fill="#132237" stroke="#3676b9"/><text x="1220" y="476" fill="#cdeaff">REVIEW</text><rect x="1335" y="450" width="120" height="40" rx="20" fill="#132237" stroke="#3676b9"/><text x="1365" y="476" fill="#cdeaff">SHIP</text></g><path d="M1310 405H1335M1295 470H1335" stroke="#59e5ff"/></g>
+<!-- desk objects -->
+<g><rect x="470" y="700" width="610" height="38" rx="8" fill="#090c11" stroke="#273545"/><g stroke="#33485d"><path d="M495 710H1055"/><path d="M500 728H1050"/></g><rect x="1160" y="660" width="210" height="130" rx="10" fill="#10151d" stroke="#33485d"/><text x="1185" y="705" fill="#59e5ff" font-family="monospace" font-size="17">BUILD</text><text x="1185" y="735" fill="#fff" font-family="monospace" font-size="17">SHIP</text><text x="1185" y="765" fill="#fff" font-family="monospace" font-size="17">LEARN</text><circle cx="1420" cy="705" r="32" fill="#10151d" stroke="#33485d"/><circle cx="1420" cy="705" r="7" fill="#59e5ff" filter="url(#glow)"/></g>
+<text x="70" y="835" fill="#6f8297" font-family="monospace" font-size="17">037 / BUILD / TECH — TYPE SYSTEMS ARE PART OF THE PRODUCT</text>
+</svg>
