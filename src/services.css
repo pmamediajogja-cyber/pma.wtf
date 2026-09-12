@@ -1,0 +1,170 @@
+/* =========================================
+   SERVICES / CAPABILITY SYSTEM
+   Keeps the existing PMA layout, but makes
+   each service read like a real capability.
+   ========================================= */
+
+#services .split-section,
+.split-section {
+  isolation: isolate;
+}
+
+#services > div:first-child {
+  position: relative;
+}
+
+#services > div:first-child::after {
+  content: "I turn ideas into visual systems, digital experiences, and things that actually work.";
+  display: block;
+  max-width: 390px;
+  margin-top: 30px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.service-list {
+  position: relative;
+}
+
+.service-row {
+  position: relative;
+  grid-template-columns: 60px minmax(0, 1fr) 30px;
+  min-height: 92px;
+  overflow: hidden;
+  transition:
+    padding 0.28s ease,
+    border-color 0.28s ease,
+    background 0.28s ease;
+}
+
+.service-row::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--accent);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.28s ease;
+}
+
+.service-row strong {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  line-height: 1.15;
+}
+
+.service-row strong::after {
+  color: #626974;
+  font: 400 9px/1.5 "DM Mono", monospace;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: color 0.25s ease;
+}
+
+.service-row:nth-child(1) strong::after {
+  content: "Apparel graphics / merch / visual direction";
+}
+
+.service-row:nth-child(2) strong::after {
+  content: "Identity / campaign / content systems";
+}
+
+.service-row:nth-child(3) strong::after {
+  content: "Landing pages / websites / interactive UI";
+}
+
+.service-row:nth-child(4) strong {
+  font-size: 0;
+}
+
+.service-row:nth-child(4) strong::before {
+  content: "Creative Technology";
+  font: 500 19px/1.15 "Space Grotesk", sans-serif;
+  letter-spacing: -0.03em;
+}
+
+.service-row:nth-child(4) strong::after {
+  content: "Digital tools / automation / creative systems";
+}
+
+.service-row > span {
+  position: relative;
+  z-index: 1;
+  transition: color 0.25s ease;
+}
+
+.service-row b {
+  position: relative;
+  z-index: 1;
+  font-size: 22px;
+  transition: transform 0.28s ease, color 0.25s ease;
+}
+
+.service-row:hover {
+  padding-left: 18px;
+  padding-right: 10px;
+  border-color: rgba(100, 232, 255, 0.24);
+  background:
+    linear-gradient(90deg, rgba(100, 232, 255, 0.055), transparent 68%);
+}
+
+.service-row:hover::before {
+  transform: scaleY(1);
+}
+
+.service-row:hover > span,
+.service-row:hover strong::after {
+  color: var(--accent);
+}
+
+.service-row:hover b {
+  transform: translate(4px, -4px);
+}
+
+@media (max-width: 760px) {
+  #services > div:first-child::after {
+    margin-top: 24px;
+    max-width: 460px;
+  }
+
+  .service-row {
+    grid-template-columns: 42px minmax(0, 1fr) 26px;
+    gap: 12px;
+    min-height: 88px;
+    padding: 20px 0;
+  }
+
+  .service-row strong {
+    font-size: 17px;
+  }
+
+  .service-row:nth-child(4) strong::before {
+    font-size: 17px;
+  }
+
+  .service-row strong::after {
+    font-size: 8px;
+  }
+
+  .service-row:hover {
+    padding-left: 10px;
+    padding-right: 4px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .service-row,
+  .service-row::before,
+  .service-row b,
+  .service-row > span,
+  .service-row strong::after {
+    transition: none !important;
+  }
+}
