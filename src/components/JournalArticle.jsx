@@ -11,9 +11,38 @@ function parseArticleDate(date) {
 }
 
 function buildIndonesianReview(article) {
-  const base = Array.isArray(article.review) ? [...article.review] : [];
-  if (!base.length) return [`Topik ini menarik karena memperlihatkan perubahan yang sedang terjadi di ${article.category.toLowerCase()}.`, `Buat PMA, konteks praktisnya sama pentingnya dengan beritanya: apa yang berubah dan bagaimana kita meresponsnya?`, `Kalau dibawa ke pekerjaan nyata, detail kecil seperti proses, akses, komposisi, testing, dan konsistensi justru sering menentukan hasil.`, `Artikel ini menjadi pengingat bahwa teknologi dan desain selalu punya konsekuensi ketika masuk ke dunia nyata.`, `Takeaway PMA: jangan berhenti pada informasi. Terjemahkan insight menjadi keputusan yang bisa dikerjakan.`];
-  return base.map((text, i) => i === 0 ? `Ada satu bagian dari cerita ini yang menurut kami paling layak diperhatikan: ${String(text).charAt(0).toLowerCase()}${String(text).slice(1)}` : String(text));
+  const base = Array.isArray(article.review) ? article.review.map((text) => String(text).trim()).filter(Boolean) : [];
+  const category = String(article.category || "topik ini").toLowerCase();
+  if (!base.length) {
+    return [
+      `Oke, kita mulai dari ceritanya. Artikel ini membahas ${String(article.title || "sebuah topik menarik").toLowerCase()}, dan menurut saya justru ada beberapa hal kecil di balik judulnya yang layak kita lihat lebih dekat.`,
+      `Kalau dibaca sekilas, topik ini mungkin terasa seperti berita teknologi atau tren biasa. Tapi begitu dibawa ke dunia nyata, ceritanya jadi lebih menarik karena menyentuh cara kita bekerja, membuat keputusan, dan membangun sesuatu di ${category}.`,
+      `Yang saya suka dari topik seperti ini adalah kita tidak harus langsung menjadi ahli untuk menangkap pelajarannya. Cukup lihat apa yang berubah, kenapa perubahan itu terjadi, lalu pikirkan apa dampaknya kalau kejadian yang sama masuk ke pekerjaan sehari-hari.`,
+      `Kalau dibawa ke pekerjaan nyata, detail kecil seperti proses, akses, testing, komposisi, dan konsistensi justru sering menentukan hasil.`,
+      `Jadi, jangan berhenti di beritanya saja. Coba lihat bagian yang bisa kita pakai sebagai bahan belajar atau sebagai ide untuk membuat sesuatu menjadi lebih baik.`,
+      `Pandangan PMA Media: teknologi dan desain akan selalu terasa lebih menarik ketika kita membicarakannya bukan hanya sebagai tren, tetapi sebagai sesuatu yang benar-benar memengaruhi cara kita bekerja dan membuat keputusan.`
+    ];
+  }
+
+  const conversationalIntro = `Mari kita ngobrol sebentar soal ini. ${base[0].charAt(0).toUpperCase()}${base[0].slice(1)}`;
+  const contextualParagraph = `Kalau kita tarik sedikit dari berita utamanya, yang menurut saya menarik justru konteks di belakangnya. Ini bukan cuma soal ${String(article.title || "topik yang dibahas").toLowerCase()}, tetapi soal bagaimana perubahan seperti ini bisa terasa ketika benar-benar masuk ke pekerjaan, produk, atau keputusan sehari-hari.`;
+  const practicalParagraph = `Di titik ini saya biasanya lebih suka bertanya sederhana: “terus, buat kita apa artinya?” Karena informasi yang bagus akan jauh lebih berguna kalau bisa diterjemahkan menjadi cara berpikir, kebiasaan kerja, atau eksperimen kecil yang bisa dicoba. Nggak harus langsung besar—yang penting kita tahu bagian mana yang layak dibawa pulang.`;
+
+  const paragraphs = [conversationalIntro, ...base.slice(1)];
+  const lastIndex = paragraphs.length - 1;
+  const hasPmaView = paragraphs.some((text) => /pandangan pma/i.test(text));
+
+  if (paragraphs.length < 5) paragraphs.splice(Math.max(1, lastIndex), 0, contextualParagraph, practicalParagraph);
+  else paragraphs.splice(Math.max(1, paragraphs.length - 1), 0, contextualParagraph, practicalParagraph);
+
+  if (!hasPmaView) {
+    paragraphs.push(`Pandangan PMA Media: buat saya, inti dari pembahasan ini bukan sekadar siapa yang paling cepat mengikuti tren. Yang lebih penting adalah apakah kita bisa memahami perubahan, melihat risikonya, lalu mengubah insight itu menjadi keputusan dan karya yang lebih matang.`);
+  } else {
+    const pmaIndex = paragraphs.findIndex((text) => /pandangan pma/i.test(text));
+    paragraphs[pmaIndex] = paragraphs[pmaIndex].replace(/^Pandangan PMA\s*:/i, "Pandangan PMA Media:");
+  }
+
+  return paragraphs;
 }
 
 function upsertMeta(attribute, key, content) {
@@ -62,7 +91,7 @@ export default function JournalArticle({ article, onBack }) {
       <h1>{article.title}</h1>
       <p className="journal-article-excerpt">{article.excerpt}</p>
       <div className="journal-article-tags" aria-label="Topik dan hashtag artikel"><div className="journal-tags-label">TOPICS / SEO TAGS</div><div className="journal-tags-list">{seo.tags.map((tag) => <span key={tag}>{tag}</span>)}</div><div className="journal-hashtags-label">HASHTAGS</div><div className="journal-hashtags-list">{seo.hashtags.map((hashtag) => <span key={hashtag}>{hashtag}</span>)}</div></div>
-      <div className="journal-article-grid"><article><div className="journal-review-label">PMA REVIEW / OUR TAKE</div>{review.map((paragraph,index)=><p key={index}>{paragraph}</p>)}</article><aside className="journal-source-card"><div className="source-label">{isOriginal ? "PMA ORIGINAL" : "ORIGINAL SOURCE"}</div><strong>{isOriginal ? "PMA Media Yogyakarta" : article.source}</strong>{!isOriginal && <a href={article.url} target="_blank" rel="noreferrer">READ SOURCE ↗</a>}<div className="source-note">{isOriginal ? "Original editorial content written and published by PMA Media Yogyakarta." : "PMA editorial content is an independent review and interpretation of the linked source."}</div></aside></div>
+      <div className="journal-article-grid"><article><div className="journal-review-label">PMA REVIEW / OUR TAKE</div>{review.map((paragraph,index)=><p key={index} className={/pandangan pma media:/i.test(paragraph) ? "journal-pma-view" : ""}>{paragraph}</p>)}</article><aside className="journal-source-card"><div className="source-label">{isOriginal ? "PMA ORIGINAL" : "ORIGINAL SOURCE"}</div><strong>{isOriginal ? "PMA Media Yogyakarta" : article.source}</strong>{!isOriginal && <a href={article.url} target="_blank" rel="noreferrer">READ SOURCE ↗</a>}<div className="source-note">{isOriginal ? "Original editorial content written and published by PMA Media Yogyakarta." : "PMA editorial content is an independent review and interpretation of the linked source."}</div></aside></div>
     </div>
   </main>;
 }
