@@ -1,0 +1,81 @@
+const THEMES = {
+  cyber: { label: "SECURITY", accent: "#5ee7ff", bg: "#07141d" },
+  ai: { label: "AI / AGENTS", accent: "#9b8cff", bg: "#0d0b1c" },
+  street: { label: "STREETWEAR", accent: "#ffb45e", bg: "#19110a" },
+  design: { label: "DESIGN LAB", accent: "#ff6f91", bg: "#1b0b12" },
+  build: { label: "BUILD / TECH", accent: "#62e6c9", bg: "#071613" }
+};
+
+function themeFor(article) {
+  const t = `${article?.tag || ""} ${article?.title || ""} ${article?.category || ""}`.toLowerCase();
+  if (t.includes("streetwear") || t.includes("graphic tee") || t.includes("palace") || t.includes("gramicci") || t.includes("fashion") || t.includes("logo") || t.includes("back print") || t.includes("color is a mood")) return "street";
+  if (t.includes("design lab") || t.includes("typography") || t.includes("sketch") || t.includes("print") || t.includes("brand") || t.includes("creative process") || t.includes("graphic")) return "design";
+  if (t.includes("build") || t.includes("web") || t.includes("it support") || t.includes("network") || t.includes("nas") || t.includes("proxmox") || t.includes("automation") || t.includes("typescript") || t.includes("coding")) return "build";
+  if (t.includes("ai") || t.includes("agent") || t.includes("muse") || t.includes("claude") || t.includes("openai") || t.includes("safety") || t.includes("china")) return "ai";
+  return "cyber";
+}
+
+function Scene({ type, a, c }) {
+  const common = { fill: "none", stroke: c, strokeWidth: 3, strokeLinecap: "round", strokeLinejoin: "round" };
+  if (type === "street") return <g>
+    <rect x="72" y="70" width="656" height="310" rx="16" fill="url(#paper)" />
+    <path d="M150 350V150l62-42 44 34 44-34 62 42v200" fill="#111" stroke={c} strokeWidth="3" />
+    <path d="M205 122l51 60 44-60" {...common} />
+    <text x="400" y="210" textAnchor="middle" fill="#f7f8fa" fontSize="48" fontWeight="800" letterSpacing="5">PMA</text>
+    <text x="400" y="250" textAnchor="middle" fill={c} fontSize="20" fontWeight="700" letterSpacing="4">GRAPHIC CULTURE / 2026</text>
+    <path d="M365 282h70M380 300h40" stroke="#f7f8fa" strokeWidth="5" opacity=".7" />
+    <circle cx="610" cy="120" r="36" fill={c} opacity=".16" stroke={c} strokeWidth="3" /><path d="M590 120h40M610 100v40" {...common} />
+    <rect x="105" y="285" width="70" height="44" rx="5" fill="#262626" stroke={c} />
+  </g>;
+  if (type === "design") return <g>
+    <rect x="72" y="62" width="656" height="326" rx="14" fill="url(#paper)" />
+    <rect x="120" y="102" width="230" height="230" rx="4" fill="#f1eee7" />
+    <circle cx="235" cy="205" r="74" fill="#141414" /><path d="M185 250l50-100 50 100z" fill={c} opacity=".8" />
+    <text x="390" y="145" fill="#f7f8fa" fontSize="18" fontWeight="700" letterSpacing="4">TYPE / IMAGE / SPACE</text>
+    <text x="390" y="190" fill={c} fontSize="48" fontWeight="900">FORM</text>
+    <text x="390" y="224" fill="#d6d9dc" fontSize="17">sketch → composition → print</text>
+    <path d="M390 260h240M390 282h190M390 304h220" stroke="#7f8a92" strokeWidth="4" />
+    <circle cx="665" cy="120" r="28" fill={c} opacity=".18" stroke={c} />
+    <path d="M652 120h26M665 107v26" {...common} />
+  </g>;
+  if (type === "build") return <g>
+    <rect x="64" y="52" width="672" height="336" rx="18" fill="url(#paper)" />
+    <rect x="105" y="92" width="360" height="220" rx="10" fill="#0a1117" stroke={c} strokeWidth="3" />
+    <path d="M130 125h300M130 155h250M130 185h285M130 215h220M130 245h270" stroke="#6d7d88" strokeWidth="7" />
+    <path d="M130 125h78M160 155h105M130 185h55M190 215h90" stroke={c} strokeWidth="7" />
+    <rect x="500" y="105" width="170" height="80" rx="8" fill="#101c22" stroke={c} /><text x="585" y="138" textAnchor="middle" fill={c} fontSize="17" fontWeight="800">BUILD</text><text x="585" y="163" textAnchor="middle" fill="#e7edf0" fontSize="14">TEST / SHIP</text>
+    <rect x="500" y="210" width="170" height="102" rx="8" fill="#101c22" stroke="#44545e" /><circle cx="540" cy="250" r="17" fill={c} opacity=".2" stroke={c} /><circle cx="585" cy="250" r="17" fill={c} opacity=".2" stroke={c} /><circle cx="630" cy="250" r="17" fill={c} opacity=".2" stroke={c} /><path d="M557 250h11M602 250h11" {...common} />
+    <text x="120" y="350" fill="#a9b4ba" fontSize="15" letterSpacing="3">CODE / SYSTEM / WORKFLOW</text>
+  </g>;
+  if (type === "ai") return <g>
+    <rect x="72" y="58" width="656" height="330" rx="18" fill="url(#paper)" />
+    <circle cx="235" cy="218" r="105" fill="#121225" stroke={c} strokeWidth="3" />
+    <path d="M185 225c0-58 100-58 100 0v34c0 35-100 35-100 0z" fill="#17172d" stroke={c} strokeWidth="3" />
+    <circle cx="215" cy="230" r="10" fill={c} /><circle cx="255" cy="230" r="10" fill={c} /><path d="M215 270q20 18 40 0" {...common} />
+    <path d="M340 130L500 105M340 218h160M340 305l160 35" stroke={c} strokeWidth="3" opacity=".65" />
+    {[{x:540,y:100},{x:620,y:150},{x:555,y:220},{x:640,y:290},{x:515,y:335}].map((p,i)=><circle key={i} cx={p.x} cy={p.y} r="17" fill={c} opacity=".15" stroke={c} strokeWidth="3" />)}
+    <text x="400" y="185" fill="#f5f6f7" fontSize="30" fontWeight="800" letterSpacing="3">AGENT</text>
+    <text x="400" y="250" fill={c} fontSize="18" fontWeight="700" letterSpacing="3">MODEL + TOOLS + ACCESS</text>
+  </g>;
+  return <g>
+    <rect x="64" y="52" width="672" height="336" rx="18" fill="url(#paper)" />
+    <rect x="95" y="85" width="330" height="240" rx="10" fill="#081017" stroke={c} strokeWidth="3" />
+    <path d="M120 120h210M120 150h260M120 180h190M120 210h240M120 240h170M120 270h215" stroke="#53636d" strokeWidth="7" />
+    <path d="M120 120h100M145 150h125M120 180h75" stroke={c} strokeWidth="7" />
+    <rect x="470" y="90" width="200" height="70" rx="9" fill="#111c23" stroke="#52636d" /><text x="570" y="118" textAnchor="middle" fill={c} fontSize="15" fontWeight="800">THREAT DETECTED</text><text x="570" y="142" textAnchor="middle" fill="#f5f6f7" fontSize="13">IDENTITY / ENDPOINT</text>
+    <rect x="470" y="185" width="200" height="140" rx="9" fill="#111c23" stroke={c} /><path d="M570 210l42 18v38c0 30-42 45-42 45s-42-15-42-45v-38z" fill="#0b141b" stroke={c} strokeWidth="3" /><rect x="555" y="250" width="30" height="25" rx="4" fill={c} opacity=".25" stroke={c} /><path d="M563 250v-10a7 7 0 0 1 14 0v10" {...common} />
+  </g>;
+}
+
+export default function JournalArtwork({ article, className = "" }) {
+  const key = themeFor(article); const t = THEMES[key]; const safe = String(article?.title || "PMA JOURNAL").replace(/[<>&\"]+/g, "").slice(0, 54);
+  return <div className={`journal-generated-artwork ${className}`} role="img" aria-label={`${article?.title || "PMA Journal"} — contextual editorial artwork`}>
+    <svg viewBox="0 0 800 450" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor={t.bg}/><stop offset="1" stopColor="#05080b"/></linearGradient><linearGradient id="paper" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#17232b"/><stop offset="1" stopColor="#0b1116"/></linearGradient><filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="2" stitchTiles="stitch"/><feColorMatrix values=".4 0 0 0 0 .4 0 0 0 0 .4 0 0 0 0 .08 0 0 .08 0"/></filter></defs>
+      <rect width="800" height="450" fill="url(#bg)"/><path d="M0 370L800 100" stroke={t.accent} strokeWidth="1" opacity=".16"/><path d="M0 410L800 140" stroke="#fff" strokeWidth="1" opacity=".05"/>
+      <Scene type={key} a={article} c={t.accent}/><rect width="800" height="450" filter="url(#grain)" opacity=".12"/>
+      <text x="34" y="34" fill={t.accent} fontSize="12" fontWeight="800" letterSpacing="3">PMA / {t.label}</text>
+      <text x="34" y="420" fill="#e8edf0" fontSize="14" fontWeight="700" letterSpacing="1.5">{safe}</text><text x="766" y="420" textAnchor="end" fill="#81909a" fontSize="12" letterSpacing="2">{article?.id || "—"} / EDITORIAL</text>
+    </svg>
+  </div>;
+}
