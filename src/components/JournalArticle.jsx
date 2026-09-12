@@ -11,28 +11,51 @@ function parseArticleDate(date) {
 }
 
 /*
- * Reviews are written in the source data per article. Do not inject one
- * generic editorial template here: doing that makes unrelated stories sound
- * identical. The presentation layer only normalizes the PMA perspective label
- * so every article keeps its own voice, facts, source context and takeaways.
+ * Review rule:
+ * - The article's own source review is the only editorial material used.
+ * - No generic intro, context paragraph, or takeaway is injected across stories.
+ * - Short source reviews are split at sentence boundaries so they can reach
+ *   the minimum five-paragraph reading rhythm without inventing new facts.
+ * - The original PMA perspective is always retained and normalized to
+ *   "Pandangan PMA Media:".
  */
 function buildIndonesianReview(article) {
   const base = Array.isArray(article.review)
     ? article.review.map((text) => String(text).trim()).filter(Boolean)
     : [];
 
-  if (!base.length) {
-    return [
-      `Kita mulai dari sumber utamanya: ${article.source || "PMA Media"} membahas “${article.title || "topik ini"}”. Saya tidak ingin berhenti di judulnya saja, karena bagian yang paling menarik justru ada pada konteks dan detail yang membuat cerita ini relevan.`,
-      `Kalau dibawa ke situasi nyata, ada beberapa hal yang menurut saya layak diperhatikan. Bukan sekadar soal apa yang terjadi, tetapi kenapa hal itu terjadi dan apa yang bisa kita pelajari dari proses di baliknya.`,
-      `Saya lebih suka membaca artikel seperti ini sebagai bahan ngobrol sekaligus bahan kerja: mana yang benar-benar penting, mana yang hanya noise, dan bagian mana yang bisa diterapkan pada proyek atau keputusan kita sendiri.`,
-      `Pandangan PMA Media: berita atau laporan sumber ini paling berguna ketika kita tidak hanya ikut membicarakan trennya, tetapi mampu mengambil insight yang masuk akal lalu mengubahnya menjadi keputusan, eksperimen, atau karya yang lebih matang.`
-    ];
-  }
+  if (!base.length) return [];
 
-  return base.map((text) =>
+  const normalized = base.map((text) =>
     text.replace(/^Pandangan PMA\s*:/i, "Pandangan PMA Media:")
   );
+
+  if (normalized.length >= 5) return normalized;
+
+  const pmaParagraphs = normalized.filter((text) => /pandangan pma media:/i.test(text));
+  const sourceParagraphs = normalized.filter((text) => !/pandangan pma media:/i.test(text));
+
+  const sentences = sourceParagraphs.flatMap((paragraph) =>
+    paragraph.match(/[^.!?]+(?:[.!?]+|$)/g)?.map((sentence) => sentence.trim()).filter(Boolean) || [paragraph]
+  );
+
+  const targetSourceParagraphs = Math.max(1, 5 - pmaParagraphs.length);
+  const groups = [];
+  let cursor = 0;
+
+  for (let groupIndex = 0; groupIndex < targetSourceParagraphs && cursor < sentences.length; groupIndex += 1) {
+    const remainingSentences = sentences.length - cursor;
+    const remainingGroups = targetSourceParagraphs - groupIndex;
+    const take = Math.max(1, Math.ceil(remainingSentences / remainingGroups));
+    groups.push(sentences.slice(cursor, cursor + take).join(" "));
+    cursor += take;
+  }
+
+  if (cursor < sentences.length) {
+    groups.push(sentences.slice(cursor).join(" "));
+  }
+
+  return [...groups, ...pmaParagraphs];
 }
 
 function upsertMeta(attribute, key, content) {
