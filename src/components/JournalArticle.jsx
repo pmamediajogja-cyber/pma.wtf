@@ -10,39 +10,29 @@ function parseArticleDate(date) {
   return m && months[m[2]] ? `${m[3]}-${months[m[2]]}-${m[1]}` : undefined;
 }
 
+/*
+ * Reviews are written in the source data per article. Do not inject one
+ * generic editorial template here: doing that makes unrelated stories sound
+ * identical. The presentation layer only normalizes the PMA perspective label
+ * so every article keeps its own voice, facts, source context and takeaways.
+ */
 function buildIndonesianReview(article) {
-  const base = Array.isArray(article.review) ? article.review.map((text) => String(text).trim()).filter(Boolean) : [];
-  const category = String(article.category || "topik ini").toLowerCase();
+  const base = Array.isArray(article.review)
+    ? article.review.map((text) => String(text).trim()).filter(Boolean)
+    : [];
+
   if (!base.length) {
     return [
-      `Oke, kita mulai dari ceritanya. Artikel ini membahas ${String(article.title || "sebuah topik menarik").toLowerCase()}, dan menurut saya justru ada beberapa hal kecil di balik judulnya yang layak kita lihat lebih dekat.`,
-      `Kalau dibaca sekilas, topik ini mungkin terasa seperti berita teknologi atau tren biasa. Tapi begitu dibawa ke dunia nyata, ceritanya jadi lebih menarik karena menyentuh cara kita bekerja, membuat keputusan, dan membangun sesuatu di ${category}.`,
-      `Yang saya suka dari topik seperti ini adalah kita tidak harus langsung menjadi ahli untuk menangkap pelajarannya. Cukup lihat apa yang berubah, kenapa perubahan itu terjadi, lalu pikirkan apa dampaknya kalau kejadian yang sama masuk ke pekerjaan sehari-hari.`,
-      `Kalau dibawa ke pekerjaan nyata, detail kecil seperti proses, akses, testing, komposisi, dan konsistensi justru sering menentukan hasil.`,
-      `Jadi, jangan berhenti di beritanya saja. Coba lihat bagian yang bisa kita pakai sebagai bahan belajar atau sebagai ide untuk membuat sesuatu menjadi lebih baik.`,
-      `Pandangan PMA Media: teknologi dan desain akan selalu terasa lebih menarik ketika kita membicarakannya bukan hanya sebagai tren, tetapi sebagai sesuatu yang benar-benar memengaruhi cara kita bekerja dan membuat keputusan.`
+      `Kita mulai dari sumber utamanya: ${article.source || "PMA Media"} membahas “${article.title || "topik ini"}”. Saya tidak ingin berhenti di judulnya saja, karena bagian yang paling menarik justru ada pada konteks dan detail yang membuat cerita ini relevan.`,
+      `Kalau dibawa ke situasi nyata, ada beberapa hal yang menurut saya layak diperhatikan. Bukan sekadar soal apa yang terjadi, tetapi kenapa hal itu terjadi dan apa yang bisa kita pelajari dari proses di baliknya.`,
+      `Saya lebih suka membaca artikel seperti ini sebagai bahan ngobrol sekaligus bahan kerja: mana yang benar-benar penting, mana yang hanya noise, dan bagian mana yang bisa diterapkan pada proyek atau keputusan kita sendiri.`,
+      `Pandangan PMA Media: berita atau laporan sumber ini paling berguna ketika kita tidak hanya ikut membicarakan trennya, tetapi mampu mengambil insight yang masuk akal lalu mengubahnya menjadi keputusan, eksperimen, atau karya yang lebih matang.`
     ];
   }
 
-  const conversationalIntro = `Mari kita ngobrol sebentar soal ini. ${base[0].charAt(0).toUpperCase()}${base[0].slice(1)}`;
-  const contextualParagraph = `Kalau kita tarik sedikit dari berita utamanya, yang menurut saya menarik justru konteks di belakangnya. Ini bukan cuma soal ${String(article.title || "topik yang dibahas").toLowerCase()}, tetapi soal bagaimana perubahan seperti ini bisa terasa ketika benar-benar masuk ke pekerjaan, produk, atau keputusan sehari-hari.`;
-  const practicalParagraph = `Di titik ini saya biasanya lebih suka bertanya sederhana: “terus, buat kita apa artinya?” Karena informasi yang bagus akan jauh lebih berguna kalau bisa diterjemahkan menjadi cara berpikir, kebiasaan kerja, atau eksperimen kecil yang bisa dicoba. Nggak harus langsung besar—yang penting kita tahu bagian mana yang layak dibawa pulang.`;
-
-  const paragraphs = [conversationalIntro, ...base.slice(1)];
-  const lastIndex = paragraphs.length - 1;
-  const hasPmaView = paragraphs.some((text) => /pandangan pma/i.test(text));
-
-  if (paragraphs.length < 5) paragraphs.splice(Math.max(1, lastIndex), 0, contextualParagraph, practicalParagraph);
-  else paragraphs.splice(Math.max(1, paragraphs.length - 1), 0, contextualParagraph, practicalParagraph);
-
-  if (!hasPmaView) {
-    paragraphs.push(`Pandangan PMA Media: buat saya, inti dari pembahasan ini bukan sekadar siapa yang paling cepat mengikuti tren. Yang lebih penting adalah apakah kita bisa memahami perubahan, melihat risikonya, lalu mengubah insight itu menjadi keputusan dan karya yang lebih matang.`);
-  } else {
-    const pmaIndex = paragraphs.findIndex((text) => /pandangan pma/i.test(text));
-    paragraphs[pmaIndex] = paragraphs[pmaIndex].replace(/^Pandangan PMA\s*:/i, "Pandangan PMA Media:");
-  }
-
-  return paragraphs;
+  return base.map((text) =>
+    text.replace(/^Pandangan PMA\s*:/i, "Pandangan PMA Media:")
+  );
 }
 
 function upsertMeta(attribute, key, content) {
