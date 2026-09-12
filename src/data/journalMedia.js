@@ -22,7 +22,20 @@ const journalMedia = {
   "021": { image: "https://www.aretenews.com/content/images/2024/05/GNmJu8CbgAAfRuy-1.jpg", credit: "US-China AI safety talks photo" },
   "022": { image: "https://gihyo.jp/assets/images/ICON/2026/2985_muse-glimmer.png", credit: "Meta / Muse Glimmer" },
   "023": { image: "https://cdn.snkrdunk.com/uploads/media/grmc-0113.jpg", credit: "Gramicci x thisisneverthat" },
-  "024": { image: "https://cdn.sanity.io/images/ldn4d4qt/ss26-production-2026-02-22/2c2a85b32221e7fca6720eeef91b5536473e6b53-1638x2048.jpg?auto=format&q=90&w=1500", credit: "Supreme / A.PRESSE" }
+  "024": { image: "https://cdn.sanity.io/images/ldn4d4qt/ss26-production-2026-02-22/2c2a85b32221e7fca6720eeef91b5536473e6b53-1638x2048.jpg?auto=format&q=90&w=1500", credit: "Supreme / A.PRESSE" },
+  "025": { image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1600&q=85", credit: "Unsplash / apparel editorial" },
+  "026": { image: "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?auto=format&fit=crop&w=1600&q=85", credit: "Unsplash / typography workspace" },
+  "027": { image: "https://images.unsplash.com/photo-1549490349-8643362247b5?auto=format&fit=crop&w=1600&q=85", credit: "Unsplash / poster and visual art" },
+  "028": { image: "https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&fit=crop&w=1600&q=85", credit: "Unsplash / color and paint study" },
+  "029": { image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=1600&q=85", credit: "Unsplash / graphic design process" },
+  "030": { image: "https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=1600&q=85", credit: "Unsplash / brand identity workspace" },
+  "031": { image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1600&q=85", credit: "Unsplash / web development" },
+  "032": { image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1600&q=85", credit: "Unsplash / IT infrastructure" },
+  "033": { image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1600&q=85", credit: "Unsplash / automation and hardware" },
+  "034": { image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1600&q=85", credit: "Unsplash / point-of-sale transaction" },
+  "035": { image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=1600&q=85", credit: "Unsplash / cybersecurity" },
+  "036": { image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1600&q=85", credit: "Unsplash / code and design workspace" },
+  "037": { image: "https://blog.jetbrains.com/wp-content/uploads/2026/07/WS-releases-BlogSocialShare-1280x720-1.png", credit: "JetBrains / WebStorm 2026.2" }
 };
 
 export default journalMedia;
