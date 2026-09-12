@@ -14,9 +14,10 @@ import designs from "./data/designs";
 import journalArticles from "./data/journal";
 import journalMore from "./data/journalMore";
 import journalOriginal from "./data/journalOriginal";
+import journalTech from "./data/journalTech";
 import journalMedia from "./data/journalMedia";
 
-const allJournalArticles = [...journalArticles, ...journalMore, ...journalOriginal];
+const allJournalArticles = [...journalArticles, ...journalMore, ...journalOriginal, ...journalTech];
 const navItems = [["Designs", "#designs"], ["Services", "#services"], ["Journal", "/journal"], ["About", "/profile"]];
 const journalGroups = [
   { key: "CYBERSECURITY", label: "CYBERSECURITY", note: "Threats, vulnerabilities, identity and defensive practice." },
