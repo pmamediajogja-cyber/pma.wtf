@@ -173,7 +173,6 @@ export const tools = [
   { name: "SIMBG", icon: "🏗️", category: "Legal System" },
   { name: "ESP32 IoT", icon: "🔧", category: "Hardware" },
   { name: "Linux Server", icon: "🐧", category: "Infrastructure" },
-  // Cybersecurity Tools
   { name: "Wireshark", icon: "🐟", category: "Cybersecurity" },
   { name: "Nmap", icon: "🗺️", category: "Cybersecurity" },
   { name: "Metasploit", icon: "☠️", category: "Cybersecurity" },
@@ -196,6 +195,17 @@ export const projects = [
   },
   {
     id: 2,
+    title: "Sistem Notaris & PPAT",
+    description: "Multi-tenant digital workspace for Notary & PPAT offices, covering clients, deeds, document tracking, agenda, invoices, and role-based office operations.",
+    tech: ["PHP", "MySQL", "JavaScript", "Multi-Tenant", "RBAC", "Security"],
+    github: "https://github.com/pmamediajogja-cyber/sistem-notaris",
+    live: "https://pma.wtf/demo/notaris",
+    color: "#00f0ff",
+    featured: true,
+    badge: "SaaS Product"
+  },
+  {
+    id: 3,
     title: "Legal Document Automation",
     description: "Automated workflow system for processing fiduciary guarantee documents with 99% accuracy",
     tech: ["Python", "PDF Automation", "Database Management"],
@@ -203,7 +213,7 @@ export const projects = [
     color: "#ff00e5"
   },
   {
-    id: 3,
+    id: 4,
     title: "IoT Monitoring System",
     description: "ESP32-based environmental monitoring system with real-time sensor data visualization",
     tech: ["ESP32", "Arduino", "Sensor Integration", "IoT"],
@@ -211,7 +221,7 @@ export const projects = [
     color: "#00ff88"
   },
   {
-    id: 4,
+    id: 5,
     title: "MSME Business Registry",
     description: "End-to-end business licensing platform integrated with OSS RBA for small enterprises",
     tech: ["Web Dev", "OSS RBA", "Legal Compliance"],
