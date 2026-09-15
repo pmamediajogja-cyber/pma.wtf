@@ -50,60 +50,30 @@ export async function getAuth() {
 }
 
 export async function login(email, password) {
-  const payload = await request("auth.php", {
-    method: "POST",
-    body: formBody({ action: "login", email, password }),
-  });
-  return payload;
+  return request("auth.php", { method: "POST", body: formBody({ action: "login", email, password }) });
 }
 
 export async function logout() {
-  try {
-    return await request("auth.php", {
-      method: "POST",
-      body: formBody({ action: "logout" }),
-    });
-  } finally {
-    csrfToken = null;
-  }
+  try { return await request("auth.php", { method: "POST", body: formBody({ action: "logout" }) }); }
+  finally { csrfToken = null; }
 }
 
-export async function listUsers() {
-  return request("api_users.php?action=list", { method: "GET" });
-}
+export async function listUsers() { return request("api_users.php?action=list", { method: "GET" }); }
+export async function createUser({ name, email, role, password }) { return request("api_users.php?action=create", { method: "POST", body: formBody({ name, email, role, password }) }); }
+export async function updateUser({ userId, name, email, role }) { return request("api_users.php?action=update", { method: "POST", body: formBody({ user_id: userId, name, email, role }) }); }
+export async function setUserActive(userId, isActive) { return request("api_users.php?action=set_active", { method: "POST", body: formBody({ user_id: userId, is_active: isActive ? "true" : "false" }) }); }
+export async function resetUserPassword(userId, password) { return request("api_users.php?action=reset_password", { method: "POST", body: formBody({ user_id: userId, password }) }); }
 
-export async function createUser({ name, email, role, password }) {
-  return request("api_users.php?action=create", {
+export async function createDocumentReceipt({ matter_id, direction, counterparty_name, receipt_date, staff_name, items }) {
+  return request("api_document_receipts.php?action=create", {
     method: "POST",
-    body: formBody({ name, email, role, password }),
+    body: formBody({ matter_id, direction, counterparty_name, receipt_date, staff_name, items: JSON.stringify(items) }),
   });
 }
 
-export async function updateUser({ userId, name, email, role }) {
-  return request("api_users.php?action=update", {
-    method: "POST",
-    body: formBody({ user_id: userId, name, email, role }),
-  });
+export async function listDocumentReceipts() {
+  return request("api_document_receipts.php?action=list", { method: "GET" });
 }
 
-export async function setUserActive(userId, isActive) {
-  return request("api_users.php?action=set_active", {
-    method: "POST",
-    body: formBody({ user_id: userId, is_active: isActive ? "true" : "false" }),
-  });
-}
-
-export async function resetUserPassword(userId, password) {
-  return request("api_users.php?action=reset_password", {
-    method: "POST",
-    body: formBody({ user_id: userId, password }),
-  });
-}
-
-export function clearNotaryApiSession() {
-  csrfToken = null;
-}
-
-export function getNotaryApiBase() {
-  return API_BASE;
-}
+export function clearNotaryApiSession() { csrfToken = null; }
+export function getNotaryApiBase() { return API_BASE; }
