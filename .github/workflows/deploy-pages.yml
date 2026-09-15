@@ -37,7 +37,7 @@ jobs:
       - name: Add static route entry points
         run: |
           set -e
-          for route in journal profile cv; do
+          for route in journal profile cv thework notary; do
             mkdir -p "dist/$route"
             cp dist/index.html "dist/$route/index.html"
           done
