@@ -52,5 +52,12 @@ export async function createDocumentReceipt({ matter_id, direction, counterparty
 }
 export async function listDocumentReceipts() { return request("api_document_receipts.php?action=list", { method: "GET" }); }
 export async function getDocumentReceipt(receiptId) { return request(`api_document_receipts.php?action=detail&id=${encodeURIComponent(receiptId)}`, { method: "GET" }); }
+
+export async function listInvoices() { return request("api_invoices.php?action=list", { method: "GET" }); }
+export async function getInvoice(invoiceId) { return request(`api_invoices.php?action=detail&id=${encodeURIComponent(invoiceId)}`, { method: "GET" }); }
+export async function createInvoice(payload) { return request("api_invoices.php?action=create", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) }); }
+export async function updateInvoice(payload) { return request("api_invoices.php?action=update", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) }); }
+export async function deleteInvoice(invoiceId) { return request("api_invoices.php?action=delete", { method: "POST", body: formBody({ id: invoiceId }) }); }
+
 export function clearNotaryApiSession() { csrfToken = null; }
 export function getNotaryApiBase() { return API_BASE; }
