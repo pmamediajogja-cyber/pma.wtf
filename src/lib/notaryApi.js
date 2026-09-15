@@ -51,5 +51,6 @@ export async function createDocumentReceipt({ matter_id, direction, counterparty
   return request("api_document_receipts.php?action=create", { method: "POST", body: formBody({ matter_id, direction, counterparty_name, receipt_date, staff_name, items: JSON.stringify(items) }) });
 }
 export async function listDocumentReceipts() { return request("api_document_receipts.php?action=list", { method: "GET" }); }
+export async function getDocumentReceipt(receiptId) { return request(`api_document_receipts.php?action=detail&id=${encodeURIComponent(receiptId)}`, { method: "GET" }); }
 export function clearNotaryApiSession() { csrfToken = null; }
 export function getNotaryApiBase() { return API_BASE; }
