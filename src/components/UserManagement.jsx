@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { createUser, getAuth, listUsers, login, logout, setUserActive } from "../lib/notaryApi";
 
 const seedUsers = [
   { id: 1, name: "Imam Falahi", email: "admin@kantor-demo.id", role: "OWNER", active: true, lastLogin: "Hari ini, 08:41" },
@@ -6,70 +7,24 @@ const seedUsers = [
   { id: 3, name: "Dimas Pratama", email: "dimas@kantor-demo.id", role: "ADMIN", active: true, lastLogin: "Kemarin, 16:28" },
   { id: 4, name: "Rina Lestari", email: "rina@kantor-demo.id", role: "STAFF", active: true, lastLogin: "Kemarin, 15:04" },
 ];
-
 const roleLabel = { OWNER: "Owner", NOTARIS: "Notaris", ADMIN: "Administrator", STAFF: "Staff" };
 const roleTone = { OWNER: "owner", NOTARIS: "notaris", ADMIN: "admin", STAFF: "staff" };
 
+function mapUser(u) { return { id: Number(u.id), name: u.name, email: u.email, role: u.role, active: Boolean(u.is_active), lastLogin: u.last_login_at ? new Date(u.last_login_at).toLocaleString("id-ID") : "Belum pernah masuk" }; }
+
 export default function UserManagement() {
-  const [users, setUsers] = useState(seedUsers);
-  const [query, setQuery] = useState("");
-  const [role, setRole] = useState("ALL");
-  const [modal, setModal] = useState(false);
-  const [form, setForm] = useState({ name: "", email: "", role: "STAFF" });
-  const [notice, setNotice] = useState("");
+  const [users, setUsers] = useState(seedUsers), [query, setQuery] = useState(""), [role, setRole] = useState("ALL");
+  const [modal, setModal] = useState(false), [mode, setMode] = useState("demo"), [loading, setLoading] = useState(false), [notice, setNotice] = useState(""), [auth, setAuth] = useState(null);
+  const [form, setForm] = useState({ name: "", email: "", role: "STAFF", password: "" });
+  const showNotice = message => { setNotice(message); window.setTimeout(() => setNotice(""), 3000); };
+  const loadApi = async () => { setLoading(true); try { const session = await getAuth(); setAuth(session.user || null); if (!session.authenticated) { setMode("login"); showNotice("Belum login ke server SaaS."); return; } const result = await listUsers(); setUsers((result.data || []).map(mapUser)); setMode("api"); showNotice("Data pengguna berhasil dimuat dari server."); } catch (e) { showNotice(e.message); } finally { setLoading(false); } };
+  const doLogin = async e => { e.preventDefault(); setLoading(true); try { const result = await login(form.email, form.password); setAuth(result.user || null); const usersResult = await listUsers(); setUsers((usersResult.data || []).map(mapUser)); setMode("api"); setForm({ name: "", email: "", role: "STAFF", password: "" }); showNotice("Login SaaS berhasil."); } catch (e) { showNotice(e.message); } finally { setLoading(false); } };
+  const doLogout = async () => { setLoading(true); try { await logout(); setAuth(null); setMode("demo"); setUsers(seedUsers); showNotice("Logout server berhasil. Kembali ke Demo Mode."); } catch (e) { showNotice(e.message); } finally { setLoading(false); } };
+  const create = async e => { e.preventDefault(); const name = form.name.trim(), email = form.email.trim().toLowerCase(); if (!name || !email || form.password.length < 12) { showNotice("Nama, email, dan password minimal 12 karakter wajib diisi."); return; } if (mode === "api") { setLoading(true); try { await createUser(form); const result = await listUsers(); setUsers((result.data || []).map(mapUser)); setForm({ name: "", email: "", role: "STAFF", password: "" }); setModal(false); showNotice("Pengguna berhasil dibuat di server."); } catch (e) { showNotice(e.message); } finally { setLoading(false); } return; } if (users.some(u => u.email === email)) { showNotice("Email tersebut sudah ada di data demo."); return; } setUsers(prev => [...prev, { id: Date.now(), name, email, role: form.role, active: true, lastLogin: "Belum pernah masuk" }]); setForm({ name: "", email: "", role: "STAFF", password: "" }); setModal(false); showNotice("Pengguna demo berhasil ditambahkan."); };
+  const toggle = async id => { const target = users.find(u => u.id === id); if (!target) return; if (target.active && ["OWNER", "NOTARIS"].includes(target.role) && users.filter(u => u.active && ["OWNER", "NOTARIS"].includes(u.role)).length === 1) { showNotice("Akun OWNER/NOTARIS aktif terakhir tidak dapat dinonaktifkan."); return; } if (mode === "api") { setLoading(true); try { await setUserActive(id, !target.active); const result = await listUsers(); setUsers((result.data || []).map(mapUser)); showNotice(target.active ? "Akun dinonaktifkan." : "Akun diaktifkan."); } catch (e) { showNotice(e.message); } finally { setLoading(false); } return; } setUsers(prev => prev.map(u => u.id === id ? { ...u, active: !u.active } : u)); };
+  const filtered = useMemo(() => users.filter(u => `${u.name} ${u.email}`.toLowerCase().includes(query.toLowerCase()) && (role === "ALL" || u.role === role)), [users, query, role]);
 
-  const filtered = useMemo(() => users.filter(u => {
-    const hit = `${u.name} ${u.email}`.toLowerCase().includes(query.toLowerCase());
-    return hit && (role === "ALL" || u.role === role);
-  }), [users, query, role]);
+  if (mode === "login") return <section className="user-management module-page"><div className="user-panel"><div className="user-toolbar"><div><span className="user-kicker">SERVER SaaS</span><h2>Login Kantor</h2><p>Masuk untuk mengelola pengguna dari database tenant. Demo tidak digunakan sebagai fallback otomatis.</p></div><button className="user-action" onClick={() => { setMode("demo"); setUsers(seedUsers); }}>Gunakan Demo</button></div><form onSubmit={doLogin} style={{maxWidth:480}}><label>Email kantor<input autoFocus type="email" value={form.email} onChange={e=>setForm({...form,email:e.target.value})} placeholder="nama@kantor.id"/></label><label>Password<input type="password" value={form.password} onChange={e=>setForm({...form,password:e.target.value})} placeholder="Minimal 12 karakter"/></label><button className="user-primary" type="submit" disabled={loading}>{loading ? "Menghubungkan..." : "Login Server"}</button></form></div>{notice && <div className="user-notice" role="status">{notice}</div>}</section>;
 
-  const showNotice = message => {
-    setNotice(message);
-    window.setTimeout(() => setNotice(""), 2600);
-  };
-
-  const createUser = e => {
-    e.preventDefault();
-    const name = form.name.trim();
-    const email = form.email.trim().toLowerCase();
-    if (!name || !email) return;
-    if (users.some(u => u.email === email)) {
-      showNotice("Email tersebut sudah ada di data demo.");
-      return;
-    }
-    setUsers(prev => [...prev, { id: Date.now(), name, email, role: form.role, active: true, lastLogin: "Belum pernah masuk" }]);
-    setForm({ name: "", email: "", role: "STAFF" });
-    setModal(false);
-    showNotice("Pengguna demo berhasil ditambahkan.");
-  };
-
-  const toggle = id => {
-    const target = users.find(u => u.id === id);
-    if (!target) return;
-    if (target.active && ["OWNER", "NOTARIS"].includes(target.role) && users.filter(u => u.active && ["OWNER", "NOTARIS"].includes(u.role)).length === 1) {
-      showNotice("Akun OWNER/NOTARIS aktif terakhir tidak dapat dinonaktifkan.");
-      return;
-    }
-    setUsers(prev => prev.map(u => u.id === id ? { ...u, active: !u.active } : u));
-  };
-
-  return <section className="user-management module-page">
-    {notice && <div className="user-notice" role="status">{notice}</div>}
-    <div className="user-toolbar">
-      <div><span className="user-kicker">AKSES & PERSONEL KANTOR</span><h2>Pengguna & Staff</h2><p>Kelola akun, role, dan status akses pengguna dalam kantor.</p></div>
-      <button className="user-primary" onClick={() => setModal(true)}>+ Tambah Pengguna</button>
-    </div>
-    <div className="user-summary">
-      <div><span>Total pengguna</span><strong>{users.length}</strong></div>
-      <div><span>Aktif</span><strong>{users.filter(u => u.active).length}</strong></div>
-      <div><span>Notaris / Owner</span><strong>{users.filter(u => ["OWNER", "NOTARIS"].includes(u.role)).length}</strong></div>
-      <div><span>Staff</span><strong>{users.filter(u => u.role === "STAFF").length}</strong></div>
-    </div>
-    <div className="user-panel">
-      <div className="user-filters"><input value={query} onChange={e => setQuery(e.target.value)} placeholder="Cari nama atau email..."/><select value={role} onChange={e => setRole(e.target.value)}><option value="ALL">Semua role</option><option value="OWNER">Owner</option><option value="NOTARIS">Notaris</option><option value="ADMIN">Administrator</option><option value="STAFF">Staff</option></select></div>
-      <div className="user-table-wrap"><table className="user-table"><thead><tr><th>PENGGUNA</th><th>ROLE</th><th>STATUS</th><th>LOGIN TERAKHIR</th><th></th></tr></thead><tbody>{filtered.map(u => <tr key={u.id}><td><div className="user-person"><i>{u.name.split(" ").map(x => x[0]).slice(0,2).join("")}</i><div><strong>{u.name}</strong><small>{u.email}</small></div></div></td><td><span className={`role-badge ${roleTone[u.role]}`}>{roleLabel[u.role]}</span></td><td><span className={`user-status ${u.active ? "active" : "inactive"}`}><b/> {u.active ? "Aktif" : "Nonaktif"}</span></td><td className="user-login">{u.lastLogin}</td><td><button className="user-action" onClick={() => toggle(u.id)}>{u.active ? "Nonaktifkan" : "Aktifkan"}</button></td></tr>)}</tbody></table></div>
-      <div className="user-security-note"><strong>Kontrol akses</strong><span>Role menentukan kewenangan. Pengguna hanya dapat dikelola sesuai hierarki akses kantor.</span></div>
-    </div>
-    {modal && <div className="user-modal-backdrop"><div className="user-modal"><div className="user-modal-head"><div><span>TAMBAH AKUN</span><h3>Pengguna baru</h3></div><button onClick={() => setModal(false)}>×</button></div><form onSubmit={createUser}><label>Nama lengkap<input autoFocus value={form.name} onChange={e => setForm({...form,name:e.target.value})} placeholder="Nama pengguna"/></label><label>Email kantor<input type="email" value={form.email} onChange={e => setForm({...form,email:e.target.value})} placeholder="nama@kantor.id"/></label><label>Role<select value={form.role} onChange={e => setForm({...form,role:e.target.value})}><option value="STAFF">Staff</option><option value="ADMIN">Administrator</option><option value="NOTARIS">Notaris</option><option value="OWNER">Owner</option></select></label><div className="user-modal-actions"><button type="button" onClick={() => setModal(false)}>Batal</button><button type="submit">Buat Pengguna</button></div></form></div></div>}
-  </section>;
+  return <section className="user-management module-page">{notice && <div className="user-notice" role="status">{notice}</div>}<div className="user-toolbar"><div><span className="user-kicker">AKSES & PERSONEL KANTOR · {mode === "api" ? "SERVER" : "DEMO"}</span><h2>Pengguna & Staff</h2><p>Kelola akun, role, dan status akses pengguna dalam kantor.</p></div><div><button className="user-action" onClick={mode === "api" ? doLogout : loadApi} disabled={loading}>{loading ? "Memproses..." : mode === "api" ? "Logout Server" : "Hubungkan Server"}</button> <button className="user-primary" onClick={() => { setForm({ name:"", email:"", role:"STAFF", password:"" }); setModal(true); }}>+ Tambah Pengguna</button></div></div>{auth && <div className="user-security-note"><strong>{auth.name}</strong><span>{auth.role} · {auth.email} · tenant aktif dari session server</span></div>}<div className="user-summary"><div><span>Total pengguna</span><strong>{users.length}</strong></div><div><span>Aktif</span><strong>{users.filter(u=>u.active).length}</strong></div><div><span>Notaris / Owner</span><strong>{users.filter(u=>["OWNER","NOTARIS"].includes(u.role)).length}</strong></div><div><span>Staff</span><strong>{users.filter(u=>u.role === "STAFF").length}</strong></div></div><div className="user-panel"><div className="user-filters"><input value={query} onChange={e=>setQuery(e.target.value)} placeholder="Cari nama atau email..."/><select value={role} onChange={e=>setRole(e.target.value)}><option value="ALL">Semua role</option><option value="OWNER">Owner</option><option value="NOTARIS">Notaris</option><option value="ADMIN">Administrator</option><option value="STAFF">Staff</option></select></div><div className="user-table-wrap"><table className="user-table"><thead><tr><th>PENGGUNA</th><th>ROLE</th><th>STATUS</th><th>LOGIN TERAKHIR</th><th></th></tr></thead><tbody>{filtered.map(u=><tr key={u.id}><td><div className="user-person"><i>{u.name.split(" ").map(x=>x[0]).slice(0,2).join("")}</i><div><strong>{u.name}</strong><small>{u.email}</small></div></div></td><td><span className={`role-badge ${roleTone[u.role]}`}>{roleLabel[u.role]}</span></td><td><span className={`user-status ${u.active ? "active" : "inactive"}`}><b/> {u.active ? "Aktif" : "Nonaktif"}</span></td><td className="user-login">{u.lastLogin}</td><td><button className="user-action" disabled={loading} onClick={()=>toggle(u.id)}>{u.active ? "Nonaktifkan" : "Aktifkan"}</button></td></tr>)}</tbody></table></div><div className="user-security-note"><strong>Kontrol akses</strong><span>Server mode menggunakan tenant dari session backend; browser tidak mengirim tenant_id.</span></div></div>{modal && <div className="user-modal-backdrop"><div className="user-modal"><div className="user-modal-head"><div><span>TAMBAH AKUN</span><h3>Pengguna baru</h3></div><button onClick={()=>setModal(false)}>×</button></div><form onSubmit={create}><label>Nama lengkap<input autoFocus value={form.name} onChange={e=>setForm({...form,name:e.target.value})} placeholder="Nama pengguna"/></label><label>Email kantor<input type="email" value={form.email} onChange={e=>setForm({...form,email:e.target.value})} placeholder="nama@kantor.id"/></label><label>Role<select value={form.role} onChange={e=>setForm({...form,role:e.target.value})}><option value="STAFF">Staff</option><option value="ADMIN">Administrator</option><option value="NOTARIS">Notaris</option><option value="OWNER">Owner</option></select></label><label>Password sementara<input type="password" minLength="12" value={form.password} onChange={e=>setForm({...form,password:e.target.value})} placeholder="Minimal 12 karakter"/></label><div className="user-modal-actions"><button type="button" onClick={()=>setModal(false)}>Batal</button><button type="submit" disabled={loading}>{loading ? "Menyimpan..." : "Buat Pengguna"}</button></div></form></div></div>}</section>;
 }
