@@ -2,90 +2,83 @@ import { useMemo, useState } from "react";
 
 const menu = [
   ["Dashboard", "dashboard"],
-  ["Clients", "clients"],
-  ["Akta & Perjanjian", "akta"],
-  ["PPAT / Pertanahan", "ppat"],
-  ["Dokumen", "dokumen"],
-  ["Jadwal", "jadwal"],
+  ["Monitor Status Berkas", "monitor"],
+  ["Berkas VIP", "vip"],
+  ["Tanda Terima Berkas", "receipt"],
+  ["Surat Kuasa", "kuasa"],
+  ["Generator Invoice", "invoice"],
+  ["Parser KTP AI", "ai"],
+  ["Koreksi Draf Akta", "akta"],
+  ["E-Meterai & TTD", "meterai"],
+  ["Kompres Dokumen", "compress"],
+  ["Laporan Patok", "patok"],
+  ["Koordinat BPN", "bpn"],
 ];
 
 const cases = [
-  { id: "AKT-0261", client: "PT Arunika Properti", service: "Akta Jual Beli", status: "PROSES", date: "15 SEP 2026" },
-  { id: "PPAT-0184", client: "Rizky Pratama", service: "Balik Nama Sertifikat", status: "MENUNGGU", date: "16 SEP 2026" },
-  { id: "AKT-0258", client: "CV Sembada", service: "Perjanjian Kerja Sama", status: "SELESAI", date: "14 SEP 2026" },
-  { id: "PPAT-0179", client: "Siti Rahma", service: "Pengecekan Sertifikat", status: "PROSES", date: "13 SEP 2026" },
+  { id: "A02", client: "PT Arunika Properti", service: "Akta Jual Beli (AJB)", stage: "Berkas Masuk & Pendaftaran", days: 6, status: "Proses" },
+  { id: "Y02", client: "Rizky Pratama", service: "Akta Jual Beli (AJB)", stage: "Proses Pajak (Validasi/NTPD)", days: 12, status: "Menunggu" },
+  { id: "Y06", client: "CV Sembada", service: "Balik Nama Sertifikat", stage: "Proses Pajak (Validasi/NTPD)", days: 15, status: "Kritis" },
+  { id: "B11", client: "Siti Rahma", service: "Pengecekan Sertifikat", stage: "Pengecekan BPN", days: 4, status: "Proses" },
 ];
 
-const documents = [
-  ["KTP / Identitas", "12 / 14", "93%"],
-  ["Sertifikat Tanah", "08 / 10", "80%"],
-  ["Pajak & BPHTB", "06 / 08", "75%"],
+const locations = [
+  ["MAGUWOHARJO", 4], ["SARIHARJO", 2], ["SUKOHARJO", 2], ["TRIHARJO", 2], ["CATURTUNGGAL", 1],
 ];
 
 function Icon({ name }) {
-  const paths = {
-    dashboard: "M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z",
-    clients: "M8 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm8-1a2.5 2.5 0 1 0 0-5M3 20c.4-3.4 2.1-5 5-5s4.6 1.6 5 5M14 15c2.7-.1 4.4 1.5 5 5",
-    akta: "M6 3h9l4 4v14H6zM15 3v5h5M9 12h6M9 16h6",
-    ppat: "M4 20V9l8-5 8 5v11M8 20v-6h8v6M2 20h20",
-    dokumen: "M7 4h10v16H7zM9 8h6M9 12h6M9 16h4",
-    jadwal: "M5 3v3M19 3v3M4 8h16M5 5h14v15H5zM8 12h2M14 12h2M8 16h2",
+  const glyphs = {
+    dashboard: "▦", monitor: "▤", vip: "★", receipt: "🤝", kuasa: "✎", invoice: "▣", ai: "▤", akta: "Aᵇ", meterai: "✒", compress: "▧", patok: "⌁", bpn: "⌖",
   };
-  return <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={paths[name]} /></svg>;
+  return <span className="notary-icon" aria-hidden="true">{glyphs[name] || "•"}</span>;
 }
 
 export default function NotaryDemo() {
   const [active, setActive] = useState("dashboard");
   const [search, setSearch] = useState("");
-  const filteredCases = useMemo(() => cases.filter((item) => `${item.id} ${item.client} ${item.service}`.toLowerCase().includes(search.toLowerCase())), [search]);
-  const activeLabel = menu.find((item) => item[1] === active)?.[0] || "Dashboard";
+  const filtered = useMemo(() => cases.filter((item) => `${item.id} ${item.client} ${item.service}`.toLowerCase().includes(search.toLowerCase())), [search]);
+  const activeLabel = menu.find(([label, id]) => id === active)?.[0] || "Dashboard";
 
   return (
     <main className="notary-demo">
       <header className="notary-topbar">
-        <a href="/" className="notary-brand"><span>PMA</span><b>LEGAL OPS</b></a>
-        <div className="notary-demo-badge">PRODUCT DEMO / NOTARY & PPAT</div>
-        <a href="/" className="notary-exit">EXIT DEMO ↗</a>
+        <div className="notary-brand"><span className="notary-brand-mark">⚖</span><strong>KANTOR NOTARIS</strong><small>PMA LEGAL OPS</small></div>
+        <div className="notary-top-actions"><button aria-label="Kalender">▦</button><button aria-label="Mode gelap">◐</button><span className="server-pill"><i /> Server Intranet Aktif</span><span className="staff-name">Staf Notaris</span><button className="profile-button" aria-label="Profil">●</button></div>
       </header>
 
       <div className="notary-layout">
         <aside className="notary-sidebar">
-          <div className="notary-office"><span>DEMO OFFICE</span><strong>NOTARIS & PPAT</strong><small>YOGYAKARTA · ID</small></div>
-          <nav>{menu.map(([label, id]) => <button key={id} className={active === id ? "active" : ""} onClick={() => setActive(id)}><Icon name={id} /><span>{label}</span>{id === "dokumen" && <em>24</em>}</button>)}</nav>
-          <div className="notary-sidebar-foot"><span>ENVIRONMENT</span><strong>DEMO / LOCAL DATA</strong><small>No real client data</small></div>
+          <div className="notary-office"><div className="notary-office-logo">⚖</div><strong>KANTOR NOTARIS</strong><small>Yogyakarta · Indonesia</small></div>
+          <nav>
+            {menu.map(([label, id], index) => (
+              <div key={id} className={index === 1 || index === 8 ? "nav-group" : ""}>
+                {index === 1 && <span className="nav-heading">MODUL OPERASIONAL</span>}
+                {index === 8 && <span className="nav-heading">MODUL UTILITAS</span>}
+                <button className={active === id ? "active" : ""} onClick={() => setActive(id)}><Icon name={id} /><span>{label}</span>{id === "monitor" && <em>25</em>}</button>
+              </div>
+            ))}
+          </nav>
+          <div className="notary-sidebar-foot">Sistem Intranet v2.0 · Demo</div>
         </aside>
 
         <section className="notary-content">
-          <div className="notary-heading">
-            <div><span>WORKSPACE / 01</span><h1>{activeLabel}</h1><p>Operations dashboard for a modern Notary & PPAT office.</p></div>
-            <div className="notary-user"><i>IF</i><div><strong>Imam Falahi</strong><small>Administrator</small></div></div>
-          </div>
+          <div className="notary-pagebar"><h1>{activeLabel}</h1><div className="notary-page-actions"><button>↻ <span>Refresh Data</span></button><button className="primary-action">◔ <span>Tampilkan Grafik</span></button></div></div>
 
-          {active === "dashboard" && <>
+          {active === "dashboard" ? <>
+            <div className="notary-welcome"><h2>Selamat Siang, Tim Staf Notaris!</h2><p>›&nbsp; Seluruh data klien tersimpan aman dan terenkripsi di server kantor.</p><p>🗓️ Selasa, 15-09-2026 — Hari yang cerah untuk menyelesaikan backlog dokumen klien. Mari selesaikan! 🚀</p></div>
             <div className="notary-stats">
-              <div><span>ACTIVE CASES</span><strong>18</strong><small>+4 this month</small></div>
-              <div><span>DOCUMENTS</span><strong>126</strong><small>12 need review</small></div>
-              <div><span>UPCOMING</span><strong>07</strong><small>next 7 days</small></div>
-              <div><span>COMPLETED</span><strong>42</strong><small>this quarter</small></div>
+              <div><span className="stat-icon blue">▣</span><div><small>BERKAS AKTIF (WIP)</small><strong>25</strong></div></div>
+              <div><span className="stat-icon yellow">◔</span><div><small>WASPADA (&gt; 7 HARI)</small><strong>0</strong></div></div>
+              <div><span className="stat-icon red">▲</span><div><small>KRITIS (&gt; 14 HARI)</small><strong>25</strong></div></div>
             </div>
-            <div className="notary-grid-main">
-              <section className="notary-panel notary-cases">
-                <div className="notary-panel-head"><div><span>CASE PIPELINE</span><h2>Recent matters</h2></div><button onClick={() => setActive("clients")}>VIEW ALL ↗</button></div>
-                <div className="notary-search"><span>⌕</span><input value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Search client, matter, or ID..." /></div>
-                <div className="notary-table"><div className="notary-table-head"><span>REFERENCE</span><span>CLIENT</span><span>SERVICE</span><span>STATUS</span><span>DATE</span></div>{filteredCases.map((item) => <div className="notary-table-row" key={item.id}><strong>{item.id}</strong><span>{item.client}</span><span>{item.service}</span><b className={`status-${item.status.toLowerCase()}`}>{item.status}</b><time>{item.date}</time></div>)}</div>
-              </section>
-              <section className="notary-panel notary-today">
-                <div className="notary-panel-head"><div><span>TODAY</span><h2>Office flow</h2></div><span className="live-dot">● LIVE</span></div>
-                <div className="notary-timeline"><div><time>09:00</time><span className="timeline-dot" /><section><strong>Pengecekan berkas</strong><small>Rizky Pratama · PPAT-0184</small></section></div><div><time>11:30</time><span className="timeline-dot" /><section><strong>Penandatanganan akta</strong><small>PT Arunika Properti · AKT-0261</small></section></div><div><time>14:00</time><span className="timeline-dot" /><section><strong>Verifikasi dokumen</strong><small>CV Sembada · AKT-0258</small></section></div></div>
-              </section>
-            </div>
-            <div className="notary-bottom-grid">
-              <section className="notary-panel"><div className="notary-panel-head"><div><span>DOCUMENT CONTROL</span><h2>Completeness</h2></div><button onClick={() => setActive("dokumen")}>OPEN ↗</button></div>{documents.map(([label, count, percent]) => <div className="notary-progress" key={label}><div><span>{label}</span><strong>{count}</strong></div><div><i style={{ width: percent }} /></div></div>)}</section>
-              <section className="notary-panel notary-quick"><span>QUICK ACTION</span><h2>Create a new matter.</h2><p>Start a client file, define the service, assign documents, and track its progress from intake to completion.</p><div><button onClick={() => setActive("clients")}>+ NEW CLIENT</button><button onClick={() => setActive("akta")}>+ NEW MATTER</button></div></section>
-            </div>
-          </>}
 
-          {active !== "dashboard" && <section className="notary-panel notary-module-placeholder"><span>MODULE / {active.toUpperCase()}</span><h2>{activeLabel}</h2><p>This demo module is connected to the workspace navigation. The next product layer can turn this into the full workflow: intake → checklist → drafting → signing → reporting → archive.</p><div className="notary-module-cards"><div><Icon name={active} /><strong>Workflow ready</strong><small>Structured records and status tracking</small></div><div><Icon name="dokumen" /><strong>Document control</strong><small>Checklist, versioning and review states</small></div><div><Icon name="jadwal" /><strong>Activity timeline</strong><small>Appointments, deadlines and follow-ups</small></div></div></section>}
+            <div className="notary-dashboard-grid">
+              <section className="notary-panel"><div className="panel-title"><h2>📍 Sebaran Lokasi Objek</h2></div>{locations.map(([name, count]) => <div className="location-row" key={name}><span>📍 {name}</span><b>{count} Berkas</b></div>)}</section>
+              <section className="notary-panel ai-panel"><div className="panel-title"><h2>🧠 Asisten Analitik AI</h2></div><div className="ai-box"><p>Kantor saat ini sedang menangani <strong>25 berkas aktif.</strong></p><p className="alert-text">⚠ Terdeteksi <strong>25 berkas</strong> dalam status stagnan/kritis. Mohon jadikan prioritas utama hari ini:</p><ul>{cases.slice(0, 3).map((item) => <li key={item.id}>Berkas <strong>{item.id}</strong> ({item.service}) tertahan &gt; {item.days} hari di tahap: <em>{item.stage}</em></li>)}<li>...dan 22 berkas lainnya.</li></ul></div></section>
+            </div>
+
+            <div className="notary-bottom-cards"><button onClick={() => setActive("monitor")}><span>▤</span><strong>Monitor Status Berkas</strong><small>Lihat seluruh pekerjaan aktif</small><b>→</b></button><button onClick={() => setActive("vip")}><span>★</span><strong>Berkas VIP</strong><small>Prioritas dan perhatian khusus</small><b>→</b></button><button onClick={() => setActive("receipt")}><span>🤝</span><strong>Tanda Terima Berkas</strong><small>Kelola serah-terima dokumen</small><b>→</b></button></div>
+          </> : <section className="notary-panel module-page"><span className="module-kicker">MODUL / {active.toUpperCase()}</span><h2>{activeLabel}</h2><p>Modul ini siap menjadi workflow operasional kantor: input data, checklist, status, dokumen, deadline, dan riwayat aktivitas. Untuk tahap berikutnya kita sambungkan ke backend nyata tanpa mengubah pola penggunaan yang sederhana.</p><div className="module-grid"><div><Icon name={active} /><strong>Data terstruktur</strong><small>Record dan status pekerjaan tersimpan rapi.</small></div><div><Icon name="monitor" /><strong>Monitoring</strong><small>Prioritas, deadline, dan pekerjaan tertahan.</small></div><div><Icon name="dokumen" /><strong>Dokumen</strong><small>Checklist dan arsip sesuai perkara.</small></div></div></section>}
         </section>
       </div>
     </main>
