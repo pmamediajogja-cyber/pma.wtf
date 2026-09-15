@@ -16,23 +16,45 @@ export default function UserManagement() {
   const [role, setRole] = useState("ALL");
   const [modal, setModal] = useState(false);
   const [form, setForm] = useState({ name: "", email: "", role: "STAFF" });
+  const [notice, setNotice] = useState("");
 
   const filtered = useMemo(() => users.filter(u => {
     const hit = `${u.name} ${u.email}`.toLowerCase().includes(query.toLowerCase());
     return hit && (role === "ALL" || u.role === role);
   }), [users, query, role]);
 
-  const createUser = e => {
-    e.preventDefault();
-    if (!form.name.trim() || !form.email.trim()) return;
-    setUsers([...users, { id: Date.now(), ...form, name: form.name.trim(), email: form.email.trim().toLowerCase(), active: true, lastLogin: "Belum pernah masuk" }]);
-    setForm({ name: "", email: "", role: "STAFF" });
-    setModal(false);
+  const showNotice = message => {
+    setNotice(message);
+    window.setTimeout(() => setNotice(""), 2600);
   };
 
-  const toggle = id => setUsers(users.map(u => u.id === id ? { ...u, active: !u.active } : u));
+  const createUser = e => {
+    e.preventDefault();
+    const name = form.name.trim();
+    const email = form.email.trim().toLowerCase();
+    if (!name || !email) return;
+    if (users.some(u => u.email === email)) {
+      showNotice("Email tersebut sudah ada di data demo.");
+      return;
+    }
+    setUsers(prev => [...prev, { id: Date.now(), name, email, role: form.role, active: true, lastLogin: "Belum pernah masuk" }]);
+    setForm({ name: "", email: "", role: "STAFF" });
+    setModal(false);
+    showNotice("Pengguna demo berhasil ditambahkan.");
+  };
+
+  const toggle = id => {
+    const target = users.find(u => u.id === id);
+    if (!target) return;
+    if (target.active && ["OWNER", "NOTARIS"].includes(target.role) && users.filter(u => u.active && ["OWNER", "NOTARIS"].includes(u.role)).length === 1) {
+      showNotice("Akun OWNER/NOTARIS aktif terakhir tidak dapat dinonaktifkan.");
+      return;
+    }
+    setUsers(prev => prev.map(u => u.id === id ? { ...u, active: !u.active } : u));
+  };
 
   return <section className="user-management module-page">
+    {notice && <div className="user-notice" role="status">{notice}</div>}
     <div className="user-toolbar">
       <div><span className="user-kicker">AKSES & PERSONEL KANTOR</span><h2>Pengguna & Staff</h2><p>Kelola akun, role, dan status akses pengguna dalam kantor.</p></div>
       <button className="user-primary" onClick={() => setModal(true)}>+ Tambah Pengguna</button>
