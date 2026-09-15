@@ -1,86 +1,77 @@
 import { useMemo, useState } from "react";
 
-const menu = [
-  ["Dashboard", "dashboard"],
-  ["Monitor Status Berkas", "monitor"],
-  ["Berkas VIP", "vip"],
-  ["Tanda Terima Berkas", "receipt"],
-  ["Surat Kuasa", "kuasa"],
-  ["Generator Invoice", "invoice"],
-  ["Parser KTP AI", "ai"],
-  ["Koreksi Draf Akta", "akta"],
-  ["E-Meterai & TTD", "meterai"],
-  ["Kompres Dokumen", "compress"],
-  ["Laporan Patok", "patok"],
-  ["Koordinat BPN", "bpn"],
-];
+const KEY = "pma_legal_ops_demo_v1";
+const initial = {
+  clients: [
+    { id: "CL-001", name: "Budi Santoso", type: "Perorangan", phone: "0812 3456 7890", city: "Sleman" },
+    { id: "CL-002", name: "PT Arunika Properti", type: "Badan Usaha", phone: "0274 555 123", city: "Yogyakarta" },
+    { id: "CL-003", name: "Siti Rahma", type: "Perorangan", phone: "0813 9876 5432", city: "Bantul" },
+  ],
+  matters: [
+    { id: "AKT-0261", client: "PT Arunika Properti", service: "Akta Jual Beli", status: "Proses", date: "2026-09-16", docs: ["KTP", "Sertifikat", "PBB"] },
+    { id: "PPAT-0184", client: "Rizky Pratama", service: "Balik Nama Sertifikat", status: "Menunggu", date: "2026-09-16", docs: ["KTP"] },
+    { id: "AKT-0258", client: "CV Sembada", service: "Perjanjian Kerja Sama", status: "Selesai", date: "2026-09-14", docs: ["KTP", "NPWP", "Draft"] },
+    { id: "PPAT-0179", client: "Siti Rahma", service: "Pengecekan Sertifikat", status: "Proses", date: "2026-09-13", docs: ["KTP", "Sertifikat"] },
+  ],
+  invoices: [
+    { id: "INV-2026-001", client: "PT Arunika Properti", amount: 7500000, status: "Belum Lunas" },
+    { id: "INV-2026-002", client: "Siti Rahma", amount: 2500000, status: "Lunas" },
+  ],
+  schedules: [
+    { id: 1, time: "09:00", title: "Pengecekan berkas", client: "Rizky Pratama" },
+    { id: 2, time: "11:30", title: "Penandatanganan akta", client: "PT Arunika Properti" },
+    { id: 3, time: "14:00", title: "Verifikasi dokumen", client: "Siti Rahma" },
+  ],
+};
+const menu = [["Dashboard", "dashboard"], ["Monitor Status Berkas", "matters"], ["Klien", "clients"], ["Akta & Perjanjian", "akta"], ["PPAT / Pertanahan", "ppat"], ["Dokumen", "documents"], ["Jadwal", "schedule"], ["Invoice", "invoice"], ["Laporan", "reports"]];
+const services = ["Akta Jual Beli", "Hibah", "APHT", "Balik Nama Sertifikat", "Pengecekan Sertifikat", "Perjanjian Kerja Sama", "Surat Kuasa"];
+const money = n => new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR", maximumFractionDigits: 0 }).format(n);
 
-const cases = [
-  { id: "A02", client: "PT Arunika Properti", service: "Akta Jual Beli (AJB)", stage: "Berkas Masuk & Pendaftaran", days: 6, status: "Proses" },
-  { id: "Y02", client: "Rizky Pratama", service: "Akta Jual Beli (AJB)", stage: "Proses Pajak (Validasi/NTPD)", days: 12, status: "Menunggu" },
-  { id: "Y06", client: "CV Sembada", service: "Balik Nama Sertifikat", stage: "Proses Pajak (Validasi/NTPD)", days: 15, status: "Kritis" },
-  { id: "B11", client: "Siti Rahma", service: "Pengecekan Sertifikat", stage: "Pengecekan BPN", days: 4, status: "Proses" },
-];
-
-const locations = [
-  ["MAGUWOHARJO", 4], ["SARIHARJO", 2], ["SUKOHARJO", 2], ["TRIHARJO", 2], ["CATURTUNGGAL", 1],
-];
-
-function Icon({ name }) {
-  const glyphs = {
-    dashboard: "▦", monitor: "▤", vip: "★", receipt: "🤝", kuasa: "✎", invoice: "▣", ai: "▤", akta: "Aᵇ", meterai: "✒", compress: "▧", patok: "⌁", bpn: "⌖",
-  };
-  return <span className="notary-icon" aria-hidden="true">{glyphs[name] || "•"}</span>;
-}
+function Icon({ name }) { const p = { dashboard: "M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z", matters: "M4 7h16M4 12h16M4 17h11", clients: "M8 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5 10c.4-3.4 2.1-5 5-5s4.6 1.6 5 5", akta: "M6 3h9l4 4v14H6zM15 3v5h5M9 12h6M9 16h6", ppat: "M4 20V9l8-5 8 5v11M8 20v-6h8v6M2 20h20", documents: "M7 4h10v16H7zM9 8h6M9 12h6M9 16h4", schedule: "M5 3v3M19 3v3M4 8h16M5 5h14v15H5zM8 12h2M14 12h2", invoice: "M4 5h16v14H4zM8 10h8M8 14h5", reports: "M5 19V9M12 19V5M19 19v-7" }; return <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><path d={p[name] || p.dashboard}/></svg>; }
 
 export default function NotaryDemo() {
-  const [active, setActive] = useState("dashboard");
-  const [search, setSearch] = useState("");
-  const filtered = useMemo(() => cases.filter((item) => `${item.id} ${item.client} ${item.service}`.toLowerCase().includes(search.toLowerCase())), [search]);
-  const activeLabel = menu.find(([label, id]) => id === active)?.[0] || "Dashboard";
-
-  return (
-    <main className="notary-demo">
-      <header className="notary-topbar">
-        <div className="notary-brand"><span className="notary-brand-mark">⚖</span><strong>KANTOR NOTARIS</strong><small>PMA LEGAL OPS</small></div>
-        <div className="notary-top-actions"><button aria-label="Kalender">▦</button><button aria-label="Mode gelap">◐</button><span className="server-pill"><i /> Server Intranet Aktif</span><span className="staff-name">Staf Notaris</span><button className="profile-button" aria-label="Profil">●</button></div>
-      </header>
-
-      <div className="notary-layout">
-        <aside className="notary-sidebar">
-          <div className="notary-office"><div className="notary-office-logo">⚖</div><strong>KANTOR NOTARIS</strong><small>Yogyakarta · Indonesia</small></div>
-          <nav>
-            {menu.map(([label, id], index) => (
-              <div key={id} className={index === 1 || index === 8 ? "nav-group" : ""}>
-                {index === 1 && <span className="nav-heading">MODUL OPERASIONAL</span>}
-                {index === 8 && <span className="nav-heading">MODUL UTILITAS</span>}
-                <button className={active === id ? "active" : ""} onClick={() => setActive(id)}><Icon name={id} /><span>{label}</span>{id === "monitor" && <em>25</em>}</button>
-              </div>
-            ))}
-          </nav>
-          <div className="notary-sidebar-foot">Sistem Intranet v2.0 · Demo</div>
-        </aside>
-
-        <section className="notary-content">
-          <div className="notary-pagebar"><h1>{activeLabel}</h1><div className="notary-page-actions"><button>↻ <span>Refresh Data</span></button><button className="primary-action">◔ <span>Tampilkan Grafik</span></button></div></div>
-
-          {active === "dashboard" ? <>
-            <div className="notary-welcome"><h2>Selamat Siang, Tim Staf Notaris!</h2><p>›&nbsp; Seluruh data klien tersimpan aman dan terenkripsi di server kantor.</p><p>🗓️ Selasa, 15-09-2026 — Hari yang cerah untuk menyelesaikan backlog dokumen klien. Mari selesaikan! 🚀</p></div>
-            <div className="notary-stats">
-              <div><span className="stat-icon blue">▣</span><div><small>BERKAS AKTIF (WIP)</small><strong>25</strong></div></div>
-              <div><span className="stat-icon yellow">◔</span><div><small>WASPADA (&gt; 7 HARI)</small><strong>0</strong></div></div>
-              <div><span className="stat-icon red">▲</span><div><small>KRITIS (&gt; 14 HARI)</small><strong>25</strong></div></div>
-            </div>
-
-            <div className="notary-dashboard-grid">
-              <section className="notary-panel"><div className="panel-title"><h2>📍 Sebaran Lokasi Objek</h2></div>{locations.map(([name, count]) => <div className="location-row" key={name}><span>📍 {name}</span><b>{count} Berkas</b></div>)}</section>
-              <section className="notary-panel ai-panel"><div className="panel-title"><h2>🧠 Asisten Analitik AI</h2></div><div className="ai-box"><p>Kantor saat ini sedang menangani <strong>25 berkas aktif.</strong></p><p className="alert-text">⚠ Terdeteksi <strong>25 berkas</strong> dalam status stagnan/kritis. Mohon jadikan prioritas utama hari ini:</p><ul>{cases.slice(0, 3).map((item) => <li key={item.id}>Berkas <strong>{item.id}</strong> ({item.service}) tertahan &gt; {item.days} hari di tahap: <em>{item.stage}</em></li>)}<li>...dan 22 berkas lainnya.</li></ul></div></section>
-            </div>
-
-            <div className="notary-bottom-cards"><button onClick={() => setActive("monitor")}><span>▤</span><strong>Monitor Status Berkas</strong><small>Lihat seluruh pekerjaan aktif</small><b>→</b></button><button onClick={() => setActive("vip")}><span>★</span><strong>Berkas VIP</strong><small>Prioritas dan perhatian khusus</small><b>→</b></button><button onClick={() => setActive("receipt")}><span>🤝</span><strong>Tanda Terima Berkas</strong><small>Kelola serah-terima dokumen</small><b>→</b></button></div>
-          </> : <section className="notary-panel module-page"><span className="module-kicker">MODUL / {active.toUpperCase()}</span><h2>{activeLabel}</h2><p>Modul ini siap menjadi workflow operasional kantor: input data, checklist, status, dokumen, deadline, dan riwayat aktivitas. Untuk tahap berikutnya kita sambungkan ke backend nyata tanpa mengubah pola penggunaan yang sederhana.</p><div className="module-grid"><div><Icon name={active} /><strong>Data terstruktur</strong><small>Record dan status pekerjaan tersimpan rapi.</small></div><div><Icon name="monitor" /><strong>Monitoring</strong><small>Prioritas, deadline, dan pekerjaan tertahan.</small></div><div><Icon name="dokumen" /><strong>Dokumen</strong><small>Checklist dan arsip sesuai perkara.</small></div></div></section>}
-        </section>
-      </div>
-    </main>
-  );
+  const [data, setData] = useState(() => { try { return JSON.parse(localStorage.getItem(KEY)) || initial; } catch { return initial; } });
+  const [active, setActive] = useState("dashboard"), [search, setSearch] = useState(""), [modal, setModal] = useState(null);
+  const [form, setForm] = useState({ name: "", type: "Perorangan", phone: "", city: "", client: "", service: services[0], date: "2026-09-18", amount: "" });
+  const save = next => { setData(next); localStorage.setItem(KEY, JSON.stringify(next)); };
+  const reset = () => { save(initial); setModal(null); };
+  const matters = useMemo(() => data.matters.filter(x => `${x.id} ${x.client} ${x.service} ${x.status}`.toLowerCase().includes(search.toLowerCase())), [data.matters, search]);
+  const clients = useMemo(() => data.clients.filter(x => `${x.name} ${x.phone} ${x.city}`.toLowerCase().includes(search.toLowerCase())), [data.clients, search]);
+  const stats = { active: data.matters.filter(x => x.status !== "Selesai").length, docs: data.matters.reduce((a, x) => a + x.docs.length, 0), upcoming: data.schedules.length, completed: data.matters.filter(x => x.status === "Selesai").length };
+  const addClient = e => { e.preventDefault(); if (!form.name.trim()) return; const id = `CL-${String(data.clients.length + 1).padStart(3, "0")}`; save({ ...data, clients: [...data.clients, { id, name: form.name.trim(), type: form.type, phone: form.phone, city: form.city }] }); setModal(null); setActive("clients"); };
+  const addMatter = e => { e.preventDefault(); if (!form.client.trim()) return; const prefix = ["Balik Nama Sertifikat", "Pengecekan Sertifikat", "Hibah", "APHT"].includes(form.service) ? "PPAT" : "AKT"; const id = `${prefix}-${String(260 + data.matters.length + 1).padStart(4, "0")}`; save({ ...data, matters: [...data.matters, { id, client: form.client, service: form.service, status: "Proses", date: form.date, docs: [] }] }); setModal(null); setActive("matters"); };
+  const addInvoice = e => { e.preventDefault(); const amount = Number(form.amount); if (!form.client || !amount) return; const id = `INV-2026-${String(data.invoices.length + 1).padStart(3, "0")}`; save({ ...data, invoices: [...data.invoices, { id, client: form.client, amount, status: "Belum Lunas" }] }); setModal(null); setActive("invoice"); };
+  const changeStatus = (id, status) => save({ ...data, matters: data.matters.map(x => x.id === id ? { ...x, status } : x) });
+  const toggleDoc = (id, doc) => save({ ...data, matters: data.matters.map(x => x.id === id ? { ...x, docs: x.docs.includes(doc) ? x.docs.filter(d => d !== doc) : [...x.docs, doc] } : x) });
+  const title = menu.find(x => x[1] === active)?.[0] || "Dashboard";
+  return <main className="notary-demo">
+    <header className="notary-topbar"><a href="/" className="notary-brand"><span>⚖</span><strong>KANTOR NOTARIS</strong><small>PMA LEGAL OPS</small></a><div className="notary-top-actions"><span>📅 16 September 2026</span><span className="server">● Server Demo Aktif</span><strong>Staf Notaris</strong><button onClick={() => setModal("reset")} title="Reset demo">↻</button></div></header>
+    <div className="notary-layout"><aside className="notary-sidebar"><div className="notary-office"><div className="notary-office-logo">⚖</div><strong>KANTOR NOTARIS & PPAT</strong><small>Yogyakarta · Indonesia</small></div><nav>{menu.map(([label, id]) => <button key={id} className={active === id ? "active" : ""} onClick={() => { setActive(id); setSearch(""); }}><Icon name={id}/><span>{label}</span>{id === "matters" && <em>{stats.active}</em>}</button>)}</nav><div className="notary-sidebar-foot"><span>DEMO MODE</span><strong>DATA SIMULASI</strong><small>Tidak terhubung ke data klien nyata</small></div></aside>
+      <section className="notary-content"><div className="notary-heading"><div><span>MODUL / {active.toUpperCase()}</span><h1>{title}</h1><p>Kelola pekerjaan kantor secara sederhana, terstruktur, dan mudah dipantau.</p></div><div className="notary-user"><i>IF</i><div><strong>Imam Falahi</strong><small>Administrator Demo</small></div></div></div>
+        {active === "dashboard" && <Dashboard data={data} stats={stats} setActive={setActive} setModal={setModal} changeStatus={changeStatus} />}
+        {active === "clients" && <Clients clients={clients} search={search} setSearch={setSearch} setModal={setModal} />}
+        {(active === "matters" || active === "akta" || active === "ppat") && <Matters matters={active === "akta" ? matters.filter(x => x.id.startsWith("AKT")) : active === "ppat" ? matters.filter(x => x.id.startsWith("PPAT")) : matters} search={search} setSearch={setSearch} setModal={setModal} changeStatus={changeStatus} toggleDoc={toggleDoc} />}
+        {active === "documents" && <Documents matters={data.matters} toggleDoc={toggleDoc} />}
+        {active === "schedule" && <Schedule schedules={data.schedules} />}
+        {active === "invoice" && <Invoices invoices={data.invoices} data={data} save={save} setModal={setModal} />}
+        {active === "reports" && <Reports data={data} stats={stats} />}
+      </section></div>
+    {modal === "client" && <Modal title="Tambah Klien"><form onSubmit={addClient}><Field label="Nama klien"><input autoFocus value={form.name} onChange={e => setForm({...form,name:e.target.value})} placeholder="Contoh: Andi Wijaya"/></Field><div className="form-grid"><Field label="Jenis"><select value={form.type} onChange={e=>setForm({...form,type:e.target.value})}><option>Perorangan</option><option>Badan Usaha</option></select></Field><Field label="Kota"><input value={form.city} onChange={e=>setForm({...form,city:e.target.value})} placeholder="Sleman"/></Field></div><Field label="No. HP"><input value={form.phone} onChange={e=>setForm({...form,phone:e.target.value})}/></Field><Actions close={()=>setModal(null)}/></form></Modal>}
+    {modal === "matter" && <Modal title="Buat Perkara"><form onSubmit={addMatter}><Field label="Klien"><input autoFocus value={form.client} onChange={e=>setForm({...form,client:e.target.value})} placeholder="Nama klien / badan usaha"/></Field><Field label="Jenis layanan"><select value={form.service} onChange={e=>setForm({...form,service:e.target.value})}>{services.map(s=><option key={s}>{s}</option>)}</select></Field><Field label="Tanggal target"><input type="date" value={form.date} onChange={e=>setForm({...form,date:e.target.value})}/></Field><Actions close={()=>setModal(null)}/></form></Modal>}
+    {modal === "invoice" && <Modal title="Buat Invoice"><form onSubmit={addInvoice}><Field label="Klien"><input autoFocus value={form.client} onChange={e=>setForm({...form,client:e.target.value})}/></Field><Field label="Nominal"><input type="number" min="1" value={form.amount} onChange={e=>setForm({...form,amount:e.target.value})} placeholder="5000000"/></Field><Actions close={()=>setModal(null)}/></form></Modal>}
+    {modal === "reset" && <Modal title="Reset Demo"><p className="modal-note">Semua perubahan demo akan dikembalikan ke data awal. Tidak memengaruhi database production.</p><div className="modal-actions"><button className="btn ghost" onClick={()=>setModal(null)}>Batal</button><button className="btn danger" onClick={reset}>Reset Data Demo</button></div></Modal>}
+  </main>;
 }
+function Dashboard({data,stats,setActive,setModal,changeStatus}) { return <><div className="welcome"><div><strong>Selamat Siang, Tim Staf Notaris!</strong><p>Berikut ringkasan pekerjaan kantor hari ini.</p></div><div><button className="btn ghost" onClick={()=>setModal("client")}>+ Tambah Klien</button><button className="btn primary" onClick={()=>setModal("matter")}>+ Buat Perkara</button></div></div><div className="notary-stats"><Stat label="BERKAS AKTIF" value={stats.active} note="perlu dipantau"/><Stat label="DOKUMEN" value={stats.docs} note="tercatat di demo"/><Stat label="JADWAL" value={stats.upcoming} note="hari ini"/><Stat label="SELESAI" value={stats.completed} note="perkara selesai"/></div><div className="dashboard-grid"><section className="notary-panel"><PanelHead kicker="MONITOR STATUS BERKAS" title="Berkas terbaru" action="Lihat semua" onClick={()=>setActive("matters")}/><div className="notary-table"><div className="notary-table-head"><span>REF</span><span>KLIEN</span><span>LAYANAN</span><span>STATUS</span><span>TARGET</span></div>{data.matters.map(m=><div className="notary-table-row" key={m.id}><strong>{m.id}</strong><span>{m.client}</span><span>{m.service}</span><select className={`status-select status-${m.status.toLowerCase()}`} value={m.status} onChange={e=>changeStatus(m.id,e.target.value)}><option>Proses</option><option>Menunggu</option><option>Selesai</option></select><time>{m.date}</time></div>)}</div></section><section className="notary-panel"><PanelHead kicker="AGENDA HARI INI" title="Jadwal kantor" action="Buka jadwal" onClick={()=>setActive("schedule")}/><div className="timeline">{data.schedules.map(s=><div key={s.id}><time>{s.time}</time><i/><section><strong>{s.title}</strong><small>{s.client}</small></section></div>)}</div></section></div><div className="dashboard-grid bottom"><section className="notary-panel"><PanelHead kicker="KONTROL DOKUMEN" title="Kelengkapan berkas" action="Kelola" onClick={()=>setActive("documents")}/>{data.matters.slice(0,3).map(m=>{const pct=Math.min(100,m.docs.length*20);return <div className="progress" key={m.id}><div><span>{m.id} · {m.client}</span><strong>{pct}%</strong></div><div><i style={{width:`${pct}%`}}/></div></div>})}</section><section className="notary-panel quick"><span>AKSI CEPAT</span><h2>Mulai pekerjaan baru.</h2><p>Buat klien, perkara, dokumen, jadwal, atau invoice tanpa berpindah jauh dari dashboard.</p><div><button onClick={()=>setModal("client")}>+ Klien</button><button onClick={()=>setModal("matter")}>+ Perkara</button><button onClick={()=>setModal("invoice")}>+ Invoice</button></div></section></div></>; }
+function Stat({label,value,note}){return <div className="stat"><span>{label}</span><strong>{value}</strong><small>{note}</small></div>}
+function PanelHead({kicker,title,action,onClick}){return <div className="panel-head"><div><span>{kicker}</span><h2>{title}</h2></div>{action&&<button onClick={onClick}>{action} →</button>}</div>}
+function Clients({clients,search,setSearch,setModal}){return <section className="notary-panel module"><Toolbar title="Daftar Klien" count={clients.length} search={search} setSearch={setSearch} button="+ Tambah Klien" onClick={()=>setModal("client")}/><div className="cards">{clients.map(c=><article className="client-card" key={c.id}><div className="avatar">{c.name.split(" ").map(x=>x[0]).slice(0,2).join("")}</div><div><strong>{c.name}</strong><small>{c.type} · {c.id}</small><p>{c.phone||"No. HP belum diisi"}<br/>{c.city||"Kota belum diisi"}</p></div><button onClick={()=>alert(`Detail ${c.name}\n${c.type}\n${c.phone}\n${c.city}`)}>Detail →</button></article>)}</div></section>}
+function Matters({matters,search,setSearch,setModal,changeStatus,toggleDoc}){return <section className="notary-panel module"><Toolbar title="Monitor Berkas" count={matters.length} search={search} setSearch={setSearch} button="+ Buat Perkara" onClick={()=>setModal("matter")}/><div className="matter-list">{matters.map(m=><article className="matter-card" key={m.id}><div><strong>{m.id}</strong><h3>{m.client}</h3><p>{m.service} · target {m.date}</p></div><div className="matter-actions"><select className={`status-select status-${m.status.toLowerCase()}`} value={m.status} onChange={e=>changeStatus(m.id,e.target.value)}><option>Proses</option><option>Menunggu</option><option>Selesai</option></select><details><summary>Dokumen ({m.docs.length})</summary><div className="checklist">{["KTP","KK","Sertifikat","PBB","BPHTB"].map(d=><label key={d}><input type="checkbox" checked={m.docs.includes(d)} onChange={()=>toggleDoc(m.id,d)}/>{d}</label>)}</div></details></div></article>)}</div></section>}
+function Documents({matters,toggleDoc}){return <section className="notary-panel module"><PanelHead kicker="DOCUMENT CONTROL" title="Checklist Dokumen"/><p className="module-intro">Centang dokumen yang sudah diterima. Progress perkara mengikuti checklist ini.</p><div className="document-list">{matters.map(m=><article key={m.id}><div><strong>{m.id}</strong><span>{m.client} · {m.service}</span></div><div className="document-checks">{["KTP","KK","Sertifikat","PBB","BPHTB"].map(d=><label key={d}><input type="checkbox" checked={m.docs.includes(d)} onChange={()=>toggleDoc(m.id,d)}/>{d}</label>)}</div></article>)}</div></section>}
+function Schedule({schedules}){return <section className="notary-panel module"><Toolbar title="Jadwal Kantor" count={schedules.length} button="+ Jadwal Baru" onClick={()=>alert("Demo jadwal: form dapat dikembangkan pada tahap berikutnya.")}/><div className="schedule-list">{schedules.map(s=><article key={s.id}><time>{s.time}</time><div><strong>{s.title}</strong><span>{s.client}</span></div><button onClick={()=>alert(`Jadwal: ${s.title}\n${s.client}\n${s.time}`)}>Detail →</button></article>)}</div></section>}
+function Invoices({invoices,data,save,setModal}){return <section className="notary-panel module"><Toolbar title="Invoice" count={invoices.length} button="+ Buat Invoice" onClick={()=>setModal("invoice")}/><div className="invoice-list">{invoices.map(i=><article key={i.id}><div><strong>{i.id}</strong><span>{i.client}</span></div><b>{money(i.amount)}</b><select value={i.status} onChange={e=>save({...data,invoices:data.invoices.map(x=>x.id===i.id?{...x,status:e.target.value}:x)})}><option>Belum Lunas</option><option>Lunas</option></select></article>)}</div></section>}
+function Reports({data,stats}){const revenue=data.invoices.filter(i=>i.status==="Lunas").reduce((a,x)=>a+x.amount,0);return <div className="report-grid"><div className="report-card"><span>PERKARA AKTIF</span><strong>{stats.active}</strong><small>Monitor pekerjaan berjalan</small></div><div className="report-card"><span>SELESAI</span><strong>{stats.completed}</strong><small>Perkara selesai</small></div><div className="report-card"><span>INVOICE LUNAS</span><strong>{money(revenue)}</strong><small>Total demo</small></div></div>}
+function Toolbar({title,count,search,setSearch,button,onClick}){return <div className="toolbar"><div><h2>{title}</h2>{count!==undefined&&<span>{count} data</span>}</div><div className="toolbar-actions">{setSearch&&<input value={search} onChange={e=>setSearch(e.target.value)} placeholder="Cari..."/>}{button&&<button className="btn primary" onClick={onClick}>{button}</button>}</div></div>}
+function Field({label,children}){return <label className="field"><span>{label}</span>{children}</label>}
+function Actions({close}){return <div className="modal-actions"><button type="button" className="btn ghost" onClick={close}>Batal</button><button className="btn primary" type="submit">Simpan</button></div>}
+function Modal({title,children}){return <div className="modal-backdrop"><div className="modal"><div className="modal-head"><h2>{title}</h2><span>DEMO</span></div>{children}</div></div>}
