@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import { createDocumentReceipt } from "../lib/notaryApi";
+import "./documentReceipt.css";
 
 const defaultItems = [
   "Asli Alas Hak (Sertifikat / Letter C)",
@@ -29,7 +30,6 @@ export default function DocumentReceipt({ matters = [], onSaved }) {
     if (next.has(name)) next.delete(name); else next.add(name);
     return next;
   });
-
   const addCustom = () => {
     const value = custom.trim();
     if (!value || value.length > 500 || allItems.includes(value)) return;
@@ -37,7 +37,6 @@ export default function DocumentReceipt({ matters = [], onSaved }) {
     setSelected(prev => new Set(prev).add(value));
     setCustom("");
   };
-
   const save = async e => {
     e.preventDefault();
     setMessage("");
