@@ -1,5 +1,9 @@
 export default function DesignCard({ design }) {
   const isFree = design.type === 'FREE'
+  const originalSrc = design.artwork || design.image
+  const imageSrc = import.meta.env.PROD
+    ? originalSrc.replace(/\.(jpe?g)$/i, '.webp')
+    : originalSrc
 
   const label = isFree
     ? 'FREE DOWNLOAD'
@@ -19,10 +23,12 @@ export default function DesignCard({ design }) {
         <div className="design-card-image-wrap">
 
           <img
-            src={design.artwork || design.image}
+            src={imageSrc}
             alt={design.title}
             className="design-card-image"
             loading="lazy"
+            decoding="async"
+            sizes="(max-width: 760px) 92vw, (max-width: 1100px) 44vw, 420px"
           />
 
           {/* WATERMARK PREMIUM */}
