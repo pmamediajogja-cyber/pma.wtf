@@ -37,7 +37,7 @@ jobs:
           set -e
           npx --yes sharp-cli@6.1.0 \
             -i 'public/designs/*.{jpg,jpeg}' \
-            -o 'public/designs/{dir}/{name}.webp' \
+            -o 'public/designs/{name}.webp' \
             -f webp \
             -q 80
 
