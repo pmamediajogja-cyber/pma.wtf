@@ -14,6 +14,10 @@ export default function DesignDetail({ design }) {
   }
 
   const isFree = design.type === 'FREE'
+  const originalSrc = design.image || design.artwork
+  const imageSrc = import.meta.env.PROD
+    ? originalSrc.replace(/\.(jpe?g)$/i, '.webp')
+    : originalSrc
 
   // =========================================
   // PREMIUM WATERMARK
@@ -34,16 +38,17 @@ export default function DesignDetail({ design }) {
 
         {/* =========================================
             ARTWORK PREVIEW
-        ========================================== */}
+        ========================================== */
 
         <div className="detail-preview">
 
           <div className="detail-art">
 
             <img
-              src={design.image}
+              src={imageSrc}
               alt={design.title}
               className="detail-art-image"
+              decoding="async"
             />
 
             {/* PREMIUM WATERMARK */}
@@ -71,7 +76,7 @@ export default function DesignDetail({ design }) {
 
         {/* =========================================
             DETAIL INFORMATION
-        ========================================== */}
+        ========================================== */
 
         <div className="detail-copy">
 
