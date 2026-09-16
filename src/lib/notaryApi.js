@@ -43,6 +43,10 @@ export async function createUser({ name, email, role, password }) { return reque
 export async function updateUser({ userId, name, email, role }) { return request("api_users.php?action=update", { method: "POST", body: formBody({ user_id: userId, name, email, role }) }); }
 export async function setUserActive(userId, isActive) { return request("api_users.php?action=set_active", { method: "POST", body: formBody({ user_id: userId, is_active: isActive ? "true" : "false" }) }); }
 export async function resetUserPassword(userId, password) { return request("api_users.php?action=reset_password", { method: "POST", body: formBody({ user_id: userId, password }) }); }
+export async function listClients() {
+  const payload = await request("api_clients.php?action=list", { method: "GET" });
+  return { data: Array.isArray(payload) ? payload : (payload.data || []) };
+}
 export async function listMatters() {
   const payload = await request("api_matters.php?action=list", { method: "GET" });
   return { data: Array.isArray(payload) ? payload : (payload.data || []) };
