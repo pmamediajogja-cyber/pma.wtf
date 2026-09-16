@@ -32,6 +32,15 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Generate optimized WebP assets
+        run: |
+          set -e
+          npx --yes sharp-cli@6.1.0 \
+            -i 'public/designs/*.{jpg,jpeg}' \
+            -o 'public/designs/{dir}/{name}.webp' \
+            -f webp \
+            -q 80
+
       - name: Build Vite app
         run: npm run build
 
