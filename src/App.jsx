@@ -11,7 +11,7 @@ import JournalHub from "./components/JournalHub";
 import HomepageJournal from "./components/HomepageJournal";
 import HomepageWork from "./components/HomepageWork";
 import TheWorkHub from "./components/TheWorkHub";
-import NotaryDemo from "./components/NotaryDemo";
+import NotaryHome from "./components/NotaryHome";
 import UserManagement from "./components/UserManagement";
 import NotaryReceiptPage from "./components/NotaryReceiptPage";
 import PowerOfAttorney from "./components/PowerOfAttorney";
@@ -52,7 +52,7 @@ function App() {
   if (path === "/notary/receipt") return <div className="site-shell"><AnimeEffects /><NotaryReceiptPage /></div>;
   if (path === "/notary/power-of-attorney") return <div className="site-shell"><AnimeEffects /><PowerOfAttorney /></div>;
   if (path === "/notary/invoice") return <div className="site-shell"><AnimeEffects /><InvoiceGenerator /></div>;
-  if (path === "/notary") return <div className="site-shell"><AnimeEffects /><NotaryDemo /></div>;
+  if (path === "/notary") return <div className="site-shell"><AnimeEffects /><NotaryHome /></div>;
   if (path === "/thework") return <div className="site-shell"><div className="ambient ambient-one" /><div className="ambient ambient-two" /><div className="grid-overlay" /><AnimeEffects /><PageControls showBack /><TheWorkHub designs={designs} /><footer className="site-footer"><span>© 2026 PMA MEDIA YOGYAKARTA</span><span>PMA.WTF / DIGITAL CREATIVE HUB</span></footer></div>;
   if (path === "/journal") return <div className="site-shell"><div className="ambient ambient-one" /><div className="ambient ambient-two" /><div className="grid-overlay" /><AnimeEffects /><PageControls showBack /><JournalHub articles={allJournalArticles} onOpenArticle={(id) => goTo(`/journal/${id}`)} /><footer className="site-footer"><span>© 2026 PMA MEDIA YOGYAKARTA</span><span>PMA.WTF / DIGITAL CREATIVE HUB</span></footer></div>;
   if (journalMatch) return <div className="site-shell"><div className="ambient ambient-one" /><div className="ambient ambient-two" /><div className="grid-overlay" /><AnimeEffects /><PageControls showBack /><JournalSEO article={journalArticle} allArticles={allJournalArticles} mode="breadcrumb" /><JournalArticle article={journalArticle} onBack={() => goTo("/")} /><JournalSEO article={journalArticle} allArticles={allJournalArticles} mode="related" /><footer className="site-footer"><span>© 2026 PMA MEDIA YOGYAKARTA</span><span>PMA.WTF / DIGITAL CREATIVE HUB</span></footer></div>;
