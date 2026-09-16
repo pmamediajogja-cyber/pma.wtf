@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - rebuild-v2
+      - notary-receipt-integration
   workflow_dispatch:
 
 permissions:
@@ -38,6 +39,11 @@ jobs:
         run: |
           set -e
           for route in journal profile cv thework notary; do
+            mkdir -p "dist/$route"
+            cp dist/index.html "dist/$route/index.html"
+          done
+
+          for route in notary/users notary/receipt notary/power-of-attorney notary/invoice; do
             mkdir -p "dist/$route"
             cp dist/index.html "dist/$route/index.html"
           done
