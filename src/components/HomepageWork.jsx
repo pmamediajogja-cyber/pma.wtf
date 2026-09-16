@@ -4,6 +4,11 @@ function shuffle(items) {
   return [...items].sort(() => Math.random() - 0.5);
 }
 
+function webImageSrc(source) {
+  if (!source || !import.meta.env.PROD) return source;
+  return source.replace(/\.(jpe?g)$/i, ".webp");
+}
+
 export default function HomepageWork({ designs = [] }) {
   const railRef = useRef(null);
   const timerRef = useRef(null);
@@ -65,21 +70,33 @@ export default function HomepageWork({ designs = [] }) {
       <div className="homepage-work-rail-wrap">
         <button className="homepage-work-arrow" type="button" onClick={() => shift(-1)} aria-label="Previous work">←</button>
         <div ref={railRef} className="homepage-work-rail" aria-label="Featured work">
-          {visibleItems.map((design) => (
-            <a className="homepage-work-card" href="/thework/" key={design.id} aria-label={`Open The Work — ${design.title}`}>
-              <div className="homepage-work-media">
-                <img src={design.artwork || design.image} alt={design.title} loading="lazy" />
-                {!design.type || design.type === "FREE" ? null : <span className="homepage-work-badge">PREMIUM</span>}
-              </div>
-              <div className="homepage-work-card-foot">
-                <div>
-                  <span>{design.category}</span>
-                  <h3>{design.title}</h3>
+          {visibleItems.map((design, index) => {
+            const originalSrc = design.artwork || design.image;
+            const optimizedSrc = webImageSrc(originalSrc);
+
+            return (
+              <a className="homepage-work-card" href="/thework/" key={design.id} aria-label={`Open The Work — ${design.title}`}>
+                <div className="homepage-work-media">
+                  <img
+                    src={optimizedSrc}
+                    alt={design.title}
+                    loading={index < 2 ? "eager" : "lazy"}
+                    fetchPriority={index === 0 ? "high" : "low"}
+                    decoding="async"
+                    sizes="(max-width: 760px) 72vw, (max-width: 1100px) 42vw, 320px"
+                  />
+                  {!design.type || design.type === "FREE" ? null : <span className="homepage-work-badge">PREMIUM</span>}
                 </div>
-                <strong>{design.type === "FREE" ? "FREE" : `$${design.price}`}</strong>
-              </div>
-            </a>
-          ))}
+                <div className="homepage-work-card-foot">
+                  <div>
+                    <span>{design.category}</span>
+                    <h3>{design.title}</h3>
+                  </div>
+                  <strong>{design.type === "FREE" ? "FREE" : `$${design.price}`}</strong>
+                </div>
+              </a>
+            );
+          })}
         </div>
         <button className="homepage-work-arrow" type="button" onClick={() => shift(1)} aria-label="Next work">→</button>
       </div>
