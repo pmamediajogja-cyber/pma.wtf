@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import JournalArtwork from "./JournalArtwork";
+import AdsterraNativeBanner from "./AdsterraNativeBanner";
 import journalTags from "../data/journalTags";
 
 const SITE_URL = "https://pma.wtf";
@@ -103,6 +104,7 @@ export default function JournalArticle({ article, onBack }) {
       <div className="journal-article-hero"><JournalArtwork article={article} /><span className="journal-article-hero-label">{isOriginal ? "PMA ORIGINAL / CONTEXT ART" : "PMA CONTEXT ART"}</span></div>
       <h1>{article.title}</h1>
       <p className="journal-article-excerpt">{article.excerpt}</p>
+      <AdsterraNativeBanner />
       <div className="journal-article-tags" aria-label="Topik dan hashtag artikel"><div className="journal-tags-label">TOPICS / SEO TAGS</div><div className="journal-tags-list">{seo.tags.map((tag) => <span key={tag}>{tag}</span>)}</div><div className="journal-hashtags-label">HASHTAGS</div><div className="journal-hashtags-list">{seo.hashtags.map((hashtag) => <span key={hashtag}>{hashtag}</span>)}</div></div>
       <div className="journal-article-grid"><article><div className="journal-review-label">PMA REVIEW / OUR TAKE</div>{review.map((paragraph,index)=><p key={index} className={/pandangan pma media:/i.test(paragraph) ? "journal-pma-view" : ""}>{paragraph}</p>)}</article><aside className="journal-source-card"><div className="source-label">{isOriginal ? "PMA ORIGINAL" : "ORIGINAL SOURCE"}</div><strong>{isOriginal ? "PMA Media Yogyakarta" : article.source}</strong>{!isOriginal && <a href={article.url} target="_blank" rel="noreferrer">READ SOURCE ↗</a>}<div className="source-note">{isOriginal ? "Original editorial content written and published by PMA Media Yogyakarta." : "PMA editorial content is an independent review and interpretation of the linked source."}</div></aside></div>
     </div>
