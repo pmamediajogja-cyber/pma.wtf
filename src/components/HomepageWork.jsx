@@ -8,16 +8,16 @@ export default function HomepageWork({ designs = [] }) {
   const railRef = useRef(null);
   const timerRef = useRef(null);
   const [items, setItems] = useState(() => shuffle(designs));
-  const [paused, setPaused] = useState(false);
+  const [paused, setPaused] = useState(false);\n  const [isCompactDevice, setIsCompactDevice] = useState(false);
 
-  const visibleItems = useMemo(() => items.slice(0, Math.max(6, Math.min(items.length, 12))), [items]);
+  const visibleItems = useMemo(() => items.slice(0, Math.min(items.length, 6)), [items]);
 
   useEffect(() => {
     setItems(shuffle(designs));
   }, [designs]);
 
   useEffect(() => {
-    if (paused || visibleItems.length < 2) return undefined;
+    if (paused || isCompactDevice || visibleItems.length < 2) return undefined;
 
     timerRef.current = window.setInterval(() => {
       const rail = railRef.current;
@@ -43,7 +43,7 @@ export default function HomepageWork({ designs = [] }) {
     }, 2800 + Math.floor(Math.random() * 1300));
 
     return () => window.clearInterval(timerRef.current);
-  }, [paused, visibleItems.length]);
+  }, [paused, isCompactDevice, visibleItems.length]);
 
   const shift = (direction) => {
     const rail = railRef.current;
@@ -56,7 +56,7 @@ export default function HomepageWork({ designs = [] }) {
   return (
     <div className="homepage-work-shell" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
       <div className="homepage-work-topline">
-        <span className="homepage-work-motion">AUTO SHIFT / {paused ? "PAUSED" : "MOVING"}</span>
+        <span className="homepage-work-motion">{isCompactDevice ? "SWIPE / MANUAL" : `AUTO SHIFT / ${paused ? "PAUSED" : "MOVING"}`}</span>
         <a className="homepage-work-open" href="/thework/" aria-label="Open The Work">
           VIEW ALL WORK <b>↗</b>
         </a>
