@@ -85,7 +85,16 @@ export default function AnimeHomeScroll() {
     mass: 0.55,
     restDelta: 0.001,
   });
-  const reduceMotion = useReducedMotion();\n  const [compactDevice, setCompactDevice] = useState(false);\n\n  useEffect(() => {\n    const media = window.matchMedia("(max-width: 768px), (pointer: coarse), (prefers-reduced-motion: reduce)");\n    const update = () => setCompactDevice(media.matches);\n    update();\n    media.addEventListener?.("change", update);\n    return () => media.removeEventListener?.("change", update);\n  }, []);
+  const reduceMotion = useReducedMotion();
+  const [compactDevice, setCompactDevice] = useState(false);
+
+  useEffect(() => {
+    const media = window.matchMedia("(max-width: 768px), (pointer: coarse), (prefers-reduced-motion: reduce)");
+    const update = () => setCompactDevice(media.matches);
+    update();
+    media.addEventListener?.("change", update);
+    return () => media.removeEventListener?.("change", update);
+  }, []);
 
   useEffect(() => {
     if (reduceMotion || compactDevice) return;
@@ -192,7 +201,7 @@ export default function AnimeHomeScroll() {
   }, [reduceMotion, compactDevice]);
 
   useMotionValueEvent(smoothScrollY, "change", (latest) => {
-    if (reduceMotion) return;
+    if (reduceMotion || compactDevice) return;
 
     const hero = document.querySelector(".hero-copy");
     const meta = document.querySelector(".hero-meta");
