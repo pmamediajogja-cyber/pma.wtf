@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {
   animate,
   useMotionValueEvent,
@@ -85,10 +85,10 @@ export default function AnimeHomeScroll() {
     mass: 0.55,
     restDelta: 0.001,
   });
-  const reduceMotion = useReducedMotion();
+  const reduceMotion = useReducedMotion();\n  const [compactDevice, setCompactDevice] = useState(false);\n\n  useEffect(() => {\n    const media = window.matchMedia("(max-width: 768px), (pointer: coarse), (prefers-reduced-motion: reduce)");\n    const update = () => setCompactDevice(media.matches);\n    update();\n    media.addEventListener?.("change", update);\n    return () => media.removeEventListener?.("change", update);\n  }, []);
 
   useEffect(() => {
-    if (reduceMotion) return;
+    if (reduceMotion || compactDevice) return;
 
     const heroCopy = document.querySelector(".hero-copy");
     const eyebrow = document.querySelector(".hero .eyebrow");
@@ -189,7 +189,7 @@ export default function AnimeHomeScroll() {
       observer.disconnect();
       cleanupHover.forEach((fn) => fn());
     };
-  }, [reduceMotion]);
+  }, [reduceMotion, compactDevice]);
 
   useMotionValueEvent(smoothScrollY, "change", (latest) => {
     if (reduceMotion) return;
