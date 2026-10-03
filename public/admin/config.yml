@@ -1,0 +1,91 @@
+# Decap CMS configuration for PMA.WTF
+# Admin UI: https://pma.wtf/admin
+# Setup guide (OAuth): see CMS_SETUP.md in the repo root.
+
+backend:
+  name: github
+  repo: pmamediajogja-cyber/pma.wtf
+  branch: rebuild-v2
+  # GitHub OAuth proxy (Cloudflare Worker). Replace with your worker URL
+  # after following CMS_SETUP.md — login won't work until this is set.
+  base_url: https://REPLACE-WITH-YOUR-WORKER.workers.dev
+  auth_endpoint: /auth
+
+site_url: https://pma.wtf
+display_url: https://pma.wtf
+logo_url: /favicon.svg
+
+# Uploaded cover images are committed to the repo and deployed with the site.
+media_folder: public/images/journal
+public_folder: /images/journal
+
+collections:
+  - name: journal
+    label: "Journal"
+    label_singular: "Article"
+    description: "PMA Journal articles. Publishing commits to the repo and auto-deploys the site."
+    folder: content/journal
+    create: true
+    delete: true
+    slug: "{{id}}-{{slug}}"
+    preview_path: "journal/{{id}}"
+    summary: "{{id}} — {{title}}"
+    fields:
+      - label: "ID"
+        name: id
+        widget: string
+        hint: "3-digit number, e.g. 038. Always use the next free number."
+      - label: "Date"
+        name: date
+        widget: datetime
+        format: "DD MMM YYYY"
+        date_format: "DD MMM YYYY"
+        time_format: false
+        hint: 'Shown on the card, e.g. "01 OCT 2026".'
+      - label: "Tag"
+        name: tag
+        widget: string
+        hint: "Small kicker label, e.g. CYBERSECURITY / AI"
+      - label: "Category"
+        name: category
+        widget: select
+        options:
+          - CYBERSECURITY
+          - AI & TECHNOLOGY
+          - DESIGN LAB
+          - BUILD / TECH
+          - STREETWEAR & CULTURE
+      - label: "Title"
+        name: title
+        widget: string
+      - label: "Excerpt"
+        name: excerpt
+        widget: text
+      - label: "Source"
+        name: source
+        widget: string
+        required: false
+        hint: 'e.g. Reuters, or "PMA Original" for your own writing'
+      - label: "Source URL"
+        name: url
+        widget: string
+        required: false
+      - label: "Cover image"
+        name: image
+        widget: image
+        required: false
+        hint: "Optional. When empty, generative artwork is used."
+      - label: "SEO tags"
+        name: tags
+        widget: list
+        required: false
+        allow_add: true
+      - label: "Hashtags"
+        name: hashtags
+        widget: list
+        required: false
+        allow_add: true
+      - label: "Body"
+        name: body
+        widget: markdown
+        hint: "One blank line = new paragraph. Keep the PMA voice."

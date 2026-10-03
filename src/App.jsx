@@ -18,12 +18,9 @@ import "./notaryDemo.css";
 import "./userManagement.css";
 import "./products.css";
 import designs from "./data/designs";
-import journalArticles from "./data/journal";
-import journalMore from "./data/journalMore";
-import journalOriginal from "./data/journalOriginal";
-import journalTech from "./data/journalTech";
+import { loadJournalArticles } from "./lib/journal";
 
-const allJournalArticles = [...journalArticles, ...journalMore, ...journalOriginal, ...journalTech];
+const allJournalArticles = loadJournalArticles();
 const navItems = [["Designs", "/thework/"], ["Services", "#services"], ["Products", "#products"], ["Journal", "/journal"], ["About", "/profile"]];
 const services = [
   { title: "T-Shirt & Graphic Design", detail: "Apparel graphics / merch / visual direction" },

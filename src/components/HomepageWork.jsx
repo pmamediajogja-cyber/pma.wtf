@@ -8,7 +8,8 @@ export default function HomepageWork({ designs = [] }) {
   const railRef = useRef(null);
   const timerRef = useRef(null);
   const [items, setItems] = useState(() => shuffle(designs));
-  const [paused, setPaused] = useState(false);\n  const [isCompactDevice, setIsCompactDevice] = useState(false);
+  const [paused, setPaused] = useState(false);
+  const [isCompactDevice, setIsCompactDevice] = useState(false);
 
   const visibleItems = useMemo(() => items.slice(0, Math.min(items.length, 6)), [items]);
 

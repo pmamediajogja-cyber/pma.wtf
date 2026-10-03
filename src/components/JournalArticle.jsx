@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import JournalArtwork from "./JournalArtwork";
-import journalTags from "../data/journalTags";
 
 const SITE_URL = "https://pma.wtf";
 
@@ -65,7 +64,7 @@ function upsertMeta(attribute, key, content) {
 }
 
 export default function JournalArticle({ article, onBack }) {
-  const seo = article ? (journalTags[article.id] || { tags: [], hashtags: [] }) : { tags: [], hashtags: [] };
+  const seo = article ? { tags: article.tags || [], hashtags: article.hashtags || [] } : { tags: [], hashtags: [] };
   const publishedDate = article ? parseArticleDate(article.date) : undefined;
   const canonicalUrl = article ? `${SITE_URL}/journal/${article.id}` : SITE_URL;
   const review = article ? buildIndonesianReview(article) : [];
