@@ -6,9 +6,8 @@ backend:
   name: github
   repo: pmamediajogja-cyber/pma.wtf
   branch: rebuild-v2
-  # GitHub OAuth proxy (Cloudflare Worker). Replace with your worker URL
-  # after following CMS_SETUP.md — login won't work until this is set.
-  base_url: https://REPLACE-WITH-YOUR-WORKER.workers.dev
+  # GitHub OAuth proxy (Cloudflare Worker).
+  base_url: https://pma-cms-auth.pma-media-jogja.workers.dev
   auth_endpoint: /auth
 
 site_url: https://pma.wtf
@@ -29,7 +28,7 @@ collections:
     delete: true
     slug: "{{id}}-{{slug}}"
     preview_path: "journal/{{id}}"
-    summary: "{{id}} — {{title}}"
+    summary: "{{id}} \u2014 {{title}}"
     fields:
       - label: "ID"
         name: id
