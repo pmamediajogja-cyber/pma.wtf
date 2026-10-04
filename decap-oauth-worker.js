@@ -10,6 +10,11 @@
  *   3. Worker exchanges `code` for an access token (server-side)
  *   4. Worker postMessages the token back to the Decap popup, which closes.
  *
+ * The popup-to-CMS handoff follows Decap's two-step handshake
+ * (see decap-cms-lib-auth/src/netlify-auth.js):
+ *   a. popup posts "authorizing:github"            -> CMS arms the authorize listener
+ *   b. popup posts "authorization:github:success:{token,provider}" -> CMS logs in
+ *
  * Deploy (free Cloudflare account):
  *   1. dash.cloudflare.com -> Workers & Pages -> Create Worker -> Deploy,
  *      then "Edit code" and paste this file.
@@ -67,13 +72,25 @@ export default {
         });
       }
 
-      // Exact message format Decap CMS expects from the auth popup.
+      // Decap handshake: first "authorizing:github", then the success payload.
+      // The CMS echoes the handshake back; we send the token on the echo,
+      // with a timed fallback so login never hangs silently.
       const payload = JSON.stringify({ token: data.access_token, provider: "github" });
       const html = `<!doctype html><html><head><meta charset="utf-8"><title>Authorized</title></head><body><p>Login berhasil. Jendela ini akan tertutup otomatis.</p><script>
 (function () {
-  var message = "authorization:github:success:" + ${JSON.stringify(payload)};
-  if (window.opener) window.opener.postMessage(message, "*");
-  setTimeout(function () { window.close(); }, 400);
+  var successMessage = "authorization:github:success:" + ${JSON.stringify(payload)};
+  var sent = false;
+  function sendSuccess() {
+    if (sent) return;
+    sent = true;
+    if (window.opener) window.opener.postMessage(successMessage, "*");
+    setTimeout(function () { window.close(); }, 500);
+  }
+  window.addEventListener("message", function (e) {
+    if (e.data === "authorizing:github") sendSuccess();
+  });
+  if (window.opener) window.opener.postMessage("authorizing:github", "*");
+  setTimeout(sendSuccess, 800);
 })();
 </script></body></html>`;
       return new Response(html, {
