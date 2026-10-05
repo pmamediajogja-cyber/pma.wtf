@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Masuk — Sistem Notaris &amp; PPAT</title>
+<link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/pmamediajogja-cyber/sistem-notaris@main/logo-kantor.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    min-height: 100vh; display: flex; align-items: center; justify-content: center;
+    background: radial-gradient(1200px 600px at 20% -10%, #1e3a5f 0%, transparent 60%),
+                radial-gradient(1000px 500px at 110% 110%, #0f2a1d 0%, transparent 55%),
+                #0b1220; color: #e8eef7; padding: 20px;
+  }
+  .card {
+    width: 100%; max-width: 380px; background: rgba(255,255,255,.04);
+    border: 1px solid rgba(255,255,255,.1); border-radius: 20px;
+    padding: 36px 32px; text-align: center; backdrop-filter: blur(8px);
+    box-shadow: 0 24px 60px rgba(0,0,0,.45);
+  }
+  .card img.logo { width: 64px; height: 64px; object-fit: contain; border-radius: 14px; margin-bottom: 16px; background: #fff; padding: 6px; }
+  h1 { font-size: 20px; font-weight: 800; letter-spacing: .2px; }
+  p.sub { font-size: 13px; color: #9fb0c7; margin: 8px 0 24px; }
+  input {
+    width: 100%; padding: 13px 16px; border-radius: 12px; font-size: 15px;
+    border: 1px solid rgba(255,255,255,.14); background: rgba(255,255,255,.06);
+    color: #fff; outline: none; font-family: inherit;
+  }
+  input:focus { border-color: #4f8cff; box-shadow: 0 0 0 3px rgba(79,140,255,.2); }
+  button {
+    width: 100%; margin-top: 12px; padding: 13px; border: 0; border-radius: 12px;
+    font-size: 15px; font-weight: 700; font-family: inherit; cursor: pointer;
+    background: linear-gradient(135deg, #2f7bff, #174ea6); color: #fff;
+    transition: transform .15s, box-shadow .15s;
+  }
+  button:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(47,123,255,.35); }
+  .err { display: none; margin-top: 12px; font-size: 13px; color: #ff8a8a; }
+  .card.shake { animation: shake .35s; }
+  @keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-7px)} 75%{transform:translateX(7px)} }
+  .foot { margin-top: 22px; font-size: 11px; color: #5d6f88; }
+</style>
+</head>
+<body>
+  <div class="card" id="card">
+    <img class="logo" src="https://cdn.jsdelivr.net/gh/pmamediajogja-cyber/sistem-notaris@main/logo-kantor.png" alt="Logo">
+    <h1>Sistem Notaris &amp; PPAT</h1>
+    <p class="sub">Akses internal kantor.<br>Masukkan kata sandi untuk melanjutkan.</p>
+    <form id="f">
+      <input type="password" id="pw" placeholder="Kata sandi" autocomplete="current-password" autofocus>
+      <button type="submit">Masuk</button>
+      <div class="err" id="err">Kata sandi salah. Coba lagi.</div>
+    </form>
+    <div class="foot">PMA.WTF · area terbatas</div>
+  </div>
+<script>
+(function () {
+  // SHA-256 dari kata sandi (hash saja yang disimpan di sini, bukan kata sandinya)
+  var HASH = "c3755c9d533d5a1f7df2d38adebfe15799170cbbb43a2931a445b8498acc93e2";
+  var card = document.getElementById('card');
+  var err = document.getElementById('err');
+  if (sessionStorage.getItem('pma_notary_auth') === '1') { location.href = 'app/'; return; }
+  document.getElementById('f').addEventListener('submit', async function (e) {
+    e.preventDefault();
+    var pw = document.getElementById('pw').value;
+    var buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(pw));
+    var hex = Array.from(new Uint8Array(buf)).map(function (b) { return b.toString(16).padStart(2, '0'); }).join('');
+    if (hex === HASH) {
+      sessionStorage.setItem('pma_notary_auth', '1');
+      location.href = 'app/';
+    } else {
+      err.style.display = 'block';
+      card.classList.remove('shake'); void card.offsetWidth; card.classList.add('shake');
+    }
+  });
+})();
+</script>
+</body>
+</html>
