@@ -2,7 +2,7 @@
 //
 // 1. Creates static route entry points in dist/ so GitHub Pages serves real
 //    pages (with proper 200s for SEO) instead of only the SPA fallback:
-//      /journal, /journal/<id>, /profile, /cv, /thework, /notary
+//      /journal, /journal/<id>, /profile, /cv, /thework
 //    Article ids are read from content/journal/*.md, so new CMS articles
 //    automatically get their route — no more hardcoded `seq 1 37`.
 // 2. Copies dist/index.html -> dist/404.html (SPA fallback for the app router).
@@ -64,7 +64,7 @@ const articles = readdirSync(journalDir)
 
 // --- static route entry points ---
 const indexHtml = join(dist, "index.html");
-const staticRoutes = ["journal", "profile", "cv", "thework", "notary"];
+const staticRoutes = ["journal", "profile", "cv", "thework"];
 for (const route of staticRoutes) {
   mkdirSync(join(dist, route), { recursive: true });
   cpSync(indexHtml, join(dist, route, "index.html"));
