@@ -227,6 +227,7 @@
                 statusText.innerText = `Merender foto patok ke-${i} dari ${jmlFoto}...`;
 
                 const img = new Image();
+                img.crossOrigin = "anonymous";
                 let isImageLoaded = false;
                 
                 // SISTEM FOTO ACAK (RANDOM SELECTION)
@@ -260,7 +261,7 @@
                 }
 
                 if(!isImageLoaded) {
-                    alert("Folder /https://cdn.jsdelivr.net/gh/pmamediajogja-cyber/sistem-notaris@main/foto_patok/ kosong! Tolong masukkan minimal file 1.jpg ke dalam folder tersebut.");
+                    alert("Folder foto patok kosong / tidak dapat diakses! Tolong masukkan minimal file 1.jpg ke dalam folder tersebut.");
                     break;
                 }
 
@@ -456,6 +457,7 @@
             pdf.text(`Foto Patok ${i + 1}`, frameX, frameY);
 
             const img = new Image();
+            img.crossOrigin = "anonymous";
             img.src = imageSources[i];
             
             const imgData = await new Promise((resolve) => {
