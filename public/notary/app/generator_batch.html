@@ -341,11 +341,10 @@
                         titleParts.push("Indonesia");
                         titleText = titleParts.join(", ");
 
-                        // Merakit Alamat Detail
+                        // Merakit Alamat Detail (kecamatan dihilangkan — sudah ada di judul)
                         let addrArray = [];
                         if (jalan) addrArray.push(jalan);
                         if (desa) addrArray.push(desa);
-                        if (kecamatanAsli) addrArray.push(kecamatanAsli.startsWith('Kec') ? kecamatanAsli : 'Kec. ' + kecamatanAsli);
                         if (kabupatenAsli) addrArray.push(kabupatenAsli.startsWith('Kab') ? kabupatenAsli : 'Kabupaten ' + kabupatenAsli);
                         if (provinsi) addrArray.push(kodepos ? `${provinsi} ${kodepos}` : provinsi);
                         addrArray.push("Indonesia");
