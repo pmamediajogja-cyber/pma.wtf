@@ -89,18 +89,36 @@
 
         .empty-state { text-align: center; padding: 50px 20px; color: var(--text-muted); }
         .empty-state i { font-size: 40px; margin-bottom: 15px; opacity: 0.5; }
+        .badge-2025 { display: inline-block; font-size: 13px; font-weight: 800; color: #fff; background: linear-gradient(135deg, #059669, #10b981); padding: 4px 12px; border-radius: 20px; vertical-align: middle; margin-left: 8px; letter-spacing: 0.5px; }
+        .mode-tabs { display: flex; gap: 8px; justify-content: center; margin: 0 0 18px 0; flex-wrap: wrap; }
+        .mode-tab { border: 2px solid #e2e8f0; background: #fff; color: #475569; font-weight: 700; font-size: 14px; padding: 10px 20px; border-radius: 12px; cursor: pointer; transition: 0.2s; }
+        .mode-tab.active { border-color: var(--primary); color: var(--primary); background: rgba(37,99,235,0.06); }
+        .badge-ubah { display: inline-block; font-size: 10px; font-weight: 800; padding: 3px 10px; border-radius: 12px; letter-spacing: 0.4px; margin-left: 8px; vertical-align: middle; }
+        .ubah-tetap { background: #dcfce7; color: #166534; }
+        .ubah-recoding { background: #fef3c7; color: #92400e; }
+        .ubah-pecah { background: #e0e7ff; color: #3730a3; }
+        .ubah-gabung { background: #fae8ff; color: #86198f; }
+        .ubah-baru { background: #dbeafe; color: #1e40af; }
+        .ubah-lain { background: #f1f5f9; color: #475569; }
+        .konv-arrow { font-size: 28px; color: var(--primary); font-weight: 800; margin: 4px 0; }
     </style>
 </head>
 <body>
 
     <div class="header-section">
-        <h2><i class="fa-solid fa-book-atlas"></i> Pencari KBLI Cerdas</h2>
+        <h2><i class="fa-solid fa-book-atlas"></i> Pencari KBLI Cerdas <span class="badge-2025">KBLI 2025</span></h2>
         <p>Mesin telusur data Klasifikasi Baku Lapangan Usaha Indonesia (Algoritma Pencocokan & Rekomendasi)</p>
+        <p style="font-size:12px; opacity:0.75; margin-top:4px;">Acuan: Peraturan BPS No. 7 Tahun 2025 &bull; menggantikan KBLI 2020</p>
     </div>
 
     <div class="search-container">
         <i class="fa-solid fa-magnifying-glass"></i>
         <input type="text" id="input-search" class="search-input" placeholder="Ketik kode KBLI, nama usaha, atau kata awam (Contoh: 'Toko Online', 'Developer')..." autocomplete="off">
+    </div>
+
+    <div class="mode-tabs">
+        <button id="tab-cari" class="mode-tab active" onclick="setMode('cari')">&#128269; Cari KBLI 2025</button>
+        <button id="tab-konversi" class="mode-tab" onclick="setMode('konversi')">&#128260; Konversi 2020 &rarr; 2025</button>
     </div>
 
     <div id="results-container" class="results-container">
@@ -116,6 +134,8 @@
 // 1. STATE MANAGEMENT & FETCH DATA (ASINKRON)
 // ====================================================
 let databaseKBLI = []; // Array kosong, akan diisi oleh JSON eksternal
+let dbKonversi = {}; // kode 2020 -> [[kode2025, jenis], ...]
+let modeAktif = 'cari';
 const searchInput = document.getElementById('input-search');
 const resultsContainer = document.getElementById('results-container');
 let debounceTimer;
@@ -131,24 +151,41 @@ resultsContainer.innerHTML = `
 // FUNGSI INTI: Menarik file JSON secara asinkron (AJAX)
 async function inisialisasiDatabase() {
     try {
-        // Mengambil file https://cdn.jsdelivr.net/gh/pmamediajogja-cyber/sistem-notaris@main/data_kbli.json dari server/folder lokal yang sama
-        const response = await fetch('https://cdn.jsdelivr.net/gh/pmamediajogja-cyber/sistem-notaris@main/data_kbli.json');
-        
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        
-        // Mem-parsing raw teks menjadi objek JavaScript
-        databaseKBLI = await response.json();
-        
+        // Sumber data KBLI 2025 (ekstraksi dokumen resmi BPS) + file pendukung lokal
+        const [rData, rKat, rUbah, rKonv] = await Promise.all([
+            fetch('https://cdn.jsdelivr.net/gh/tiomultazem/kbli-2025@main/05_kelompok.json'),
+            fetch('kbli2025_katmap.json'),
+            fetch('kbli2025_perubahan.json'),
+            fetch('konversi_mini.json')
+        ]);
+
+        if (!rData.ok) throw new Error(`HTTP error! Status: ${rData.status}`);
+
+        const raw = await rData.json();
+        const katmap = rKat.ok ? await rKat.json() : {};
+        const perubahan = rUbah.ok ? await rUbah.json() : {};
+        dbKonversi = rKonv.ok ? await rKonv.json() : {};
+
+        // Transformasi ke format UI + hitung kode terkait per subgolongan
+        const bySub = {};
+        raw.forEach(k => { (bySub[k.subgolongan_code] = bySub[k.subgolongan_code] || []).push(k.code); });
+        databaseKBLI = raw.map(k => ({
+            kode: k.code,
+            kategori: katmap[k.code.slice(0, 2)] || '-',
+            judul: k.title,
+            uraian: k.description,
+            terkait: (bySub[k.subgolongan_code] || []).filter(c => c !== k.code).slice(0, 6),
+            perubahan: perubahan[k.code] || '-'
+        }));
+
         // Reset tampilan setelah data berhasil masuk RAM
         resultsContainer.innerHTML = `
             <div class="empty-state">
                 <i class="fa-solid fa-database" style="color: #10b981;"></i>
-                <h3>Database KBLI Aktif (${databaseKBLI.length} Data)</h3>
+                <h3>Database KBLI 2025 Aktif (${databaseKBLI.length} Data)</h3>
                 <p>Mesin siap. Ketikkan kata kunci pencarian di atas.</p>
             </div>`;
-            
+
         // Aktifkan kotak pencarian (bisa di-disable sebelumnya jika mau)
         searchInput.disabled = false;
         searchInput.focus();
@@ -159,7 +196,7 @@ async function inisialisasiDatabase() {
             <div class="empty-state">
                 <i class="fa-solid fa-triangle-exclamation" style="color: #e11d48;"></i>
                 <h3>Gagal Memuat Database KBLI</h3>
-                <p>Pastikan file <b>https://cdn.jsdelivr.net/gh/pmamediajogja-cyber/sistem-notaris@main/data_kbli.json</b> berada di folder yang sama. <br>Error: ${error.message}</p>
+                <p>Pastikan file <b>data_kbli.json</b> berada di folder yang sama. <br>Error: ${error.message}</p>
             </div>`;
     }
 }
@@ -180,9 +217,92 @@ searchInput.addEventListener('input', (e) => {
     clearTimeout(debounceTimer);
     // Fungsi Debounce: Menunda pencarian 300ms
     debounceTimer = setTimeout(() => {
-        jalankanPencarian(e.target.value);
+        if (modeAktif === 'konversi') jalankanKonversi(e.target.value);
+        else jalankanPencarian(e.target.value);
     }, 300);
 });
+
+function setMode(m) {
+    modeAktif = m;
+    document.getElementById('tab-cari').classList.toggle('active', m === 'cari');
+    document.getElementById('tab-konversi').classList.toggle('active', m === 'konversi');
+    searchInput.placeholder = m === 'cari'
+        ? "Ketik kode KBLI, nama usaha, atau kata awam (Contoh: 'Toko Online', 'Developer')..."
+        : "Ketik kode KBLI 2020 yang lama (Contoh: '52291')...";
+    searchInput.value = '';
+    resultsContainer.innerHTML = `
+        <div class="empty-state">
+            <i class="fa-solid fa-${m === 'cari' ? 'keyboard' : 'right-left'}" style="color: var(--primary);"></i>
+            <h3>${m === 'cari' ? 'Ketik sesuatu untuk memulai pencarian' : 'Masukkan kode KBLI 2020'}</h3>
+            <p>${m === 'cari' ? 'Sistem otomatis memfilter ribuan data KBLI 2025 secara instan.' : 'Sistem akan menunjukkan padanan kode KBLI 2025-nya.'}</p>
+        </div>`;
+    searchInput.focus();
+}
+
+function badgeUbah(jenis) {
+    const j = (jenis || '-').toLowerCase();
+    let cls = 'ubah-lain', label = jenis || '-';
+    if (j === 'tetap') { cls = 'ubah-tetap'; label = 'TETAP'; }
+    else if (j.includes('recoding') || j.includes('pindah')) { cls = 'ubah-recoding'; label = 'PINDAH KODE'; }
+    else if (j.includes('pecah')) { cls = 'ubah-pecah'; label = 'PECAH'; }
+    else if (j.includes('gabung')) { cls = 'ubah-gabung'; label = 'GABUNG'; }
+    else if (j === '-') { cls = 'ubah-baru'; label = 'BARU'; }
+    return `<span class="badge-ubah ${cls}">${label}</span>`;
+}
+
+function jalankanKonversi(query) {
+    query = query.trim();
+    if (!query || Object.keys(dbKonversi).length === 0) {
+        if (!query) setModeReset('konversi');
+        return;
+    }
+    const hasil = dbKonversi[query];
+    if (!hasil || hasil.length === 0) {
+        resultsContainer.innerHTML = `
+            <div class="empty-state">
+                <i class="fa-solid fa-circle-question" style="color: #e11d48;"></i>
+                <h3>Kode ${query} tidak ditemukan</h3>
+                <p>Pastikan kode KBLI 2020 lima digit yang dimasukkan benar.</p>
+            </div>`;
+        return;
+    }
+    const frag = document.createDocumentFragment();
+    hasil.forEach(([kode25, jenis]) => {
+        const info = databaseKBLI.find(d => d.kode === kode25);
+        const judul = info ? info.judul : '';
+        const div = document.createElement('div');
+        div.innerHTML = `
+            <div class="kbli-card">
+                <div class="kbli-header">
+                    <div class="kbli-kode">
+                        <span style="font-size:14px; color: var(--text-muted); text-decoration: line-through;">${query}</span>
+                        <div class="konv-arrow">&darr;</div>
+                        ${kode25}
+                        <span class="kbli-kategori">KBLI 2025</span>
+                    </div>
+                    <div class="kbli-judul">${judul}${badgeUbah(jenis)}</div>
+                </div>
+                <div class="kbli-footer">
+                    <span style="font-size:12px; color:var(--text-muted);">Jenis perubahan: <b>${jenis}</b></span>
+                    <button class="btn-salin" onclick="setMode('cari'); searchInput.value='${kode25}'; jalankanPencarian('${kode25}')">
+                        <i class="fa-solid fa-magnifying-glass"></i> Lihat Detail
+                    </button>
+                </div>
+            </div>`;
+        frag.appendChild(div.firstElementChild);
+    });
+    resultsContainer.innerHTML = '';
+    resultsContainer.appendChild(frag);
+}
+
+function setModeReset(m) {
+    resultsContainer.innerHTML = `
+        <div class="empty-state">
+            <i class="fa-solid fa-right-left" style="color: var(--primary);"></i>
+            <h3>Masukkan kode KBLI 2020</h3>
+            <p>Sistem akan menunjukkan padanan kode KBLI 2025-nya.</p>
+        </div>`;
+}
 
 function jalankanPencarian(query) {
     query = query.toLowerCase().trim();
@@ -269,7 +389,7 @@ function renderHasil(results, kataKunci) {
                         ${data.kode}
                         <span class="kbli-kategori">Kategori ${data.kategori || '-'}</span>
                     </div>
-                    <div class="kbli-judul">${data.judul}</div>
+                    <div class="kbli-judul">${data.judul}${badgeUbah(data.perubahan)}</div>
                     <div class="badge-risiko ${getBadgeClass(risikoText)}">
                         <i class="fa-solid fa-shield-halved"></i> Risiko ${risikoText}
                     </div>
