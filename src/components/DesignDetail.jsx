@@ -14,6 +14,9 @@ export default function DesignDetail({ design }) {
   }
 
   const isFree = design.type === 'FREE'
+  const isSold = design.status === 'SOLD'
+  const actionUrl = design.actionUrl || '#contact'
+  const actionLabel = isSold ? 'SOLD — NO LONGER AVAILABLE' : (design.actionLabel || (isFree ? 'GET FREE DESIGN ↗' : 'BUY DESIGN ↗'))
 
   // =========================================
   // PREMIUM WATERMARK
@@ -149,12 +152,14 @@ export default function DesignDetail({ design }) {
           {/* ACTION */}
 
           <a
-            className="button button-primary detail-action"
-            href="#contact"
+            className={'button button-primary detail-action' + (isSold ? ' detail-action-sold' : '')}
+            href={isSold ? undefined : actionUrl}
+            target={design.actionUrl && !isSold ? '_blank' : undefined}
+            rel={design.actionUrl && !isSold ? 'noreferrer' : undefined}
+            onClick={isSold ? (e) => e.preventDefault() : undefined}
+            aria-disabled={isSold || undefined}
           >
-            {isFree
-              ? 'GET FREE DESIGN ↗'
-              : 'BUY DESIGN ↗'}
+            {actionLabel}
           </a>
 
           {/* FOOTNOTE */}
