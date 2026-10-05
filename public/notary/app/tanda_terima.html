@@ -106,6 +106,11 @@
 
 <div class="left-panel">
     <h2>📄 Generator Tanda Terima</h2>
+
+    <div class="section-title" style="background-color: #fef3c7; border-left-color: #d97706;">🏛️ Identitas Kantor</div>
+    <div class="form-group"><label class="form-label">Nama Notaris / PPAT</label><input type="text" id="in-tt-kantor-nama" class="full-width" value="NAMA NOTARIS, S.H., M.Kn." oninput="updateKantorTT()"></div>
+    <div class="form-group"><label class="form-label">Alamat Kantor</label><input type="text" id="in-tt-kantor-alamat" class="full-width" value="Jl. Contoh Alamat No. 123" oninput="updateKantorTT()"></div>
+    <div class="form-group"><label class="form-label">Kota</label><input type="text" id="in-tt-kantor-kota" class="full-width" value="NAMA KOTA" oninput="updateKantorTT()"></div>
     <button class="btn-new" onclick="resetForm()">🔄 Bersihkan Form & Buat Baru</button>
 
     <div class="section-title">1. Pengaturan Dokumen</div>
@@ -126,7 +131,7 @@
     <div class="section-title" id="lbl-section-pihak">2. Data Pihak Lain</div>
     <div class="form-group">
         <label class="form-label" id="lbl-input-nama">Telah diserahkan dari (Nama Penyerah/Klien)</label>
-        <input type="text" id="in-nama" class="full-width" placeholder="Contoh: ENDRI PURWANI..." oninput="updatePreview()">
+        <input type="text" id="in-nama" class="full-width" placeholder="Contoh: NAMA KLIEN..." oninput="updatePreview()">
     </div>
 
     <div class="section-title">3. Dokumen Yang Diserahkan</div>
@@ -215,7 +220,7 @@
     <div class="section-title" id="lbl-section-staff">4. Nama Staff / Notaris</div>
     <div class="form-group">
         <label class="form-label" id="lbl-input-staff">Nama Terang (Internal Kantor)</label>
-        <input type="text" id="in-nama-staff" class="full-width" value="ENDRI PURWANI, S.H., M.Kn." placeholder="Ketik nama penerima/penyerah..." oninput="updatePreview()">
+        <input type="text" id="in-nama-staff" class="full-width" value="" placeholder="Ketik nama penerima/penyerah..." oninput="updatePreview()">
     </div>
 
     <button class="btn-export" onclick="exportPDF()">📥 Download PDF & Simpan Log</button>
@@ -225,8 +230,8 @@
     <div class="a4-paper" id="tt-paper">
         <div class="kop-surat">
             <div class="kop-title">NOTARIS & PEJABAT PEMBUAT AKTA TANAH</div>
-            <div class="kop-name">ENDRI PURWANI, S.H., M.Kn.</div>
-            <div class="kop-address">Jl. Palagan Tentara Pelajar Km. 8,5 No. 119<br>Telp. (0274) 4532737 / 087739207960<br>SLEMAN YOGYAKARTA 55581</div>
+            <div class="kop-name" id="out-tt-kantor-nama">NAMA NOTARIS, S.H., M.Kn.</div>
+            <div class="kop-address" id="out-tt-kantor-alamat">Jl. Contoh Alamat No. 123<br>NAMA KOTA</div>
         </div>
 
         <div class="doc-title" id="out-judul">PENERIMAAN BERKAS</div>
@@ -250,9 +255,9 @@
                 <div class="sig-name" id="out-ttd-kiri-nama">( ........................................ )</div>
             </div>
             <div class="signature-box">
-                Sleman, <span id="out-tgl-cetak">.........................</span><br>
+                <span id="out-tt-kota">Nama Kota</span>, <span id="out-tgl-cetak">.........................</span><br>
                 <span id="out-ttd-kanan-judul">Yang Menerima</span>
-                <div class="sig-name" id="out-ttd-kanan-nama">( ENDRI PURWANI, S.H., M.Kn. )</div>
+                <div class="sig-name" id="out-ttd-kanan-nama">( ........................................ )</div>
             </div>
         </div>
     </div>
@@ -292,7 +297,7 @@
 
         if (jenis === 'masuk') {
             lblInputNama.innerText = "Telah diserahkan dari (Nama Penyerah/Klien)";
-            inNama.placeholder = "Contoh: ENDRI PURWANI...";
+            inNama.placeholder = "Contoh: NAMA KLIEN...";
         } else {
             lblInputNama.innerText = "Telah diserahkan kepada (Nama Tujuan/Instansi)";
             inNama.placeholder = "Contoh: Kantor Pertanahan Sleman / Klien...";
@@ -382,7 +387,7 @@
 
     function resetForm() {
         document.getElementById('in-nama').value = "";
-        document.getElementById('in-nama-staff').value = "ENDRI PURWANI, S.H., M.Kn.";
+        document.getElementById('in-nama-staff').value = "";
         document.getElementById('dynamic-docs-container').innerHTML = "";
         
         // Kembalikan ke opsi Masuk
@@ -509,6 +514,33 @@
             element.style.boxShadow = "0 5px 25px rgba(0,0,0,0.4)";
         });
     }
+
+    // Identitas Kantor (editable, tersimpan di browser, sinkron dgn Invoice)
+    function updateKantorTT() {
+        const g = id => document.getElementById(id).value;
+        const nama = g('in-tt-kantor-nama') || 'NAMA NOTARIS, S.H., M.Kn.';
+        const alamat = g('in-tt-kantor-alamat');
+        const kota = g('in-tt-kantor-kota') || 'NAMA KOTA';
+        document.getElementById('out-tt-kantor-nama').innerText = nama.toUpperCase();
+        document.getElementById('out-tt-kantor-alamat').innerHTML = [alamat, kota.toUpperCase()].filter(Boolean).join('<br>');
+        document.getElementById('out-tt-kota').innerText = kota;
+        try {
+            const prev = JSON.parse(localStorage.getItem('pma_kantor') || '{}');
+            prev.nama = g('in-tt-kantor-nama'); prev.alamat = alamat; prev.kota = g('in-tt-kantor-kota');
+            localStorage.setItem('pma_kantor', JSON.stringify(prev));
+        } catch(e){}
+    }
+    function loadKantorTT() {
+        try {
+            const k = JSON.parse(localStorage.getItem('pma_kantor') || 'null');
+            if (!k) return;
+            if (k.nama) document.getElementById('in-tt-kantor-nama').value = k.nama;
+            if (k.alamat) document.getElementById('in-tt-kantor-alamat').value = k.alamat;
+            if (k.kota) document.getElementById('in-tt-kantor-kota').value = k.kota;
+        } catch(e){}
+    }
+    loadKantorTT();
+    updateKantorTT();
 </script>
 
 </body>
