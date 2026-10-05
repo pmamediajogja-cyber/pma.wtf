@@ -150,6 +150,16 @@
         </label>
     </div>
     
+    <div class="section-title" style="background-color: #fef3c7; border-left-color: #d97706;">&#127970; Identitas Kantor (Kop Surat & TTD)</div>
+    <div class="form-group"><label>Nama Notaris / PPAT</label><input type="text" id="in-kantor-nama" value="NAMA NOTARIS, S.H., M.Kn." oninput="updateKantor()"></div>
+    <div class="form-group"><label>Alamat Kantor</label><input type="text" id="in-kantor-alamat" value="Jl. Contoh Alamat No. 123" oninput="updateKantor()"></div>
+    <div class="form-row">
+        <div><label>Telepon</label><input type="text" id="in-kantor-telp" value="Telp. (0274) 0000000" oninput="updateKantor()"></div>
+        <div><label>Kota</label><input type="text" id="in-kantor-kota" value="NAMA KOTA" oninput="updateKantor()"></div>
+    </div>
+    <div class="form-group"><label>Wilayah Kerja (untuk TTD)</label><input type="text" id="in-kantor-wilayah" value="Kabupaten/Kota ........." oninput="updateKantor()"></div>
+    <div class="form-group"><label>Info Rekening Bank</label><textarea id="in-kantor-bank" rows="3" style="width: 100%; box-sizing: border-box;" oninput="updateKantor()">- BANK CONTOH KCP CONTOH : 0000 0000 00 an. NAMA NOTARIS</textarea></div>
+
     <div class="section-title">Informasi Dasar</div>
     <div class="form-group"><label>No. Invoice</label><input type="text" id="in-no" value="" oninput="updatePreview()"></div>
     <div class="form-group"><label>Tanggal Invoice</label><input type="text" id="in-tgl" value="" oninput="updatePreview()"></div>
@@ -209,8 +219,8 @@
             
             <div class="kop-surat">
                 <div class="kop-title">NOTARIS - PEJABAT PEMBUAT AKTA TANAH</div>
-                <div class="kop-name">ENDRI PURWANI, S.H., M.Kn.</div>
-                <div class="kop-address">Jl. Palagan Tentara Pelajar Km. 8,5 No. 119<br>Telp. (0274) 4532737 / 087739207960<br>SLEMAN YOGYAKARTA 55581</div>
+                <div class="kop-name" id="out-kantor-nama">NAMA NOTARIS, S.H., M.Kn.</div>
+                <div class="kop-address" id="out-kantor-alamat">Jl. Contoh Alamat No. 123<br>Telp. (0274) 0000000<br>NAMA KOTA</div>
             </div>
 
             <div class="invoice-title">INVOICE BIAYA</div>
@@ -277,24 +287,53 @@
 
             <div class="signature-area">
                 <div class="signature-box">
-                    Sleman, <span id="out-tgl">.............................</span><br>
-                    Notaris - PPAT<br>Kabupaten Sleman<br><br><br><br>
-                    <span style="text-decoration: underline; font-weight: bold;">ENDRI PURWANI, S.H., M.Kn</span>
+                    <span id="out-kantor-kota">Nama Kota</span>, <span id="out-tgl">.............................</span><br>
+                    Notaris - PPAT<br><span id="out-kantor-wilayah">Kabupaten/Kota .........</span><br><br><br><br>
+                    <span id="out-kantor-nama-ttd" style="text-decoration: underline; font-weight: bold;">NAMA NOTARIS, S.H., M.Kn.</span>
                 </div>
             </div>
 
         </div> 
 
-        <div class="bank-info">
-            TRANSFER BANK :<br>
-            - BANK BCA KCP GEJAYAN : 4564 7958 97 an. ENDRI PURWANI<br>
-            - BANK MANDIRI KCP YOGYAKARTA DIPONEGORO : 137.00.1172020.4 an. ENDRI PURWANI<br>
-            - BANK BNI KCP UGM YOGYA : 0721048251 an. Ibu ENDRI PURWANI
-        </div>
+        <div class="bank-info" id="out-kantor-bank">TRANSFER BANK :<br>- BANK CONTOH KCP CONTOH : 0000 0000 00 an. NAMA NOTARIS</div>
     </div>
 </div>
 
 <script>
+
+    // ==========================================
+    // IDENTITAS KANTOR (editable, tersimpan di browser)
+    // ==========================================
+    function updateKantor() {
+        const g = id => document.getElementById(id).value;
+        const nama = g('in-kantor-nama') || 'NAMA NOTARIS, S.H., M.Kn.';
+        const alamat = g('in-kantor-alamat');
+        const telp = g('in-kantor-telp');
+        const kota = g('in-kantor-kota') || 'NAMA KOTA';
+        const wilayah = g('in-kantor-wilayah') || 'Kabupaten/Kota .........';
+        const bank = g('in-kantor-bank');
+        document.getElementById('out-kantor-nama').innerText = nama.toUpperCase();
+        document.getElementById('out-kantor-alamat').innerHTML = [alamat, telp, kota.toUpperCase()].filter(Boolean).join('<br>');
+        document.getElementById('out-kantor-kota').innerText = kota;
+        document.getElementById('out-kantor-wilayah').innerText = wilayah;
+        document.getElementById('out-kantor-nama-ttd').innerText = nama.toUpperCase();
+        document.getElementById('out-kantor-bank').innerHTML = 'TRANSFER BANK :<br>' + String(bank).replace(/\n/g, '<br>');
+        try { localStorage.setItem('pma_kantor', JSON.stringify({nama: g('in-kantor-nama'), alamat, telp, kota: g('in-kantor-kota'), wilayah: g('in-kantor-wilayah'), bank})); } catch(e){}
+    }
+    function loadKantor() {
+        try {
+            const k = JSON.parse(localStorage.getItem('pma_kantor') || 'null');
+            if (!k) return;
+            if (k.nama) document.getElementById('in-kantor-nama').value = k.nama;
+            if (k.alamat) document.getElementById('in-kantor-alamat').value = k.alamat;
+            if (k.telp) document.getElementById('in-kantor-telp').value = k.telp;
+            if (k.kota) document.getElementById('in-kantor-kota').value = k.kota;
+            if (k.wilayah) document.getElementById('in-kantor-wilayah').value = k.wilayah;
+            if (k.bank) document.getElementById('in-kantor-bank').value = k.bank;
+        } catch(e){}
+    }
+    loadKantor();
+    updateKantor();
     // ==========================================
     // SISTEM MEMORI GANDA (DUAL CACHE)
     // ==========================================
