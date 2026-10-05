@@ -1,0 +1,200 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"></head><body style="margin:0;background:#111;">
+<canvas id="c"></canvas>
+<script>
+// Pembuat Teks Multi-baris pada Canvas
+    function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
+        const words = text.split(' ');
+        let line = ''; let currentY = y;
+        for(let n = 0; n < words.length; n++) {
+            const testLine = line + words[n] + ' ';
+            const metrics = ctx.measureText(testLine);
+            if (metrics.width > maxWidth && n > 0) {
+                ctx.fillText(line, x, currentY);
+                line = words[n] + ' '; currentY += lineHeight;
+            } else { line = testLine; }
+        }
+        ctx.fillText(line, x, currentY);
+        return currentY + lineHeight; // Mengembalikan kursor Y terbaru
+    }
+
+    // ==========================================
+    // HELPER TEMPLATE GPS MAP CAMERA
+    // ==========================================
+    function rr(ctx, x, y, w, h, r) {
+        r = Math.min(r, w/2, h/2);
+        ctx.beginPath();
+        ctx.moveTo(x + r, y);
+        ctx.arcTo(x + w, y, x + w, y + h, r);
+        ctx.arcTo(x + w, y + h, x, y + h, r);
+        ctx.arcTo(x, y + h, x, y, r);
+        ctx.arcTo(x, y, x + w, y, r);
+        ctx.closePath();
+    }
+    // Pin merah gaya Google Maps (ujung pin di x,y)
+    function gambarPin(ctx, x, y, s) {
+        ctx.save();
+        ctx.fillStyle = '#EA4335';
+        ctx.beginPath();
+        ctx.moveTo(x - 0.20*s, y - 0.42*s);
+        ctx.lineTo(x + 0.20*s, y - 0.42*s);
+        ctx.lineTo(x, y);
+        ctx.closePath();
+        ctx.fill();
+        ctx.beginPath();
+        ctx.arc(x, y - 0.62*s, 0.34*s, 0, Math.PI*2);
+        ctx.fill();
+        ctx.fillStyle = '#A50E0E';
+        ctx.beginPath();
+        ctx.arc(x, y - 0.62*s, 0.14*s, 0, Math.PI*2);
+        ctx.fill();
+        ctx.restore();
+    }
+    function latLonKeTile(lat, lon, z) {
+        const n = Math.pow(2, z);
+        const xt = (lon + 180) / 360 * n;
+        const latRad = lat * Math.PI / 180;
+        const yt = (1 - Math.log(Math.tan(latRad) + 1/Math.cos(latRad)) / Math.PI) / 2 * n;
+        return {x: xt, y: yt};
+    }
+    function muatGambar(url) {
+        return new Promise((resolve, reject) => {
+            const im = new Image();
+            im.crossOrigin = "anonymous";
+            im.onload = () => resolve(im);
+            im.onerror = reject;
+            im.src = url;
+        });
+    }
+    const _cachePeta = {};
+    async function petaKotak(lat, lon) {
+        const z = 16;
+        const t = latLonKeTile(lat, lon, z);
+        const tx0 = Math.floor(t.x) - 1, ty0 = Math.floor(t.y) - 1;
+        const key = z + '/' + tx0 + '/' + ty0;
+        if (_cachePeta[key]) return { c: _cachePeta[key], px: (t.x - tx0)*256, py: (t.y - ty0)*256 };
+        const c = document.createElement('canvas');
+        c.width = 768; c.height = 768;
+        const cx = c.getContext('2d');
+        cx.fillStyle = '#223322';
+        cx.fillRect(0, 0, 768, 768);
+        const jobs = [];
+        for (let dy = 0; dy < 3; dy++) for (let dx = 0; dx < 3; dx++) {
+            jobs.push(muatGambar(`https://tile.openstreetmap.org/${z}/${tx0+dx}/${ty0+dy}.png`)
+                .then(im => cx.drawImage(im, dx*256, dy*256))
+                .catch(() => {}));
+        }
+        await Promise.all(jobs);
+        _cachePeta[key] = c;
+        return { c, px: (t.x - tx0)*256, py: (t.y - ty0)*256 };
+    }
+    async function gambarMiniMap(ctx, lat, lon, dx, dy, size, sc) {
+        ctx.save();
+        rr(ctx, dx, dy, size, size, 14*sc);
+        ctx.clip();
+        try {
+            const r = await petaKotak(lat, lon);
+            const crop = 420;
+            let sx = Math.round(r.px - crop/2), sy = Math.round(r.py - crop/2);
+            sx = Math.max(0, Math.min(768 - crop, sx));
+            sy = Math.max(0, Math.min(768 - crop, sy));
+            ctx.drawImage(r.c, sx, sy, crop, crop, dx, dy, size, size);
+        } catch(e) {
+            ctx.fillStyle = '#2f3b2f';
+            ctx.fillRect(dx, dy, size, size);
+        }
+        gambarPin(ctx, dx + size/2, dy + size/2, size*0.30);
+        ctx.restore();
+        ctx.strokeStyle = 'rgba(255,255,255,0.9)';
+        ctx.lineWidth = Math.max(2, 4*sc);
+        rr(ctx, dx, dy, size, size, 14*sc);
+        ctx.stroke();
+    }
+    function gambarLogoBadge(ctx, W, sc) {
+        const h = 56*sc, pad = 18*sc;
+        ctx.save();
+        ctx.font = `bold ${27*sc}px Arial`;
+        const tw = ctx.measureText('GPS Map Camera').width;
+        const w = tw + 96*sc;
+        const x = W - w - pad, y = pad + 6*sc;
+        ctx.fillStyle = 'rgba(13,20,36,0.78)';
+        rr(ctx, x, y, w, h, 14*sc);
+        ctx.fill();
+        const isz = 36*sc, ix = x + 13*sc, iy = y + (h - isz)/2;
+        ctx.fillStyle = '#38bdf8';
+        rr(ctx, ix, iy, isz, isz, 9*sc);
+        ctx.fill();
+        gambarPin(ctx, ix + isz/2, iy + isz*0.80, isz*0.66);
+        ctx.fillStyle = '#ffffff';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('GPS Map Camera', ix + isz + 13*sc, y + h/2 + 1);
+        ctx.restore();
+    }
+    function formatTanggalGPS2(d) {
+        const dd = String(d.getDate()).padStart(2,'0');
+        const mm = String(d.getMonth()+1).padStart(2,'0');
+        const yy = String(d.getFullYear()).slice(-2);
+        let hrs = d.getHours();
+        const ampm = hrs >= 12 ? 'PM' : 'AM';
+        hrs = hrs % 12 || 12;
+        const off = -d.getTimezoneOffset();
+        const sgn = off >= 0 ? '+' : '-';
+        const oh = String(Math.floor(Math.abs(off)/60)).padStart(2,'0');
+        const om = String(Math.abs(off)%60).padStart(2,'0');
+        return `${dd}/${mm}/${yy} ${String(hrs).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')} ${ampm} GMT ${sgn}${oh}:${om}`;
+    }
+
+    // ==========================================
+    
+async function test() {
+    const img = new Image();
+    img.crossOrigin = "anonymous";
+    img.src = "https://cdn.jsdelivr.net/gh/pmamediajogja-cyber/sistem-notaris@main/foto_patok/1.jpg";
+    await new Promise((res, rej) => { img.onload = res; img.onerror = rej; });
+    const canvas = document.getElementById('c');
+    canvas.width = img.width; canvas.height = img.height;
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(img, 0, 0);
+    const scale = canvas.width / 1080;
+    const currentLat = -3.60833, currentLon = 114.695482;
+    const currentTime = new Date('2022-11-09T09:59:00+08:00');
+    const titleText = "Kecamatan Bati Bati, Kalimantan Selatan, Indonesia";
+    const finalAddressText = "9MRW+RM2, Benua Raya, Kec. Bati Bati, Kabupaten Tanah Laut, Kalimantan Selatan 70853, Indonesia";
+    const barH = Math.round(canvas.height * 0.30);
+    const barY = canvas.height - barH;
+    const sT = Math.min(scale, barH / 300);
+    ctx.fillStyle = 'rgba(18,18,18,0.74)';
+    ctx.fillRect(0, barY, canvas.width, barH);
+    ctx.fillStyle = 'rgba(255,255,255,0.18)';
+    ctx.fillRect(0, barY, canvas.width, Math.max(2, 3 * sT));
+    const mapSize = Math.round(Math.min(canvas.width * 0.235, barH - 44 * sT));
+    const mapX = Math.round(22 * sT);
+    const mapY = Math.round(canvas.height - mapSize - 22 * sT);
+    await gambarMiniMap(ctx, currentLat, currentLon, mapX, mapY, mapSize, sT);
+    const tx = mapX + mapSize + Math.round(22 * sT);
+    let ty = barY + Math.round(42 * sT);
+    const maxW = canvas.width - tx - Math.round(22 * sT);
+    ctx.fillStyle = '#ffffff';
+    ctx.textBaseline = 'alphabetic';
+    ctx.font = `bold ${30 * sT}px Arial`;
+    ty = wrapText(ctx, titleText, tx, ty, maxW, 40 * sT);
+    ty += 10 * sT;
+    ctx.font = `${25 * sT}px Arial`;
+    ty = wrapText(ctx, finalAddressText, tx, ty, maxW, 34 * sT);
+    ty += 14 * sT;
+    ctx.font = `bold ${25 * sT}px Arial`;
+    ctx.fillText(`Lat ${currentLat.toFixed(6)}\u00B0`, tx, ty);
+    ty += 36 * sT;
+    ctx.fillText(`Long ${currentLon.toFixed(6)}\u00B0`, tx, ty);
+    ty += 36 * sT;
+    ctx.fillText(formatTanggalGPS2(currentTime), tx, ty);
+    gambarLogoBadge(ctx, canvas.width, scale);
+    try {
+        const url = canvas.toDataURL('image/jpeg', 0.85);
+        await fetch('/save', {method: 'POST', body: url});
+    } catch(e) {
+        await fetch('/save', {method: 'POST', body: 'TO_DATA_URL_FAIL: ' + e.message});
+    }
+    document.title = 'RENDER_DONE';
+}
+test().catch(async e => { await fetch('/save', {method: 'POST', body: 'RENDER_FAIL: ' + e.message}); });
+</script></body></html>
