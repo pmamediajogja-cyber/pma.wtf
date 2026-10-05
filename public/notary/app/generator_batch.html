@@ -236,13 +236,13 @@
         rr(ctx, dx, dy, size, size, 14*sc);
         ctx.stroke();
     }
-    function gambarLogoBadge(ctx, W, sc) {
+    function gambarLogoBadge(ctx, W, barY, sc) {
         const h = 56*sc, pad = 18*sc;
         ctx.save();
         ctx.font = `bold ${27*sc}px Arial`;
         const tw = ctx.measureText('GPS Map Camera').width;
         const w = tw + 96*sc;
-        const x = W - w - pad, y = pad + 6*sc;
+        const x = W - w - pad, y = barY - h - Math.round(14*sc);
         ctx.fillStyle = 'rgba(13,20,36,0.78)';
         rr(ctx, x, y, w, h, 14*sc);
         ctx.fill();
@@ -471,8 +471,8 @@
                 ty += 36 * sT;
                 ctx.fillText(formatTanggalGPS2(currentTime), tx, ty);
 
-                // Logo badge kanan atas
-                gambarLogoBadge(ctx, canvas.width, scale);
+                // Logo badge kanan bawah (di atas bar alamat)
+                gambarLogoBadge(ctx, canvas.width, barY, scale);
 
                 // ==========================================
 
