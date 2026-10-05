@@ -186,9 +186,18 @@
             
             try {
                 const apiUrl = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${currentLat}&lon=${currentLon}&addressdetails=1&email=kantor.notaris@gmail.com`;
-                const geoRes = await fetch(apiUrl, { headers: { 'Accept-Language': 'id-ID' } });
+                const geoCtrl = new AbortController();
+                const geoTimer = setTimeout(() => geoCtrl.abort(), 8000); // timeout 8 detik -> pakai alamat manual
+                let geoRes = null;
+                try {
+                    geoRes = await fetch(apiUrl, { headers: { 'Accept-Language': 'id-ID' }, signal: geoCtrl.signal });
+                } catch (fetchErr) {
+                    console.warn("Geocoding timeout/gagal, pakai alamat cadangan.");
+                } finally {
+                    clearTimeout(geoTimer);
+                }
                 
-                if (geoRes.ok) {
+                if (geoRes && geoRes.ok) {
                     const geoData = await geoRes.json();
                     if(geoData && geoData.address) {
                         const adr = geoData.address;
