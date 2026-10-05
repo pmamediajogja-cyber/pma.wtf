@@ -1,5 +1,180 @@
 const designs = [
   // =====================================================
+  // TGB-014 — CASH CULT (PREMIUM / EXCLUSIVE)
+  // =====================================================
+  {
+    id: 'TGB-014',
+    title: 'CASH CULT',
+    type: 'PREMIUM',
+    price: 50,
+    currency: 'USD',
+    category: 'Streetwear',
+    image: '/designs/tgb-014-cash-cult.jpg',
+    artwork: '/designs/tgb-014-cash-cult.jpg',
+    mockup: '/designs/tgb-014-cash-cult.jpg',
+    description:
+      'Roaring lion in a dollar-sign crown with golden dice and members-only badges. Varsity money-culture maximalism in cream, forest green, gold and black.',
+    formats: ['PNG', 'JPG'],
+    license: 'EXCLUSIVE — 1 BUYER ONLY',
+    delivery: 'DM DELIVERY',
+    payment: 'PREMIUM',
+    downloadUrl: null,
+    status: 'AVAILABLE',
+    actionUrl: 'https://www.instagram.com/tugelanboto_/',
+    actionLabel: 'DM @tugelanboto_ to purchase',
+  },
+
+  // =====================================================
+  // TGB-013 — DOMINION (PREMIUM / EXCLUSIVE)
+  // =====================================================
+  {
+    id: 'TGB-013',
+    title: 'DOMINION',
+    type: 'PREMIUM',
+    price: 50,
+    currency: 'USD',
+    category: 'Streetwear',
+    image: '/designs/tgb-013-dominion.jpg',
+    artwork: '/designs/tgb-013-dominion.jpg',
+    mockup: '/designs/tgb-013-dominion.jpg',
+    description:
+      'Skeletal war-eagle shattering a baroque crown tangled in barbed wire under a giant blackletter hero. Dark grunge metal-merch in black, steel blue-gray and bone white.',
+    formats: ['PNG', 'JPG'],
+    license: 'EXCLUSIVE — 1 BUYER ONLY',
+    delivery: 'DM DELIVERY',
+    payment: 'PREMIUM',
+    downloadUrl: null,
+    status: 'AVAILABLE',
+    actionUrl: 'https://www.instagram.com/tugelanboto_/',
+    actionLabel: 'DM @tugelanboto_ to purchase',
+  },
+
+  // =====================================================
+  // TGB-012 — HOLY SMOKE (PREMIUM / EXCLUSIVE)
+  // =====================================================
+  {
+    id: 'TGB-012',
+    title: 'HOLY SMOKE',
+    type: 'PREMIUM',
+    price: 50,
+    currency: 'USD',
+    category: 'Streetwear',
+    image: '/designs/tgb-012-holy-smoke.jpg',
+    artwork: '/designs/tgb-012-holy-smoke.jpg',
+    mockup: '/designs/tgb-012-holy-smoke.jpg',
+    description:
+      'Flaming halo and angel wings behind a chrome blackletter wordmark with graffiti and cross micro-detail collage. Maximalist statement-word in molten orange, magenta, acid lime, cobalt, chrome and gold.',
+    formats: ['PNG', 'JPG'],
+    license: 'EXCLUSIVE — 1 BUYER ONLY',
+    delivery: 'DM DELIVERY',
+    payment: 'PREMIUM',
+    downloadUrl: null,
+    status: 'AVAILABLE',
+    actionUrl: 'https://www.instagram.com/tugelanboto_/',
+    actionLabel: 'DM @tugelanboto_ to purchase',
+  },
+
+  // =====================================================
+  // TGB-011 — CHROME SAINT (PREMIUM / EXCLUSIVE)
+  // =====================================================
+  {
+    id: 'TGB-011',
+    title: 'CHROME SAINT',
+    type: 'PREMIUM',
+    price: 50,
+    currency: 'USD',
+    category: 'Streetwear',
+    image: '/designs/tgb-011-chrome-saint.jpg',
+    artwork: '/designs/tgb-011-chrome-saint.jpg',
+    mockup: '/designs/tgb-011-chrome-saint.jpg',
+    description:
+      'Chrome-gradient saint rising from Y2K flames. Liquid chrome silver, molten orange, cobalt blue and electric pink.',
+    formats: ['PNG', 'JPG'],
+    license: 'EXCLUSIVE — 1 BUYER ONLY',
+    delivery: 'DM DELIVERY',
+    payment: 'PREMIUM',
+    downloadUrl: null,
+    status: 'AVAILABLE',
+    actionUrl: 'https://www.instagram.com/tugelanboto_/',
+    actionLabel: 'DM @tugelanboto_ to purchase',
+  },
+
+  // =====================================================
+  // TGB-010 — COLD BLOOD (PREMIUM / EXCLUSIVE)
+  // =====================================================
+  {
+    id: 'TGB-010',
+    title: 'COLD BLOOD',
+    type: 'PREMIUM',
+    price: 50,
+    currency: 'USD',
+    category: 'Streetwear',
+    image: '/designs/tgb-010-coldblood.jpg',
+    artwork: '/designs/tgb-010-coldblood.jpg',
+    mockup: '/designs/tgb-010-coldblood.jpg',
+    description:
+      'Coiled striking serpent wrapped in barbed wire with a giant blackletter hero and shattered mirror frame. Dark grunge metal-merch in black, acid green and bone white.',
+    formats: ['PNG', 'JPG'],
+    license: 'EXCLUSIVE — 1 BUYER ONLY',
+    delivery: 'DM DELIVERY',
+    payment: 'PREMIUM',
+    downloadUrl: null,
+    status: 'AVAILABLE',
+    actionUrl: 'https://www.instagram.com/tugelanboto_/',
+    actionLabel: 'DM @tugelanboto_ to purchase',
+  },
+
+  // =====================================================
+  // TGB-009 — FALLEN (PREMIUM / EXCLUSIVE)
+  // =====================================================
+  {
+    id: 'TGB-009',
+    title: 'FALLEN',
+    type: 'PREMIUM',
+    price: 50,
+    currency: 'USD',
+    category: 'Streetwear',
+    image: '/designs/tgb-009-fallen.jpg',
+    artwork: '/designs/tgb-009-fallen.jpg',
+    mockup: '/designs/tgb-009-fallen.jpg',
+    description:
+      'Cracked baroque angel in chains under a giant blackletter FALLEN. Maximalist statement-word collage in deep purple, hot magenta, gold and electric cyan.',
+    formats: ['PNG', 'JPG'],
+    license: 'EXCLUSIVE — 1 BUYER ONLY',
+    delivery: 'DM DELIVERY',
+    payment: 'PREMIUM',
+    downloadUrl: null,
+    status: 'AVAILABLE',
+    actionUrl: 'https://www.instagram.com/tugelanboto_/',
+    actionLabel: 'DM @tugelanboto_ to purchase',
+  },
+
+  // =====================================================
+  // TGB-007 — SAVAGE (PREMIUM / EXCLUSIVE)
+  // =====================================================
+  {
+    id: 'TGB-007',
+    title: 'SAVAGE',
+    type: 'PREMIUM',
+    price: 50,
+    currency: 'USD',
+    category: 'Streetwear',
+    image: '/designs/tgb-007-savage.jpg',
+    artwork: '/designs/tgb-007-savage.jpg',
+    mockup: '/designs/tgb-007-savage.jpg',
+    description:
+      'Snarling tiger head in giant halftone dots. Raw halftone power in black and crimson red.',
+    formats: ['PNG', 'JPG'],
+    license: 'EXCLUSIVE — 1 BUYER ONLY',
+    delivery: 'DM DELIVERY',
+    payment: 'PREMIUM',
+    downloadUrl: null,
+    status: 'AVAILABLE',
+    actionUrl: 'https://www.instagram.com/tugelanboto_/',
+    actionLabel: 'DM @tugelanboto_ to purchase',
+  },
+
+  // =====================================================
   // 023 — PREMIUM
   // =====================================================
   {
