@@ -200,13 +200,6 @@
     </div>
 
     <script>
-        const dbPegawai = {
-            endri: { nama: "ENDRI PURWANI, S.H., M.Kn.", kerja: "Notaris - PPAT", alamat: "Jl. Palagan Tentara Pelajar KM 8,5 No.119, Sariharjo, Ngaglik, Sleman.", kontak: "" },
-            eka: { nama: "EKA FEBRIYANA", kerja: "Staf Notaris - PPAT ENDRI PURWANI, SH., M.Kn", alamat: "Jl. Palagan Tentara Pelajar KM.8,5 No.119, Sariharjo, Ngaglik, Sleman.", kontak: "Hp. 082324252902" },
-            triono: { nama: "TRIONO HANDOKO", kerja: "Staf Notaris - PPAT ENDRI PURWANI, S.H., M.Kn", alamat: "Kwarasan, RT 012, RW 008, Nogotirto, Gamping, Sleman.", kontak: "Hp. 085200000000" },
-            imam: { nama: "IMAM FALAHI", kerja: "Wiraswasta", alamat: "Margorejo Asri Blok R.02, RT 003, RW 030, Kel/Desa Margorejo, Kec. Tempel, Kab. Sleman.", kontak: "" }
-        };
-
         const dbTemplate = {
             pengecekan: { awal: "menghadap kepada Pejabat Pemerintah, khususnya Kantor Pertanahan setempat guna untuk Proses Pengecekan Sertipikat atas:", akhir: "Demikian Surat Kuasa ini diberikan dengan sebenarnya untuk dapat dipergunakan sebagaimana mestinya." },
             waris_bpn: { awal: "menghadap kepada Pejabat Pemerintah, khususnya Kantor Pertanahan setempat guna mengurus proses dan mengambil asli Sertipikat hasil Proses Turun Waris, atas:", akhir: "Untuk maksud tersebut kepada Pemegang Kuasa diberikan hak untuk bertindak secara bersama-sama maupun sendiri-sendiri serta menandatangani tanda terimanya dan menerima Sertipikat Tanah.<br><br>Demikian Surat Kuasa ini diberikan dengan sebenarnya untuk dapat dipergunakan sebagaimana mestinya." },
@@ -224,16 +217,7 @@
             div.innerHTML = `
                 <button class="btn-del" onclick="this.parentElement.remove(); renderDoc();" title="Hapus"><i class="fa-solid fa-xmark"></i></button>
                 <div style="font-weight:700; font-size:12px; margin-bottom:8px; color:#c026d3;">PENERIMA KUASA ${idx}</div>
-                <div class="form-group">
-                    <select class="pn-preset" onchange="toggleManualPenerima(this); renderDoc();">
-                        <option value="endri">ENDRI PURWANI, S.H., M.Kn.</option>
-                        <option value="eka" selected>EKA FEBRIYANA</option>
-                        <option value="triono">TRIONO HANDOKO</option>
-                        <option value="imam">IMAM FALAHI</option>
-                        <option value="custom">✍️ Ketik Manual (Pegawai Lain/Freelance)</option>
-                    </select>
-                </div>
-                <div class="pn-manual" style="display:none; background:#f8fafc; padding:10px; border-radius:6px; border:1px solid #e2e8f0;">
+                <div class="pn-manual" style="background:#f8fafc; padding:10px; border-radius:6px; border:1px solid #e2e8f0;">
                     <input type="text" class="pn-nama" placeholder="Nama Lengkap..." oninput="renderDoc()" style="margin-bottom:8px;">
                     <input type="text" class="pn-alamat" placeholder="Alamat..." oninput="renderDoc()" style="margin-bottom:8px;">
                     <input type="text" class="pn-kerja" placeholder="Pekerjaan..." oninput="renderDoc()">
@@ -241,11 +225,6 @@
             `;
             container.appendChild(div);
             renderDoc();
-        }
-
-        function toggleManualPenerima(selectElement) {
-            const manualBox = selectElement.parentElement.nextElementSibling;
-            manualBox.style.display = (selectElement.value === 'custom') ? 'block' : 'none';
         }
 
         function addPemberi() {
@@ -320,17 +299,11 @@
             let arrPenerima = [];
             nodePenerima.forEach((node, idx) => {
                 const num = nodePenerima.length > 1 ? `${idx + 1}. ` : "";
-                const preset = node.querySelector('.pn-preset').value;
                 let dataPn = {};
-                
-                if (preset === 'custom') {
-                    dataPn.nama = node.querySelector('.pn-nama').value || '...................................................';
-                    dataPn.alamat = node.querySelector('.pn-alamat').value || '...................................................';
-                    dataPn.kerja = node.querySelector('.pn-kerja').value || '...................................................';
-                    dataPn.kontak = "";
-                } else {
-                    dataPn = dbPegawai[preset];
-                }
+                dataPn.nama = node.querySelector('.pn-nama').value || '...................................................';
+                dataPn.alamat = node.querySelector('.pn-alamat').value || '...................................................';
+                dataPn.kerja = node.querySelector('.pn-kerja').value || '...................................................';
+                dataPn.kontak = "";
                 arrPenerima.push({ num, nama: dataPn.nama, kontak: dataPn.kontak });
                 
                 htmlPenerima += `
