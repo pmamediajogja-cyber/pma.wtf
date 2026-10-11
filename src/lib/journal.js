@@ -128,8 +128,8 @@ export function loadJournalArticles() {
       .map((raw) => toArticle(parseMarkdown(raw)))
       .filter((a) => a.id)
       .sort((a, b) =>
-        a.id.localeCompare(b.id, undefined, { numeric: true, sensitivity: "base" })
-      );
+        b.id.localeCompare(a.id, undefined, { numeric: true, sensitivity: "base" })
+      ); // terbaru di atas
   }
   return cache;
 }
