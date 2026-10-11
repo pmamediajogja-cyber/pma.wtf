@@ -129,7 +129,7 @@ export function loadJournalArticles() {
       .filter((a) => a.id)
       .sort((a, b) =>
         b.id.localeCompare(a.id, undefined, { numeric: true, sensitivity: "base" })
-      ); // terbaru di atas
+      ); // terbaru di atas (newest-first)
   }
   return cache;
 }
