@@ -4,6 +4,17 @@
 // new poster to the 'PMA.WTF - Brand Posters' folder and prepends an entry here.
 const posters = [
   {
+    id: 'steel-blade',
+    brand: 'STEEL & BLADE',
+    niche: 'gentlemen's barbershop',
+    tagline: 'SHARP NEVER RUSHES.',
+    signs:
+      'straight razor on leather strop, steam off folded towel, vintage barber chair, monochrome steel tones',
+    image: 'https://drive.google.com/thumbnail?id=1S95r5mXIxgFL-PQaQtHofKQw437h-eIo&sz=w1080',
+    date: '12 OCT 2026',
+    instagram: 'https://www.instagram.com/tugelanboto_/',
+  },
+  {
     id: 'ironhide',
     brand: 'IRONHIDE',
     niche: 'motorcycle leather apparel',
