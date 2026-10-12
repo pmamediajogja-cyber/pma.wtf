@@ -5,6 +5,18 @@
 // entry here. Only metadata lives in this repo, so it never fills up.
 const comics = [
   {
+    id: 'EP 09',
+    title: 'ON MY WAY',
+    premise: 'The bro texts ’ON MY WAY!’ while still on the couch, prepares like an athlete in slow motion, and opens the door an hour later to his friend’s deadpan ’AN HOUR, BRO.’',
+    date: '13 OCT 2026',
+    slides: [
+      'https://drive.google.com/thumbnail?id=1fp4-FMgq5aKyVVCns1aPn_YnPxZTIScs&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1lygTibvTFNezsBh_f4oOsI2f1dOitesk&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1vAnK_1fu2vMKTuO6NxllIEBLC7dWRHAc&sz=w1080',
+    ],
+    instagram: 'https://www.instagram.com/imam_falahi/',
+  },
+  {
     id: 'EP 08',
     title: 'ONE MORE GAME',
     premise: 'Bro says last game then sleep at midnight, can’t stop until sunrise, joins his 9AM video call as a zombie blaming wifi lag.',
