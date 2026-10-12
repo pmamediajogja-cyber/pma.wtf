@@ -6,7 +6,7 @@ const posters = [
   {
     id: 'steel-blade',
     brand: 'STEEL & BLADE',
-    niche: 'gentlemen's barbershop',
+    niche: "gentlemen's barbershop",
     tagline: 'SHARP NEVER RUSHES.',
     signs:
       'straight razor on leather strop, steam off folded towel, vintage barber chair, monochrome steel tones',
