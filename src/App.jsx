@@ -11,6 +11,7 @@ import JournalHub from "./components/JournalHub";
 import HomepageJournal from "./components/HomepageJournal";
 import HomepageWork from "./components/HomepageWork";
 import TheWorkHub from "./components/TheWorkHub";
+import PostersHub from "./components/PostersHub";
 import NotaryDemo from "./components/NotaryDemo";
 import UserManagement from "./components/UserManagement";
 import "./journalSeo.css";
@@ -18,10 +19,11 @@ import "./notaryDemo.css";
 import "./userManagement.css";
 import "./products.css";
 import designs from "./data/designs";
+import posters from "./data/posters";
 import { loadJournalArticles } from "./lib/journal";
 
 const allJournalArticles = loadJournalArticles();
-const navItems = [["Designs", "/thework/"], ["Services", "#services"], ["Products", "#products"], ["Journal", "/journal"], ["About", "/profile"]];
+const navItems = [["Designs", "/thework/"], ["Posters", "/posters/"], ["Services", "#services"], ["Products", "#products"], ["Journal", "/journal"], ["About", "/profile"]];
 const services = [
   { title: "T-Shirt & Graphic Design", detail: "Apparel graphics / merch / visual direction" },
   { title: "Brand & Social Media", detail: "Identity / campaign / content systems" },
@@ -38,11 +40,12 @@ function App() {
   const normalizePath = (value) => value.replace(/\/+$/, "") || "/";
   const [path, setPath] = useState(normalizePath(window.location.pathname));
   useEffect(() => { const handlePopState = () => setPath(normalizePath(window.location.pathname)); window.addEventListener("popstate", handlePopState); return () => window.removeEventListener("popstate", handlePopState); }, []);
-  useEffect(() => { let title = "PMA.WTF — Digital Creative Hub"; if (path === "/profile") title = "Profile — PMA.WTF"; if (path === "/cv") title = "CV — Imam Falahi"; if (path === "/journal") title = "Journal — PMA.WTF"; if (path === "/thework") title = "The Work — PMA.WTF"; if (path === "/notary") title = "Notary & PPAT — PMA.WTF"; if (path === "/notary/users") title = "User Management — PMA Legal Ops"; const journalMatch = path.match(/^\/journal\/(.+)$/); if (journalMatch) { const article = allJournalArticles.find((item) => item.id === journalMatch[1]); if (article) title = `${article.title} — PMA Journal`; } document.title = title; }, [path]);
+  useEffect(() => { let title = "PMA.WTF — Digital Creative Hub"; if (path === "/profile") title = "Profile — PMA.WTF"; if (path === "/cv") title = "CV — Imam Falahi"; if (path === "/journal") title = "Journal — PMA.WTF"; if (path === "/thework") title = "The Work — PMA.WTF"; if (path === "/posters") title = "Brand Posters — PMA.WTF"; if (path === "/notary") title = "Notary & PPAT — PMA.WTF"; if (path === "/notary/users") title = "User Management — PMA Legal Ops"; const journalMatch = path.match(/^\/journal\/(.+)$/); if (journalMatch) { const article = allJournalArticles.find((item) => item.id === journalMatch[1]); if (article) title = `${article.title} — PMA Journal`; } document.title = title; }, [path]);
   const designMatch = path.match(/^\/design\/(.+)$/); const design = designMatch ? designs.find((item) => item.id === designMatch[1]) : null; const journalMatch = path.match(/^\/journal\/(.+)$/); const journalArticle = journalMatch ? allJournalArticles.find((item) => item.id === journalMatch[1]) : null;
   const goTo = (target) => { window.history.pushState({}, "", target); setPath(normalizePath(target)); window.scrollTo({ top: 0, behavior: "instant" }); };
   if (designMatch) return <div className="site-shell"><div className="ambient ambient-one" /><div className="ambient ambient-two" /><div className="grid-overlay" /><AnimeEffects /><PageControls showBack /><DesignDetail design={design} /></div>;
   if (path === "/thework") return <div className="site-shell"><div className="ambient ambient-one" /><div className="ambient ambient-two" /><div className="grid-overlay" /><AnimeEffects /><PageControls showBack /><TheWorkHub designs={designs} /><footer className="site-footer"><span>© 2026 PMA MEDIA YOGYAKARTA</span><span>PMA.WTF / DIGITAL CREATIVE HUB</span></footer></div>;
+  if (path === "/posters") return <div className="site-shell"><div className="ambient ambient-one" /><div className="ambient ambient-two" /><div className="grid-overlay" /><AnimeEffects /><PageControls showBack /><PostersHub posters={posters} /><footer className="site-footer"><span>© 2026 PMA MEDIA YOGYAKARTA</span><span>PMA.WTF / DIGITAL CREATIVE HUB</span></footer></div>;
   if (path === "/journal") return <div className="site-shell"><div className="ambient ambient-one" /><div className="ambient ambient-two" /><div className="grid-overlay" /><AnimeEffects /><PageControls showBack /><JournalHub articles={allJournalArticles} onOpenArticle={(id) => goTo(`/journal/${id}`)} /><footer className="site-footer"><span>© 2026 PMA MEDIA YOGYAKARTA</span><span>PMA.WTF / DIGITAL CREATIVE HUB</span></footer></div>;
   if (journalMatch) return <div className="site-shell"><div className="ambient ambient-one" /><div className="ambient ambient-two" /><div className="grid-overlay" /><AnimeEffects /><PageControls showBack /><JournalSEO article={journalArticle} allArticles={allJournalArticles} mode="breadcrumb" /><JournalArticle article={journalArticle} onBack={() => goTo("/")} /><JournalSEO article={journalArticle} allArticles={allJournalArticles} mode="related" /><footer className="site-footer"><span>© 2026 PMA MEDIA YOGYAKARTA</span><span>PMA.WTF / DIGITAL CREATIVE HUB</span></footer></div>;
   if (path === "/profile") return <div className="site-shell"><div className="ambient ambient-one" /><div className="ambient ambient-two" /><div className="grid-overlay" /><AnimeEffects /><PageControls showBack /><Profile /><footer className="site-footer"><span>© 2026 PMA MEDIA YOGYAKARTA</span><span>PMA.WTF / DIGITAL CREATIVE HUB</span></footer></div>;

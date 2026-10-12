@@ -448,3 +448,7 @@ h1 em, h2 em { color: transparent; -webkit-text-stroke: 1px rgba(242, 243, 244, 
   .cv-exp-heading { flex-direction: column; gap: 12px; }
   .cv-exp-date { text-align: left; flex-direction: row; gap: 16px; }
 }
+/* Brand posters gallery */
+.poster-tagline { font-style: italic; color: var(--ink-soft, #b8bfc7); margin: 0 0 4px; }
+.poster-signs-toggle { background: none; border: none; border-top: 1px solid var(--line); width: 100%; text-align: left; cursor: pointer; font-family: "DM Mono", monospace; }
+.poster-signs { font-size: 13px; line-height: 1.6; color: var(--ink-soft, #b8bfc7); margin: 8px 0 4px; }
