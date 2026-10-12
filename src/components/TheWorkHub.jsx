@@ -1,7 +1,8 @@
 import { useMemo, useState } from "react";
 import DesignCard from "./DesignCard";
+import { PosterCard } from "./PostersHub";
 
-export default function TheWorkHub({ designs = [] }) {
+export default function TheWorkHub({ designs = [], posters = [] }) {
   const [filter, setFilter] = useState("ALL");
   const filtered = useMemo(
     () => (filter === "ALL" ? designs : designs.filter((design) => design.type === filter)),
@@ -15,7 +16,7 @@ export default function TheWorkHub({ designs = [] }) {
           <span className="section-index">01 / THE WORK</span>
           <h1>THE WORK</h1>
         </div>
-        <p>Original graphic work by PMA Media — available as free downloads and premium digital products.</p>
+        <p>Original graphic work by PMA Media — tee designs and brand poster concepts.</p>
       </div>
 
       <div className="thework-toolbar">
@@ -37,6 +38,26 @@ export default function TheWorkHub({ designs = [] }) {
       <div className="thework-grid">
         {filtered.map((design) => <DesignCard key={design.id} design={design} />)}
       </div>
+
+      {posters.length > 0 && (
+        <>
+          <div className="thework-hero" style={{ marginTop: 64 }}>
+            <div>
+              <span className="section-index">02 / BRAND POSTERS</span>
+              <h2>BRAND POSTERS</h2>
+            </div>
+            <p>Poster concepts for men&apos;s hobby brands — automotive, workshops, coffee, watches and more. Every visual element carries meaning; read the signs. New poster added automatically with each release.</p>
+          </div>
+
+          <div className="thework-toolbar">
+            <span>GALLERY / {posters.length.toString().padStart(2, "0")} POSTERS</span>
+          </div>
+
+          <div className="thework-grid">
+            {posters.map((poster) => <PosterCard key={poster.id} poster={poster} />)}
+          </div>
+        </>
+      )}
     </main>
   );
 }

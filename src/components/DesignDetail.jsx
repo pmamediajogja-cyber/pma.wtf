@@ -98,24 +98,6 @@ export default function DesignDetail({ design }) {
             {design.description}
           </p>
 
-          {/* PRICE */}
-
-          <div className="detail-price">
-
-            <span>
-              {isFree
-                ? 'NO COST'
-                : 'DIGITAL PRODUCT'}
-            </span>
-
-            <strong>
-              {isFree
-                ? 'FREE'
-                : '$' + design.price}
-            </strong>
-
-          </div>
-
           {/* SPECIFICATIONS */}
 
           <div className="detail-specs">

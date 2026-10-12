@@ -1,10 +1,6 @@
 export default function DesignCard({ design }) {
   const isFree = design.type === 'FREE'
 
-  const label = isFree
-    ? 'FREE DOWNLOAD'
-    : '$' + design.price
-
   return (
     <article className="design-card">
 
@@ -59,8 +55,6 @@ export default function DesignCard({ design }) {
 
           <h3>{design.title}</h3>
         </div>
-
-        <strong>{label}</strong>
 
       </div>
 

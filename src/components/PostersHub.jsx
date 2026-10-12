@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function PosterCard({ poster }) {
+export function PosterCard({ poster }) {
   const [open, setOpen] = useState(false);
 
   return (
