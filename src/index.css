@@ -455,49 +455,31 @@ h1 em, h2 em { color: transparent; -webkit-text-stroke: 1px rgba(242, 243, 244, 
 
 /* ===== COMICS (JUST BRO THINGS) ===== */
 
-.comic-viewer img {
-  aspect-ratio: 4 / 5;
-}
-
-.poster-episode-badge {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  background: rgba(0, 0, 0, 0.72);
-  border: 1px solid rgba(0, 255, 255, 0.35);
-  color: #00ffff;
-  font-size: 11px;
-  letter-spacing: 2px;
-  padding: 5px 10px;
-  border-radius: 4px;
-}
-
 .comic-thumbs {
   display: flex;
   gap: 8px;
-  margin-top: 12px;
+  padding: 0 4px;
+  margin: 0 0 18px;
 }
 
 .comic-thumb {
   flex: 1;
   padding: 0;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: 6px;
-  overflow: hidden;
+  border: 1px solid var(--line);
+  background: #08090b;
   cursor: pointer;
-  background: #0b0b10;
   opacity: 0.55;
   transition: opacity 0.2s ease, border-color 0.2s ease;
 }
 
 .comic-thumb img {
-  width: 100%;
   display: block;
-  aspect-ratio: 4 / 5;
+  width: 100%;
+  aspect-ratio: 1 / 1.25;
   object-fit: cover;
 }
 
 .comic-thumb.active {
   opacity: 1;
-  border-color: rgba(0, 255, 255, 0.6);
+  border-color: rgba(100, 232, 255, 0.55);
 }
