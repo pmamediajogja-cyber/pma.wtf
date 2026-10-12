@@ -5,6 +5,18 @@
 // entry here. Only metadata lives in this repo, so it never fills up.
 const comics = [
   {
+    id: 'EP 08',
+    title: 'ONE MORE GAME',
+    premise: 'Bro says last game then sleep at midnight, can’t stop until sunrise, joins his 9AM video call as a zombie blaming wifi lag.',
+    date: '12 OCT 2026',
+    slides: [
+      'https://drive.google.com/thumbnail?id=1ASKidC_ZeB_-7Amcl9orwFb_1a7xHMa-&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1BoNx4MaPqRALD9T7j_sYCSLUd7k1gLqq&sz=w1080',
+      'https://drive.google.com/thumbnail?id=18KlE4iSz8GkPQnrVKaxJ_E8gp_NRggcf&sz=w1080',
+    ],
+    instagram: 'https://www.instagram.com/imam_falahi/',
+  },
+  {
     id: 'EP 07',
     title: 'THE POCKET LOTTERY',
     premise: 'bro finds forgotten cash in an old jacket pocket and celebrates like he won the lottery',
