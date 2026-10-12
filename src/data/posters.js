@@ -4,6 +4,17 @@
 // new poster to the 'PMA.WTF - Brand Posters' folder and prepends an entry here.
 const posters = [
   {
+    id: 'ironhide',
+    brand: 'IRONHIDE',
+    niche: 'motorcycle leather apparel',
+    tagline: 'WEAR THE MILES.',
+    signs:
+      'cracked weathered leather = battle scars/years of road, brass zippers & rivets = rugged durability, storm-lit highway at dusk = lone freedom/call of the road, road-worn gloves gripping handlebar = mastery & control',
+    image: 'https://drive.google.com/thumbnail?id=1QavsXfVGmfe9uKBKhEbrHPzhuHO-rNTP&sz=w1080',
+    date: '12 OCT 2026',
+    instagram: 'https://www.instagram.com/tugelanboto_/',
+  },
+  {
     id: 'chalkline',
     brand: 'CHALKLINE',
     niche: 'Strength Training Equipment',
