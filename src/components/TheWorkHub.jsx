@@ -1,8 +1,9 @@
 import { useMemo, useState } from "react";
 import DesignCard from "./DesignCard";
 import { PosterCard } from "./PostersHub";
+import ComicsHub from "./ComicsHub";
 
-export default function TheWorkHub({ designs = [], posters = [] }) {
+export default function TheWorkHub({ designs = [], posters = [], comics = [] }) {
   const [filter, setFilter] = useState("ALL");
   const filtered = useMemo(
     () => (filter === "ALL" ? designs : designs.filter((design) => design.type === filter)),
@@ -58,6 +59,8 @@ export default function TheWorkHub({ designs = [], posters = [] }) {
           </div>
         </>
       )}
+
+      {comics.length > 0 && <ComicsHub episodes={comics} />}
     </main>
   );
 }

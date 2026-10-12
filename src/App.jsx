@@ -19,6 +19,7 @@ import "./userManagement.css";
 import "./products.css";
 import designs from "./data/designs";
 import posters from "./data/posters";
+import comics from "./data/comics";
 import { loadJournalArticles } from "./lib/journal";
 
 const allJournalArticles = loadJournalArticles();
@@ -43,7 +44,7 @@ function App() {
   const designMatch = path.match(/^\/design\/(.+)$/); const design = designMatch ? designs.find((item) => item.id === designMatch[1]) : null; const journalMatch = path.match(/^\/journal\/(.+)$/); const journalArticle = journalMatch ? allJournalArticles.find((item) => item.id === journalMatch[1]) : null;
   const goTo = (target) => { window.history.pushState({}, "", target); setPath(normalizePath(target)); window.scrollTo({ top: 0, behavior: "instant" }); };
   if (designMatch) return <div className="site-shell"><div className="ambient ambient-one" /><div className="ambient ambient-two" /><div className="grid-overlay" /><AnimeEffects /><PageControls showBack /><DesignDetail design={design} /></div>;
-  if (path === "/thework") return <div className="site-shell"><div className="ambient ambient-one" /><div className="ambient ambient-two" /><div className="grid-overlay" /><AnimeEffects /><PageControls showBack /><TheWorkHub designs={designs} posters={posters} /><footer className="site-footer"><span>© 2026 PMA MEDIA YOGYAKARTA</span><span>PMA.WTF / DIGITAL CREATIVE HUB</span></footer></div>;
+  if (path === "/thework") return <div className="site-shell"><div className="ambient ambient-one" /><div className="ambient ambient-two" /><div className="grid-overlay" /><AnimeEffects /><PageControls showBack /><TheWorkHub designs={designs} posters={posters} comics={comics} /><footer className="site-footer"><span>© 2026 PMA MEDIA YOGYAKARTA</span><span>PMA.WTF / DIGITAL CREATIVE HUB</span></footer></div>;
   if (path === "/journal") return <div className="site-shell"><div className="ambient ambient-one" /><div className="ambient ambient-two" /><div className="grid-overlay" /><AnimeEffects /><PageControls showBack /><JournalHub articles={allJournalArticles} onOpenArticle={(id) => goTo(`/journal/${id}`)} /><footer className="site-footer"><span>© 2026 PMA MEDIA YOGYAKARTA</span><span>PMA.WTF / DIGITAL CREATIVE HUB</span></footer></div>;
   if (journalMatch) return <div className="site-shell"><div className="ambient ambient-one" /><div className="ambient ambient-two" /><div className="grid-overlay" /><AnimeEffects /><PageControls showBack /><JournalSEO article={journalArticle} allArticles={allJournalArticles} mode="breadcrumb" /><JournalArticle article={journalArticle} onBack={() => goTo("/")} /><JournalSEO article={journalArticle} allArticles={allJournalArticles} mode="related" /><footer className="site-footer"><span>© 2026 PMA MEDIA YOGYAKARTA</span><span>PMA.WTF / DIGITAL CREATIVE HUB</span></footer></div>;
   if (path === "/profile") return <div className="site-shell"><div className="ambient ambient-one" /><div className="ambient ambient-two" /><div className="grid-overlay" /><AnimeEffects /><PageControls showBack /><Profile /><footer className="site-footer"><span>© 2026 PMA MEDIA YOGYAKARTA</span><span>PMA.WTF / DIGITAL CREATIVE HUB</span></footer></div>;
