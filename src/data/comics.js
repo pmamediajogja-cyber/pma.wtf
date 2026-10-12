@@ -5,6 +5,18 @@
 // entry here. Only metadata lives in this repo, so it never fills up.
 const comics = [
   {
+    id: 'EP 07',
+    title: 'THE POCKET LOTTERY',
+    premise: 'bro finds forgotten cash in an old jacket pocket and celebrates like he won the lottery',
+    date: '12 OCT 2026',
+    slides: [
+      'https://drive.google.com/thumbnail?id=1ZCWIy7vb0SYwpCrBfU0Qpik6HyupFiy2&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1RVRo0EWpaxnbM7dFbfLSeh38Zs-ebhBK&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1qk7z-RBtSPstHXiaqslf8GUbd3kSI3uq&sz=w1080',
+    ],
+    instagram: 'https://www.instagram.com/imam_falahi/',
+  },
+  {
     id: 'EP 06',
     title: 'THE 2AM FRIDGE RAID',
     premise: 'Bro denies hunger at 2AM, raids the fridge for cold chicken, falls asleep with the box on his head.',
