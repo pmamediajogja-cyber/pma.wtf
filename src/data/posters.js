@@ -4,6 +4,17 @@
 // new poster to the 'PMA.WTF - Brand Posters' folder and prepends an entry here.
 const posters = [
   {
+    id: 'duskmud',
+    brand: 'DUSKMUD',
+    niche: 'overland adventure gear',
+    tagline: 'OWN THE DUST.',
+    signs:
+      'mud-caked 4x4 on dusk desert trail, glowing rooftop tent, trailing dust plume = grit/terrain mastery/freedom/self-reliance/home anywhere',
+    image: 'https://drive.google.com/thumbnail?id=1CD8u_lE0vr-snUIA0Hv8JBLaSredzN9U&sz=w1080',
+    date: '12 OCT 2026',
+    instagram: 'https://www.instagram.com/tugelanboto_/',
+  },
+  {
     id: 'steel-blade',
     brand: 'STEEL & BLADE',
     niche: "gentlemen's barbershop",
