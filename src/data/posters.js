@@ -4,6 +4,17 @@
 // new poster to the 'PMA.WTF - Brand Posters' folder and prepends an entry here.
 const posters = [
   {
+    id: 'true-edge',
+    brand: 'TRUE EDGE',
+    niche: 'custom knives / bladesmith',
+    tagline: 'SHARPENED BY PATIENCE.',
+    signs:
+      'damascus steel macro pattern, glowing forge fire, calloused hands honing the edge, walnut handle = layered craft & patience/tamed transformation/honest discipline/honest materials',
+    image: 'https://drive.google.com/thumbnail?id=17RHjPeUNfft_YY5YrliwOb-yYdVpmdlx&sz=w1080',
+    date: '13 OCT 2026',
+    instagram: 'https://www.instagram.com/tugelanboto_/',
+  },
+  {
     id: 'firethroat',
     brand: 'FIRETHROAT',
     niche: 'racing exhaust systems',
