@@ -4,6 +4,17 @@
 // new poster to the 'PMA.WTF - Brand Posters' folder and prepends an entry here.
 const posters = [
   {
+    id: 'blackgold',
+    brand: 'BLACKGOLD',
+    niche: 'premium motorcycle engine oil',
+    tagline: 'RUNS THROUGH FIRE.',
+    signs:
+      'macro golden oil pour = engineered purity & viscosity, glowing hot piston crown = tamed combustion fire, dark void = raw power, suspended droplets = molecular precision',
+    image: 'https://drive.google.com/thumbnail?id=1ifezKNjXieeFQz89j-MsHLbn4jckDIpe&sz=w1080',
+    date: '13 OCT 2026',
+    instagram: 'https://www.instagram.com/tugelanboto_/',
+  },
+  {
     id: 'ferrobite',
     brand: 'FERROBITE',
     niche: 'performance brake systems',
