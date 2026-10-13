@@ -5,6 +5,18 @@
 // entry here. Only metadata lives in this repo, so it never fills up.
 const comics = [
   {
+    id: 'EP 10',
+    title: 'THE GYM MEMBERSHIP',
+    premise: 'Bro pays for a gym membership and keeps finding excuses — until his only ’workout’ is a mirror selfie.',
+    date: '13 OCT 2026',
+    slides: [
+      'https://drive.google.com/thumbnail?id=1Ecf--C0soqW0xaS2b1kKGWTDrRS7D-fI&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1xH5vz9MA87jqiHQ9qGZ56dXACP3rVGKN&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1EkNCbq7DV6eXQI34w599k0_aWa7Z5ePh&sz=w1080',
+    ],
+    instagram: 'https://www.instagram.com/imam_falahi/',
+  },
+  {
     id: 'EP 09',
     title: 'ON MY WAY',
     premise: 'The bro texts ’ON MY WAY!’ while still on the couch, prepares like an athlete in slow motion, and opens the door an hour later to his friend’s deadpan ’AN HOUR, BRO.’',
