@@ -4,6 +4,17 @@
 // new poster to the 'PMA.WTF - Brand Posters' folder and prepends an entry here.
 const posters = [
   {
+    id: 'firethroat',
+    brand: 'FIRETHROAT',
+    niche: 'racing exhaust systems',
+    tagline: 'BREATHE FIRE.',
+    signs:
+      'heat-tempered titanium exhaust tip macro, flame burst from the mouth, heat shimmer, dark night pit-lane glow = metallurgy craft/engineered fire/tamed aggression/racing brotherhood',
+    image: 'https://drive.google.com/thumbnail?id=1CvIBYNgjqaDZoT0T7iHOHQcx5iBHa2Tv&sz=w1080',
+    date: '13 OCT 2026',
+    instagram: 'https://www.instagram.com/tugelanboto_/',
+  },
+  {
     id: 'blackgold',
     brand: 'BLACKGOLD',
     niche: 'premium motorcycle engine oil',
