@@ -4,6 +4,17 @@
 // new poster to the 'PMA.WTF - Brand Posters' folder and prepends an entry here.
 const posters = [
   {
+    id: 'ferrobite',
+    brand: 'FERROBITE',
+    niche: 'performance brake systems',
+    tagline: 'CONTROL IS SPEED.',
+    signs:
+      'glowing red-hot drilled brake disc = tamed raw power; macro forged caliper gripping slotted rotor = precision engineering; night circuit light trails = discipline under pressure; heat shimmer + motion blur = speed and adrenaline',
+    image: 'https://drive.google.com/thumbnail?id=1cg232uCW7ExleJm8vf6LxWL4Lg7yMZFb&sz=w1080',
+    date: '13 OCT 2026',
+    instagram: 'https://www.instagram.com/tugelanboto_/',
+  },
+  {
     id: 'duskmud',
     brand: 'DUSKMUD',
     niche: 'overland adventure gear',
