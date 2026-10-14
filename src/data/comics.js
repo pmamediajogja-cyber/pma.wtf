@@ -5,6 +5,18 @@
 // entry here. Only metadata lives in this repo, so it never fills up.
 const comics = [
   {
+    id: 'EP 12',
+    title: 'QRIS ERROR',
+    premise: 'Bro eats fried chicken at a warung, finds no QRIS barcode, begs to pay later leaving his KTP while hunting an ATM',
+    date: '14 OCT 2026',
+    slides: [
+      'https://drive.google.com/thumbnail?id=15HstagvBB_0gq2p8pkul_nP8gOq-uZ5U&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1yFb_2965tJSg15YVg6FR76B7sGcoC8Yo&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1gd7qB4FEkTu36MfEvDZzW3yiPM1JFs7T&sz=w1080',
+    ],
+    instagram: 'https://www.instagram.com/imam_falahi/',
+  },
+  {
     id: 'EP 11',
     title: 'THE RAIN SUMMONER',
     premise: 'Bro washes his black caferacer until it sparkles, and the moment he finishes the sky opens up — washing your bike is basically a rain ritual.',
