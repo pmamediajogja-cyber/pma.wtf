@@ -4,6 +4,17 @@
 // new poster to the 'PMA.WTF - Brand Posters' folder and prepends an entry here.
 const posters = [
   {
+    id: 'gridborn',
+    brand: 'GRIDBORN',
+    niche: 'sim racing rigs',
+    tagline: 'CHASE THE LINE.',
+    signs:
+      'Triple glowing wraparound screens = total immersion, the line between real and virtual blurred; gloved hands on force-feedback wheel = earned skill, discipline of practice; dark room lit only by screen glow = night-racer sanctuary culture; steel rig frame and pedal set = engineered dedication; motion-blurred race car on the center screen = speed, the chase.',
+    image: 'https://drive.google.com/thumbnail?id=15z63p-aCHROy2UYmJ6eOCGZgocUKJEsN&sz=w1080',
+    date: '14 OCT 2026',
+    instagram: 'https://www.instagram.com/tugelanboto_/',
+  },
+  {
     id: 'headfirst',
     brand: 'HEADFIRST',
     niche: 'motorcycle helmets',
