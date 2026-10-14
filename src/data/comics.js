@@ -5,6 +5,19 @@
 // entry here. Only metadata lives in this repo, so it never fills up.
 const comics = [
   {
+    id: 'EP 13',
+    title: 'SKRIPSI VS KERJA',
+    premise: 'Perang dua deadline: bos minta laporan Jumat, dosen minta revisi skripsi Senin — double lembur sampai jam 2 pagi.',
+    date: '14 OCT 2026',
+    slides: [
+      'https://drive.google.com/thumbnail?id=1k8AqcUULeGWiitKpW9Hp5rlHOJZEt77d&sz=w1080',
+      'https://drive.google.com/thumbnail?id=12ucOnNOv9mlnk_BNnIXzNQk4VLyjRQuQ&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1Xe4hYF3jq2TpvonpHYRJ33GgSMdZtyCo&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1wZn0_Kne-fEdFlQngP65AaBZBFrKjbml&sz=w1080',
+    ],
+    instagram: 'https://www.instagram.com/imam_falahi/',
+  },
+  {
     id: 'EP 12',
     title: 'QRIS ERROR',
     premise: 'Bro eats fried chicken at a warung, finds no QRIS barcode, begs to pay later leaving his KTP while hunting an ATM',
