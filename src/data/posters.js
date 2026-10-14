@@ -4,6 +4,17 @@
 // new poster to the 'PMA.WTF - Brand Posters' folder and prepends an entry here.
 const posters = [
   {
+    id: 'headfirst',
+    brand: 'HEADFIRST',
+    niche: 'motorcycle helmets',
+    tagline: 'FEARLESS INSIDE.',
+    signs:
+      'battle-scarred shell = survived the road/proven protection; storm-reflecting visor = calm under pressure; carbon weave chin bar = engineered armor; rain droplets = defies the elements',
+    image: 'https://drive.google.com/thumbnail?id=14jmHBXXfypx8IskzlNn-31ijOOHD27Qs&sz=w1080',
+    date: '14 OCT 2026',
+    instagram: 'https://www.instagram.com/tugelanboto_/',
+  },
+  {
     id: 'slowfire',
     brand: 'SLOWFIRE',
     niche: 'custom offset smokers & BBQ pits',
