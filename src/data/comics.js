@@ -5,6 +5,19 @@
 // entry here. Only metadata lives in this repo, so it never fills up.
 const comics = [
   {
+    id: 'EP 15',
+    title: 'BEGADANG REVISI',
+    premise: 'Niat tidur cepat buyar gara-gara chat dosen: revisi bab 4 besok pagi — begadang sampai subuh.',
+    date: '14 OCT 2026',
+    slides: [
+      'https://drive.google.com/thumbnail?id=10omMEC1kYyfaxEH_Ow7tjbUGlChMGhnp&sz=w1080',
+      'https://drive.google.com/thumbnail?id=12i9xEuV9PEgIy9jiCDwt3CoMr2GA1DcU&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1zAcRXU4J9jME9P1BTO-kKAOzQwEHpydm&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1y2dHTvIVAgC-rlNYB1nKYR7Ln9INlILX&sz=w1080',
+    ],
+    instagram: 'https://www.instagram.com/imam_falahi/',
+  },
+  {
     id: 'EP 14',
     title: 'WIFI LEMOT PAS UJIAN',
     premise: 'UAS online SiberMu yg fleksibel berubah jadi perang sinyal: WiFi mati, tethering sebatang, tetangga karaoke, submit detik terakhir.',
