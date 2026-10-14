@@ -4,6 +4,17 @@
 // new poster to the 'PMA.WTF - Brand Posters' folder and prepends an entry here.
 const posters = [
   {
+    id: 'slowfire',
+    brand: 'SLOWFIRE',
+    niche: 'custom offset smokers & BBQ pits',
+    tagline: 'PATIENCE HAS A FLAVOR.',
+    signs:
+      'blue smoke over glowing coals = patience as a craft; heat-worn gloved hand lifting glistening pepper-crusted brisket = earned mastery; macro pepper bark crust = reward of hours; offset smoker silhouette at pre-dawn = primal fire & self-reliance',
+    image: 'https://drive.google.com/thumbnail?id=1_PaXRb_Aq90GbJn3FdXYr7o4vBj9MXiO&sz=w1080',
+    date: '14 OCT 2026',
+    instagram: 'https://www.instagram.com/tugelanboto_/',
+  },
+  {
     id: 'true-edge',
     brand: 'TRUE EDGE',
     niche: 'custom knives / bladesmith',
