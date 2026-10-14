@@ -5,6 +5,19 @@
 // entry here. Only metadata lives in this repo, so it never fills up.
 const comics = [
   {
+    id: 'EP 16',
+    title: 'LEMBUR VS DEADLINE',
+    premise: 'Lembur kerjaan kantor sampai malam, baru ingat deadline tugas kuliah juga jam 12 — kejar dua-duanya.',
+    date: '15 OCT 2026',
+    slides: [
+      'https://drive.google.com/thumbnail?id=1et6S8Q6Uly7ICpsHZnP6grmqJjccOWWu&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1gI8WoVgba34-mmTvF7CuUnBdmxPDrG-u&sz=w1080',
+      'https://drive.google.com/thumbnail?id=14X_oP02V3U5fOOx7pR-7sLumNhXcXqI2&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1-CD9Fx0lH4K3TNTCu1ycoo1z2fdzgtom&sz=w1080',
+    ],
+    instagram: 'https://www.instagram.com/imam_falahi/',
+  },
+  {
     id: 'EP 15',
     title: 'BEGADANG REVISI',
     premise: 'Niat tidur cepat buyar gara-gara chat dosen: revisi bab 4 besok pagi — begadang sampai subuh.',
