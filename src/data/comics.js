@@ -5,6 +5,19 @@
 // entry here. Only metadata lives in this repo, so it never fills up.
 const comics = [
   {
+    id: 'EP 14',
+    title: 'WIFI LEMOT PAS UJIAN',
+    premise: 'UAS online SiberMu yg fleksibel berubah jadi perang sinyal: WiFi mati, tethering sebatang, tetangga karaoke, submit detik terakhir.',
+    date: '14 OCT 2026',
+    slides: [
+      'https://drive.google.com/thumbnail?id=1zos-5Hqv7Q0xyuIz1VTPXYmjl3l54IZB&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1nW_Es56soWI1yk4ynCLDBUTet3pGIM18&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1mGdTF2B2B9TJPQ3sMtoREuN9fEAqWxmi&sz=w1080',
+      'https://drive.google.com/thumbnail?id=11eVc4uancpS4glKMBsNt01MbzOvUTlN2&sz=w1080',
+    ],
+    instagram: 'https://www.instagram.com/imam_falahi/',
+  },
+  {
     id: 'EP 13',
     title: 'SKRIPSI VS KERJA',
     premise: 'Perang dua deadline: bos minta laporan Jumat, dosen minta revisi skripsi Senin — double lembur sampai jam 2 pagi.',
