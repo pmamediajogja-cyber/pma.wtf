@@ -5,6 +5,18 @@
 // entry here. Only metadata lives in this repo, so it never fills up.
 const comics = [
   {
+    id: 'EP 11',
+    title: 'THE RAIN SUMMONER',
+    premise: 'Bro washes his black caferacer until it sparkles, and the moment he finishes the sky opens up — washing your bike is basically a rain ritual.',
+    date: '14 OCT 2026',
+    slides: [
+      'https://drive.google.com/thumbnail?id=1y00DqMn1jujt7WrD9Sy3KB8GRJal8k76&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1ffnaELrmiridmUNP27ixiEEkEmAXFrmv&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1lm39jhD_4C0n3afpTEvL7v34no6vcVNW&sz=w1080',
+    ],
+    instagram: 'https://www.instagram.com/imam_falahi/',
+  },
+  {
     id: 'EP 10',
     title: 'THE GYM MEMBERSHIP',
     premise: 'Bro pays for a gym membership and keeps finding excuses — until his only ’workout’ is a mirror selfie.',
