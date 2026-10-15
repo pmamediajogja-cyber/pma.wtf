@@ -5,6 +5,19 @@
 // entry here. Only metadata lives in this repo, so it never fills up.
 const comics = [
   {
+    id: 'EP 19',
+    title: 'AKHIRNYA WISUDA',
+    premise: 'Kuliah online sambil kerja itu gampang asal tekun dan atur waktu — penutup seri kompetisi SiberMu.',
+    date: '15 OCT 2026',
+    slides: [
+      'https://drive.google.com/thumbnail?id=1GzNa16a_MtA0UkHauQ2bpPhUivJlZTnI&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1BWrDnADrAA0pmWjBj4qnwrJC12P6brs8&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1jREoV8iRRpIAkjeYWeJnFvEcVwxHza55&sz=w1080',
+      'https://drive.google.com/thumbnail?id=18tC1rRHpqW0EtR5tJOVTwwq7VyYmwrFo&sz=w1080',
+    ],
+    instagram: 'https://www.instagram.com/imam_falahi/',
+  },
+  {
     id: 'EP 18',
     title: 'SIDANG DIUNDUR',
     premise: 'Begadang prepare sidang, hari H sudah rapi kemeja putih antri Zoom — malah diundur. Tanggal baru bentrok hari kerja, izin ke bos, prepare dua kali lipat, lulus!',
