@@ -4,6 +4,17 @@
 // new poster to the 'PMA.WTF - Brand Posters' folder and prepends an entry here.
 const posters = [
   {
+    id: 'last-bell',
+    brand: 'LAST BELL',
+    niche: 'boxing gym',
+    tagline: 'EARN EVERY ROUND.',
+    signs:
+      'cracked leather heavy bag = rounds endured/the grind; hand-wrapped fist gripping chain = discipline & preparation/sacrifice; chalk dust + dawn light shafts = lonely early work before applause; sweat droplets = honest earned effort',
+    image: 'https://drive.google.com/thumbnail?id=1IAO4SLrYhd7SwfRD1R96FZ9g87KCTH7Y&sz=w1080',
+    date: '15 OCT 2026',
+    instagram: 'https://www.instagram.com/tugelanboto_/',
+  },
+  {
     id: 'gridborn',
     brand: 'GRIDBORN',
     niche: 'sim racing rigs',
