@@ -5,6 +5,19 @@
 // entry here. Only metadata lives in this repo, so it never fills up.
 const comics = [
   {
+    id: 'EP 18',
+    title: 'SIDANG DIUNDUR',
+    premise: 'Begadang prepare sidang, hari H sudah rapi kemeja putih antri Zoom — malah diundur. Tanggal baru bentrok hari kerja, izin ke bos, prepare dua kali lipat, lulus!',
+    date: '15 OCT 2026',
+    slides: [
+      'https://drive.google.com/thumbnail?id=1oOzJKRC_MhdSfYSd_e739iDTXFGESQIT&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1DVb69Cd1xazUFGkh3QvmBDAiFigGkGVg&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1iM9QmiIRwnRDUVJiVv3Ag22SNZLYApE1&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1tFWNhvZgNeo4MtEhSxMGlD-__1e0dJ_3&sz=w1080',
+    ],
+    instagram: 'https://www.instagram.com/imam_falahi/',
+  },
+  {
     id: 'EP 16',
     title: 'LEMBUR VS DEADLINE',
     premise: 'Lembur kerjaan kantor sampai malam, baru ingat deadline tugas kuliah juga jam 12 — kejar dua-duanya.',
