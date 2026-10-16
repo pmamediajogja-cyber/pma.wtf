@@ -5,6 +5,19 @@
 // entry here. Only metadata lives in this repo, so it never fills up.
 const comics = [
   {
+    id: 'EP 20',
+    title: 'MIE AYAM SERIBUAN',
+    premise: 'Bro laper pengen mie ayam, dompet tinggal 100rb, bayar, kembalian 85rb pecahan seribuan semua — bener kata pepatah: hilang satu, tumbuh seribuan; bonus NABUNG RECEH.',
+    date: '16 OCT 2026',
+    slides: [
+      'https://drive.google.com/thumbnail?id=1zAiOgRTcS7OQGGf8jhQ1-19GaoY0knQq&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1z5-J7hbqSveRpytFwEV07So0Bv8d72PF&sz=w1080',
+      'https://drive.google.com/thumbnail?id=14gq_SDhsN3z8ayYU7k-yq9Co0IDoPWP6&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1AND8ml3Ah8ilk6dvfq9IEbWv-g-ustom&sz=w1080',
+    ],
+    instagram: 'https://www.instagram.com/imam_falahi/',
+  },
+  {
     id: 'EP 19',
     title: 'AKHIRNYA WISUDA',
     premise: 'Kuliah online sambil kerja itu gampang asal tekun dan atur waktu — penutup seri kompetisi SiberMu.',
