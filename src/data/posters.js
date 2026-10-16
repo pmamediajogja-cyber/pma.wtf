@@ -4,6 +4,17 @@
 // new poster to the 'PMA.WTF - Brand Posters' folder and prepends an entry here.
 const posters = [
   {
+    id: 'voidborn',
+    brand: 'VOIDBORN',
+    niche: 'streetwear brand logo',
+    tagline: 'DARK WEAR DIVISION.',
+    signs:
+      'cracked void-ring emblem = born from nothing/emptiness as identity; distressed gothic wordmark = dark underground attitude; bone-white on black = stark streetwear contrast',
+    image: 'https://drive.google.com/thumbnail?id=1BViEdxw7IT6AssHwd27_chyHwbQ8xjiJ&sz=w1080',
+    date: '16 OCT 2026',
+    instagram: 'https://www.instagram.com/tugelanboto_/',
+  },
+  {
     id: 'last-bell',
     brand: 'LAST BELL',
     niche: 'boxing gym',
