@@ -4,6 +4,17 @@
 // new poster to the 'PMA.WTF - Brand Posters' folder and prepends an entry here.
 const posters = [
   {
+    id: 'longhorn',
+    brand: 'LONGHORN',
+    niche: 'western rodeo brand logo',
+    tagline: 'RIDE FREE.',
+    signs:
+      'engraved longhorn skull badge = rugged frontier spirit; vintage western typography = heritage rodeo culture',
+    image: 'https://drive.google.com/thumbnail?id=1T2EP4VT7o5FO7b116h52uz1Wb6gbBCFI&sz=w1080',
+    date: '16 OCT 2026',
+    instagram: 'https://www.instagram.com/tugelanboto_/',
+  },
+  {
     id: 'voidborn',
     brand: 'VOIDBORN',
     niche: 'streetwear brand logo',
