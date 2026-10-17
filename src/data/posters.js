@@ -4,6 +4,17 @@
 // new poster to the 'PMA.WTF - Brand Posters' folder and prepends an entry here.
 const posters = [
   {
+    id: 'neon-ronin',
+    brand: 'NEON RONIN',
+    niche: 'cyberpunk brand logo',
+    tagline: 'wear the night.',
+    signs:
+      'ronin helmet = lone warrior discipline; neon circuitry = future-tech street culture',
+    image: 'https://drive.google.com/thumbnail?id=1BdSN1ZOZCqwUXDfdBWkqHlo82xefsavN&sz=w1080',
+    date: '17 Oct 2026',
+    instagram: 'https://www.instagram.com/tugelanboto_/',
+  },
+  {
     id: 'tidebreak',
     brand: 'TIDEBREAK',
     niche: 'retro surf/skate brand logo',
