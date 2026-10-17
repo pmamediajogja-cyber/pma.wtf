@@ -5,6 +5,18 @@
 // entry here. Only metadata lives in this repo, so it never fills up.
 const comics = [
   {
+    id: 'EP 22',
+    title: 'KOPI DISERANG SEMUT',
+    premise: 'Bro nongkrong ngopi es latte berlogo CORE di pinggir sungai, ngelamun sampai gelasnya dikerubungi semut — akhirnya damai ngopi bareng.',
+    date: '17 OCT 2026',
+    slides: [
+      'https://drive.google.com/thumbnail?id=1Nk6c3howXlUq1fH6o4pjAqAjhbEkNbco&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1BSTXwrwiP4w9AKYge_08MJLp2oML7EWc&sz=w1080',
+      'https://drive.google.com/thumbnail?id=11P-oSGrmwaysUdXjJY7d7VlySS4rZJix&sz=w1080',
+    ],
+    instagram: 'https://www.instagram.com/imam_falahi/',
+  },
+  {
     id: 'EP 21',
     title: 'ANTRI POM',
     premise: 'Bro jalan-jalan sore naik motor, bensin tinggal dikit, antri di pom; tangki motornya habis total pas antri, eh petugas pom bilang tangki pom juga habis — datang antri, pulang dorong.',
