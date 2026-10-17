@@ -4,6 +4,17 @@
 // new poster to the 'PMA.WTF - Brand Posters' folder and prepends an entry here.
 const posters = [
   {
+    id: 'tidebreak',
+    brand: 'TIDEBREAK',
+    niche: 'retro surf/skate brand logo',
+    tagline: 'Ride the ordinary.',
+    signs:
+      'curling wave + sunburst = freedom and slow living; hand-drawn surf wordmark = 70s skate culture; sunset palette = warmth and optimism',
+    image: 'https://drive.google.com/thumbnail?id=1QS3wTwauwwdOPdsuJ7pjt2PzLKrrXrd2&sz=w1080',
+    date: '17 Oct 2026',
+    instagram: 'https://www.instagram.com/tugelanboto_/',
+  },
+  {
     id: 'longhorn',
     brand: 'LONGHORN',
     niche: 'western rodeo brand logo',
