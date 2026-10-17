@@ -5,6 +5,18 @@
 // entry here. Only metadata lives in this repo, so it never fills up.
 const comics = [
   {
+    id: 'EP 21',
+    title: 'ANTRI POM',
+    premise: 'Bro jalan-jalan sore naik motor, bensin tinggal dikit, antri di pom; tangki motornya habis total pas antri, eh petugas pom bilang tangki pom juga habis — datang antri, pulang dorong.',
+    date: '17 OCT 2026',
+    slides: [
+      'https://drive.google.com/thumbnail?id=13t_AdKqYiUGzfhtNlmp-MHc4yw9cVIi1&sz=w1080',
+      'https://drive.google.com/thumbnail?id=163q3-E88SFIzhr6LTQ6K0Ai9o05vQCOO&sz=w1080',
+      'https://drive.google.com/thumbnail?id=14KvM5NVYWXwrPzJ6HZTuP&sz=w1080',
+    ],
+    instagram: 'https://www.instagram.com/imam_falahi/',
+  },
+  {
     id: 'EP 20',
     title: 'MIE AYAM SERIBUAN',
     premise: 'Bro laper pengen mie ayam, dompet tinggal 100rb, bayar, kembalian 85rb pecahan seribuan semua — bener kata pepatah: hilang satu, tumbuh seribuan; bonus NABUNG RECEH.',
