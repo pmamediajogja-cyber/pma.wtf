@@ -4,6 +4,17 @@
 // new poster to the 'PMA.WTF - Brand Posters' folder and prepends an entry here.
 const posters = [
   {
+    id: 'street-script',
+    brand: 'STREET SCRIPT',
+    niche: 'graffiti wildstyle brand logo',
+    tagline: 'Paint it loud. Wear it proud.',
+    signs:
+      'SS wildstyle monogram = double-signature tag, chrome cyan fill = night-city spray chrome, gold hand-style wordmark = wall-piece authority, paint drips = wet-can rawness',
+    image: 'https://drive.google.com/thumbnail?id=1-v7eGb8z02FrWAriIj9ukJI7mQBtSbTB&sz=w1080',
+    date: '18 Oct 2026',
+    instagram: 'https://www.instagram.com/tugelanboto_/',
+  },
+  {
     id: 'riot-stitch',
     brand: 'RIOT STITCH',
     niche: 'punk cut-and-paste brand logo',
