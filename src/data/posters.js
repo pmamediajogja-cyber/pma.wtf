@@ -4,6 +4,17 @@
 // new poster to the 'PMA.WTF - Brand Posters' folder and prepends an entry here.
 const posters = [
   {
+    id: 'aurum-noir',
+    brand: 'AURUM NOIR',
+    niche: 'art-deco luxury brand logo',
+    tagline: 'Wear The Golden Hour.',
+    signs:
+      'Golden sunburst = wealth and radiance; Symmetrical fan lines = art-deco order and discipline; Central star = the guiding north star of ambition; Deep black field = mystery and exclusivity; Serif wordmark = old-money authority',
+    image: 'https://drive.google.com/thumbnail?id=1fE7SkiHpdITmp0-ZM4tlb-wd6qSQJFOq&sz=w1080',
+    date: '18 Oct 2026',
+    instagram: 'https://www.instagram.com/tugelanboto_/',
+  },
+  {
     id: 'neon-ronin',
     brand: 'NEON RONIN',
     niche: 'cyberpunk brand logo',
