@@ -4,6 +4,17 @@
 // new poster to the 'PMA.WTF - Brand Posters' folder and prepends an entry here.
 const posters = [
   {
+    id: 'riot-stitch',
+    brand: 'RIOT STITCH',
+    niche: 'punk cut-and-paste brand logo',
+    tagline: 'WEAR THE RIOT.',
+    signs:
+      'Safety pin = punk rebellion; torn stitched denim = DIY hand-made ethos; cut-paper wordmark = anti-establishment voice',
+    image: 'https://drive.google.com/thumbnail?id=1vGJtVoLVNKEFbjilRvHf2cYz0C1Gg1gY&sz=w1080',
+    date: '18 Oct 2026',
+    instagram: 'https://www.instagram.com/tugelanboto_/',
+  },
+  {
     id: 'aurum-noir',
     brand: 'AURUM NOIR',
     niche: 'art-deco luxury brand logo',
