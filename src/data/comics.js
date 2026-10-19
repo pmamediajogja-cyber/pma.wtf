@@ -5,6 +5,18 @@
 // entry here. Only metadata lives in this repo, so it never fills up.
 const comics = [
   {
+    id: 'EP 24',
+    title: 'BINGUNG MAU MAKAN SIANG',
+    premise: 'Bro scroll GoFood 11.30-14.30 tidak bisa memutuskan makan siang, akhirnya pesan nasi goreng yang pertama dilihat.',
+    date: '19 OCT 2026',
+    slides: [
+      'https://drive.google.com/thumbnail?id=1Tgc4pAkQxjLTACRiqFdgqfz2o5_CQcVL&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1H8bIzoGo1shlUj8skJyh_VrqVKO2HCSp&sz=w1080',
+      'https://drive.google.com/thumbnail?id=15xFVlAjyCfzKlA4eVRQyWt8uCe2cAY-M&sz=w1080',
+    ],
+    instagram: 'https://www.instagram.com/imam_falahi/',
+  },
+  {
     id: 'EP 23',
     title: 'KUNCI MOTOR HILANG',
     premise: 'Bro mau berangkat tapi kunci motor hilang; dicari sampai ke kulkas dan rice cooker, ternyata nancap di kontak dari tadi.',
