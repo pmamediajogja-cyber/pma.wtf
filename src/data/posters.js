@@ -4,6 +4,17 @@
 // new poster to the 'PMA.WTF - Brand Posters' folder and prepends an entry here.
 const posters = [
   {
+    id: 'desert-run',
+    brand: 'DESERT RUN',
+    niche: 'AMERICAN ROAD TRIP VOL. 01 art print',
+    tagline: 'A vintage love letter to the desert highway — freedom, warmth, adventure.',
+    signs:
+      'Poster = freedom, warmth, adventure; Frame mockup = living room wall',
+    image: 'https://drive.google.com/thumbnail?id=1Nm_w95uGjq3Mtvh-PY3jHOIF7G3l7RY0&sz=w1080',
+    date: '19 Oct 2026',
+    instagram: 'https://www.instagram.com/tugelanboto_/',
+  },
+  {
     id: 'kurohana',
     brand: 'KUROHANA',
     niche: 'japanese streetwear brand logo',
