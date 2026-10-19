@@ -5,26 +5,14 @@
 // entry here. Only metadata lives in this repo, so it never fills up.
 const comics = [
   {
-    id: 'EP 24',
-    title: 'JOGING VS TAHU BULAT',
-    premise: 'Bro niat jogging dari rumah full gear, baru 1 km tergoda tukang tahu bulat dan nyerah jajan di trotoar.',
-    date: '18 OCT 2026',
-    slides: [
-      'https://drive.google.com/thumbnail?id=12MDLSmpFsI42jXitKih0LOC5u80SqixS&sz=w1080',
-      'https://drive.google.com/thumbnail?id=1V_ukSSZOD8_AiFkHcJ9vHItEfl4tqQhJ&sz=w1080',
-      'https://drive.google.com/thumbnail?id=14AJBtE1DaxDafKto9PcjqcmnWpsHeb9N&sz=w1080',
-    ],
-    instagram: 'https://www.instagram.com/imam_falahi/',
-  },
-  {
     id: 'EP 23',
-    title: 'NASI PADANG KHILAF',
-    premise: 'Bro niat makan hemat di warung padang, tapi tambah dikit terus sampai bonnya bikin kaget.',
-    date: '18 OCT 2026',
+    title: 'KUNCI MOTOR HILANG',
+    premise: 'Bro mau berangkat tapi kunci motor hilang; dicari sampai ke kulkas dan rice cooker, ternyata nancap di kontak dari tadi.',
+    date: '19 OCT 2026',
     slides: [
-      'https://drive.google.com/thumbnail?id=1Q6gZawteAaa1S81F3MtHizoHhDtGgy0s&sz=w1080',
-      'https://drive.google.com/thumbnail?id=1JMRjPmpnit3Fte9kFlYETfNa-l_NE3Vg&sz=w1080',
-      'https://drive.google.com/thumbnail?id=1gD-mOyDez5g8BbmlOArVlCWCagF3iO2t&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1VDyALQ2g5R2jo7a_bVAMWdVDbJZdJCTB&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1espzlx-cqa7PW8Vu2IfE_RAsqr4WCl1C&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1fKM-fMFyAqY-aemCeM_PipTY4OjX35bS&sz=w1080',
     ],
     instagram: 'https://www.instagram.com/imam_falahi/',
   },
