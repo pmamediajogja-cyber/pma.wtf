@@ -4,6 +4,17 @@
 // new poster to the 'PMA.WTF - Brand Posters' folder and prepends an entry here.
 const posters = [
   {
+    id: 'last-stop',
+    brand: 'LAST STOP',
+    niche: 'AMERICAN ROAD TRIP VOL. 01 art print',
+    tagline: 'Nostalgia, solitude, and cinematic storytelling from the roadside.',
+    signs:
+      'Poster = roadside nostalgia; Frame mockup = cozy bedroom interior',
+    image: 'https://drive.google.com/thumbnail?id=1KcKnDWyKEPHoh3QHvI6hzBn3BZvpaqyP&sz=w1080',
+    date: '19 Oct 2026',
+    instagram: 'https://www.instagram.com/tugelanboto_/',
+  },
+  {
     id: 'desert-run',
     brand: 'DESERT RUN',
     niche: 'AMERICAN ROAD TRIP VOL. 01 art print',
