@@ -4,6 +4,17 @@
 // new poster to the 'PMA.WTF - Brand Posters' folder and prepends an entry here.
 const posters = [
   {
+    id: 'neon-pulse',
+    brand: 'NEON PULSE',
+    niche: 'minimalist geometric monogram brand logo',
+    tagline: 'WEAR THE CURRENT.',
+    signs:
+      'Angular cyan N = neon energy and precision; white pulse waveform = always-on creative current; black ground = nightlife tech aesthetic',
+    image: 'https://drive.google.com/thumbnail?id=19MAYkEPyxyuIHmO9n5VV7Y0jyzc_-pVV&sz=w1080',
+    date: '19 Oct 2026',
+    instagram: 'https://www.instagram.com/tugelanboto_/',
+  },
+  {
     id: 'street-script',
     brand: 'STREET SCRIPT',
     niche: 'graffiti wildstyle brand logo',
