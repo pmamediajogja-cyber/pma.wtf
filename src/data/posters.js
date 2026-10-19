@@ -4,6 +4,17 @@
 // new poster to the 'PMA.WTF - Brand Posters' folder and prepends an entry here.
 const posters = [
   {
+    id: 'kurohana',
+    brand: 'KUROHANA',
+    niche: 'japanese streetwear brand logo',
+    tagline: 'WORN IN SHADOW.',
+    signs:
+      'Black chrysanthemum = quiet resilience, blooming in darkness; Crimson rising sun = raw energy and streetwear roots; Vertical brush wordmark = Japanese aesthetic discipline',
+    image: 'https://drive.google.com/thumbnail?id=11tYZ5lfTTBOMDsLtzLgxYS-hyJofdXFV&sz=w1080',
+    date: '19 Oct 2026',
+    instagram: 'https://www.instagram.com/tugelanboto_/',
+  },
+  {
     id: 'neon-pulse',
     brand: 'NEON PULSE',
     niche: 'minimalist geometric monogram brand logo',
