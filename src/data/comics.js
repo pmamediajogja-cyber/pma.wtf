@@ -5,6 +5,18 @@
 // entry here. Only metadata lives in this repo, so it never fills up.
 const comics = [
   {
+    id: 'EP 25',
+    title: 'NIAT KELUAR BELI SATU BARANG',
+    premise: 'Bro niat keluar cuma beli sabun, kerempongan di rumah, pulang bawa kopi dan gorengan — sabun lupa dibeli.',
+    date: '19 OCT 2026',
+    slides: [
+      'https://drive.google.com/thumbnail?id=1nmHcy31xu_cMbATAH5JhqFOzJWSSybaB&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1AshZBkYztB37tCrDfmH5QFqI0Q2dI_Sr&sz=w1080',
+      'https://drive.google.com/thumbnail?id=149A7BSCZeFHPYsPP5Gs1GsdQMUwKSTKf&sz=w1080',
+    ],
+    instagram: 'https://www.instagram.com/imam_falahi/',
+  },
+  {
     id: 'EP 24',
     title: 'BINGUNG MAU MAKAN SIANG',
     premise: 'Bro scroll GoFood 11.30-14.30 tidak bisa memutuskan makan siang, akhirnya pesan nasi goreng yang pertama dilihat.',
