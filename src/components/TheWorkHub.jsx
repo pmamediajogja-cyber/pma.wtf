@@ -3,7 +3,7 @@ import DesignCard from "./DesignCard";
 import { PosterCard } from "./PostersHub";
 import ComicsHub from "./ComicsHub";
 
-export default function TheWorkHub({ designs = [], posters = [], comics = [] }) {
+export default function TheWorkHub({ designs = [], posters = [], comics = [], words = [] }) {
   const [filter, setFilter] = useState("ALL");
   const filtered = useMemo(
     () => (filter === "ALL" ? designs : designs.filter((design) => design.type === filter)),
@@ -61,6 +61,57 @@ export default function TheWorkHub({ designs = [], posters = [], comics = [] }) 
       )}
 
       {comics.length > 0 && <ComicsHub episodes={comics} />}
+
+      {words.length > 0 && (
+        <>
+          <div className="thework-hero" style={{ marginTop: 64 }}>
+            <div>
+              <span className="section-index">04 / WORDS</span>
+              <h2>WORDS</h2>
+            </div>
+            <p>Simple typographic quotes from @_tugelanboto_ — short words over matching backgrounds. New word added automatically with each release.</p>
+          </div>
+
+          <div className="thework-toolbar">
+            <span>GALLERY / {words.length.toString().padStart(2, "0")} WORDS</span>
+          </div>
+
+          <div className="thework-grid">
+            {words.map((word) => (
+              <article className="design-card" key={word.id}>
+                <div className="design-card-media">
+                  <div className="design-card-image-wrap">
+                    <img
+                      src={word.image}
+                      alt={word.quote}
+                      className="design-card-image"
+                      loading="lazy"
+                    />
+                  </div>
+                  <span className="design-card-badge">WORD POST</span>
+                </div>
+
+                <div className="design-card-info">
+                  <div>
+                    <span className="design-card-category">{word.lang === "ID" ? "BAHASA INDONESIA" : "ENGLISH"}</span>
+                    <h3>{word.quote}</h3>
+                  </div>
+                  <strong>{word.date}</strong>
+                </div>
+
+                <a
+                  href={word.instagram}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="design-card-link"
+                >
+                  SEE IT ON INSTAGRAM ↗
+                </a>
+              </article>
+            ))}
+          </div>
+        </>
+      )}
     </main>
   );
 }
