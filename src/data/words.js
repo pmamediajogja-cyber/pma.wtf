@@ -4,6 +4,14 @@
 // new word post to the 'PMA.WTF - Brand Logos' folder and prepends an entry here.
 const words = [
   {
+    id: 'capek-boleh-menyerah-jangan',
+    quote: 'CAPEK BOLEH, MENYERAH JANGAN.',
+    lang: 'ID',
+    image: 'https://drive.google.com/thumbnail?id=13mhgzdfGBnua_Vpi8On79BW7DyrJzvCS&sz=w1080',
+    date: '19 Oct 2026',
+    instagram: 'https://www.instagram.com/_tugelanboto_/',
+  },
+  {
     id: 'worn-in-shadow',
     quote: 'WORN IN SHADOW.',
     lang: 'EN',
