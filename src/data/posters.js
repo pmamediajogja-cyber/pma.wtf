@@ -4,6 +4,17 @@
 // new poster to the 'PMA.WTF - Brand Posters' folder and prepends an entry here.
 const posters = [
   {
+    id: 'slow-down',
+    brand: 'SLOW DOWN',
+    niche: 'The Art of Slow Living art print',
+    tagline: 'Quiet, warm, intimate, nostalgic — there is no rush.',
+    signs:
+      'Turntable & vinyl = quiet rituals of slow evenings; Rain-covered window = finding calm in gloomy weather; Amber lamp glow = warmth of staying in',
+    image: 'https://drive.google.com/thumbnail?id=1UOtP3j5wuxXEwbPtPdM0m-LpFIBFmc8v&sz=w1080',
+    date: '20 Oct 2026',
+    instagram: 'https://www.instagram.com/tugelanboto_/',
+  },
+  {
     id: 'keep-driving',
     brand: 'KEEP DRIVING',
     niche: 'AMERICAN ROAD TRIP VOL. 01 art print',
