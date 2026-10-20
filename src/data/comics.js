@@ -5,6 +5,18 @@
 // entry here. Only metadata lives in this repo, so it never fills up.
 const comics = [
   {
+    id: 'EP 26',
+    title: 'WI-FI LEMOT',
+    premise: 'Bro berjuang melawan Wi-Fi lemot dengan segala cara, pas akhirnya lancar videonya sudah selesai trending.',
+    date: '20 OCT 2026',
+    slides: [
+      'https://drive.google.com/thumbnail?id=1KR7kGfFh4euTrYng-DvyZUdw1ZdE-EWo&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1OD6iQu5Azf6DXHXfOUGjYvQiOVN8eAad&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1n1EF8LlplMVW8EuIkJws_TXgOSvCUiNy&sz=w1080',
+    ],
+    instagram: 'https://www.instagram.com/imam_falahi/',
+  },
+  {
     id: 'EP 25',
     title: 'NIAT KELUAR BELI SATU BARANG',
     premise: 'Bro niat keluar cuma beli sabun, kerempongan di rumah, pulang bawa kopi dan gorengan — sabun lupa dibeli.',
