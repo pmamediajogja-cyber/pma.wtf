@@ -4,6 +4,17 @@
 // new poster to the 'PMA.WTF - Brand Posters' folder and prepends an entry here.
 const posters = [
   {
+    id: 'stay-a-little-longer',
+    brand: 'STAY A LITTLE LONGER',
+    niche: 'THE ART OF SLOW LIVING art print',
+    tagline: 'Relaxed, thoughtful, inviting — make room for the moment.',
+    signs:
+      'Poster = relaxed, thoughtful, inviting; Frame mockup = art studio wall',
+    image: 'https://drive.google.com/thumbnail?id=1JIHbCXjb3U2g2QypmEWhDXAnKXxNutet&sz=w1080',
+    date: '20 Oct 2026',
+    instagram: 'https://www.instagram.com/tugelanboto_/',
+  },
+  {
     id: 'slow-down',
     brand: 'SLOW DOWN',
     niche: 'The Art of Slow Living art print',
