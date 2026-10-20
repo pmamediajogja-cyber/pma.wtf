@@ -4,6 +4,17 @@
 // new poster to the 'PMA.WTF - Brand Posters' folder and prepends an entry here.
 const posters = [
   {
+    id: 'keep-driving',
+    brand: 'KEEP DRIVING',
+    niche: 'AMERICAN ROAD TRIP VOL. 01 art print',
+    tagline: 'Optimism, reflection, and freedom — just keep driving.',
+    signs:
+      'Poster = optimism, reflection, and freedom; Frame mockup = hallway interior',
+    image: 'https://drive.google.com/thumbnail?id=1GWY4bGUwJLIcPL3tXAMOQ22wpIw3dHPo&sz=w1080',
+    date: '20 Oct 2026',
+    instagram: 'https://www.instagram.com/tugelanboto_/',
+  },
+  {
     id: 'last-stop',
     brand: 'LAST STOP',
     niche: 'AMERICAN ROAD TRIP VOL. 01 art print',
