@@ -4,6 +4,14 @@
 // new word post to the 'PMA.WTF - Brand Logos' folder and prepends an entry here.
 const words = [
   {
+    id: 'built-quiet-worn-loud',
+    quote: 'BUILT QUIET. WORN LOUD.',
+    lang: 'EN',
+    image: 'https://drive.google.com/thumbnail?id=1kEPP6pPZZysNlT968hFEKgzG-rEjbf53&sz=w1080',
+    date: '20 Oct 2026',
+    instagram: 'https://www.instagram.com/_tugelanboto_/',
+  },
+  {
     id: 'capek-boleh-menyerah-jangan',
     quote: 'CAPEK BOLEH, MENYERAH JANGAN.',
     lang: 'ID',
