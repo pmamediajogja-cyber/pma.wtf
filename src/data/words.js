@@ -4,6 +4,14 @@
 // new word post to the 'PMA.WTF - Brand Logos' folder and prepends an entry here.
 const words = [
   {
+    id: 'terus-maju-nanti-sampai-juga',
+    quote: 'TERUS MAJU, NANTI SAMPAI JUGA.',
+    lang: 'ID',
+    image: 'https://drive.google.com/thumbnail?id=1Za_qwsN-mIoOLMwTTiXzb535kzC38Kp_&sz=w1080',
+    date: '20 Oct 2026',
+    instagram: 'https://www.instagram.com/_tugelanboto_/',
+  },
+  {
     id: 'built-quiet-worn-loud',
     quote: 'BUILT QUIET. WORN LOUD.',
     lang: 'EN',
