@@ -4,6 +4,17 @@
 // new poster to the 'PMA.WTF - Brand Posters' folder and prepends an entry here.
 const posters = [
   {
+    id: 'coffee-first-adulting-later',
+    brand: 'COFFEE FIRST. ADULTING LATER.',
+    niche: 'CAFFEINE & BAD DECISIONS art print',
+    tagline: 'Relatable and humorous — one thing at a time.',
+    signs:
+      'Poster = relatable humorous coffee-first morning; Frame mockup = reading corner',
+    image: 'https://drive.google.com/thumbnail?id=17FoCXEKYIIAbCz5E-kacsO_O5pxp0kbN&sz=w1080',
+    date: '21 Oct 2026',
+    instagram: 'https://www.instagram.com/tugelanboto_/',
+  },
+  {
     id: 'find-your-own-rhythm',
     brand: 'FIND YOUR OWN RHYTHM',
     niche: 'THE ART OF SLOW LIVING art print',
