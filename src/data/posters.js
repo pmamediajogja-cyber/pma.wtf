@@ -4,6 +4,17 @@
 // new poster to the 'PMA.WTF - Brand Posters' folder and prepends an entry here.
 const posters = [
   {
+    id: 'find-your-own-rhythm',
+    brand: 'FIND YOUR OWN RHYTHM',
+    niche: 'THE ART OF SLOW LIVING art print',
+    tagline: 'Creative, calm, personal — less noise, more life.',
+    signs:
+      'Poster = vinyl, headphones and speaker in warm light; Frame mockup = cafe wall',
+    image: 'https://drive.google.com/thumbnail?id=172G3N67c1zLTUtP08oKBOrVnKEisaaJy&sz=w1080',
+    date: '21 Oct 2026',
+    instagram: 'https://www.instagram.com/tugelanboto_/',
+  },
+  {
     id: 'stay-a-little-longer',
     brand: 'STAY A LITTLE LONGER',
     niche: 'THE ART OF SLOW LIVING art print',
