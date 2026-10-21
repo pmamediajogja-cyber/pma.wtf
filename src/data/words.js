@@ -4,6 +4,14 @@
 // new word post to the 'PMA.WTF - Brand Logos' folder and prepends an entry here.
 const words = [
   {
+    id: 'walk-loud-leave-nothing-behind',
+    quote: 'WALK LOUD. LEAVE NOTHING BEHIND.',
+    lang: 'EN',
+    image: 'https://drive.google.com/thumbnail?id=1XuubHcjS2AkDaY6ysFNWPhhlEpgScGlY&sz=w1080',
+    date: '21 Oct 2026',
+    instagram: 'https://www.instagram.com/_tugelanboto_/',
+  },
+  {
     id: 'tenang-aja-semua-ada-waktunya',
     quote: 'TENANG AJA, SEMUA ADA WAKTUNYA.',
     lang: 'ID',
