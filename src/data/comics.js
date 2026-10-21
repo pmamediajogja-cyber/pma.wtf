@@ -5,6 +5,18 @@
 // entry here. Only metadata lives in this repo, so it never fills up.
 const comics = [
   {
+    id: 'EP 28',
+    title: 'DIET ADALAH JANJI',
+    premise: 'Bro berjanji diet mulai besok, bikin salad penuh tekad, tapi godaan ayam geprek datang — dietnya selalu berhasil ditunda.',
+    date: '21 OCT 2026',
+    slides: [
+      'https://drive.google.com/thumbnail?id=1gW5ny8kKL6f0WUAwICN-nnj7OEpDyIsE&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1aWlf78MFBme63NbzaWyQHpXS1oC8z-PQ&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1qZ0OmhhHxs7ec3u8i7ZkhJMNmPlAdhAQ&sz=w1080',
+    ],
+    instagram: 'https://www.instagram.com/imam_falahi/',
+  },
+  {
     id: 'EP 27',
     title: 'MAU TIDUR CEPAT',
     premise: 'Bro niat tidur cepat jam 21.00, malah scroll video sampai jam 02.17.',
