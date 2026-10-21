@@ -4,6 +4,14 @@
 // new word post to the 'PMA.WTF - Brand Logos' folder and prepends an entry here.
 const words = [
   {
+    id: 'tenang-aja-semua-ada-waktunya',
+    quote: 'TENANG AJA, SEMUA ADA WAKTUNYA.',
+    lang: 'ID',
+    image: 'https://drive.google.com/thumbnail?id=1C3vDjUZkpmic-xnoWdfVOYlbDx9v0bSz&sz=w1080',
+    date: '21 Oct 2026',
+    instagram: 'https://www.instagram.com/_tugelanboto_/',
+  },
+  {
     id: 'stay-dangerous-stay-unknown',
     quote: 'STAY DANGEROUS. STAY UNKNOWN.',
     lang: 'EN',
