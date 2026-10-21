@@ -4,6 +4,17 @@
 // new poster to the 'PMA.WTF - Brand Posters' folder and prepends an entry here.
 const posters = [
   {
+    id: 'caffeine-bad-decisions',
+    brand: 'CAFFEINE & BAD DECISIONS',
+    niche: 'CAFFEINE & BAD DECISIONS art print',
+    tagline: 'A BREW-TIFUL WAY TO SURVIVE.',
+    signs:
+      'Poster = vintage diner mood; Frame mockup = cafe wall',
+    image: 'https://drive.google.com/thumbnail?id=1x6k2kLiFr1i0uQF-vKGw7EXxFZyKG0nj&sz=w1080',
+    date: '21 Oct 2026',
+    instagram: 'https://www.instagram.com/tugelanboto_/',
+  },
+  {
     id: 'coffee-first-adulting-later',
     brand: 'COFFEE FIRST. ADULTING LATER.',
     niche: 'CAFFEINE & BAD DECISIONS art print',
