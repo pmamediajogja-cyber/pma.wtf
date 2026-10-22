@@ -1,0 +1,15 @@
+/* Products hub — two full-width product cards, stacked. */
+
+.products-hub-section {
+  border-top: 1px solid var(--line);
+}
+
+.products-hub-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+.products-hub-soon .product-card-status {
+  color: #f5b942;
+}
