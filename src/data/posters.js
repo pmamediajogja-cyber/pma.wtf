@@ -4,6 +4,17 @@
 // new poster to the 'PMA.WTF - Brand Posters' folder and prepends an entry here.
 const posters = [
   {
+    id: 'running-on-caffeine',
+    brand: 'RUNNING ON CAFFEINE',
+    niche: 'CAFFEINE & BAD DECISIONS art print',
+    tagline: 'Energetic and playful — low battery, full cup.',
+    signs:
+      'Poster = energetic coffee fuel-can cup; Frame mockup = reading corner',
+    image: 'https://drive.google.com/thumbnail?id=1ria8vCt2AjGco2AUCPVLR0IR5y-KcYLG&sz=w1080',
+    date: '22 Oct 2026',
+    instagram: 'https://www.instagram.com/tugelanboto_/',
+  },
+  {
     id: 'caffeine-bad-decisions',
     brand: 'CAFFEINE & BAD DECISIONS',
     niche: 'CAFFEINE & BAD DECISIONS art print',
