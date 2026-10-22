@@ -4,6 +4,14 @@
 // new word post to the 'PMA.WTF - Brand Logos' folder and prepends an entry here.
 const words = [
   {
+    id: 'no-crown-just-proof',
+    quote: 'NO CROWN. JUST PROOF.',
+    lang: 'EN',
+    image: 'https://drive.google.com/thumbnail?id=1Xtab86RxWXVoB3bj7Y3JqO3_ANdfLK4X&sz=w1080',
+    date: '22 OCT 2026',
+    instagram: 'https://www.instagram.com/_tugelanboto_/',
+  },
+  {
     id: 'jangan-buru-buru-nikmati-prosesnya',
     quote: 'JANGAN BURU-BURU, NIKMATI PROSESNYA.',
     lang: 'ID',
