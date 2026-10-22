@@ -5,6 +5,18 @@
 // entry here. Only metadata lives in this repo, so it never fills up.
 const comics = [
   {
+    id: 'EP 29',
+    title: 'KABEL CHARGER CUMA BISA DI SUDUT TERTENTU',
+    premise: 'Bro ngecas HP dengan kabel rusak yang cuma mau ngisi di sudut tertentu — perjuangan menahan kabel tanpa bergerak.',
+    date: '22 OCT 2026',
+    slides: [
+      'https://drive.google.com/thumbnail?id=1YUCQobvDwwtCpY9nm3w9AOlnqzS-CtgZ&sz=w1080',
+      'https://drive.google.com/thumbnail?id=12eS5vO19B-6OoaG3IesNnaj7i0hqNoRr&sz=w1080',
+      'https://drive.google.com/thumbnail?id=14E3Ob6ldt3JpwnVq45ZLDbZz_jBDJvkd&sz=w1080',
+    ],
+    instagram: 'https://www.instagram.com/imam_falahi/',
+  },
+  {
     id: 'EP 28',
     title: 'DIET ADALAH JANJI',
     premise: 'Bro berjanji diet mulai besok, bikin salad penuh tekad, tapi godaan ayam geprek datang — dietnya selalu berhasil ditunda.',
