@@ -4,6 +4,14 @@
 // new word post to the 'PMA.WTF - Brand Logos' folder and prepends an entry here.
 const words = [
   {
+    id: 'jalan-terus-jangan-takut-jatuh',
+    quote: 'JALAN TERUS, JANGAN TAKUT JATUH.',
+    lang: 'ID',
+    image: 'https://drive.google.com/thumbnail?id=1mB12A9Clu-unRYagqePYt4qjB5da9ngR&sz=w1080',
+    date: '21 Oct 2026',
+    instagram: 'https://www.instagram.com/_tugelanboto_/',
+  },
+  {
     id: 'walk-loud-leave-nothing-behind',
     quote: 'WALK LOUD. LEAVE NOTHING BEHIND.',
     lang: 'EN',
