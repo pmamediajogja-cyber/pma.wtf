@@ -1,0 +1,159 @@
+/* Tee Rack — SNUG-style concept store strip on the homepage.
+   Clean white block inside the dark site, garments on white. */
+
+.tee-rack {
+  position: relative;
+  z-index: 2;
+  background: #ffffff;
+  color: #111111;
+  padding-top: 110px;
+  padding-bottom: 110px;
+}
+
+.tee-rack-inner {
+  max-width: 1380px;
+}
+
+.tee-rack-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 40px;
+  margin-bottom: 36px;
+}
+
+.tee-rack-eyebrow {
+  display: block;
+  font-family: "DM Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: #888888;
+  margin-bottom: 12px;
+}
+
+.tee-rack-head h2 {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(2.4rem, 5vw, 5rem);
+  line-height: 0.9;
+  letter-spacing: -0.05em;
+  margin: 0;
+}
+
+.tee-rack-head p {
+  max-width: 340px;
+  color: #666666;
+  line-height: 1.6;
+  font-size: 13px;
+  margin: 0;
+}
+
+.tee-rack-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.tee-rack-card {
+  display: block;
+  color: #111111;
+  text-decoration: none;
+}
+
+.tee-rack-media {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  background: #f4f4f4;
+  overflow: hidden;
+}
+
+.tee-rack-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.tee-rack-card:hover .tee-rack-media img {
+  transform: scale(1.04);
+}
+
+.tee-rack-badge,
+.tee-rack-sold {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-family: "DM Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  padding: 5px 8px;
+}
+
+.tee-rack-badge {
+  background: #111111;
+  color: #ffffff;
+}
+
+.tee-rack-sold {
+  background: #e11d48;
+  color: #ffffff;
+}
+
+.tee-rack-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  padding-top: 12px;
+}
+
+.tee-rack-foot span {
+  display: block;
+  font-family: "DM Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: #888888;
+  margin-bottom: 4px;
+}
+
+.tee-rack-foot h3 {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 16px;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.tee-rack-foot strong {
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.tee-rack-cta {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.tee-rack-cta .button-primary {
+  background: #111111;
+  color: #ffffff;
+  border-color: #111111;
+}
+
+@media (max-width: 900px) {
+  .tee-rack {
+    padding-top: 70px;
+    padding-bottom: 70px;
+  }
+
+  .tee-rack-head {
+    display: block;
+  }
+
+  .tee-rack-head p {
+    margin-top: 18px;
+  }
+
+  .tee-rack-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
