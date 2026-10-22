@@ -3,8 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CekTanahKu — Segera Hadir | PMA.WTF</title>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<title>CekTanahKu — Demo | PMA.WTF</title>
+<meta name="description" content="CekTanahKu — verifikasi legalitas tanah (Cek SKPT) dan peta properti. Cek dulu, baru beli.">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
@@ -15,36 +16,46 @@
                 #0b1220; color: #e8eef7; padding: 20px;
   }
   .card {
-    width: 100%; max-width: 480px; background: rgba(255,255,255,.04);
+    width: 100%; max-width: 560px; background: rgba(255,255,255,.04);
     border: 1px solid rgba(255,255,255,.1); border-radius: 20px;
     padding: 44px 36px; text-align: center;
     box-shadow: 0 24px 60px rgba(0,0,0,.45);
   }
   .pin { font-size: 44px; margin-bottom: 16px; }
   .kicker { font-size: 11px; letter-spacing: .22em; color: #f5b942; font-weight: 700; margin-bottom: 12px; }
-  h1 { font-size: 34px; font-weight: 800; letter-spacing: -0.02em; }
-  p.sub { font-size: 14px; color: #9fb0c7; margin: 14px 0 28px; line-height: 1.7; }
+  h1 { font-family: 'Playfair Display', serif; font-size: 40px; font-weight: 700; letter-spacing: -0.01em; }
+  p.tagline { font-size: 17px; color: #f5b942; font-weight: 700; margin-top: 8px; }
+  p.sub { font-size: 14px; color: #9fb0c7; margin: 16px 0 8px; line-height: 1.7; }
+  ul.feats { list-style: none; margin: 18px 0 28px; display: flex; flex-direction: column; gap: 8px; font-size: 13px; color: #c6d3e4; }
+  ul.feats li::before { content: "✓ "; color: #4ade80; font-weight: 700; }
   .links { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
   .links a {
-    display: inline-block; padding: 12px 20px; border-radius: 12px; font-size: 14px;
+    display: inline-block; padding: 13px 22px; border-radius: 12px; font-size: 14px;
     font-weight: 700; text-decoration: none; font-family: inherit;
   }
-  .links a.primary { background: linear-gradient(135deg, #2f7bff, #174ea6); color: #fff; }
+  .links a.primary { background: linear-gradient(135deg, #c9a227, #a8861a); color: #14100a; }
   .links a.ghost { border: 1px solid rgba(255,255,255,.16); color: #e8eef7; }
-  .foot { margin-top: 26px; font-size: 11px; color: #5d6f88; }
+  .foot { margin-top: 26px; font-size: 11px; color: #5d6f88; line-height: 1.7; }
 </style>
 </head>
 <body>
   <div class="card">
-    <div class="pin">📍</div>
-    <div class="kicker">PRODUCT / 002 · SEGERA HADIR</div>
+    <div class="pin">📍✓</div>
+    <div class="kicker">PRODUCT / 002 · LIVE DEMO</div>
     <h1>CekTanahKu</h1>
-    <p class="sub">Marketplace tanah berbasis peta dengan verifikasi SKPT.<br>Halaman ini sedang disiapkan — pantau terus di PMA.WTF.</p>
+    <p class="tagline">Cek dulu, baru beli.</p>
+    <p class="sub">Verifikasi legalitas tanah dan peta properti — sebelum transaksi, pastikan tanahnya aman dan terverifikasi.</p>
+    <ul class="feats">
+      <li>Cek SKPT flat Rp500.000 — laporan resmi &amp; kode tracking</li>
+      <li>Peta properti + layer tata ruang (RDTR) &amp; Cek Zona</li>
+      <li>Harga transparan, tanpa biaya siluman</li>
+    </ul>
     <div class="links">
-      <a class="primary" href="/products/">Lihat Semua Produk</a>
+      <a class="primary" href="https://muse.ai/s/wireframe-caritanah-xtz6rifkqkxdf/IPRx_O9ogUe0B8MiS9FUHi0M04IXWcm9Ut49mmaaH08" target="_blank" rel="noreferrer">Buka Demo Interaktif ↗</a>
+      <a class="ghost" href="/products/">Semua Produk</a>
       <a class="ghost" href="/">Beranda</a>
     </div>
-    <div class="foot">PMA.WTF · PT PMA MEDIA YOGYAKARTA</div>
+    <div class="foot">DEMO INTERAKTIF · Data simulasi — bukan data klien nyata<br>PMA.WTF · PT PMA MEDIA YOGYAKARTA</div>
   </div>
 </body>
 </html>

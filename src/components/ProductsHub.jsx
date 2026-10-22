@@ -26,18 +26,18 @@ export default function ProductsHub() {
               <div className="product-card-arrow">↗</div>
             </div>
           </a>
-          <a className="product-card products-hub-soon" href="/products/cektanahku/" aria-label="CekTanahKu — coming soon">
+          <a className="product-card" href="/products/cektanahku/" aria-label="Open CekTanahKu demo">
             <div className="product-card-visual">
               <div className="product-card-orbit" />
               <div className="product-card-mark"><span>CEK</span><b>TANAH<br />KU</b></div>
-              <span className="product-card-status">SEGERA HADIR</span>
+              <span className="product-card-status">LIVE DEMO ↗</span>
             </div>
             <div className="product-card-info">
               <div>
                 <span className="product-card-kicker">PRODUCT / 002</span>
                 <h3>CEKTANAHKU</h3>
-                <p>Marketplace tanah berbasis peta + verifikasi SKPT</p>
-                <small>Jual beli tanah · Peta · Cek SKPT terverifikasi</small>
+                <p>Verifikasi legalitas tanah + peta properti</p>
+                <small>Cek SKPT · Peta · Laporan terverifikasi</small>
               </div>
               <div className="product-card-arrow">↗</div>
             </div>
