@@ -4,6 +4,14 @@
 // new word post to the 'PMA.WTF - Brand Logos' folder and prepends an entry here.
 const words = [
   {
+    id: 'no-noise-just-movement',
+    quote: 'NO NOISE. JUST MOVEMENT.',
+    lang: 'EN',
+    image: 'https://drive.google.com/thumbnail?id=1bLP_6ToVpSLDsj9GI5FCx-XUSOXwQKcT&sz=w1080',
+    date: '23 Oct 2026',
+    instagram: 'https://www.instagram.com/_tugelanboto_/',
+  },
+  {
     id: 'hidup-sederhana-hati-tetap-tenang',
     quote: 'HIDUP SEDERHANA, HATI TETAP TENANG.',
     lang: 'ID',
