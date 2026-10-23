@@ -5,6 +5,18 @@
 // entry here. Only metadata lives in this repo, so it never fills up.
 const comics = [
   {
+    id: 'EP 30',
+    title: 'NYARI BARANG YANG BARU DIPEGANG',
+    premise: 'Bro mencari pulpen ke mana-mana sambil menyalahkan orang rumah, ternyata pulpennya sudah dipegang dari tadi.',
+    date: '23 OCT 2026',
+    slides: [
+      'https://drive.google.com/thumbnail?id=1_OB8IpEgdtkQ9U1SQDPP_wfaNgtGBOT1&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1mh6-AcuIzAUt9iUK0Duh1E_gkoyMSNI1&sz=w1080',
+      'https://drive.google.com/thumbnail?id=11UskpsU5N2go1b0wxfmhol0aG-EMYLKB&sz=w1080',
+    ],
+    instagram: 'https://www.instagram.com/imam_falahi/',
+  },
+  {
     id: 'EP 29',
     title: 'KABEL CHARGER CUMA BISA DI SUDUT TERTENTU',
     premise: 'Bro ngecas HP dengan kabel rusak yang cuma mau ngisi di sudut tertentu — perjuangan menahan kabel tanpa bergerak.',
