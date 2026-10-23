@@ -4,6 +4,14 @@
 // new word post to the 'PMA.WTF - Brand Logos' folder and prepends an entry here.
 const words = [
   {
+    id: 'hidup-sederhana-hati-tetap-tenang',
+    quote: 'HIDUP SEDERHANA, HATI TETAP TENANG.',
+    lang: 'ID',
+    image: 'https://drive.google.com/thumbnail?id=1dIAqsYJalNu2piG1CvHEmdeNl6v9UIO7&sz=w1080',
+    date: '23 OCT 2026',
+    instagram: 'https://www.instagram.com/_tugelanboto_/',
+  },
+  {
     id: 'no-crown-just-proof',
     quote: 'NO CROWN. JUST PROOF.',
     lang: 'EN',
