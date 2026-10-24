@@ -4,6 +4,14 @@
 // new word post to the 'PMA.WTF - Brand Logos' folder and prepends an entry here.
 const words = [
   {
+    id: 'still-standing-still-untouched',
+    quote: 'STILL STANDING. STILL UNTOUCHED.',
+    lang: 'EN',
+    image: 'https://drive.google.com/thumbnail?id=1XqOUdYI5aKu2R_ssbTkLaJt_7DoPHn5H&sz=w1080',
+    date: '24 Oct 2026',
+    instagram: 'https://www.instagram.com/_tugelanboto_/',
+  },
+  {
     id: 'no-noise-just-movement',
     quote: 'NO NOISE. JUST MOVEMENT.',
     lang: 'EN',
