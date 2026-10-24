@@ -4,6 +4,14 @@
 // new word post to the 'PMA.WTF - Brand Logos' folder and prepends an entry here.
 const words = [
   {
+    id: 'built-from-nothing-still-rising',
+    quote: 'BUILT FROM NOTHING. STILL RISING.',
+    lang: 'EN',
+    image: 'https://drive.google.com/thumbnail?id=19mpTKnZ3PX0ZSwLP7boi673DLgG46wTb&sz=w1080',
+    date: '24 Oct 2026',
+    instagram: 'https://www.instagram.com/_tugelanboto_/',
+  },
+  {
     id: 'still-standing-still-untouched',
     quote: 'STILL STANDING. STILL UNTOUCHED.',
     lang: 'EN',
