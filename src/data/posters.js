@@ -4,6 +4,17 @@
 // new poster to the 'PMA.WTF - Brand Posters' folder and prepends an entry here.
 const posters = [
   {
+    id: 'midnight-fuel',
+    brand: 'MIDNIGHT FUEL',
+    niche: 'NIGHT DRIVE VOL. 01 art print',
+    tagline: 'City lights ahead, engine humming, nowhere to rush.',
+    signs:
+      'Poster = quiet night highway toward glowing city lights; Frame mockup = reading corner',
+    image: 'https://drive.google.com/thumbnail?id=1xgSCdEfQoUMEAjNx6O1zTxBLqnIdCAi6&sz=w1080',
+    date: '25 Oct 2026',
+    instagram: 'https://www.instagram.com/tugelanboto_/',
+  },
+  {
     id: 'running-on-caffeine',
     brand: 'RUNNING ON CAFFEINE',
     niche: 'CAFFEINE & BAD DECISIONS art print',
