@@ -4,6 +4,14 @@
 // new word post to the 'PMA.WTF - Brand Logos' folder and prepends an entry here.
 const words = [
   {
+    id: 'tenang-rezeki-nggak-akan-ketukar',
+    quote: 'TENANG, REZEKI NGGAK AKAN KETUKAR.',
+    lang: 'ID',
+    image: 'https://drive.google.com/thumbnail?id=1V_kZwTKnUWr-HEQxKYEN8s1FEcTIHEvb&sz=w1080',
+    date: '25 Oct 2026',
+    instagram: 'https://www.instagram.com/_tugelanboto_/',
+  },
+  {
     id: 'built-from-nothing-still-rising',
     quote: 'BUILT FROM NOTHING. STILL RISING.',
     lang: 'EN',
