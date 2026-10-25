@@ -4,6 +4,14 @@
 // new word post to the 'PMA.WTF - Brand Logos' folder and prepends an entry here.
 const words = [
   {
+    id: 'usaha-terus-hasil-menyusul',
+    quote: 'USAHA TERUS, HASIL MENYUSUL.',
+    lang: 'ID',
+    image: 'https://drive.google.com/thumbnail?id=1jm_GX9QtwrQWW3PjLGG9mkilhRhrlyoo&sz=w1080',
+    date: '25 Oct 2026',
+    instagram: 'https://www.instagram.com/_tugelanboto_/',
+  },
+  {
     id: 'from-the-bottom-still-climbing',
     quote: 'FROM THE BOTTOM. STILL CLIMBING.',
     lang: 'EN',
