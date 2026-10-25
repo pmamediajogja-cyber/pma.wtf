@@ -4,6 +4,14 @@
 // new word post to the 'PMA.WTF - Brand Logos' folder and prepends an entry here.
 const words = [
   {
+    id: 'from-the-bottom-still-climbing',
+    quote: 'FROM THE BOTTOM. STILL CLIMBING.',
+    lang: 'EN',
+    image: 'https://drive.google.com/thumbnail?id=1KyjgQDxoBZc0TcaKDAb1RApeA8VdHK34&sz=w1080',
+    date: '25 Oct 2026',
+    instagram: 'https://www.instagram.com/_tugelanboto_/',
+  },
+  {
     id: 'tenang-rezeki-nggak-akan-ketukar',
     quote: 'TENANG, REZEKI NGGAK AKAN KETUKAR.',
     lang: 'ID',
