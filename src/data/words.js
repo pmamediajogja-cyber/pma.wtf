@@ -4,6 +4,14 @@
 // new word post to the 'PMA.WTF - Brand Logos' folder and prepends an entry here.
 const words = [
   {
+    id: 'silent-work-loud-results',
+    quote: 'SILENT WORK. LOUD RESULTS.',
+    lang: 'EN',
+    image: 'https://drive.google.com/thumbnail?id=1unn6NLx9R1W4Qljwlld_UKQ4mVcgdbFI&sz=w1080',
+    date: '26 Oct 2026',
+    instagram: 'https://www.instagram.com/_tugelanboto_/',
+  },
+  {
     id: 'usaha-terus-hasil-menyusul',
     quote: 'USAHA TERUS, HASIL MENYUSUL.',
     lang: 'ID',
