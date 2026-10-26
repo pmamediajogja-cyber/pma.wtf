@@ -4,6 +4,14 @@
 // new word post to the 'PMA.WTF - Brand Logos' folder and prepends an entry here.
 const words = [
   {
+    id: 'jalan-pelan-asal-tidak-berhenti',
+    quote: 'JALAN PELAN ASAL TIDAK BERHENTI.',
+    lang: 'ID',
+    image: 'https://drive.google.com/thumbnail?id=1EDE1K25OvpRBvcHQhmUStmAczTUkzX7p&sz=w1080',
+    date: '26 Oct 2026',
+    instagram: 'https://www.instagram.com/_tugelanboto_/',
+  },
+  {
     id: 'silent-work-loud-results',
     quote: 'SILENT WORK. LOUD RESULTS.',
     lang: 'EN',
