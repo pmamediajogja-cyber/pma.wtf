@@ -4,6 +4,14 @@
 // new word post to the 'PMA.WTF - Brand Logos' folder and prepends an entry here.
 const words = [
   {
+    id: 'sedikit-demi-sedikit-lama-lama-jadi-bukit',
+    quote: 'SEDIKIT DEMI SEDIKIT, LAMA-LAMA JADI BUKIT.',
+    lang: 'ID',
+    image: 'https://drive.google.com/thumbnail?id=1wdMt7RoUpejC52rg3Lw4fB2-2v_J12w-&sz=w1080',
+    date: '27 Oct 2026',
+    instagram: 'https://www.instagram.com/_tugelanboto_/',
+  },
+  {
     id: 'sabar-dulu-semua-akan-baik-baik-saja',
     quote: 'SABAR DULU, SEMUA AKAN BAIK-BAIK SAJA.',
     lang: 'ID',
