@@ -4,6 +4,14 @@
 // new word post to the 'PMA.WTF - Brand Logos' folder and prepends an entry here.
 const words = [
   {
+    id: 'no-shortcuts-just-grind',
+    quote: 'NO SHORTCUTS. JUST GRIND.',
+    lang: 'EN',
+    image: 'https://drive.google.com/thumbnail?id=1vevG9hAIuUPcT70bsKmBjIcEwL7Z-hcn&sz=w1080',
+    date: '26 Oct 2026',
+    instagram: 'https://www.instagram.com/_tugelanboto_/',
+  },
+  {
     id: 'jalan-pelan-asal-tidak-berhenti',
     quote: 'JALAN PELAN ASAL TIDAK BERHENTI.',
     lang: 'ID',
