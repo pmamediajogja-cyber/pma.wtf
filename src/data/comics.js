@@ -5,6 +5,18 @@
 // entry here. Only metadata lives in this repo, so it never fills up.
 const comics = [
   {
+    id: 'EP 31',
+    title: 'BATERAI HABIS PAS MAU ORDER OJEK',
+    premise: 'Bro lupa ngecas HP semalam, pagi-pagi mau order ojek HP-nya mati total — ojek lewat di depan mata sementara dia masih nyari charger.',
+    date: '27 OCT 2026',
+    slides: [
+      'https://drive.google.com/thumbnail?id=1aqim5nxog1qiFgAaYdGt-FsxTCpIiE6M&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1Kqv7RaEg5r89F2DzixB64EH7vIwm9sRP&sz=w1080',
+      'https://drive.google.com/thumbnail?id=12BBi0JEawWWiz5baC5IgLHDTRHNz4RI5&sz=w1080',
+    ],
+    instagram: 'https://www.instagram.com/imam_falahi/',
+  },
+  {
     id: 'EP 30',
     title: 'NYARI BARANG YANG BARU DIPEGANG',
     premise: 'Bro mencari pulpen ke mana-mana sambil menyalahkan orang rumah, ternyata pulpennya sudah dipegang dari tadi.',
