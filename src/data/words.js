@@ -4,6 +4,14 @@
 // new word post to the 'PMA.WTF - Brand Logos' folder and prepends an entry here.
 const words = [
   {
+    id: 'no-permission-just-proof',
+    quote: 'NO PERMISSION. JUST PROOF.',
+    lang: 'EN',
+    image: 'https://drive.google.com/thumbnail?id=1EmlRyT8LkjeZ3hx64kiFfa0-l6VfUovA&sz=w1080',
+    date: '27 Oct 2026',
+    instagram: 'https://www.instagram.com/_tugelanboto_/',
+  },
+  {
     id: 'sedikit-demi-sedikit-lama-lama-jadi-bukit',
     quote: 'SEDIKIT DEMI SEDIKIT, LAMA-LAMA JADI BUKIT.',
     lang: 'ID',
