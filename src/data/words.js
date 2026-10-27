@@ -4,6 +4,14 @@
 // new word post to the 'PMA.WTF - Brand Logos' folder and prepends an entry here.
 const words = [
   {
+    id: 'sabar-dulu-semua-akan-baik-baik-saja',
+    quote: 'SABAR DULU, SEMUA AKAN BAIK-BAIK SAJA.',
+    lang: 'ID',
+    image: 'https://drive.google.com/thumbnail?id=1XJG8T47G7HzrrTGsOiWfEKgDg8cNVeP4&sz=w1080',
+    date: '27 Oct 2026',
+    instagram: 'https://www.instagram.com/_tugelanboto_/',
+  },
+  {
     id: 'no-shortcuts-just-grind',
     quote: 'NO SHORTCUTS. JUST GRIND.',
     lang: 'EN',
