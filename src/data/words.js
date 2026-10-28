@@ -4,6 +4,14 @@
 // new word post to the 'PMA.WTF - Brand Logos' folder and prepends an entry here.
 const words = [
   {
+    id: 'own-the-moment-leave-the-noise',
+    quote: 'OWN THE MOMENT. LEAVE THE NOISE.',
+    lang: 'EN',
+    image: 'https://drive.google.com/thumbnail?id=1mKlfxb9CAOa-MJdY9lR1toZuP4be39AM&sz=w1080',
+    date: '28 Oct 2026',
+    instagram: 'https://www.instagram.com/_tugelanboto_/',
+  },
+  {
     id: 'no-permission-just-proof',
     quote: 'NO PERMISSION. JUST PROOF.',
     lang: 'EN',
