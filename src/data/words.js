@@ -4,6 +4,14 @@
 // new word post to the 'PMA.WTF - Brand Logos' folder and prepends an entry here.
 const words = [
   {
+    id: 'prove-it-in-silence',
+    quote: 'PROVE IT IN SILENCE.',
+    lang: 'EN',
+    image: 'https://drive.google.com/thumbnail?id=1wRjtdYeLtoIBzgvArN0tQb3FbS2D2Dpy&sz=w1080',
+    date: '29 Oct 2026',
+    instagram: 'https://www.instagram.com/_tugelanboto_/',
+  },
+  {
     id: 'rezeki-datang-ke-yang-terus-berusaha',
     quote: 'REZEKI DATANG KE YANG TERUS BERUSAHA.',
     lang: 'ID',
