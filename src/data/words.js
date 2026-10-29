@@ -4,6 +4,14 @@
 // new word post to the 'PMA.WTF - Brand Logos' folder and prepends an entry here.
 const words = [
   {
+    id: 'rezeki-datang-ke-yang-terus-berusaha',
+    quote: 'REZEKI DATANG KE YANG TERUS BERUSAHA.',
+    lang: 'ID',
+    image: 'https://drive.google.com/thumbnail?id=1AAwCfJU08p12uSlDRw8AwkuwGEKj91KL&sz=w1080',
+    date: '29 Oct 2026',
+    instagram: 'https://www.instagram.com/_tugelanboto_/',
+  },
+  {
     id: 'own-the-moment-leave-the-noise',
     quote: 'OWN THE MOMENT. LEAVE THE NOISE.',
     lang: 'EN',
