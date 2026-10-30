@@ -4,6 +4,14 @@
 // new word post to the 'PMA.WTF - Brand Logos' folder and prepends an entry here.
 const words = [
   {
+    id: 'walk-your-own-path-no-apology',
+    quote: 'WALK YOUR OWN PATH. NO APOLOGY.',
+    lang: 'EN',
+    image: 'https://drive.google.com/thumbnail?id=1AGRUsIK_imUO4fIdAlHuDwhLyW7bJ1ig&sz=w1080',
+    date: '30 Oct 2026',
+    instagram: 'https://www.instagram.com/_tugelanboto_/',
+  },
+  {
     id: 'prove-it-in-silence',
     quote: 'PROVE IT IN SILENCE.',
     lang: 'EN',
