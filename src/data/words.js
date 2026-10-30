@@ -4,6 +4,14 @@
 // new word post to the 'PMA.WTF - Brand Logos' folder and prepends an entry here.
 const words = [
   {
+    id: 'mulai-dari-kecil-sampai-jadi-besar',
+    quote: 'MULAI DARI KECIL, SAMPAI JADI BESAR',
+    lang: 'ID',
+    image: 'https://drive.google.com/thumbnail?id=1GR6P0yBsayr5cKs-pAzpN92IcAjsVsOh&sz=w1080',
+    date: '30 Oct 2026',
+    instagram: 'https://www.instagram.com/_tugelanboto_/',
+  },
+  {
     id: 'walk-your-own-path-no-apology',
     quote: 'WALK YOUR OWN PATH. NO APOLOGY.',
     lang: 'EN',
