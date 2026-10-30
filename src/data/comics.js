@@ -5,6 +5,30 @@
 // entry here. Only metadata lives in this repo, so it never fills up.
 const comics = [
   {
+    id: 'EP 34',
+    title: 'NIATNYA CUMA REBAHAN 5 MENIT',
+    premise: 'Bro pulang kerja sore di Sleman, badan capek, niat rebahan 5 menit sebelum mandi — malah keterusan scrolling sampai lupa mandi dan makan.',
+    date: '30 OCT 2026',
+    slides: [
+      'https://drive.google.com/thumbnail?id=1Wcb0lPh7CL0QTSvT4-mhq1M5_u-bQ0Hz&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1xwOgKldT4lNUcM4SnaJuclwjc4yUELAz&sz=w1080',
+      'https://drive.google.com/thumbnail?id=11X1qs4Gm2evg8Q3vOAHOiUOEOkh3ILTN&sz=w1080',
+    ],
+    instagram: 'https://www.instagram.com/imam_falahi/',
+  },
+  {
+    id: 'EP 33',
+    title: 'BUKA HP BUAT MEMBALAS PESAN',
+    premise: 'Bro buka HP niat membalas pesan, malah scroll ke mana-mana; pas ingat, pesannya sudah dari tiga hari lalu.',
+    date: '30 OCT 2026',
+    slides: [
+      'https://drive.google.com/thumbnail?id=1OdxP1vo3ByMbLEjah9lADd8TZN2HhPRz&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1c3aGdRGUFjyzps4zJW3fg_8N5LqNXYsg&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1bsSNzWZJqVvRWlQrudb_ygfvJlUlx_8S&sz=w1080',
+    ],
+    instagram: 'https://www.instagram.com/imam_falahi/',
+  },
+  {
     id: 'EP 32',
     title: 'SALAH MASUK KAMAR',
     premise: 'Bro ngantuk berat salah masuk ruangan, rebahan nyaman di atas tumpukan baju — dan memutuskan lanjut tidur di situ.',
