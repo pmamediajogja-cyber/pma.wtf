@@ -5,6 +5,18 @@
 // entry here. Only metadata lives in this repo, so it never fills up.
 const comics = [
   {
+    id: 'EP 35',
+    title: 'MASUK KAMAR, LUPA MISI',
+    premise: 'Bro lagi santai di ruang tengah, tiba-tiba ingat harus mengambil sesuatu di kamar — sampai kamar misinya hilang total, balik ke ruang tengah baru ingat, balik lagi ke kamar malah lupa lagi.',
+    date: '31 OCT 2026',
+    slides: [
+      'https://drive.google.com/thumbnail?id=1H5wjtUM6xbNg_nQi0futblyayMO6UHsY&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1MhEag513xxNEOJo7pGHtDh4GUp5GpCsP&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1k2aFV8nGhJ7j3pNNgdZLatJRO0BmSmqj&sz=w1080',
+    ],
+    instagram: 'https://www.instagram.com/imam_falahi/',
+  },
+  {
     id: 'EP 34',
     title: 'NIATNYA CUMA REBAHAN 5 MENIT',
     premise: 'Bro pulang kerja sore di Sleman, badan capek, niat rebahan 5 menit sebelum mandi — malah keterusan scrolling sampai lupa mandi dan makan.',
