@@ -4,6 +4,14 @@
 // new word post to the 'PMA.WTF - Brand Logos' folder and prepends an entry here.
 const words = [
   {
+    id: 'hari-ini-kecil-besok-jadi-cerita',
+    quote: 'HARI INI KECIL, BESOK JADI CERITA',
+    lang: 'ID',
+    image: 'https://drive.google.com/thumbnail?id=1WKD52-ZzgF63QaDrj2we5P_uky4VEzYn&sz=w1080',
+    date: '01 Nov 2026',
+    instagram: 'https://www.instagram.com/_tugelanboto_/',
+  },
+  {
     id: 'built-in-silence-seen-everywhere',
     quote: 'BUILT IN SILENCE. SEEN EVERYWHERE.',
     lang: 'EN',
