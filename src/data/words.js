@@ -4,6 +4,14 @@
 // new word post to the 'PMA.WTF - Brand Logos' folder and prepends an entry here.
 const words = [
   {
+    id: 'built-in-silence-seen-everywhere',
+    quote: 'BUILT IN SILENCE. SEEN EVERYWHERE.',
+    lang: 'EN',
+    image: 'https://drive.google.com/thumbnail?id=1m1Sy2tJQyqx9-GAQX88_CtEQJNiFVJY9&sz=w1080',
+    date: '01 Nov 2026',
+    instagram: 'https://www.instagram.com/_tugelanboto_/',
+  },
+  {
     id: 'istirahat-sebentar-terus-jalan-lagi',
     quote: 'ISTIRAHAT SEBENTAR, TERUS JALAN LAGI',
     lang: 'ID',
