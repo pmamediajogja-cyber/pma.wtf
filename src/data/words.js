@@ -4,6 +4,14 @@
 // new word post to the 'PMA.WTF - Brand Logos' folder and prepends an entry here.
 const words = [
   {
+    id: 'never-fold-never-fade',
+    quote: 'NEVER FOLD. NEVER FADE.',
+    lang: 'EN',
+    image: 'https://drive.google.com/thumbnail?id=1NA0o49iOkOvYvf4OJP0WIAc6Z14_-r7X&sz=w1080',
+    date: '01 Nov 2026',
+    instagram: 'https://www.instagram.com/_tugelanboto_/',
+  },
+  {
     id: 'hari-ini-kecil-besok-jadi-cerita',
     quote: 'HARI INI KECIL, BESOK JADI CERITA',
     lang: 'ID',
