@@ -5,6 +5,18 @@
 // entry here. Only metadata lives in this repo, so it never fills up.
 const comics = [
   {
+    id: 'EP 36',
+    title: 'BESOK GUE BAKAL PRODUKTIF',
+    premise: 'Bro bikin daftar 10 tugas buat besok dan pasang alarm 05.00, lalu snooze sampai 08.30 dan gagal semua — tenang, daftarnya dipindahin ke besok',
+    date: '02 NOV 2026',
+    slides: [
+      'https://drive.google.com/thumbnail?id=1kRNh0DvUh9Yl6u-HEsZYyWnrKOij8mYn&sz=w1080',
+      'https://drive.google.com/thumbnail?id=10T79koMswmTvMm9mSr4RSOVmB14snvLe&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1kR10-zBUeYQqGYfwAReCQEMMbaEedOM1&sz=w1080',
+    ],
+    instagram: 'https://www.instagram.com/imam_falahi/',
+  },
+  {
     id: 'EP 35',
     title: 'MASUK KAMAR, LUPA MISI',
     premise: 'Bro lagi santai di ruang tengah, tiba-tiba ingat harus mengambil sesuatu di kamar — sampai kamar misinya hilang total, balik ke ruang tengah baru ingat, balik lagi ke kamar malah lupa lagi.',
