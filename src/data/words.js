@@ -4,6 +4,14 @@
 // new word post to the 'PMA.WTF - Brand Logos' folder and prepends an entry here.
 const words = [
   {
+    id: 'heavy-steps-loud-legacy',
+    quote: 'HEAVY STEPS. LOUD LEGACY.',
+    lang: 'EN',
+    image: 'https://drive.google.com/thumbnail?id=1Bsq4kUUb3Of5KBh_0HNdTMWuytQhVJiM&sz=w1080',
+    date: '02 Nov 2026',
+    instagram: 'https://www.instagram.com/_tugelanboto_/',
+  },
+  {
     id: 'terus-berjalan-meski-pelan-sekali',
     quote: 'TERUS BERJALAN, MESKI PELAN SEKALI.',
     lang: 'ID',
