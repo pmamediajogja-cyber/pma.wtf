@@ -4,6 +4,14 @@
 // new word post to the 'PMA.WTF - Brand Logos' folder and prepends an entry here.
 const words = [
   {
+    id: 'jangan-menyerah-esok-masih-ada-harapan',
+    quote: 'JANGAN MENYERAH, ESOK MASIH ADA HARAPAN',
+    lang: 'ID',
+    image: 'https://drive.google.com/thumbnail?id=1gYUHauBtSCMHQ9oAds9r3JCgM4wIROGo&sz=w1080',
+    date: '02 Nov 2026',
+    instagram: 'https://www.instagram.com/_tugelanboto_/',
+  },
+  {
     id: 'heavy-steps-loud-legacy',
     quote: 'HEAVY STEPS. LOUD LEGACY.',
     lang: 'EN',
