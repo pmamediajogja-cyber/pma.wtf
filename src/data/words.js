@@ -4,6 +4,14 @@
 // new word post to the 'PMA.WTF - Brand Logos' folder and prepends an entry here.
 const words = [
   {
+    id: 'terus-berjalan-meski-pelan-sekali',
+    quote: 'TERUS BERJALAN, MESKI PELAN SEKALI.',
+    lang: 'ID',
+    image: 'https://drive.google.com/thumbnail?id=1-H8Z2b6niMwAZ6GzRDW0uN3eOmjgzsVx&sz=w1080',
+    date: '02 Nov 2026',
+    instagram: 'https://www.instagram.com/_tugelanboto_/',
+  },
+  {
     id: 'never-fold-never-fade',
     quote: 'NEVER FOLD. NEVER FADE.',
     lang: 'EN',
