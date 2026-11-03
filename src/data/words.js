@@ -4,6 +4,14 @@
 // new word post to the 'PMA.WTF - Brand Logos' folder and prepends an entry here.
 const words = [
   {
+    id: 'stay-low-stay-hungry-stay-loyal',
+    quote: 'STAY LOW. STAY HUNGRY. STAY LOYAL.',
+    lang: 'EN',
+    image: 'https://drive.google.com/thumbnail?id=1oMuJM8FAUY0qn7zEWPVwl3_Q9SVv_Q-e&sz=w1080',
+    date: '03 Nov 2026',
+    instagram: 'https://www.instagram.com/_tugelanboto_/',
+  },
+  {
     id: 'jangan-menyerah-esok-masih-ada-harapan',
     quote: 'JANGAN MENYERAH, ESOK MASIH ADA HARAPAN',
     lang: 'ID',
