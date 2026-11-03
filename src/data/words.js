@@ -4,6 +4,14 @@
 // new word post to the 'PMA.WTF - Brand Logos' folder and prepends an entry here.
 const words = [
   {
+    id: 'stay-real-stay-ready-stay-moving',
+    quote: 'STAY REAL. STAY READY. STAY MOVING.',
+    lang: 'EN',
+    image: 'https://drive.google.com/thumbnail?id=1JxLSoAiRmWIQV0o0ab9-lmxqFQsev0bH&sz=w1080',
+    date: '03 Nov 2026',
+    instagram: 'https://www.instagram.com/_tugelanboto_/',
+  },
+  {
     id: 'syukuri-yang-ada-perjuangkan-yang-belum',
     quote: 'SYUKURI YANG ADA, PERJUANGKAN YANG BELUM.',
     lang: 'ID',
