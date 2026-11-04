@@ -4,6 +4,14 @@
 // new word post to the 'PMA.WTF - Brand Logos' folder and prepends an entry here.
 const words = [
   {
+    id: 'hidup-tenang-usaha-jalan-terus',
+    quote: 'HIDUP TENANG, USAHA JALAN TERUS',
+    lang: 'ID',
+    image: 'https://drive.google.com/thumbnail?id=1jwznJR6jTWWF26coGeVk0ibzfp30Hrcy&sz=w1080',
+    date: '04 Nov 2026',
+    instagram: 'https://www.instagram.com/_tugelanboto_/',
+  },
+  {
     id: 'no-audience-still-performing',
     quote: 'NO AUDIENCE. STILL PERFORMING.',
     lang: 'EN',
