@@ -5,6 +5,18 @@
 // entry here. Only metadata lives in this repo, so it never fills up.
 const comics = [
   {
+    id: 'EP 37',
+    title: 'NGECEK KULKAS, BERHARAP ADA KEAJAIBAN',
+    premise: 'Bro malam-malam rebahan tiba-tiba lapar, bangun mengecek kulkas penuh harapan — isinya cuma air putih, sambal, dan satu wadah misterius berisi sisa bawang; kulkas ditutup, lima detik kemudian dibuka lagi berharap ada makanan baru.',
+    date: '04 NOV 2026',
+    slides: [
+      'https://drive.google.com/thumbnail?id=1NrAdQqvfP-0A8pG-t3oeMszkC2qDTmyA&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1jUn_oQVLPJ8UCN2bBC2fFOdFBm4kSL9B&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1JfsVhOPVyfid0VhxqlUQNq1Tm2I_J94R&sz=w1080',
+    ],
+    instagram: 'https://www.instagram.com/imam_falahi/',
+  },
+  {
     id: 'EP 36',
     title: 'BESOK GUE BAKAL PRODUKTIF',
     premise: 'Bro bikin daftar 10 tugas buat besok dan pasang alarm 05.00, lalu snooze sampai 08.30 dan gagal semua — tenang, daftarnya dipindahin ke besok',
