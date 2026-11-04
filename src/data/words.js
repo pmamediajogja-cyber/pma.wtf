@@ -4,6 +4,14 @@
 // new word post to the 'PMA.WTF - Brand Logos' folder and prepends an entry here.
 const words = [
   {
+    id: 'no-audience-still-performing',
+    quote: 'NO AUDIENCE. STILL PERFORMING.',
+    lang: 'EN',
+    image: 'https://drive.google.com/thumbnail?id=1S2snEGZqKNexYVsDxhPB8vv1wtDqvcLk&sz=w1080',
+    date: '04 Nov 2026',
+    instagram: 'https://www.instagram.com/_tugelanboto_/',
+  },
+  {
     id: 'stay-real-stay-ready-stay-moving',
     quote: 'STAY REAL. STAY READY. STAY MOVING.',
     lang: 'EN',
