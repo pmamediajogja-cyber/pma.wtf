@@ -4,6 +4,14 @@
 // new word post to the 'PMA.WTF - Brand Logos' folder and prepends an entry here.
 const words = [
   {
+    id: 'not-loud-just-untouchable',
+    quote: 'NOT LOUD. JUST UNTOUCHABLE.',
+    lang: 'EN',
+    image: 'https://drive.google.com/thumbnail?id=15O7LyHcWY4r0scDLQApq9P95SExeu0tQ&sz=w1080',
+    date: '05 Nov 2026',
+    instagram: 'https://www.instagram.com/_tugelanboto_/',
+  },
+  {
     id: 'tenang-langkah-kecil-tetap-maju',
     quote: 'TENANG, LANGKAH KECIL TETAP MAJU',
     lang: 'ID',
