@@ -5,6 +5,18 @@
 // entry here. Only metadata lives in this repo, so it never fills up.
 const comics = [
   {
+    id: 'EP 39',
+    title: 'BONUS GORENGAN',
+    premise: 'Bro beli lima gorengan di warung, penjual kasih bonus satu — dia makan satu-satu sambil menyimpan yang terakhir, lalu menyatakan gorengan bonus itu harta karun.',
+    date: '05 NOV 2026',
+    slides: [
+      'https://drive.google.com/thumbnail?id=1b7rLaD7cfeKwtdOnjw43_ManVshnQK73&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1G1Mkp765tAuOi428XdaG_dfCIBtyuRZz&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1zT5_XLT9EdX4R80ifahnEnsHOvNH0Tc-&sz=w1080',
+    ],
+    instagram: 'https://www.instagram.com/imam_falahi/',
+  },
+  {
     id: 'EP 38',
     title: 'MANDI PAGI AIR DINGIN',
     premise: 'bro berjuang mandi pagi dengan air dingin — negosiasi sama shower, lalu mengklaim mandi selesai padahal air belum sempat kena badan',
