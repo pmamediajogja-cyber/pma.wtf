@@ -4,6 +4,14 @@
 // new word post to the 'PMA.WTF - Brand Logos' folder and prepends an entry here.
 const words = [
   {
+    id: 'tenang-langkah-kecil-tetap-maju',
+    quote: 'TENANG, LANGKAH KECIL TETAP MAJU',
+    lang: 'ID',
+    image: 'https://drive.google.com/thumbnail?id=1Wpe43L3jE1RKlTYTZpgRqwF2LgUQ2LCc&sz=w1080',
+    date: '05 Nov 2026',
+    instagram: 'https://www.instagram.com/_tugelanboto_/',
+  },
+  {
     id: 'hidup-tenang-usaha-jalan-terus',
     quote: 'HIDUP TENANG, USAHA JALAN TERUS',
     lang: 'ID',
