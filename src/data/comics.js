@@ -5,6 +5,18 @@
 // entry here. Only metadata lives in this repo, so it never fills up.
 const comics = [
   {
+    id: 'EP 38',
+    title: 'MANDI PAGI AIR DINGIN',
+    premise: 'bro berjuang mandi pagi dengan air dingin — negosiasi sama shower, lalu mengklaim mandi selesai padahal air belum sempat kena badan',
+    date: '05 NOV 2026',
+    slides: [
+      'https://drive.google.com/thumbnail?id=1zXURL4EN4RtVkVyRUxTThn9gWYihpVr6&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1PfIx-P1nEwatjLbkWjaJX2gxijNFgOHA&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1dCRsS8Lz1C_cKvQReINd4nwUxEVu4HbB&sz=w1080',
+    ],
+    instagram: 'https://www.instagram.com/imam_falahi/',
+  },
+  {
     id: 'EP 37',
     title: 'NGECEK KULKAS, BERHARAP ADA KEAJAIBAN',
     premise: 'Bro malam-malam rebahan tiba-tiba lapar, bangun mengecek kulkas penuh harapan — isinya cuma air putih, sambal, dan satu wadah misterius berisi sisa bawang; kulkas ditutup, lima detik kemudian dibuka lagi berharap ada makanan baru.',
