@@ -5,6 +5,18 @@
 // entry here. Only metadata lives in this repo, so it never fills up.
 const comics = [
   {
+    id: 'EP 41',
+    title: 'LUPA PARKIR DI LANTAI BERAPA',
+    premise: 'Bro parks his black caferacer in mall basement B2, shops, then forgets whether B2 or B3 — he presses the key remote, facepalms, and finds the bike right where he left it.',
+    date: '06 NOV 2026',
+    slides: [
+      'https://drive.google.com/thumbnail?id=1BX0QKjU75mCMGhYJHMv3Jw9b-ZXLGkEV&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1agqTs4nXgGajQ8j94AefC7TLr4QO-D7s&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1f5L25Kt8e3jADUEOv3hHNjFLfBsiN3Iv&sz=w1080',
+    ],
+    instagram: 'https://www.instagram.com/imam_falahi/',
+  },
+  {
     id: 'EP 40',
     title: 'JEMURAN KEHUJANAN',
     premise: 'Bro jemur cucian pagi-pagi pas langit cerah, yakin bakal kering — eh awan datang, hujan deras, cucian basah lagi; dia pasrah ngopi di depan pintu.',
