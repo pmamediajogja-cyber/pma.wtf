@@ -5,6 +5,18 @@
 // entry here. Only metadata lives in this repo, so it never fills up.
 const comics = [
   {
+    id: 'EP 40',
+    title: 'JEMURAN KEHUJANAN',
+    premise: 'Bro jemur cucian pagi-pagi pas langit cerah, yakin bakal kering — eh awan datang, hujan deras, cucian basah lagi; dia pasrah ngopi di depan pintu.',
+    date: '06 NOV 2026',
+    slides: [
+      'https://drive.google.com/thumbnail?id=1k11SAnCR6ZEBYhlVcvnI39a1uTdVvfb7&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1dCkkFhOSRff94Ymh6wgq2kr2UO1AfoWY&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1kW_bFTx6F84YI6Upv44YQd0LlqDjQ9bQ&sz=w1080',
+    ],
+    instagram: 'https://www.instagram.com/imam_falahi/',
+  },
+  {
     id: 'EP 39',
     title: 'BONUS GORENGAN',
     premise: 'Bro beli lima gorengan di warung, penjual kasih bonus satu — dia makan satu-satu sambil menyimpan yang terakhir, lalu menyatakan gorengan bonus itu harta karun.',
