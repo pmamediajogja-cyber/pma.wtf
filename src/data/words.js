@@ -4,6 +4,14 @@
 // new word post to the 'PMA.WTF - Brand Logos' folder and prepends an entry here.
 const words = [
   {
+    id: 'no-hype-just-hustle',
+    quote: 'NO HYPE. JUST HUSTLE.',
+    lang: 'EN',
+    image: 'https://drive.google.com/thumbnail?id=1tJN5ducYvccGJ91I3rZW3JNuw7gu3QCz&sz=w1080',
+    date: '06 Nov 2026',
+    instagram: 'https://www.instagram.com/_tugelanboto_/',
+  },
+  {
     id: 'jangan-tunggu-sempurna-mulai-saja-dulu',
     quote: 'JANGAN TUNGGU SEMPURNA, MULAI SAJA DULU',
     lang: 'ID',
