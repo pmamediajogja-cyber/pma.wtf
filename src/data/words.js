@@ -4,6 +4,14 @@
 // new word post to the 'PMA.WTF - Brand Logos' folder and prepends an entry here.
 const words = [
   {
+    id: 'jangan-tunggu-sempurna-mulai-saja-dulu',
+    quote: 'JANGAN TUNGGU SEMPURNA, MULAI SAJA DULU',
+    lang: 'ID',
+    image: 'https://drive.google.com/thumbnail?id=15EUJE8GATcv_eGJaoyYSXVFWviJoQfMd&sz=w1080',
+    date: '06 Nov 2026',
+    instagram: 'https://www.instagram.com/_tugelanboto_/',
+  },
+  {
     id: 'not-loud-just-untouchable',
     quote: 'NOT LOUD. JUST UNTOUCHABLE.',
     lang: 'EN',
