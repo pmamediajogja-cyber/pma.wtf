@@ -4,6 +4,14 @@
 // new word post to the 'PMA.WTF - Brand Logos' folder and prepends an entry here.
 const words = [
   {
+    id: 'terus-melangkah-jangan-lihat-ke-belakang',
+    quote: 'TERUS MELANGKAH, JANGAN LIHAT KE BELAKANG',
+    lang: 'ID',
+    image: 'https://drive.google.com/thumbnail?id=1U3ERrbChAQnj9l8UxDx16Kjra6wmbXhE&sz=w1080',
+    date: '06 Nov 2026',
+    instagram: 'https://www.instagram.com/_tugelanboto_/',
+  },
+  {
     id: 'no-hype-just-hustle',
     quote: 'NO HYPE. JUST HUSTLE.',
     lang: 'EN',
