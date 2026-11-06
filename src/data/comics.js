@@ -5,6 +5,18 @@
 // entry here. Only metadata lives in this repo, so it never fills up.
 const comics = [
   {
+    id: 'EP 42',
+    title: 'NUNGGU AIR MENDIDIH',
+    premise: 'Bro masak mie instan, nungguin air mendidih sambil ditontonin — airnya nggak mendidih-mendidih; pas dia noleh sedetik, airnya meluber.',
+    date: '06 NOV 2026',
+    slides: [
+      'https://drive.google.com/thumbnail?id=10s8mfkJH6SwXsVC0kix31OPtF1cYijbd&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1OORqQzfLWJV-ZA8oYPSZkTIWYqiRxir9&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1fXCOs9K2z9jp823W8_T2g7iLEEEodFd1&sz=w1080',
+    ],
+    instagram: 'https://www.instagram.com/imam_falahi/',
+  },
+  {
     id: 'EP 41',
     title: 'LUPA PARKIR DI LANTAI BERAPA',
     premise: 'Bro parks his black caferacer in mall basement B2, shops, then forgets whether B2 or B3 — he presses the key remote, facepalms, and finds the bike right where he left it.',
