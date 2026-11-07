@@ -17,6 +17,18 @@ const comics = [
     instagram: 'https://www.instagram.com/imam_falahi/',
   },
   {
+    id: 'EP 44',
+    title: 'SANDAL JEPIT PUTUS',
+    premise: 'bro jalan santai pas cuaca cerah, sandal jepitnya putus dua-duanya — akhirnya jalan nyeker, nyeker itu gratis',
+    date: '07 NOV 2026',
+    slides: [
+      'https://drive.google.com/thumbnail?id=1I1jpgALsWzt_AkU9DcTEtuK1ecaSreHE&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1xizlPTK203G6bZGPdxXGNZSJj8oGtzd3&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1_0JtOPkepmSf_cQnGpGiqaEcJuxex0k7&sz=w1080',
+    ],
+    instagram: 'https://www.instagram.com/imam_falahi/',
+  },
+  {
     id: 'EP 43',
     title: 'SALAH KIRIM KE GRUP KELUARGA',
     premise: 'Bro sends a funny meme meant for his friend to the family group chat; mom asks what it is, he hides under a blanket, then mom asks him to send more',
