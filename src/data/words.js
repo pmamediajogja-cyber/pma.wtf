@@ -4,6 +4,14 @@
 // new word post to the 'PMA.WTF - Brand Logos' folder and prepends an entry here.
 const words = [
   {
+    id: 'pressure-makes-diamonds',
+    quote: 'PRESSURE MAKES DIAMONDS.',
+    lang: 'EN',
+    image: 'https://drive.google.com/thumbnail?id=1y4TpOz2eznhJt952HNvyN3pA7cdovQ6p&sz=w1080',
+    date: '07 Nov 2026',
+    instagram: 'https://www.instagram.com/_tugelanboto_/',
+  },
+  {
     id: 'cut-the-noise-keep-the-crown',
     quote: 'CUT THE NOISE. KEEP THE CROWN.',
     lang: 'EN',
