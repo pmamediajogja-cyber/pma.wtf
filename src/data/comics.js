@@ -5,6 +5,30 @@
 // entry here. Only metadata lives in this repo, so it never fills up.
 const comics = [
   {
+    id: 'EP 45',
+    title: 'LUPA PASSWORD',
+    premise: 'bro lupa password, reset pakai password baru — ditolak karena ternyata sama dengan password lama',
+    date: '07 NOV 2026',
+    slides: [
+      'https://drive.google.com/thumbnail?id=14Iih1YrRf5mmkJFC2f8rrIisTalr6vsm&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1K6skbfY93EsPSTDLC5corxnHvOHWqMhs&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1nrr9OnFzkhw5ZKNfOq5V4fHb_XxpvDbD&sz=w1080',
+    ],
+    instagram: 'https://www.instagram.com/imam_falahi/',
+  },
+  {
+    id: 'EP 44',
+    title: 'SANDAL JEPIT PUTUS',
+    premise: 'bro jalan santai pas cuaca cerah, sandal jepitnya putus dua-duanya — akhirnya jalan nyeker, nyeker itu gratis',
+    date: '07 NOV 2026',
+    slides: [
+      'https://drive.google.com/thumbnail?id=1I1jpgALsWzt_AkU9DcTEtuK1ecaSreHE&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1xizlPTK203G6bZGPdxXGNZSJj8oGtzd3&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1_0JtOPkepmSf_cQnGpGiqaEcJuxex0k7&sz=w1080',
+    ],
+    instagram: 'https://www.instagram.com/imam_falahi/',
+  },
+  {
     id: 'EP 43',
     title: 'SALAH KIRIM KE GRUP KELUARGA',
     premise: 'Bro sends a funny meme meant for his friend to the family group chat; mom asks what it is, he hides under a blanket, then mom asks him to send more',
