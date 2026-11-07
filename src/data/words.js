@@ -4,6 +4,14 @@
 // new word post to the 'PMA.WTF - Brand Logos' folder and prepends an entry here.
 const words = [
   {
+    id: 'hari-ini-lelah-besok-lebih-kuat',
+    quote: 'HARI INI LELAH, BESOK LEBIH KUAT',
+    lang: 'ID',
+    image: 'https://drive.google.com/thumbnail?id=1UWu4rf5TwcsgtQTGGL0S2IWtwNt-rYYS&sz=w1080',
+    date: '07 Nov 2026',
+    instagram: 'https://www.instagram.com/_tugelanboto_/',
+  },
+  {
     id: 'pressure-makes-diamonds',
     quote: 'PRESSURE MAKES DIAMONDS.',
     lang: 'EN',
