@@ -4,6 +4,14 @@
 // new word post to the 'PMA.WTF - Brand Logos' folder and prepends an entry here.
 const words = [
   {
+    id: 'cut-the-noise-keep-the-crown',
+    quote: 'CUT THE NOISE. KEEP THE CROWN.',
+    lang: 'EN',
+    image: 'https://drive.google.com/thumbnail?id=1eaSQHLsph6sG2o2i231NYq0rZOAr_ibw&sz=w1080',
+    date: '07 Nov 2026',
+    instagram: 'https://www.instagram.com/_tugelanboto_/',
+  },
+  {
     id: 'terus-melangkah-jangan-lihat-ke-belakang',
     quote: 'TERUS MELANGKAH, JANGAN LIHAT KE BELAKANG',
     lang: 'ID',
