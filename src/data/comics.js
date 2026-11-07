@@ -5,6 +5,18 @@
 // entry here. Only metadata lives in this repo, so it never fills up.
 const comics = [
   {
+    id: 'EP 43',
+    title: 'SALAH KIRIM KE GRUP KELUARGA',
+    premise: 'Bro sends a funny meme meant for his friend to the family group chat; mom asks what it is, he hides under a blanket, then mom asks him to send more',
+    date: '07 NOV 2026',
+    slides: [
+      'https://drive.google.com/thumbnail?id=1jgfOkd4Coj-na18ac3xJ9gZQC62Du1hB&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1B7yCxVX0q0ToxClJ2TWAF4_u1YsERtAB&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1U45NCUfGZgsXy4GsoAQiNqJ0H7fSFDir&sz=w1080',
+    ],
+    instagram: 'https://www.instagram.com/imam_falahi/',
+  },
+  {
     id: 'EP 42',
     title: 'NUNGGU AIR MENDIDIH',
     premise: 'Bro masak mie instan, nungguin air mendidih sambil ditontonin — airnya nggak mendidih-mendidih; pas dia noleh sedetik, airnya meluber.',
