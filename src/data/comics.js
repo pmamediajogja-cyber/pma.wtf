@@ -5,6 +5,30 @@
 // entry here. Only metadata lives in this repo, so it never fills up.
 const comics = [
   {
+    id: 'EP 47',
+    title: 'PAYUNG SELALU SALAH WAKTU',
+    premise: 'Bro bawa payung pas langit mendung, hujan malah nggak datang; besoknya nggak bawa payung, hujan deras mengguyur — dia sampai minta maaf ke payungnya.',
+    date: '08 NOV 2026',
+    slides: [
+      'https://drive.google.com/thumbnail?id=160DtGxnjteF5KMpP2UxdlfnTf3lGaHoj&sz=w1080',
+      'https://drive.google.com/thumbnail?id=12dzE_0OXPZZXAklKo37jeWnK7lK2YDza&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1gj2DJoPmSgUVrclFoI3zAdVw0UbijVoI&sz=w1080',
+    ],
+    instagram: 'https://www.instagram.com/imam_falahi/',
+  },
+  {
+    id: 'EP 46',
+    title: 'TUKANG SAYUR LEWAT',
+    premise: 'Bro dengar tukang sayur pagi-pagi, keluar pagar sudah lewat; besoknya sudah siap di pagar dari pagi, tukang sayur malah lewat gang sebelah.',
+    date: '08 NOV 2026',
+    slides: [
+      'https://drive.google.com/thumbnail?id=13R6RneIbKIA4LE-0SCEYN19U_41pcmAw&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1h3tSlt2oF-BG-LQz-Mz0vmnflm87Kvte&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1a8lglJVWRqHowP4KRZyoZlL6h2ShYeOw&sz=w1080',
+    ],
+    instagram: 'https://www.instagram.com/imam_falahi/',
+  },
+  {
     id: 'EP 46',
     title: 'WARTEG: TAMBAH DIKIT',
     premise: 'Bro pesan nasi dikit di warteg, terus nambah lauk dikit-dikit, pas bayar kaget totalnya — dompet kosong, perut penuh.',
