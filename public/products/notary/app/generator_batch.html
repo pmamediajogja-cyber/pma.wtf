@@ -1,603 +1,418 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<script>
-/* PMA.WTF gate: wajib lewat halaman login /notary/ dulu */
-(function(){
-  if(!sessionStorage.getItem('pma_notary_auth')){ location.href='../'; return; }
-  // tombol keluar kecil
-  window.addEventListener('DOMContentLoaded', function(){
-    var b=document.createElement('button');
-    b.textContent='Keluar'; b.title='Keluar dari sistem';
-    b.style.cssText='position:fixed;right:14px;bottom:14px;z-index:99999;padding:8px 14px;border-radius:10px;border:1px solid rgba(0,0,0,.15);background:#1f2937;color:#fff;font:600 12px system-ui;cursor:pointer;opacity:.75';
-    b.onmouseenter=function(){b.style.opacity='1'}; b.onmouseleave=function(){b.style.opacity='.75'};
-    b.onclick=function(){ sessionStorage.removeItem('pma_notary_auth'); location.href='../'; };
-    document.body.appendChild(b);
-  });
-})();
-</script>
-<script src="api-shim.js"></script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Auto-Batch GPS Map Camera (Online Pro)</title>
-    
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/gh/google/open-location-code@1.0.4/js/src/openlocationcode.min.js"></script>
-
-    <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f1f5f9; margin: 0; padding: 30px; display: flex; flex-direction: column; align-items: center; }
-        
-        .container { background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); max-width: 800px; width: 100%; margin-bottom: 30px;}
-        h2 { margin-top: 0; color: #0f172a; border-bottom: 2px solid #3b82f6; padding-bottom: 15px;}
-        
-        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 25px;}
-        .full-width { grid-column: span 2; }
-        
-        label { display: block; font-size: 12px; font-weight: bold; color: #475569; margin-bottom: 5px; text-transform: uppercase;}
-        input[type="text"], input[type="number"], input[type="datetime-local"], textarea { width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 6px; box-sizing: border-box; font-family: inherit; font-size: 14px; background-color: #f8fafc;}
-        input:focus, textarea:focus { outline: none; border-color: #3b82f6; background-color: #fff;}
-        
-        .btn { background: #3b82f6; color: white; border: none; padding: 15px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 15px; width: 100%; transition: 0.2s; display: flex; justify-content: center; align-items: center; gap: 10px;}
-        .btn:hover { background: #2563eb; }
-        .btn:disabled { background: #94a3b8; cursor: not-allowed; }
-
-        .status-box { background: #eff6ff; border: 1px solid #bfdbfe; color: #1d4ed8; padding: 15px; border-radius: 6px; font-size: 13px; font-weight: bold; margin-bottom: 20px; display: none;}
-        .warning-box { background: #fffbeb; border: 1px dashed #f59e0b; padding: 15px; border-radius: 6px; }
-
-        /* Hasil Render Card */
-        #results { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px; width: 100%; max-width: 1200px;}
-        .result-card { background: white; padding: 10px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: center; position: relative;}
-        .result-card img { width: 100%; border-radius: 4px; margin-bottom: 10px;}
-        .download-overlay { position: absolute; top: 15px; right: 15px; background: rgba(0,0,0,0.7); color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; text-decoration: none;}
-        .download-overlay:hover { background: #10b981; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GPS Map Camera V3 — Interactive Map</title>
+<!-- Adapted for pma.wtf demo (2026-11-08): foto via jsDelivr + crossOrigin, mini-map ported from live generator_batch, manual address fallback when BIG is unreachable. Source: user upload generator_batch_v3_interactive.html. -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+<script src="https://cdn.jsdelivr.net/gh/google/open-location-code@1.0.4/js/src/openlocationcode.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+:root{--blue:#2563eb;--ink:#0f172a;--muted:#64748b;--line:#dbe3ef;--bg:#eef3f9}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:Inter,"Segoe UI",Arial,sans-serif;color:var(--ink)}
+.app{max-width:1400px;margin:auto;padding:22px}
+.panel{background:#fff;border:1px solid #e6ebf2;border-radius:18px;box-shadow:0 8px 28px rgba(15,23,42,.06);padding:22px;margin-bottom:18px}
+h1{font-size:25px;margin:0 0 8px;display:flex;gap:12px;align-items:center}h1 i{color:var(--blue)}
+.sub{color:var(--muted);font-size:14px;line-height:1.5;margin:0}
+.grid{display:grid;grid-template-columns:minmax(260px,1fr) auto;gap:12px;margin-top:18px}
+input,select{width:100%;padding:13px 14px;border:1px solid #cbd5e1;border-radius:10px;font-size:15px;background:#f8fafc;color:#0f172a}
+label{font-size:12px;font-weight:800;color:#475569;display:block;margin:0 0 7px;text-transform:uppercase;letter-spacing:.03em}
+.btn{border:0;border-radius:10px;padding:13px 17px;background:var(--blue);color:white;font-weight:800;font-size:14px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:9px}
+.btn:hover{filter:brightness(.95)}.btn:disabled{opacity:.45;cursor:not-allowed}.btn.secondary{background:#e8eef8;color:#1e293b}.btn.danger{background:#fee2e2;color:#991b1b}.btn.green{background:#059669}
+#mapSection{display:none}.maphead{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+#map{height:560px;width:100%;border-radius:14px;border:1px solid var(--line);z-index:1}
+.map-tools{display:flex;gap:8px;flex-wrap:wrap}.hint{padding:12px 14px;border-radius:10px;background:#eff6ff;color:#1d4ed8;font-size:13px;line-height:1.45;margin:12px 0}
+.status{padding:12px 14px;border-radius:10px;margin-top:12px;font-size:13px;line-height:1.45;background:#f1f5f9;color:#334155}
+.status.ok{background:#ecfdf5;color:#047857}.status.warn{background:#fffbeb;color:#92400e}.status.err{background:#fef2f2;color:#b91c1c}
+.admin{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-top:12px}
+.admin div{background:#f8fafc;border:1px solid var(--line);border-radius:10px;padding:10px}
+.admin small{display:block;color:var(--muted);font-size:10px;font-weight:800;text-transform:uppercase;margin-bottom:4px}
+.admin strong{font-size:13px;line-height:1.35;display:block}
+.bottom-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px}
+.point-list{display:grid;gap:8px;margin-top:10px}
+.point-row{display:flex;align-items:center;justify-content:space-between;gap:10px;border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.point-left{display:flex;align-items:center;gap:10px;min-width:0}.num{width:28px;height:28px;flex:none;border-radius:50%;background:#1d4ed8;color:#fff;display:grid;place-items:center;font-size:12px;font-weight:900}
+.point-meta{min-width:0}.point-meta b{display:block;font-size:13px}.point-meta small{color:var(--muted);font-size:11px;overflow-wrap:anywhere}
+.controls{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.form2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+.results{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}
+.result-card{background:#fff;border-radius:14px;padding:10px;box-shadow:0 5px 16px rgba(15,23,42,.08);text-align:center;position:relative}
+.result-card img{width:100%;border-radius:9px;display:block;margin-bottom:9px}
+.result-card .meta{font-weight:800;color:#475569;font-size:13px}.result-card .coords{font-size:11px;color:#94a3b8;margin-top:3px}
+.dl{position:absolute;right:17px;top:17px;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:#111827d9;color:white;text-decoration:none}
+.marker-label{background:#1d4ed8;color:#fff;border:2px solid white;border-radius:50%;width:30px;height:30px;display:grid;place-items:center;font-weight:900;font-size:12px;box-shadow:0 2px 8px #0005}
+.hidden{display:none!important}
+.manual-box{margin-top:14px;border:1px dashed #f59e0b;border-radius:12px;padding:12px 14px;background:#fffbeb}
+.manual-box summary{cursor:pointer;font-weight:800;font-size:13px;color:#92400e}
+.manual-box .form2{margin-top:12px}
+@media(max-width:760px){.app{padding:10px}.panel{padding:15px}.grid,.bottom-grid,.form2{grid-template-columns:1fr}.admin{grid-template-columns:1fr 1fr}#map{height:62vh;min-height:380px}h1{font-size:21px}}
+</style>
 </head>
 <body>
-
-<div class="container">
-    <h2><i class="fa-solid fa-satellite" style="color: #3b82f6;"></i> Mesin Batch GPS Camera (Online Version)</h2>
-    <p style="font-size: 13px; color: #64748b;">Aplikasi akan menarik alamat secara <i>online</i> dari satelit. Jika internet terputus di tengah jalan, sistem akan otomatis menggunakan alamat cadangan tanpa menghentikan proses cetak.</p>
-
-    <div class="status-box" id="status-box"><i class="fa-solid fa-spinner fa-spin"></i> <span id="status-text">Menyiapkan mesin...</span></div>
-
-    <div class="form-grid">
-        <div class="full-width">
-            <label>1. Koordinat Awal (Lat, Lon)</label>
-            <input type="text" id="in-koordinat" placeholder="Contoh: -7.774862, 110.396823">
-        </div>
-
-        <div>
-            <label>2. Total Output Patok</label>
-            <input type="number" id="in-jumlah" min="1" placeholder="Contoh: 50">
-        </div>
-        
-        <div>
-            <label>3. Waktu Patok Diambil</label>
-            <input type="datetime-local" id="in-time">
-        </div>
-
-        <div class="full-width warning-box">
-            <label style="color: #b45309;"><i class="fa-solid fa-shield-halved"></i> Alamat Cadangan (Jika Satelit Gagal)</label>
-            <textarea id="in-address-fallback" rows="2" style="margin-top: 5px; border-color: #fde68a;" placeholder="Contoh: Jl. Perumahan, Desa Condongcatur, Kecamatan Depok, Kabupaten Sleman, Daerah Istimewa Yogyakarta, Indonesia"></textarea>
-        </div>
+<div class="app">
+  <section class="panel">
+    <h1><i class="fa-solid fa-satellite-dish"></i> GPS Map Camera V3</h1>
+    <p class="sub">Pilih posisi patok langsung pada peta satelit. Setiap titik menyimpan koordinat hasil klik; wilayah administratif diperiksa menggunakan polygon BIG, bukan reverse geocoding alamat terdekat.</p>
+    <div class="grid">
+      <div><label for="startCoord">Koordinat awal untuk membuka peta (Latitude, Longitude)</label><input id="startCoord" type="text" placeholder="Contoh: -7.741707, 110.389081" value=""></div>
+      <button class="btn" id="openMapBtn"><i class="fa-solid fa-map-location-dot"></i> Buka Lokasi di Peta</button>
     </div>
+    <div id="topStatus" class="status">Masukkan koordinat awal lalu buka peta. Koordinat awal hanya menjadi pusat peta; titik patok dibuat dengan klik pada peta.</div>
+    <details id="manualBox" class="manual-box">
+      <summary><i class="fa-solid fa-triangle-exclamation"></i> Alamat manual (darurat &mdash; kalau layanan BIG tidak bisa dihubungi)</summary>
+      <div class="form2">
+        <div><label for="mVillage">Desa / Kelurahan</label><input id="mVillage" type="text" placeholder="Contoh: Condongcatur"></div>
+        <div><label for="mDistrict">Kecamatan</label><input id="mDistrict" type="text" placeholder="Contoh: Depok"></div>
+        <div><label for="mCity">Kabupaten / Kota</label><input id="mCity" type="text" placeholder="Contoh: Sleman"></div>
+        <div><label for="mProvince">Provinsi</label><input id="mProvince" type="text" placeholder="Contoh: Daerah Istimewa Yogyakarta"></div>
+      </div>
+      <div class="controls"><button class="btn secondary" id="manualBtn"><i class="fa-solid fa-lock"></i> Kunci alamat manual untuk batch ini</button></div>
+      <p class="sub" style="margin-top:10px">Alamat manual <b>tidak terverifikasi polygon BIG</b> &mdash; dipakai hanya kalau layanan BIG mati. Foto hasil render akan diberi catatan &ldquo;alamat manual&rdquo;.</p>
+    </details>
+  </section>
 
-    <button class="btn" id="btn-proses" onclick="jalankanBatchEngine()">🚀 Mulai Penarikan Satelit & Render Patok</button>
-    
-    <button class="btn" id="btn-download-pdf" onclick="downloadAllPDF()" style="background: #059669; margin-top: 15px; display: none;">
-        <i class="fa-solid fa-file-pdf"></i> 📥 Download Semua PDF (Laporan BPN)
-    </button>
+  <section class="panel" id="mapSection">
+    <div class="maphead">
+      <div><h2 style="margin:0 0 4px;font-size:19px">Pilih titik patok</h2><p class="sub">Klik peta satelit untuk menambahkan marker. Zoom sedekat mungkin agar posisi sesuai bidang.</p></div>
+      <div class="map-tools">
+        <button class="btn secondary" id="centerBtn"><i class="fa-solid fa-crosshairs"></i> Pusatkan</button>
+        <button class="btn secondary" id="clearBtn"><i class="fa-solid fa-trash"></i> Hapus semua titik</button>
+      </div>
+    </div>
+    <div id="map"></div>
+    <div class="hint"><b>Petunjuk:</b> Klik lokasi patok satu per satu. Klik marker untuk melihat koordinat. Daftar di bawah dapat digunakan untuk menghapus titik. Semua titik dalam satu batch harus berada dalam wilayah desa/kelurahan yang sama agar alamat administratif tetap konsisten.</div>
+    <div id="gisStatus" class="status">Menunggu pemilihan titik.</div>
+    <div id="adminInfo" class="admin hidden">
+      <div><small>Desa / Kelurahan</small><strong id="admVillage">—</strong></div>
+      <div><small>Kecamatan</small><strong id="admDistrict">—</strong></div>
+      <div><small>Kabupaten / Kota</small><strong id="admCity">—</strong></div>
+      <div><small>Provinsi</small><strong id="admProvince">—</strong></div>
+    </div>
+    <div class="bottom-grid">
+      <div>
+        <label>Titik patok terpilih (<span id="pointCount">0</span>)</label>
+        <div id="pointList" class="point-list"><div class="status">Belum ada titik. Klik peta untuk menambahkan.</div></div>
+      </div>
+      <div>
+        <label>Pengaturan waktu dokumentasi</label>
+        <div class="form2">
+          <div><label for="dateTime">Tanggal & waktu mulai</label><input id="dateTime" type="datetime-local"></div>
+          <div><label for="timeMode">Interval waktu</label><select id="timeMode"><option value="random">Acak 1–3 menit</option><option value="fixed">Tetap 2 menit</option><option value="manual">Gunakan waktu sama untuk semua</option></select></div>
+        </div>
+        <div class="status warn" style="margin-top:10px">Pastikan waktu yang dimasukkan sesuai waktu dokumentasi sebenarnya. Aplikasi tidak memverifikasi waktu pengambilan kamera.</div>
+        <div class="controls">
+          <button class="btn green" id="renderBtn" disabled><i class="fa-solid fa-images"></i> Render foto patok</button>
+          <button class="btn secondary" id="pdfBtn" disabled><i class="fa-solid fa-file-pdf"></i> Download PDF</button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="results" class="results"></section>
 </div>
 
-<div id="results"></div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-
 <script>
-    // Fitur autofill waktu dinonaktifkan agar kolom kosong sesuai permintaan
-    /*
-    window.onload = () => {
-        const now = new Date();
-        now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
-        document.getElementById('in-time').value = now.toISOString().slice(0,16);
+"use strict";
+const BIG_LAYER = "https://geoservices.big.go.id/gis/rest/services/BAPANAS/Batas_Administrasi/MapServer/2/query";
+const ESRI_IMAGERY = "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}";
+let map = null, baseLayer = null, startLatLng = null, startMarker = null, markers = [], points = [], lockedAdmin = null, renderedImages = [], manualAdmin = null;
+
+const $ = id => document.getElementById(id);
+function setStatus(id, text, kind="") { const el=$(id); el.className="status"+(kind?" "+kind:""); el.textContent=text; }
+function parseCoord(raw){
+  const vals=String(raw||"").trim().replace(/[°]/g,"").split(/[,\s]+/).filter(Boolean).map(Number);
+  if(vals.length<2 || !Number.isFinite(vals[0]) || !Number.isFinite(vals[1])) throw new Error("Format koordinat harus Latitude, Longitude.");
+  const [lat,lon]=vals;
+  if(Math.abs(lat)>90 || Math.abs(lon)>180) throw new Error("Latitude harus -90..90 dan longitude -180..180.");
+  return {lat,lon};
+}
+function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+function adminKey(a){return [a.village,a.district,a.city,a.province].map(x=>(x||"").trim().toLocaleLowerCase("id-ID")).join("|");}
+
+async function lookupPolygon(lat,lon){
+  const params=new URLSearchParams({
+    f:"json",where:"1=1",geometry:`${lon},${lat}`,geometryType:"esriGeometryPoint",
+    inSR:"4326",spatialRel:"esriSpatialRelIntersects",
+    outFields:"NAMOBJ,WADMKD,WADMKC,WADMKK,WADMPR,REMARK,METADATA,UUPP,TIPADM",
+    returnGeometry:"false"
+  });
+  const response=await fetch(BIG_LAYER+"?"+params.toString(),{headers:{Accept:"application/json"}});
+  if(!response.ok) throw new Error("Server polygon BIG tidak merespons (HTTP "+response.status+").");
+  const data=await response.json();
+  if(data.error) throw new Error(data.error.message||"Layanan polygon BIG mengembalikan error.");
+  const features=data.features||[];
+  if(!features.length) throw new Error("Koordinat tidak ditemukan di polygon desa/kelurahan BIG.");
+  if(features.length>1) throw new Error("Koordinat beririsan dengan lebih dari satu polygon. Titik mungkin berada tepat di batas wilayah; geser/konfirmasi titik sebelum render.");
+  const attrs=features[0].attributes;
+  const get=(...keys)=>{for(const k of keys){const v=attrs[k]??attrs[k.toLowerCase()]??attrs[k.toUpperCase()];if(v!==null&&v!==undefined&&String(v).trim())return String(v).trim();}return "";};
+  const admin={
+    village:get("WADMKD","NAMOBJ"),
+    district:get("WADMKC"),
+    city:get("WADMKK"),
+    province:get("WADMPR"),
+    remark:get("REMARK"),
+    metadata:get("METADATA"),
+    reference:get("UUPP"),
+    source:"BIG — Batas Wilayah Administrasi Desa/Kelurahan"
+  };
+  if(!admin.village || !admin.district || !admin.city || !admin.province)
+    throw new Error("Polygon ditemukan, tetapi atribut desa/kecamatan/kabupaten/provinsi tidak lengkap. Titik tidak boleh dirender dulu.");
+  return admin;
+}
+function makeIcon(n){return L.divIcon({className:"",html:`<div class="marker-label">${n}</div>`,iconSize:[30,30],iconAnchor:[15,15]});}
+function updatePointUI(){
+  $("pointCount").textContent=points.length;
+  $("pointList").innerHTML=points.length?points.map((p,i)=>`
+    <div class="point-row">
+      <div class="point-left"><span class="num">${i+1}</span><div class="point-meta"><b>Patok ${i+1} · ${p.admin?(p.manual?"Alamat manual":"Terverifikasi"):"Memeriksa polygon…"}</b><small>${p.lat.toFixed(6)}, ${p.lon.toFixed(6)}</small></div></div>
+      <button class="btn danger" style="padding:8px 10px" onclick="removePoint(${p.id})" aria-label="Hapus titik ${i+1}"><i class="fa-solid fa-xmark"></i></button>
+    </div>`).join(""):`<div class="status">Belum ada titik. Klik peta untuk menambahkan.</div>`;
+  const ready=points.length>0 && points.every(p=>p.admin && !p.error) && lockedAdmin && points.every(p=>adminKey(p.admin)===adminKey(lockedAdmin));
+  $("renderBtn").disabled=!ready;
+  $("pdfBtn").disabled=renderedImages.length===0;
+}
+function showAdmin(a){
+  $("adminInfo").classList.remove("hidden");
+  $("admVillage").textContent=a.village;$("admDistrict").textContent=a.district;
+  $("admCity").textContent=a.city;$("admProvince").textContent=a.province;
+}
+function redrawMarkers(){
+  markers.forEach(m=>map.removeLayer(m));markers=[];
+  points.forEach((p,i)=>{
+    const marker=L.marker([p.lat,p.lon],{icon:makeIcon(i+1),draggable:true}).addTo(map);
+    marker.bindPopup(`<b>Patok ${i+1}</b><br>${p.lat.toFixed(6)}, ${p.lon.toFixed(6)}<br>${p.admin?esc(p.admin.village+", "+p.admin.district):"Memeriksa wilayah…"}`);
+    marker.on("dragend",async ev=>{
+      const ll=ev.target.getLatLng();p.lat=ll.lat;p.lon=ll.lng;p.admin=null;p.error=null;
+      await validatePoint(p);redrawMarkers();updatePointUI();
+    });
+    markers.push(marker);
+  });
+}
+async function validatePoint(point){
+  setStatus("gisStatus",`Memeriksa polygon BIG untuk titik ${points.indexOf(point)+1}…`);
+  try{
+    const a=await lookupPolygon(point.lat,point.lon);
+    point.admin=a;point.error=null;
+    if(!lockedAdmin){lockedAdmin=a;showAdmin(a);}
+    if(adminKey(a)!==adminKey(lockedAdmin)){
+      point.error="Titik berada di wilayah administratif berbeda dari titik pertama.";
+      setStatus("gisStatus",`PERINGATAN: Patok ${points.indexOf(point)+1} berada di ${a.village}, ${a.district}, berbeda dari wilayah batch ${lockedAdmin.village}, ${lockedAdmin.district}. Hapus atau pindahkan titik agar alamat tidak tercampur.`, "warn");
+    } else {
+      setStatus("gisStatus",`Polygon BIG cocok: ${a.village}, ${a.district}, ${a.city}, ${a.province}. Wilayah batch dikunci.`, "ok");
+    }
+  }catch(err){
+    if (manualAdmin) {
+      point.admin=manualAdmin;point.manual=true;point.error=null;
+      setStatus("gisStatus",`Polygon BIG gagal untuk patok ${points.indexOf(point)+1} (${err.message}) — memakai alamat manual: ${manualAdmin.village}, ${manualAdmin.district}.`, "warn");
+    } else {
+      point.error=err.message;point.admin=null;
+      setStatus("gisStatus",`Gagal memvalidasi patok ${points.indexOf(point)+1}: ${err.message}`, "err");
+    }
+  }
+}
+async function addPoint(lat,lon){
+  if(!lockedAdmin){setStatus("gisStatus","Wilayah polygon dari koordinat awal belum tervalidasi. Render dan pemilihan titik dikunci sampai lookup BIG berhasil atau alamat manual dikunci.","err");return;}
+  if(points.length>=100){setStatus("gisStatus","Maksimal 100 titik per batch.","warn");return;}
+  const p={id:Date.now()+Math.random(),lat,lon,admin:null,error:null};
+  points.push(p);redrawMarkers();updatePointUI();
+  await validatePoint(p);redrawMarkers();updatePointUI();
+}
+window.removePoint=function(id){
+  points=points.filter(p=>p.id!==id);
+  if(!points.length){lockedAdmin=null;$("adminInfo").classList.add("hidden");setStatus("gisStatus","Semua titik dihapus. Klik peta untuk memilih titik baru.");}
+  else if(!lockedAdmin || !points.some(p=>p.admin && adminKey(p.admin)===adminKey(lockedAdmin))){
+    lockedAdmin=points.find(p=>p.admin)?.admin||null;if(lockedAdmin)showAdmin(lockedAdmin);
+  }
+  redrawMarkers();updatePointUI();
+};
+$("openMapBtn").addEventListener("click",async()=>{
+  try{
+    const c=parseCoord($("startCoord").value);startLatLng=L.latLng(c.lat,c.lon);
+    $("mapSection").style.display="block";
+    points=[];lockedAdmin=null;manualAdmin=null;renderedImages=[];$("results").innerHTML="";$("adminInfo").classList.add("hidden");
+    if(!map){
+      map=L.map("map",{center:startLatLng,zoom:19,zoomControl:true});
+      baseLayer=L.tileLayer(ESRI_IMAGERY,{maxZoom:22,attribution:'Imagery © <a href="https://www.esri.com/">Esri</a>, Maxar, Earthstar Geographics, and the GIS User Community'}).addTo(map);
+      map.on("click",e=>addPoint(e.latlng.lat,e.latlng.lng));
+    }else{map.setView(startLatLng,19);setTimeout(()=>map.invalidateSize(),150);}
+    if(startMarker)map.removeLayer(startMarker);
+    startMarker=L.circleMarker(startLatLng,{radius:8,color:"#fff",weight:3,fillColor:"#f59e0b",fillOpacity:1}).addTo(map).bindPopup("Koordinat awal / pusat peta");
+    setStatus("topStatus",`Memeriksa polygon BIG pada koordinat awal ${c.lat.toFixed(6)}, ${c.lon.toFixed(6)}…`);
+    setStatus("gisStatus","Mengambil wilayah administrasi polygon dari koordinat awal…");
+    try{
+      lockedAdmin=await lookupPolygon(c.lat,c.lon);showAdmin(lockedAdmin);
+      setStatus("topStatus",`Lokasi ditemukan: ${lockedAdmin.village}, ${lockedAdmin.district}, ${lockedAdmin.city}, ${lockedAdmin.province}. Klik peta untuk memilih patok.`,`ok`);
+      setStatus("gisStatus",`Wilayah batch dikunci dari koordinat awal: ${lockedAdmin.village}, ${lockedAdmin.district}, ${lockedAdmin.city}, ${lockedAdmin.province}. Semua titik patok harus berada dalam polygon administrasi yang sama.`,`ok`);
+    }catch(gisError){
+      lockedAdmin=null;setStatus("topStatus",`Peta terbuka, tetapi polygon BIG gagal diverifikasi: ${gisError.message}. Isi alamat manual di bawah untuk membuka kunci, atau coba lagi nanti.`,`err`);
+      setStatus("gisStatus",`Gagal mengambil polygon wilayah dari koordinat awal: ${gisError.message}`,"err");
+      $("manualBox").open=true;
+    }
+    redrawMarkers();updatePointUI();setTimeout(()=>map.invalidateSize(),200);
+  }catch(e){setStatus("topStatus",e.message,"err");}
+});
+$("manualBtn").addEventListener("click",()=>{
+  const v={village:$("mVillage").value.trim(),district:$("mDistrict").value.trim(),city:$("mCity").value.trim(),province:$("mProvince").value.trim()};
+  if(!v.village||!v.district||!v.city||!v.province){setStatus("topStatus","Lengkapi keempat kolom alamat manual dulu (desa, kecamatan, kabupaten/kota, provinsi).","err");return;}
+  manualAdmin={...v,remark:"",metadata:"",reference:"",source:"Manual — tanpa verifikasi polygon BIG"};
+  lockedAdmin=manualAdmin;
+  points=[];renderedImages=[];$("results").innerHTML="";
+  showAdmin(manualAdmin);
+  setStatus("topStatus",`Alamat manual dikunci: ${v.village}, ${v.district}, ${v.city}, ${v.province}. Titik patok memakai alamat ini (bukan hasil polygon BIG).`,"warn");
+  setStatus("gisStatus","Wilayah batch dikunci dari alamat manual. Semua titik patok memakai alamat ini.","warn");
+  redrawMarkers();updatePointUI();
+});
+$("centerBtn").addEventListener("click",()=>{if(startLatLng)map.setView(startLatLng,20);});
+$("clearBtn").addEventListener("click",()=>{
+  points=[];lockedAdmin=null;manualAdmin=null;renderedImages=[];$("results").innerHTML="";$("adminInfo").classList.add("hidden");
+  setStatus("gisStatus","Semua titik dan hasil render telah dibersihkan.");redrawMarkers();updatePointUI();
+});
+function formatTanggalGPS(d){
+  const dd=String(d.getDate()).padStart(2,"0"),mm=String(d.getMonth()+1).padStart(2,"0"),yy=String(d.getFullYear()).slice(-2);
+  let h=d.getHours();const ap=h>=12?"PM":"AM";h=h%12||12;
+  return `${yy}/${mm}/${dd} ${String(h).padStart(2,"0")}:${String(d.getMinutes()).padStart(2,"0")} ${ap}`;
+}
+function wrapText(ctx,text,x,y,maxWidth,lineHeight){
+  const words=String(text).split(/\s+/);let line="",cy=y;
+  for(const word of words){const test=line+word+" ";if(ctx.measureText(test).width>maxWidth&&line){ctx.fillText(line,x,cy);line=word+" ";cy+=lineHeight;}else line=test;}
+  if(line)ctx.fillText(line,x,cy);return cy+lineHeight;
+}
+const FOTO_CDN="https://cdn.jsdelivr.net/gh/pmamediajogja-cyber/sistem-notaris@main/foto_patok";
+function loadPatokImage(){
+  return new Promise((resolve,reject)=>{
+    const tried=new Set();
+    const attempt=()=>{
+      if(tried.size>=3) return reject(new Error("foto_patok tidak bisa dimuat dari CDN setelah 3 percobaan."));
+      let idx=Math.floor(Math.random()*39)+1;
+      while(tried.has(idx)) idx=Math.floor(Math.random()*39)+1;
+      tried.add(idx);
+      const img=new Image();
+      img.crossOrigin="anonymous"; // wajib: tanpa ini canvas ke-taint dan export gagal
+      img.onload=()=>resolve(img);
+      img.onerror=()=>attempt();
+      img.src=`${FOTO_CDN}/${idx}.jpg`;
     };
-    */
+    attempt();
+  });
+}
+function makePlusCode(lat,lon){
+  try{if(typeof OpenLocationCode!=="undefined"){const full=OpenLocationCode.encode(lat,lon,10);return OpenLocationCode.shorten(full,lat,lon);}}catch(e){}
+  return "";
+}
+// ---- Mini-map OSM (di-port dari generator_batch live) ----
+function rr(ctx,x,y,w,h,r){r=Math.min(r,w/2,h/2);ctx.beginPath();ctx.moveTo(x+r,y);ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath();}
+function gambarPin(ctx,x,y,s){
+  ctx.save();ctx.fillStyle="#EA4335";
+  ctx.beginPath();ctx.moveTo(x-0.20*s,y-0.42*s);ctx.lineTo(x+0.20*s,y-0.42*s);ctx.lineTo(x,y);ctx.closePath();ctx.fill();
+  ctx.beginPath();ctx.arc(x,y-0.62*s,0.34*s,0,Math.PI*2);ctx.fill();
+  ctx.fillStyle="#A50E0E";ctx.beginPath();ctx.arc(x,y-0.62*s,0.14*s,0,Math.PI*2);ctx.fill();ctx.restore();
+}
+function latLonKeTile(lat,lon,z){
+  const n=Math.pow(2,z);const xt=(lon+180)/360*n;const latRad=lat*Math.PI/180;
+  const yt=(1-Math.log(Math.tan(latRad)+1/Math.cos(latRad))/Math.PI)/2*n;
+  return {x:xt,y:yt};
+}
+function muatGambar(url){
+  return new Promise((resolve,reject)=>{const im=new Image();im.crossOrigin="anonymous";im.onload=()=>resolve(im);im.onerror=reject;im.src=url;});
+}
+const _cachePeta={};
+async function petaKotak(lat,lon){
+  const z=16;const t=latLonKeTile(lat,lon,z);
+  const tx0=Math.floor(t.x)-1,ty0=Math.floor(t.y)-1;
+  const key=z+"/"+tx0+"/"+ty0;
+  if(_cachePeta[key]) return {c:_cachePeta[key],px:(t.x-tx0)*256,py:(t.y-ty0)*256};
+  const c=document.createElement("canvas");c.width=768;c.height=768;
+  const cx=c.getContext("2d");cx.fillStyle="#223322";cx.fillRect(0,0,768,768);
+  const jobs=[];
+  for(let dy=0;dy<3;dy++) for(let dx=0;dx<3;dx++){
+    jobs.push(muatGambar(`https://tile.openstreetmap.org/${z}/${tx0+dx}/${ty0+dy}.png`).then(im=>cx.drawImage(im,dx*256,dy*256)).catch(()=>{}));
+  }
+  await Promise.all(jobs);_cachePeta[key]=c;
+  return {c,px:(t.x-tx0)*256,py:(t.y-ty0)*256};
+}
+async function gambarMiniMap(ctx,lat,lon,dx,dy,size,sc){
+  ctx.save();rr(ctx,dx,dy,size,size,14*sc);ctx.clip();
+  try{
+    const r=await petaKotak(lat,lon);const crop=420;
+    let sx=Math.round(r.px-crop/2),sy=Math.round(r.py-crop/2);
+    sx=Math.max(0,Math.min(768-crop,sx));sy=Math.max(0,Math.min(768-crop,sy));
+    ctx.drawImage(r.c,sx,sy,crop,crop,dx,dy,size,size);
+  }catch(e){ctx.fillStyle="#2f3b2f";ctx.fillRect(dx,dy,size,size);}
+  gambarPin(ctx,dx+size/2,dy+size/2,size*0.30);
+  ctx.restore();
+  ctx.strokeStyle="rgba(255,255,255,0.9)";ctx.lineWidth=Math.max(2,4*sc);
+  rr(ctx,dx,dy,size,size,14*sc);ctx.stroke();
+}
 
-    // Mesin Haversine: Menghitung koordinat baru bergeser jarak (dalam meter)
-    function hitungTitikBaru(lat, lon, distance, bearing) {
-        const R = 6378137; // Radius bumi dalam meter
-        const brng = bearing * Math.PI / 180;
-        const lat1 = lat * Math.PI / 180;
-        const lon1 = lon * Math.PI / 180;
-        const lat2 = Math.asin(Math.sin(lat1) * Math.cos(distance/R) + Math.cos(lat1) * Math.sin(distance/R) * Math.cos(brng));
-        const lon2 = lon1 + Math.atan2(Math.sin(brng) * Math.sin(distance/R) * Math.cos(lat1), Math.cos(distance/R) - Math.sin(lat1) * Math.sin(lat2));
-        return { lat: lat2 * 180 / Math.PI, lon: lon2 * 180 / Math.PI };
+async function renderCanvas(img,p,index,time){
+  const canvas=document.createElement("canvas");canvas.width=img.naturalWidth||img.width;canvas.height=img.naturalHeight||img.height;
+  const ctx=canvas.getContext("2d");ctx.drawImage(img,0,0,canvas.width,canvas.height);
+  // Mini-map di sudut kanan atas (di-port dari versi live).
+  const mapSize=Math.round(300*(canvas.width/1080));
+  await gambarMiniMap(ctx,p.lat,p.lon,canvas.width-mapSize-30*(canvas.width/1080),30*(canvas.width/1080),mapSize,canvas.width/1080);
+  const scale=canvas.width/1080,gradHeight=350*scale;
+  const grad=ctx.createLinearGradient(0,canvas.height-gradHeight,0,canvas.height);
+  grad.addColorStop(0,"rgba(0,0,0,0)");grad.addColorStop(.3,"rgba(0,0,0,.62)");grad.addColorStop(1,"rgba(0,0,0,.92)");
+  ctx.fillStyle=grad;ctx.fillRect(0,canvas.height-gradHeight,canvas.width,gradHeight);
+  const margin=40*scale,maxWidth=canvas.width-80*scale;ctx.fillStyle="#fff";ctx.shadowColor="rgba(0,0,0,.85)";ctx.shadowBlur=4*scale;ctx.shadowOffsetX=2*scale;ctx.shadowOffsetY=2*scale;
+  let y=canvas.height-260*scale;
+  const bw=160*scale,bh=40*scale,bx=canvas.width-bw-margin,by=y-50*scale;
+  ctx.shadowColor="transparent";ctx.fillStyle="rgba(0,0,0,.65)";ctx.beginPath();if(ctx.roundRect)ctx.roundRect(bx,by,bw,bh,8*scale);else ctx.rect(bx,by,bw,bh);ctx.fill();
+  ctx.fillStyle="#38bdf8";ctx.fillRect(bx+10*scale,by+10*scale,20*scale,20*scale);ctx.fillStyle="#facc15";ctx.beginPath();ctx.arc(bx+20*scale,by+20*scale,4*scale,0,Math.PI*2);ctx.fill();
+  ctx.fillStyle="#fff";ctx.font=`bold ${11*scale}px Arial`;ctx.fillText("GPS Map Camera",bx+40*scale,by+24*scale);ctx.shadowColor="rgba(0,0,0,.85)";
+  const title=`${p.admin.province}, Indonesia`;
+  const plus=makePlusCode(p.lat,p.lon);
+  let address=[plus,p.admin.village,p.admin.district,p.admin.city,p.admin.province,"Indonesia"].filter(Boolean).join(", ");
+  if(p.manual) address+=" • Alamat manual (tanpa verifikasi polygon BIG)";
+  ctx.font=`bold ${32*scale}px Arial`;y=wrapText(ctx,title,margin,y,maxWidth,40*scale);
+  y+=5*scale;ctx.font=`bold ${24*scale}px Arial`;y=wrapText(ctx,address,margin,y,maxWidth,35*scale);
+  y+=15*scale;ctx.font=`bold ${24*scale}px Arial`;ctx.fillText(`Lat ${p.lat.toFixed(6)}°`,margin,y);
+  y+=35*scale;ctx.fillText(`Long ${p.lon.toFixed(6)}°`,margin,y);
+  y+=35*scale;ctx.fillText(formatTanggalGPS(time),margin,y);
+  return canvas.toDataURL("image/jpeg",.95);
+}
+$("renderBtn").addEventListener("click",async()=>{
+  if(!points.length||points.some(p=>!p.admin||p.error)||!lockedAdmin){alert("Pastikan semua titik sudah lolos pemeriksaan polygon BIG dan berada dalam wilayah yang sama.");return;}
+  const dt=$("dateTime").value;if(!dt){alert("Isi tanggal dan waktu dokumentasi terlebih dahulu.");return;}
+  let time=new Date(dt);if(Number.isNaN(time.getTime())){alert("Tanggal/waktu tidak valid.");return;}
+  $("renderBtn").disabled=true;$("results").innerHTML="";renderedImages=[];setStatus("gisStatus","Memulai proses render foto…");
+  try{
+    for(let i=0;i<points.length;i++){
+      setStatus("gisStatus",`Merender foto patok ${i+1} dari ${points.length}…`);
+      const img=await loadPatokImage();
+      const data=await renderCanvas(img,points[i],i,time);
+      renderedImages.push({data,lat:points[i].lat,lon:points[i].lon});
+      const card=document.createElement("div");card.className="result-card";
+      const a=document.createElement("a");a.className="dl";a.href=data;a.download=`Patok_${i+1}.jpg`;a.innerHTML='<i class="fa-solid fa-download"></i>';
+      const image=document.createElement("img");image.src=data;image.alt=`Dokumentasi patok ${i+1}`;
+      const meta=document.createElement("div");meta.className="meta";meta.textContent=`Patok ${i+1}`;
+      const coords=document.createElement("div");coords.className="coords";coords.textContent=`${points[i].lat.toFixed(6)}, ${points[i].lon.toFixed(6)}`;
+      card.append(a,image,meta,coords);$("results").appendChild(card);
+      const mode=$("timeMode").value;
+      if(mode==="random")time.setMinutes(time.getMinutes()+Math.floor(Math.random()*3)+1);
+      else if(mode==="fixed")time.setMinutes(time.getMinutes()+2);
     }
-
-    // Format Tanggal ala Aplikasi GPS
-    function formatTanggalGPS(dateObj) {
-        const dd = String(dateObj.getDate()).padStart(2, '0');
-        const mm = String(dateObj.getMonth() + 1).padStart(2, '0');
-        const yy = String(dateObj.getFullYear()).slice(-2);
-        let hrs = dateObj.getHours();
-        const ampm = hrs >= 12 ? 'PM' : 'AM';
-        hrs = hrs % 12; hrs = hrs ? hrs : 12; 
-        const h = String(hrs).padStart(2, '0');
-        const min = String(dateObj.getMinutes()).padStart(2, '0');
-        return `${yy}/${mm}/${dd} ${h}:${min} ${ampm}`;
-    }
-
-    // Pembuat Teks Multi-baris pada Canvas
-    function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
-        const words = text.split(' ');
-        let line = ''; let currentY = y;
-        for(let n = 0; n < words.length; n++) {
-            const testLine = line + words[n] + ' ';
-            const metrics = ctx.measureText(testLine);
-            if (metrics.width > maxWidth && n > 0) {
-                ctx.fillText(line, x, currentY);
-                line = words[n] + ' '; currentY += lineHeight;
-            } else { line = testLine; }
-        }
-        ctx.fillText(line, x, currentY);
-        return currentY + lineHeight; // Mengembalikan kursor Y terbaru
-    }
-
-    // ==========================================
-    // HELPER TEMPLATE GPS MAP CAMERA
-    // ==========================================
-    function rr(ctx, x, y, w, h, r) {
-        r = Math.min(r, w/2, h/2);
-        ctx.beginPath();
-        ctx.moveTo(x + r, y);
-        ctx.arcTo(x + w, y, x + w, y + h, r);
-        ctx.arcTo(x + w, y + h, x, y + h, r);
-        ctx.arcTo(x, y + h, x, y, r);
-        ctx.arcTo(x, y, x + w, y, r);
-        ctx.closePath();
-    }
-    // Pin merah gaya Google Maps (ujung pin di x,y)
-    function gambarPin(ctx, x, y, s) {
-        ctx.save();
-        ctx.fillStyle = '#EA4335';
-        ctx.beginPath();
-        ctx.moveTo(x - 0.20*s, y - 0.42*s);
-        ctx.lineTo(x + 0.20*s, y - 0.42*s);
-        ctx.lineTo(x, y);
-        ctx.closePath();
-        ctx.fill();
-        ctx.beginPath();
-        ctx.arc(x, y - 0.62*s, 0.34*s, 0, Math.PI*2);
-        ctx.fill();
-        ctx.fillStyle = '#A50E0E';
-        ctx.beginPath();
-        ctx.arc(x, y - 0.62*s, 0.14*s, 0, Math.PI*2);
-        ctx.fill();
-        ctx.restore();
-    }
-    function latLonKeTile(lat, lon, z) {
-        const n = Math.pow(2, z);
-        const xt = (lon + 180) / 360 * n;
-        const latRad = lat * Math.PI / 180;
-        const yt = (1 - Math.log(Math.tan(latRad) + 1/Math.cos(latRad)) / Math.PI) / 2 * n;
-        return {x: xt, y: yt};
-    }
-    function muatGambar(url) {
-        return new Promise((resolve, reject) => {
-            const im = new Image();
-            im.crossOrigin = "anonymous";
-            im.onload = () => resolve(im);
-            im.onerror = reject;
-            im.src = url;
-        });
-    }
-    const _cachePeta = {};
-    async function petaKotak(lat, lon) {
-        const z = 16;
-        const t = latLonKeTile(lat, lon, z);
-        const tx0 = Math.floor(t.x) - 1, ty0 = Math.floor(t.y) - 1;
-        const key = z + '/' + tx0 + '/' + ty0;
-        if (_cachePeta[key]) return { c: _cachePeta[key], px: (t.x - tx0)*256, py: (t.y - ty0)*256 };
-        const c = document.createElement('canvas');
-        c.width = 768; c.height = 768;
-        const cx = c.getContext('2d');
-        cx.fillStyle = '#223322';
-        cx.fillRect(0, 0, 768, 768);
-        const jobs = [];
-        for (let dy = 0; dy < 3; dy++) for (let dx = 0; dx < 3; dx++) {
-            jobs.push(muatGambar(`https://tile.openstreetmap.org/${z}/${tx0+dx}/${ty0+dy}.png`)
-                .then(im => cx.drawImage(im, dx*256, dy*256))
-                .catch(() => {}));
-        }
-        await Promise.all(jobs);
-        _cachePeta[key] = c;
-        return { c, px: (t.x - tx0)*256, py: (t.y - ty0)*256 };
-    }
-    async function gambarMiniMap(ctx, lat, lon, dx, dy, size, sc) {
-        ctx.save();
-        rr(ctx, dx, dy, size, size, 14*sc);
-        ctx.clip();
-        try {
-            const r = await petaKotak(lat, lon);
-            const crop = 420;
-            let sx = Math.round(r.px - crop/2), sy = Math.round(r.py - crop/2);
-            sx = Math.max(0, Math.min(768 - crop, sx));
-            sy = Math.max(0, Math.min(768 - crop, sy));
-            ctx.drawImage(r.c, sx, sy, crop, crop, dx, dy, size, size);
-        } catch(e) {
-            ctx.fillStyle = '#2f3b2f';
-            ctx.fillRect(dx, dy, size, size);
-        }
-        gambarPin(ctx, dx + size/2, dy + size/2, size*0.30);
-        ctx.restore();
-        ctx.strokeStyle = 'rgba(255,255,255,0.9)';
-        ctx.lineWidth = Math.max(2, 4*sc);
-        rr(ctx, dx, dy, size, size, 14*sc);
-        ctx.stroke();
-    }
-    function gambarLogoBadge(ctx, W, barY, sc) {
-        const h = 56*sc, pad = 18*sc;
-        ctx.save();
-        ctx.font = `bold ${27*sc}px Arial`;
-        const tw = ctx.measureText('GPS Map Camera').width;
-        const w = tw + 96*sc;
-        const x = W - w - pad, y = barY - h - Math.round(14*sc);
-        ctx.fillStyle = 'rgba(13,20,36,0.78)';
-        rr(ctx, x, y, w, h, 14*sc);
-        ctx.fill();
-        const isz = 36*sc, ix = x + 13*sc, iy = y + (h - isz)/2;
-        ctx.fillStyle = '#38bdf8';
-        rr(ctx, ix, iy, isz, isz, 9*sc);
-        ctx.fill();
-        gambarPin(ctx, ix + isz/2, iy + isz*0.80, isz*0.66);
-        ctx.fillStyle = '#ffffff';
-        ctx.textBaseline = 'middle';
-        ctx.fillText('GPS Map Camera', ix + isz + 13*sc, y + h/2 + 1);
-        ctx.restore();
-    }
-    function formatTanggalGPS2(d) {
-        const dd = String(d.getDate()).padStart(2,'0');
-        const mm = String(d.getMonth()+1).padStart(2,'0');
-        const yy = String(d.getFullYear()).slice(-2);
-        let hrs = d.getHours();
-        const ampm = hrs >= 12 ? 'PM' : 'AM';
-        hrs = hrs % 12 || 12;
-        const off = -d.getTimezoneOffset();
-        const sgn = off >= 0 ? '+' : '-';
-        const oh = String(Math.floor(Math.abs(off)/60)).padStart(2,'0');
-        const om = String(Math.abs(off)%60).padStart(2,'0');
-        return `${dd}/${mm}/${yy} ${String(hrs).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')} ${ampm} GMT ${sgn}${oh}:${om}`;
-    }
-
-    // ==========================================
-    // MESIN UTAMA: ONLINE FETCH & CANVAS RENDER
-    // ==========================================
-    async function jalankanBatchEngine() {
-        const inputStrVal = document.getElementById('in-koordinat').value;
-        if (!inputStrVal) return alert("Silakan isi Koordinat Awal terlebih dahulu!");
-
-        const inputStr = inputStrVal.replace(/[^0-9.,-]/g, '');
-        const parts = inputStr.split(',');
-        if (parts.length < 2) return alert("Format Koordinat salah! Gunakan koma untuk pemisah Lat dan Lon.");
-        
-        let currentLat = parseFloat(parts[0]);
-        let currentLon = parseFloat(parts[1]);
-        
-        const inputJumlah = document.getElementById('in-jumlah').value;
-        const jmlFoto = inputJumlah ? parseInt(inputJumlah) : 50; // default 50 jika kosong
-
-        const inputWaktu = document.getElementById('in-time').value;
-        let currentTime = inputWaktu ? new Date(inputWaktu) : new Date(); // default sekarang jika kosong
-
-        const fallbackAddress = document.getElementById('in-address-fallback').value || "Lokasi Cadangan Tidak Diisi";
-
-        const btn = document.getElementById('btn-proses');
-        const statusBox = document.getElementById('status-box');
-        const statusText = document.getElementById('status-text');
-        const resultsDiv = document.getElementById('results');
-        
-        btn.disabled = true;
-        statusBox.style.display = 'block';
-        statusBox.style.background = '#eff6ff';
-        statusBox.style.color = '#1d4ed8';
-        resultsDiv.innerHTML = '';
-
-        let titleText = "Lokasi Tidak Diketahui, Indonesia";
-        let addressText = fallbackAddress; 
-
-        try {
-            // TAHAP 1: REQUEST ONLINE KE SATELIT
-            statusText.innerHTML = "Menghubungi satelit lokasi secara online...";
-            
-            try {
-                const apiUrl = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${currentLat}&lon=${currentLon}&addressdetails=1&email=kantor.notaris@gmail.com`;
-                const geoCtrl = new AbortController();
-                const geoTimer = setTimeout(() => geoCtrl.abort(), 8000); // timeout 8 detik -> pakai alamat manual
-                let geoRes = null;
-                try {
-                    geoRes = await fetch(apiUrl, { headers: { 'Accept-Language': 'id-ID' }, signal: geoCtrl.signal });
-                } catch (fetchErr) {
-                    console.warn("Geocoding timeout/gagal, pakai alamat cadangan.");
-                } finally {
-                    clearTimeout(geoTimer);
-                }
-                
-                if (geoRes && geoRes.ok) {
-                    const geoData = await geoRes.json();
-                    if(geoData && geoData.address) {
-                        const adr = geoData.address;
-                        const desa = adr.village || adr.neighbourhood || adr.hamlet || "";
-                        const jalan = adr.road || adr.pedestrian || adr.path || "";
-                        const kecamatanAsli = adr.city_district || adr.suburb || "";
-                        const kabupatenAsli = adr.city || adr.county || "";
-                        const provinsi = adr.state || "";
-                        const kodepos = adr.postcode || "";
-
-                        // Merakit Judul Cetak Tebal
-                        let titleParts = [];
-                        if (kecamatanAsli) titleParts.push(kecamatanAsli.startsWith('Kec') ? kecamatanAsli : 'Kecamatan ' + kecamatanAsli);
-                        if (provinsi) titleParts.push(provinsi);
-                        titleParts.push("Indonesia");
-                        titleText = titleParts.join(", ");
-
-                        // Merakit Alamat Detail (kecamatan dihilangkan — sudah ada di judul)
-                        let addrArray = [];
-                        if (jalan) addrArray.push(jalan);
-                        if (desa) addrArray.push(desa);
-                        if (kabupatenAsli) addrArray.push(kabupatenAsli.startsWith('Kab') ? kabupatenAsli : 'Kabupaten ' + kabupatenAsli);
-                        if (provinsi) addrArray.push(kodepos ? `${provinsi} ${kodepos}` : provinsi);
-                        addrArray.push("Indonesia");
-                        
-                        addressText = addrArray.join(", ");
-                    }
-                }
-            } catch (osmError) {
-                console.warn("Koneksi satelit gagal. Sistem mengaktifkan alamat cadangan.");
-            }
-
-            // TAHAP 2: BATCH PROCESSING KANVAS GAMBAR
-            for (let i = 1; i <= jmlFoto; i++) {
-                statusText.innerText = `Merender foto patok ke-${i} dari ${jmlFoto}...`;
-
-                const img = new Image();
-                img.crossOrigin = "anonymous";
-                let isImageLoaded = false;
-                
-                // SISTEM FOTO ACAK (RANDOM SELECTION)
-                // Mengambil foto secara acak dari 1.jpg sampai 39.jpg
-                const totalFotoPatok = 39;
-                const randomIndex = Math.floor(Math.random() * totalFotoPatok) + 1;
-                img.src = `https://cdn.jsdelivr.net/gh/pmamediajogja-cyber/sistem-notaris@main/foto_patok/${randomIndex}.jpg`;
-                
-                try {
-                    await new Promise((resolve, reject) => { 
-                        img.onload = resolve; 
-                        img.onerror = () => reject(new Error("Gambar tidak ditemukan")); 
-                    });
-                    isImageLoaded = true;
-                } catch (e) {
-                    // Jika gagal, coba lagi dengan foto lain secara acak
-                    let percobaan = 0;
-                    while (!isImageLoaded && percobaan < 5) {
-                        const fallbackIndex = Math.floor(Math.random() * totalFotoPatok) + 1;
-                        img.src = `https://cdn.jsdelivr.net/gh/pmamediajogja-cyber/sistem-notaris@main/foto_patok/${fallbackIndex}.jpg`;
-                        try {
-                            await new Promise((resolve, reject) => { 
-                                img.onload = resolve; 
-                                img.onerror = () => reject(new Error("Gambar tidak ditemukan")); 
-                            });
-                            isImageLoaded = true;
-                        } catch (err) {
-                            percobaan++;
-                        }
-                    }
-                }
-
-                if(!isImageLoaded) {
-                    alert("Folder foto patok kosong / tidak dapat diakses!");
-                    break;
-                }
-
-                // ==========================================
-                // JARING PENGAMAN: PLUS CODE LIBRARY BYPASS
-                // ==========================================
-                let finalAddressText = addressText;
-                try {
-                    if (typeof OpenLocationCode !== 'undefined') {
-                        const fullPlusCode = OpenLocationCode.encode(currentLat, currentLon, 10);
-                        const shortPlusCode = fullPlusCode.substring(4); // Cth: 69FW+RQX
-                        finalAddressText = `${shortPlusCode}, ${addressText}`;
-                    } else {
-                        console.warn("Library Plus Code gagal diunduh browser. Melanjutkan tanpa Plus Code.");
-                    }
-                } catch(err) {
-                    console.warn("Gagal men-generate Plus Code", err);
-                }
-
-                // Render Canvas
-                const canvas = document.createElement('canvas');
-                canvas.width = img.width;
-                canvas.height = img.height;
-                const ctx = canvas.getContext('2d');
-
-                // Efek Kamera Acak (Zoom & Geser)
-                const zoomFactor = 1.0 + (Math.random() * 0.15);
-                const newImgWidth = img.width * zoomFactor;
-                const newImgHeight = img.height * zoomFactor;
-                const offsetX = - (Math.random() * (newImgWidth - canvas.width));
-                const offsetY = - (Math.random() * (newImgHeight - canvas.height));
-
-                ctx.drawImage(img, offsetX, offsetY, newImgWidth, newImgHeight);
-
-                const scale = canvas.width / 1080;
-
-                // ==========================================
-                // TEMPLATE GPS MAP CAMERA (mini map + logo + bar alamat)
-                // ==========================================
-                const barH = Math.round(canvas.height * 0.30);
-                const barY = canvas.height - barH;
-                const sT = Math.min(scale, barH / 300); // skala teks agar muat di bar
-
-                // Bar alamat bawah (gelap transparan)
-                ctx.fillStyle = 'rgba(18,18,18,0.74)';
-                ctx.fillRect(0, barY, canvas.width, barH);
-                ctx.fillStyle = 'rgba(255,255,255,0.18)';
-                ctx.fillRect(0, barY, canvas.width, Math.max(2, 3 * sT));
-
-                // Mini Map (OpenStreetMap) kiri bawah
-                const mapSize = Math.round(Math.min(canvas.width * 0.235, barH - 44 * sT));
-                const mapX = Math.round(22 * sT);
-                const mapY = Math.round(canvas.height - mapSize - 22 * sT);
-                await gambarMiniMap(ctx, currentLat, currentLon, mapX, mapY, mapSize, sT);
-
-                // Teks alamat kanan mini map
-                const tx = mapX + mapSize + Math.round(22 * sT);
-                let ty = barY + Math.round(42 * sT);
-                const maxW = canvas.width - tx - Math.round(22 * sT);
-                ctx.fillStyle = '#ffffff';
-                ctx.textBaseline = 'alphabetic';
-                ctx.font = `bold ${30 * sT}px Arial`;
-                ty = wrapText(ctx, titleText, tx, ty, maxW, 40 * sT);
-                ty += 10 * sT;
-                ctx.font = `${25 * sT}px Arial`;
-                ty = wrapText(ctx, finalAddressText, tx, ty, maxW, 34 * sT);
-                ty += 14 * sT;
-                ctx.font = `bold ${25 * sT}px Arial`;
-                ctx.fillText(`Lat ${currentLat.toFixed(6)}\u00B0`, tx, ty);
-                ty += 36 * sT;
-                ctx.fillText(`Long ${currentLon.toFixed(6)}\u00B0`, tx, ty);
-                ty += 36 * sT;
-                ctx.fillText(formatTanggalGPS2(currentTime), tx, ty);
-
-                // Logo badge kanan bawah (di atas bar alamat)
-                gambarLogoBadge(ctx, canvas.width, barY, scale);
-
-                // ==========================================
-
-                // Ekspor Data Gambar ke Layar UI
-                const finalImageURL = canvas.toDataURL("image/jpeg", 0.95);
-                const card = document.createElement('div');
-                card.className = 'result-card';
-                card.innerHTML = `
-                    <a href="${finalImageURL}" download="Patok_${i}.jpg" class="download-overlay" title="Download Foto"><i class="fa-solid fa-download"></i></a>
-                    <img src="${finalImageURL}">
-                    <div style="font-size: 11px; font-weight: bold; color: #475569;">Patok ${i}</div>
-                    <div style="font-size: 10px; color: #94a3b8;">${currentLat.toFixed(6)}, ${currentLon.toFixed(6)}</div>
-                `;
-                resultsDiv.appendChild(card);
-
-                // ITERASI MATEMATIS UNTUK PATOK BERIKUTNYA (ARAH ACAK)
-                const arahAcak = Math.random() * 360; // Menghasilkan arah acak 0-360 derajat
-                const jarakPergeseran = 10; // Jarak patok 10 meter
-                
-                const nextCoord = hitungTitikBaru(currentLat, currentLon, jarakPergeseran, arahAcak); 
-                currentLat = nextCoord.lat;
-                currentLon = nextCoord.lon;
-                
-                // Penambahan menit acak (1-3 menit) per foto
-                currentTime.setMinutes(currentTime.getMinutes() + Math.floor(Math.random() * 3) + 1); 
-            }
-
-            statusBox.style.background = '#ecfdf5';
-            statusBox.style.borderColor = '#a7f3d0';
-            statusBox.style.color = '#059669';
-            statusText.innerHTML = "<b>Sukses!</b> Seluruh foto patok berhasil dirakit.";
-
-            // Tampilkan tombol Download PDF
-            document.getElementById('btn-download-pdf').style.display = 'flex';
-
-        } catch (error) {
-            console.error(error);
-            alert("Terjadi kesalahan sistem internal. Pastikan foto 1.jpg tersedia di folder.");
-        } finally {
-            btn.disabled = false;
-        }
-    }
-
-    // ==========================================
-    // FITUR DOWNLOAD SEMUA PDF (LAPORAN BPN)
-    // ==========================================
-    async function downloadAllPDF() {
-        const resultsDiv = document.getElementById('results');
-        const cards = resultsDiv.querySelectorAll('.result-card img');
-        
-        if (cards.length === 0) {
-            alert('Belum ada foto yang dirender! Klik tombol "Mulai" terlebih dahulu.');
-            return;
-        }
-
-        const statusText = document.getElementById('status-text');
-        const btnPdf = document.getElementById('btn-download-pdf');
-        
-        btnPdf.disabled = true;
-        statusText.innerText = "Membuat PDF...";
-
-        const { jsPDF } = window.jspdf;
-        const pdf = new jsPDF('p', 'mm', 'a4');
-        const pageWidth = 210;
-        const margin = 15;
-        const colGap = 10; 
-        const rowGap = 20; 
-        const boxWidth = (pageWidth - (margin * 2) - colGap) / 2;
-        const boxHeight = 115;
-        const startY = 30;
-
-        const imageSources = Array.from(cards).map(img => img.src);
-
-        for (let i = 0; i < imageSources.length; i++) {
-            if (i % 4 === 0) {
-                if (i !== 0) pdf.addPage();
-                pdf.setFont("helvetica", "bold");
-                pdf.setFontSize(16);
-                pdf.text("DOKUMENTASI FOTO PATOK", pageWidth / 2, 20, { align: "center" });
-            }
-
-            const gridIndex = i % 4; 
-            const col = gridIndex % 2; 
-            const row = Math.floor(gridIndex / 2); 
-
-            const frameX = margin + (col * (boxWidth + colGap));
-            const frameY = startY + (row * (boxHeight + rowGap));
-
-            pdf.setFont("helvetica", "bold");
-            pdf.setFontSize(12);
-            pdf.text(`Foto Patok ${i + 1}`, frameX, frameY);
-
-            const img = new Image();
-            img.crossOrigin = "anonymous";
-            img.src = imageSources[i];
-            
-            const imgData = await new Promise((resolve) => {
-                img.onload = () => {
-                    const canvas = document.createElement('canvas');
-                    canvas.width = img.width;
-                    canvas.height = img.height;
-                    const ctx = canvas.getContext('2d');
-                    ctx.drawImage(img, 0, 0);
-                    resolve({
-                        base64: canvas.toDataURL('image/jpeg', 0.8),
-                        width: img.width,
-                        height: img.height
-                    });
-                };
-            });
-
-            const scaleRatio = Math.min(boxWidth / imgData.width, boxHeight / imgData.height);
-            const finalImgWidth = imgData.width * scaleRatio;
-            const finalImgHeight = imgData.height * scaleRatio;
-
-            const offsetX = frameX + ((boxWidth - finalImgWidth) / 2);
-            const offsetY = frameY + 5 + ((boxHeight - finalImgHeight) / 2);
-
-            pdf.addImage(imgData.base64, 'JPEG', offsetX, offsetY, finalImgWidth, finalImgHeight);
-        }
-
-        pdf.save('Laporan_Patok_BPN.pdf');
-        statusText.innerText = "PDF berhasil diunduh!";
-        btnPdf.disabled = false;
-    }
+    setStatus("gisStatus",`Selesai. ${renderedImages.length} foto berhasil dirender dengan koordinat klik dan wilayah polygon BIG yang tervalidasi.`, "ok");
+    $("pdfBtn").disabled=false;
+  }catch(err){console.error(err);setStatus("gisStatus",`Render terhenti: ${err.message}. Periksa koneksi ke CDN foto_patok (jsDelivr) dan pastikan file 1.jpg sampai 39.jpg tersedia di repo sistem-notaris.`, "err");}
+  finally{updatePointUI();}
+});
+$("pdfBtn").addEventListener("click",()=>{
+  if(!renderedImages.length)return;
+  const {jsPDF}=window.jspdf;const pdf=new jsPDF("p","mm","a4");
+  const pageW=210,margin=15,gapX=10,gapY=17,boxW=(pageW-2*margin-gapX)/2,boxH=112,startY=29;
+  renderedImages.forEach((item,i)=>{
+    if(i%4===0){if(i)pdf.addPage();pdf.setFont("helvetica","bold");pdf.setFontSize(15);pdf.text("DOKUMENTASI FOTO PATOK",pageW/2,19,{align:"center"});}
+    const slot=i%4,col=slot%2,row=Math.floor(slot/2),x=margin+col*(boxW+gapX),y=startY+row*(boxH+gapY);
+    pdf.setFont("helvetica","bold");pdf.setFontSize(11);pdf.text(`Foto Patok ${i+1}`,x,y);
+    const props=pdf.getImageProperties(item.data),ratio=Math.min(boxW/props.width,(boxH-7)/props.height),w=props.width*ratio,h=props.height*ratio;
+    pdf.addImage(item.data,"JPEG",x+(boxW-w)/2,y+5+(boxH-7-h)/2,w,h);
+  });
+  pdf.save("Dokumentasi_Patok_GPS_Map_Camera_V3.pdf");
+});
+updatePointUI();
 </script>
-
 </body>
 </html>
