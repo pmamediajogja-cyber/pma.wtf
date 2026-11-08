@@ -1,0 +1,118 @@
+/* Swarm rebuild — native page effect for pma.wtf */
+
+.swarm-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity 0.38s ease;
+  overflow: hidden;
+}
+
+.swarm-overlay-visible {
+  opacity: 1;
+}
+
+.swarm-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  cursor: none;
+}
+
+.swarm-toolbar {
+  position: absolute;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 999px;
+  background: rgba(10, 14, 20, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  white-space: nowrap;
+  max-width: calc(100vw - 24px);
+  overflow-x: auto;
+}
+
+.swarm-title {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  font-weight: 700;
+  color: #f5b942;
+  padding: 0 4px 0 6px;
+}
+
+.swarm-progress {
+  font-size: 11px;
+  color: #9fb0c7;
+  padding: 0 4px;
+}
+
+.swarm-btn {
+  appearance: none;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: transparent;
+  color: #e8eef7;
+  font: inherit;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 7px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.swarm-btn:hover {
+  border-color: rgba(255, 255, 255, 0.45);
+}
+
+.swarm-btn-primary {
+  background: #f5b942;
+  border-color: #f5b942;
+  color: #111;
+}
+
+.swarm-btn-pulse {
+  animation: swarm-pulse 1s ease-in-out infinite;
+}
+
+@keyframes swarm-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(245, 185, 66, 0.55); }
+  50% { box-shadow: 0 0 0 7px rgba(245, 185, 66, 0); }
+}
+
+.swarm-hint {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: rgba(232, 238, 247, 0.55);
+  background: rgba(10, 14, 20, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 6px 12px;
+  border-radius: 999px;
+  white-space: nowrap;
+  max-width: calc(100vw - 24px);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 640px) {
+  .swarm-title {
+    display: none;
+  }
+  .swarm-hint {
+    font-size: 9px;
+  }
+}
