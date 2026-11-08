@@ -5,6 +5,18 @@
 // entry here. Only metadata lives in this repo, so it never fills up.
 const comics = [
   {
+    id: 'EP 46',
+    title: 'WARTEG: TAMBAH DIKIT',
+    premise: 'Bro pesan nasi dikit di warteg, terus nambah lauk dikit-dikit, pas bayar kaget totalnya — dompet kosong, perut penuh.',
+    date: '08 NOV 2026',
+    slides: [
+      'https://drive.google.com/thumbnail?id=1o8lO4kSJWc21BPqo-6tHmVJr56ttV6D5&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1Yc85FFK5-jx45aUOiSRKc8tBS1X1Q7Lj&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1Ydt6vt_HVWY8COHOqd0cRDsZoUxrTNHn&sz=w1080',
+    ],
+    instagram: 'https://www.instagram.com/imam_falahi/',
+  },
+  {
     id: 'EP 45',
     title: 'LUPA PASSWORD',
     premise: 'bro lupa password, reset pakai password baru — ditolak karena ternyata sama dengan password lama',
