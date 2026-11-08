@@ -233,8 +233,8 @@ $("openMapBtn").addEventListener("click",async()=>{
     $("mapSection").style.display="block";
     points=[];lockedAdmin=null;manualAdmin=null;renderedImages=[];$("results").innerHTML="";$("adminInfo").classList.add("hidden");
     if(!map){
-      map=L.map("map",{center:startLatLng,zoom:19,zoomControl:true});
-      baseLayer=L.tileLayer(ESRI_IMAGERY,{maxZoom:22,attribution:'Imagery © <a href="https://www.esri.com/">Esri</a>, Maxar, Earthstar Geographics, and the GIS User Community'}).addTo(map);
+      map=L.map("map",{center:startLatLng,zoom:19,zoomControl:true,maxZoom:19});
+      baseLayer=L.tileLayer(ESRI_IMAGERY,{maxZoom:19, // tile Esri habis di ~19; di atas itu 'Map data not yet available'attribution:'Imagery © <a href="https://www.esri.com/">Esri</a>, Maxar, Earthstar Geographics, and the GIS User Community'}).addTo(map);
       map.on("click",e=>addPoint(e.latlng.lat,e.latlng.lng));
     }else{map.setView(startLatLng,19);setTimeout(()=>map.invalidateSize(),150);}
     if(startMarker)map.removeLayer(startMarker);
@@ -264,7 +264,7 @@ $("manualBtn").addEventListener("click",()=>{
   setStatus("gisStatus","Wilayah batch dikunci dari alamat manual. Semua titik patok memakai alamat ini.","warn");
   redrawMarkers();updatePointUI();
 });
-$("centerBtn").addEventListener("click",()=>{if(startLatLng)map.setView(startLatLng,20);});
+$("centerBtn").addEventListener("click",()=>{if(startLatLng)map.setView(startLatLng,19);});
 $("clearBtn").addEventListener("click",()=>{
   points=[];lockedAdmin=null;manualAdmin=null;renderedImages=[];$("results").innerHTML="";$("adminInfo").classList.add("hidden");
   setStatus("gisStatus","Semua titik dan hasil render telah dibersihkan.");redrawMarkers();updatePointUI();
