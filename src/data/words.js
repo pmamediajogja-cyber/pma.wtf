@@ -4,6 +4,14 @@
 // new word post to the 'PMA.WTF - Brand Logos' folder and prepends an entry here.
 const words = [
   {
+    id: 'jalan-terus-pelan-juga-sampai',
+    quote: 'JALAN TERUS, PELAN JUGA SAMPAI.',
+    lang: 'ID',
+    image: 'https://drive.google.com/thumbnail?id=1mNQsdv36gDYZjRlZTe4bFWcKVnU7P7On&sz=w1080',
+    date: '08 Nov 2026',
+    instagram: 'https://www.instagram.com/_tugelanboto_/',
+  },
+  {
     id: 'hari-ini-lelah-besok-lebih-kuat',
     quote: 'HARI INI LELAH, BESOK LEBIH KUAT',
     lang: 'ID',
