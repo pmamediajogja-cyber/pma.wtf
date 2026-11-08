@@ -4,6 +4,17 @@
 // new poster to the 'PMA.WTF - Brand Posters' folder and prepends an entry here.
 const posters = [
   {
+    id: 'oil-thunder',
+    brand: 'OIL & THUNDER',
+    niche: 'RETRO GARAGE art print',
+    tagline: 'Built loud. Driven harder.',
+    signs:
+      'Poster = vintage garage V8 engine and wrenches; Frame mockup = living room',
+    image: 'https://drive.google.com/thumbnail?id=1D5OtaLZQzsfdK5Mp4M7iaKzHqWNiobgP&sz=w1080',
+    date: '08 Nov 2026',
+    instagram: 'https://www.instagram.com/tugelanboto_/',
+  },
+  {
     id: 'midnight-fuel',
     brand: 'MIDNIGHT FUEL',
     niche: 'NIGHT DRIVE VOL. 01 art print',
