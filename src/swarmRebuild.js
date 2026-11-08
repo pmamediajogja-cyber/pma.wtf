@@ -95,6 +95,7 @@ function collectTasks(measureCtx) {
     const x = r.left + window.scrollX;
     const y = r.top + window.scrollY;
     if (r.width < 10 || r.height < 8) continue;
+    if (r.height > 3000) continue; // full-page wrapper: paints nothing, must not block the queue
     if (y > MAX_DOC_HEIGHT || y + r.height < 0 || y > docH) continue;
 
     if (tag === "IMG") {
@@ -159,26 +160,30 @@ function makeSound() {
     if (!actx) {
       const AC = window.AudioContext || window.webkitAudioContext;
       if (!AC) return false;
-      actx = new AC();
-      master = actx.createGain();
-      master.gain.value = 0.1;
-      master.connect(actx.destination);
+      try {
+        actx = new AC();
+        master = actx.createGain();
+        master.gain.value = 0.1;
+        master.connect(actx.destination);
+      } catch (e) { return false; }
     }
     if (actx.state === "suspended") actx.resume();
     return true;
   }
   function tone(freq, dur, type, vol) {
     if (!enabled || !ensure()) return;
-    const o = actx.createOscillator();
-    const g = actx.createGain();
-    o.type = type || "sine";
-    o.frequency.value = freq;
-    g.gain.setValueAtTime((vol || 1) * 0.9, actx.currentTime);
-    g.gain.exponentialRampToValueAtTime(0.001, actx.currentTime + dur);
-    o.connect(g);
-    g.connect(master);
-    o.start();
-    o.stop(actx.currentTime + dur + 0.02);
+    try {
+      const o = actx.createOscillator();
+      const g = actx.createGain();
+      o.type = type || "sine";
+      o.frequency.value = freq;
+      g.gain.setValueAtTime((vol || 1) * 0.9, actx.currentTime);
+      g.gain.exponentialRampToValueAtTime(0.001, actx.currentTime + dur);
+      o.connect(g);
+      g.connect(master);
+      o.start();
+      o.stop(actx.currentTime + dur + 0.02);
+    } catch (e) { /* audio unavailable: stay silent */ }
   }
   return {
     unlock() { ensure(); },
@@ -206,7 +211,7 @@ class SwarmEngine {
     this.raf = 0;
     this.lastT = 0;
     this.introUntil = 0;
-    this.scrollWait = null; // { y, until }
+    this.lastFollowScroll = 0;
     this.doneAt = 0;
     this.autoLiveAt = 0;
     this.mouse = { x: window.innerWidth / 2, y: window.innerHeight * 0.4, seen: false };
@@ -360,31 +365,29 @@ class SwarmEngine {
     active = false;
   }
 
-  taskInView(task) {
-    const top = task.y - window.scrollY;
-    const bottom = top + task.h;
-    return top > 70 && bottom < window.innerHeight - 70;
-  }
-
-  scrollToTask(task) {
-    const target = clamp(task.y + task.h / 2 - window.innerHeight / 2, 0, document.documentElement.scrollHeight);
-    window.scrollTo({ top: target, behavior: "smooth" });
-    this.scrollWait = { task, until: performance.now() + 1100 };
+  // Best-effort scroll follow: keep the earliest active task on screen.
+  // Assignment NEVER waits for scrolling — drawing is viewport-culled,
+  // so a task the page cannot scroll into view must not stall the queue.
+  followScroll(now) {
+    if (this.phase !== "build") return;
+    if (now - this.lastFollowScroll < 500) return;
+    let target = null;
+    for (const c of this.cursors) {
+      if (c.task) { target = c.task; break; }
+    }
+    if (!target && this.queue.length) target = this.queue[0];
+    if (!target) return;
+    const top = target.y - window.scrollY;
+    const bottom = top + target.h;
+    if (top < 90 || bottom > window.innerHeight - 90) {
+      const y = clamp(target.y + target.h / 2 - window.innerHeight / 2, 0, document.documentElement.scrollHeight);
+      window.scrollTo({ top: y, behavior: "smooth" });
+      this.lastFollowScroll = now;
+    }
   }
 
   assignTasks(now) {
     if (this.phase !== "build") return;
-    // If the next task is off-screen, scroll first and wait.
-    if (this.scrollWait) {
-      if (this.taskInView(this.scrollWait.task) || now > this.scrollWait.until) this.scrollWait = null;
-      else return;
-    }
-    if (!this.queue.length) return;
-    const next = this.queue[0];
-    if (!this.taskInView(next)) {
-      this.scrollToTask(next);
-      return;
-    }
     for (const c of this.cursors) {
       if (!c.task && this.queue.length) {
         const t = this.queue.shift();
@@ -397,7 +400,7 @@ class SwarmEngine {
 
   loop(t) {
     if (this.destroyed) return;
-    const now = t;
+    const now = performance.now();
     const vw = window.innerWidth;
     const vh = window.innerHeight;
     const cx = vw / 2;
@@ -408,6 +411,7 @@ class SwarmEngine {
     }
 
     this.assignTasks(now);
+    this.followScroll(now);
 
     // Advance active tasks.
     for (const c of this.cursors) {
@@ -510,19 +514,17 @@ class SwarmEngine {
     const vh = window.innerHeight;
     ctx.clearRect(0, 0, vw, vh);
 
-    // Finished tasks (only those on screen).
-    for (const t of this.doneTasks) {
+    // One pass in document order, so a parent box never paints over
+    // its child text when cursors finish tasks out of order.
+    const visible = [];
+    for (const t of this.doneTasks) visible.push(t);
+    for (const c of this.cursors) if (c.task) visible.push(c.task);
+    visible.sort((x, y) => x.seq - y.seq);
+    for (const t of visible) {
       const top = t.y - scrollY;
       if (top + t.h < -40 || top > vh + 40) continue;
-      this.drawTaskFinal(t, top);
-    }
-    // Active tasks, partial.
-    for (const c of this.cursors) {
-      if (!c.task) continue;
-      const t = c.task;
-      const top = t.y - scrollY;
-      if (top + t.h < -40 || top > vh + 40) continue;
-      this.drawTaskPartial(t, top, t.p || 0, now);
+      if (t.done) this.drawTaskFinal(t, top);
+      else this.drawTaskPartial(t, top, t.p || 0, now);
     }
 
     // Intro: centre dot the swarm orbits.
