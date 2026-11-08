@@ -17,7 +17,7 @@ const CURSOR_COLORS = [
   "#a78bfa", "#f472b6", "#facc15", "#34d399",
   "#fb7185", "#60a5fa", "#f97316", "#e879f9",
 ];
-const CURSOR_COUNT = 12;
+const CURSOR_COUNT = 8;
 const MAX_TASKS = 160;
 const MAX_DOC_HEIGHT = 16000;
 const TEXT_TAGS = new Set(["H1", "H2", "H3", "H4", "P", "LI", "A", "BUTTON", "SPAN", "EM", "STRONG", "SMALL", "LABEL"]);
@@ -103,7 +103,7 @@ function collectTasks(measureCtx) {
       tasks.push({
         kind: "media", seq: seq++, x, y, w: r.width, h: r.height,
         img: el.complete && el.naturalWidth > 0 ? el : null, radius,
-        duration: 480,
+        duration: 950,
       });
       continue;
     }
@@ -122,7 +122,7 @@ function collectTasks(measureCtx) {
         kind: "rect", seq: seq++, x, y, w: r.width, h: r.height,
         bg: hasBg ? bg : "transparent",
         border: hasBorder ? cs.borderTopColor : null, borderWidth: bw, radius,
-        duration: 300,
+        duration: 650,
       });
     }
     if (text) {
@@ -136,7 +136,7 @@ function collectTasks(measureCtx) {
         kind: "text", seq: seq++, x, y, w: r.width, h: r.height,
         text, lines, totalChars, font, fontSize, lineHeight,
         color: cs.color, heading: tag === "H1" || tag === "H2",
-        duration: clamp(totalChars * 7, 220, 950),
+        duration: clamp(totalChars * 16, 450, 2000),
       });
       // Claim descendants so inner spans don't double-draw the same words.
       el.querySelectorAll("*").forEach((d) => claimed.add(d));
@@ -250,7 +250,7 @@ class SwarmEngine {
       });
     }
 
-    this.introUntil = performance.now() + 900;
+    this.introUntil = performance.now() + 1400;
     this.lastT = performance.now();
     this.raf = requestAnimationFrame((t) => this.loop(t));
   }
@@ -332,7 +332,7 @@ class SwarmEngine {
     this.doneTasks = [];
     this.cursors.forEach((c) => { c.task = null; });
     this.phase = "intro";
-    this.introUntil = performance.now() + 700;
+    this.introUntil = performance.now() + 1000;
     this.doneAt = 0;
     this.autoLiveAt = 0;
     this.goLiveBtn.classList.remove("swarm-btn-pulse");
@@ -463,12 +463,12 @@ class SwarmEngine {
         tx = cx + Math.sin(now / 700 + this.cursors.indexOf(c)) * 60;
         ty = cy + Math.cos(now / 900 + this.cursors.indexOf(c)) * 40;
       }
-      c.vx += (tx - c.x) * 0.02 + (Math.random() - 0.5) * 1.1;
-      c.vy += (ty - c.y) * 0.02 + (Math.random() - 0.5) * 1.1;
+      c.vx += (tx - c.x) * 0.016 + (Math.random() - 0.5) * 0.8;
+      c.vy += (ty - c.y) * 0.016 + (Math.random() - 0.5) * 0.8;
       c.vx *= 0.86;
       c.vy *= 0.86;
       const sp = Math.hypot(c.vx, c.vy);
-      const max = 16;
+      const max = 11;
       if (sp > max) { c.vx = (c.vx / sp) * max; c.vy = (c.vy / sp) * max; }
       c.x += c.vx;
       c.y += c.vy;
