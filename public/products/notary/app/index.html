@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GPS Map Camera V3 — Interactive Map</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+<script src="https://cdn.jsdelivr.net/gh/google/open-location-code@1.0.4/js/src/openlocationcode.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+:root{--blue:#2563eb;--ink:#0f172a;--muted:#64748b;--line:#dbe3ef;--bg:#eef3f9}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:Inter,"Segoe UI",Arial,sans-serif;color:var(--ink)}
+.app{max-width:1400px;margin:auto;padding:22px}
+.panel{background:#fff;border:1px solid #e6ebf2;border-radius:18px;box-shadow:0 8px 28px rgba(15,23,42,.06);padding:22px;margin-bottom:18px}
+h1{font-size:25px;margin:0 0 8px;display:flex;gap:12px;align-items:center}h1 i{color:var(--blue)}
+.sub{color:var(--muted);font-size:14px;line-height:1.5;margin:0}
+.grid{display:grid;grid-template-columns:minmax(260px,1fr) auto;gap:12px;margin-top:18px}
+input,select{width:100%;padding:13px 14px;border:1px solid #cbd5e1;border-radius:10px;font-size:15px;background:#f8fafc;color:#0f172a}
+label{font-size:12px;font-weight:800;color:#475569;display:block;margin:0 0 7px;text-transform:uppercase;letter-spacing:.03em}
+.btn{border:0;border-radius:10px;padding:13px 17px;background:var(--blue);color:white;font-weight:800;font-size:14px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:9px}
+.btn:hover{filter:brightness(.95)}.btn:disabled{opacity:.45;cursor:not-allowed}.btn.secondary{background:#e8eef8;color:#1e293b}.btn.danger{background:#fee2e2;color:#991b1b}.btn.green{background:#059669}
+#mapSection{display:none}.maphead{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+#map{height:560px;width:100%;border-radius:14px;border:1px solid var(--line);z-index:1}
+.map-tools{display:flex;gap:8px;flex-wrap:wrap}.hint{padding:12px 14px;border-radius:10px;background:#eff6ff;color:#1d4ed8;font-size:13px;line-height:1.45;margin:12px 0}
+.status{padding:12px 14px;border-radius:10px;margin-top:12px;font-size:13px;line-height:1.45;background:#f1f5f9;color:#334155}
+.status.ok{background:#ecfdf5;color:#047857}.status.warn{background:#fffbeb;color:#92400e}.status.err{background:#fef2f2;color:#b91c1c}
+.admin{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-top:12px}
+.admin div{background:#f8fafc;border:1px solid var(--line);border-radius:10px;padding:10px}
+.admin small{display:block;color:var(--muted);font-size:10px;font-weight:800;text-transform:uppercase;margin-bottom:4px}
+.admin strong{font-size:13px;line-height:1.35;display:block}
+.bottom-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px}
+.point-list{display:grid;gap:8px;margin-top:10px}
+.point-row{display:flex;align-items:center;justify-content:space-between;gap:10px;border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.point-left{display:flex;align-items:center;gap:10px;min-width:0}.num{width:28px;height:28px;flex:none;border-radius:50%;background:#1d4ed8;color:#fff;display:grid;place-items:center;font-size:12px;font-weight:900}
+.point-meta{font-size:13px}
+.coords{font-size:11px;color:#94a3b8}
+.controls{display:flex;gap98px}
+.result-card{background:#fff;border-radius:14px;padding:10px}
+.result-card img{width:100%;border-radius:9px;display:block;}
+.dl{position:absolute;right:17px;top:17px}
+marker-{background:#1d4ed8;color:white}
+</style>
+</head>
+<body>
+<p>Abbreviated GPS Map Camera V3 setup.</p>
+</body>
+</html>
