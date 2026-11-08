@@ -233,9 +233,9 @@ $("openMapBtn").addEventListener("click",async()=>{
     $("mapSection").style.display="block";
     points=[];lockedAdmin=null;manualAdmin=null;renderedImages=[];$("results").innerHTML="";$("adminInfo").classList.add("hidden");
     if(!map){
-      map=L.map("map",{center:startLatLng,zoom:19,zoomControl:true,maxZoom:19});
-      // maxZoom 19: tile Esri habis di ~19; di atas itu muncul 'Map data not yet available'
-      baseLayer=L.tileLayer(ESRI_IMAGERY,{maxZoom:19,attribution:'Imagery © <a href="https://www.esri.com/">Esri</a>, Maxar, Earthstar Geographics, and the GIS User Community'}).addTo(map);
+      map=L.map("map",{center:startLatLng,zoom:19,zoomControl:true,maxZoom:22});
+      // maxNativeZoom 19: tile Esri habis di zoom 19; di atas itu Leaflet memperbesar tile zoom 19 (agak blur, tapi bukan 'Map data not yet available')
+      baseLayer=L.tileLayer(ESRI_IMAGERY,{maxZoom:22,maxNativeZoom:19,attribution:'Imagery © <a href="https://www.esri.com/">Esri</a>, Maxar, Earthstar Geographics, and the GIS User Community'}).addTo(map);
       map.on("click",e=>addPoint(e.latlng.lat,e.latlng.lng));
     }else{map.setView(startLatLng,19);setTimeout(()=>map.invalidateSize(),150);}
     if(startMarker)map.removeLayer(startMarker);
@@ -265,7 +265,7 @@ $("manualBtn").addEventListener("click",()=>{
   setStatus("gisStatus","Wilayah batch dikunci dari alamat manual. Semua titik patok memakai alamat ini.","warn");
   redrawMarkers();updatePointUI();
 });
-$("centerBtn").addEventListener("click",()=>{if(startLatLng)map.setView(startLatLng,19);});
+$("centerBtn").addEventListener("click",()=>{if(startLatLng)map.setView(startLatLng,20);});
 $("clearBtn").addEventListener("click",()=>{
   points=[];lockedAdmin=null;manualAdmin=null;renderedImages=[];$("results").innerHTML="";$("adminInfo").classList.add("hidden");
   setStatus("gisStatus","Semua titik dan hasil render telah dibersihkan.");redrawMarkers();updatePointUI();
