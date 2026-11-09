@@ -4,6 +4,14 @@
 // new word post to the 'PMA.WTF - Brand Logos' folder and prepends an entry here.
 const words = [
   {
+    id: 'langkah-kecil-mimpi-besar',
+    quote: 'LANGKAH KECIL, MIMPI BESAR.',
+    lang: 'ID',
+    image: 'https://drive.google.com/thumbnail?id=1JZP83nm88UTa70C7Lbaljg4hBNL-IiaM&sz=w1080',
+    date: '09 Nov 2026',
+    instagram: 'https://www.instagram.com/_tugelanboto_/',
+  },
+  {
     id: 'born-to-stand-out-built-to-last',
     quote: 'BORN TO STAND OUT. BUILT TO LAST.',
     lang: 'EN',
