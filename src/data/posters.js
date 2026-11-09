@@ -4,6 +4,17 @@
 // new poster to the 'PMA.WTF - Brand Posters' folder and prepends an entry here.
 const posters = [
   {
+    id: 'where-the-road-meets-the-sea',
+    brand: 'WHERE THE ROAD MEETS THE SEA',
+    niche: 'SEA & SALT art print',
+    tagline: 'Drive until the land runs out.',
+    signs:
+      'Poster = winding cliff road down to the ocean, vintage car, big sun and waves; Frame mockup = reading corner',
+    image: 'https://drive.google.com/thumbnail?id=1enYAmn8-W_0poOx4KGTZrLKxhIx7B3WE&sz=w1080',
+    date: '09 Nov 2026',
+    instagram: 'https://www.instagram.com/tugelanboto_/',
+  },
+  {
     id: 'sunday-wrench-club',
     brand: 'SUNDAY WRENCH CLUB',
     niche: 'RETRO GARAGE art print',
