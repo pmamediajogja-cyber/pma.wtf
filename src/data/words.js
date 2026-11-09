@@ -4,11 +4,11 @@
 // new word post to the 'PMA.WTF - Brand Logos' folder and prepends an entry here.
 const words = [
   {
-    id: 'born-to-stand-out-built-to-last',
-    quote: 'BORN TO STAND OUT. BUILT TO LAST.',
+    id: 'stay-solid-never-settle',
+    quote: 'STAY SOLID. NEVER SETTLE.',
     lang: 'EN',
-    image: 'https://drive.google.com/thumbnail?id=1WIRcBkx8XywR6-jDOH6Gs0EJTzIE7rGl&sz=w1080',
-    date: '09 Nov 2026',
+    image: 'https://drive.google.com/thumbnail?id=1o47zH0Bt8kvXRLEPGzjLlzOzqClx-FF1&sz=w1080',
+    date: '08 Nov 2026',
     instagram: 'https://www.instagram.com/_tugelanboto_/',
   },
   {
