@@ -4,6 +4,17 @@
 // new poster to the 'PMA.WTF - Brand Posters' folder and prepends an entry here.
 const posters = [
   {
+    id: 'built-not-bought',
+    brand: 'BUILT, NOT BOUGHT',
+    niche: 'RETRO GARAGE art print',
+    tagline: 'Wrenches up. Excuses down.',
+    signs:
+      'Poster = vintage cafe racer in a dim garage under a hanging work lamp; Frame mockup = cozy living room with leather armchair',
+    image: 'https://drive.google.com/thumbnail?id=1KuV9jrAYBORmwoceZvhxIetQ-R7P8iWM&sz=w1080',
+    date: '09 Nov 2026',
+    instagram: 'https://www.instagram.com/tugelanboto_/',
+  },
+  {
     id: 'oil-thunder',
     brand: 'OIL & THUNDER',
     niche: 'RETRO GARAGE art print',
