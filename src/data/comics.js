@@ -5,6 +5,18 @@
 // entry here. Only metadata lives in this repo, so it never fills up.
 const comics = [
   {
+    id: 'EP 49',
+    title: 'LARI PAGI CUMA 5 MENIT',
+    premise: 'bro semangat lari pagi, baru 100 meter sudah ngos-ngosan dan duduk di pinggir jalan, lalu melihat gerobak gorengan dan memutuskan lari boleh gagal, gorengan jangan',
+    date: '09 NOV 2026',
+    slides: [
+      'https://drive.google.com/thumbnail?id=1o2SGN4FRJHIlw4U4aK2DdUkWJdSQaHQw&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1luxq-VpP83-ABmMuxGTBRIY-MT_etjFs&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1LKYsEfYbKD7sR_mmpviiE3FjqYLZwuDl&sz=w1080',
+    ],
+    instagram: 'https://www.instagram.com/imam_falahi/',
+  },
+  {
     id: 'EP 48',
     title: 'JALAN PINTAS',
     premise: 'Bro stuck in macet takes a shortcut through a gang, hits a dead end, and comes back out at the exact same traffic jam.',
