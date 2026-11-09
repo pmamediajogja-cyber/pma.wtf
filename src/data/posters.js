@@ -4,6 +4,17 @@
 // new poster to the 'PMA.WTF - Brand Posters' folder and prepends an entry here.
 const posters = [
   {
+    id: 'sunday-wrench-club',
+    brand: 'SUNDAY WRENCH CLUB',
+    niche: 'RETRO GARAGE art print',
+    tagline: 'Sundays are for the garage.',
+    signs:
+      'Poster = garage interior with tool wall on Sunday morning; Frame mockup = living room',
+    image: 'https://drive.google.com/thumbnail?id=1yjCbDLvB-FMOz7vWtPIyeQIBoLs7v_Gk&sz=w1080',
+    date: '09 Nov 2026',
+    instagram: 'https://www.instagram.com/tugelanboto_/',
+  },
+  {
     id: 'built-not-bought',
     brand: 'BUILT, NOT BOUGHT',
     niche: 'RETRO GARAGE art print',
