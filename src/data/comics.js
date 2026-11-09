@@ -5,6 +5,18 @@
 // entry here. Only metadata lives in this repo, so it never fills up.
 const comics = [
   {
+    id: 'EP 48',
+    title: 'JALAN PINTAS',
+    premise: 'Bro stuck in macet takes a shortcut through a gang, hits a dead end, and comes back out at the exact same traffic jam.',
+    date: '09 NOV 2026',
+    slides: [
+      'https://drive.google.com/thumbnail?id=1D44qiu0HzXoz0s0Idh5B_Klfo1mmXymZ&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1PClqIEqp7oulDnNsldFB4keaupxMTuV3&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1n6Z1qpjOEdKF0nUzbQJnmZFlUz8s9Dgx&sz=w1080',
+    ],
+    instagram: 'https://www.instagram.com/imam_falahi/',
+  },
+  {
     id: 'EP 47',
     title: 'PAYUNG SELALU SALAH WAKTU',
     premise: 'Bro bawa payung pas langit mendung, hujan malah nggak datang; besoknya nggak bawa payung, hujan deras mengguyur — dia sampai minta maaf ke payungnya.',
