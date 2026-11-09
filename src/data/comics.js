@@ -5,6 +5,18 @@
 // entry here. Only metadata lives in this repo, so it never fills up.
 const comics = [
   {
+    id: 'EP 50',
+    title: 'POTONG DIKIT',
+    premise: 'bro ke tukang cukur bilang dikit aja, Bang — tukang cukur makin semangat, rambut makin pendek, bro hampir botak lalu pasrah ngopi',
+    date: '09 NOV 2026',
+    slides: [
+      'https://drive.google.com/thumbnail?id=1mwgmDbVP_LI20O2VfJrYFxLTD_8-T9ku&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1lwwDzQ9ycro-F3AuMJ1AQJo6DpXgRTGw&sz=w1080',
+      'https://drive.google.com/thumbnail?id=14TXMfNL-tBRdweJsqXRBhfbCXh4-ej9s&sz=w1080',
+    ],
+    instagram: 'https://www.instagram.com/imam_falahi/',
+  },
+  {
     id: 'EP 49',
     title: 'LARI PAGI CUMA 5 MENIT',
     premise: 'bro semangat lari pagi, baru 100 meter sudah ngos-ngosan dan duduk di pinggir jalan, lalu melihat gerobak gorengan dan memutuskan lari boleh gagal, gorengan jangan',
