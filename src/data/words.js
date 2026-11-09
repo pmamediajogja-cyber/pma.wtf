@@ -4,6 +4,14 @@
 // new word post to the 'PMA.WTF - Brand Logos' folder and prepends an entry here.
 const words = [
   {
+    id: 'from-nothing-to-everything',
+    quote: 'FROM NOTHING. TO EVERYTHING.',
+    lang: 'EN',
+    image: 'https://drive.google.com/thumbnail?id=15emcmFHVlFX5xdLQlnL6rMtAiFfgsQbC&sz=w1080',
+    date: '09 Nov 2026',
+    instagram: 'https://www.instagram.com/_tugelanboto_/',
+  },
+  {
     id: 'langkah-kecil-mimpi-besar',
     quote: 'LANGKAH KECIL, MIMPI BESAR.',
     lang: 'ID',
