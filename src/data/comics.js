@@ -5,6 +5,18 @@
 // entry here. Only metadata lives in this repo, so it never fills up.
 const comics = [
   {
+    id: 'EP 52',
+    title: 'SATU KOPI, TIGA JAM',
+    premise: 'Bro pesan kopi hitam di warung kopi, habis dalam 5 menit tapi nongkrong 3 jam sampai tujuh gelas kosong.',
+    date: '10 NOV 2026',
+    slides: [
+      'https://drive.google.com/thumbnail?id=1ehowN0Y6mM2s6EMX48DZvxeW8bsPSfWj&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1astWV1bEapxvqT0OAozKwgDI3BT7LAhL&sz=w1080',
+      'https://drive.google.com/thumbnail?id=11k3Oj01GbUlK8WhqHmUQM4umcHNEL2OA&sz=w1080',
+    ],
+    instagram: 'https://www.instagram.com/imam_falahi/',
+  },
+  {
     id: 'EP 51',
     title: 'OJOL NANYA "MAS DI MANA?"',
     premise: 'Bro pesan ojol, driver telepon nanya ’Mas di mana?’, bro lambaikan tangan malah driver dadah ke orang lain, akhirnya driver berhenti tepat di depannya — jarak cuma 2 meter dari tadi.',
