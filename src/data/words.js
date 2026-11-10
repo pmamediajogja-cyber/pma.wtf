@@ -4,6 +4,14 @@
 // new word post to the 'PMA.WTF - Brand Logos' folder and prepends an entry here.
 const words = [
   {
+    id: 'semua-butuh-waktu-sabarlah-sedikit',
+    quote: 'SEMUA BUTUH WAKTU, SABARLAH SEDIKIT.',
+    lang: 'ID',
+    image: 'https://drive.google.com/thumbnail?id=16Hw-9dNkRIFsyqLWWfieE9EyIR2gqf0w&sz=w1080',
+    date: '10 Nov 2026',
+    instagram: 'https://www.instagram.com/_tugelanboto_/',
+  },
+  {
     id: 'from-nothing-to-everything',
     quote: 'FROM NOTHING. TO EVERYTHING.',
     lang: 'EN',
