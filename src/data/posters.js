@@ -4,6 +4,17 @@
 // new poster to the 'PMA.WTF - Brand Posters' folder and prepends an entry here.
 const posters = [
   {
+    id: 'salt-in-the-air',
+    brand: 'SALT IN THE AIR',
+    niche: 'SEA & SALT art print',
+    tagline: 'Breathe in the salt. Leave the noise.',
+    signs:
+      'Poster = lighthouse and waves at dawn; Frame mockup = bedroom',
+    image: 'https://drive.google.com/thumbnail?id=1gIL-TL1o2-dDsubCHzoe23V9DPIi_1nY&sz=w1080',
+    date: '10 Nov 2026',
+    instagram: 'https://www.instagram.com/tugelanboto_/',
+  },
+  {
     id: 'where-the-road-meets-the-sea',
     brand: 'WHERE THE ROAD MEETS THE SEA',
     niche: 'SEA & SALT art print',
