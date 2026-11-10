@@ -5,6 +5,18 @@
 // entry here. Only metadata lives in this repo, so it never fills up.
 const comics = [
   {
+    id: 'EP 51',
+    title: 'OJOL NANYA "MAS DI MANA?"',
+    premise: 'Bro pesan ojol, driver telepon nanya ’Mas di mana?’, bro lambaikan tangan malah driver dadah ke orang lain, akhirnya driver berhenti tepat di depannya — jarak cuma 2 meter dari tadi.',
+    date: '10 NOV 2026',
+    slides: [
+      'https://drive.google.com/thumbnail?id=1FI-vwwTB-DAX85jZLH_8-2Qbre-M6Xs4&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1v3dQFSd26H063P89iJudmmskA73otHom&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1XL7_L0LgJsY0maY3ZCs4MZZKZ1cZML0n&sz=w1080',
+    ],
+    instagram: 'https://www.instagram.com/imam_falahi/',
+  },
+  {
     id: 'EP 50',
     title: 'POTONG DIKIT',
     premise: 'bro ke tukang cukur bilang dikit aja, Bang — tukang cukur makin semangat, rambut makin pendek, bro hampir botak lalu pasrah ngopi',
