@@ -4,6 +4,14 @@
 // new word post to the 'PMA.WTF - Brand Logos' folder and prepends an entry here.
 const words = [
   {
+    id: 'jangan-lupa-bahagia-di-tengah-perjuangan',
+    quote: 'JANGAN LUPA BAHAGIA DI TENGAH PERJUANGAN',
+    lang: 'ID',
+    image: 'https://drive.google.com/thumbnail?id=1Llctkd9mDRQ1nH-SsnMvaaBfodt_BURI&sz=w1080',
+    date: '10 Nov 2026',
+    instagram: 'https://www.instagram.com/_tugelanboto_/',
+  },
+  {
     id: 'cold-world-warm-blood-still-here',
     quote: 'COLD WORLD. WARM BLOOD. STILL HERE.',
     lang: 'EN',
