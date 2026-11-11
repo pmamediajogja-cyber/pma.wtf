@@ -4,6 +4,14 @@
 // new word post to the 'PMA.WTF - Brand Logos' folder and prepends an entry here.
 const words = [
   {
+    id: 'made-from-pressure',
+    quote: 'MADE FROM PRESSURE.',
+    lang: 'EN',
+    image: 'https://drive.google.com/thumbnail?id=1tZrEtlcVc0pH_PL76hdsIg8kB2czCtwT&sz=w1080',
+    date: '11 Nov 2026',
+    instagram: 'https://www.instagram.com/_tugelanboto_/',
+  },
+  {
     id: 'terus-berkarya-biar-waktu-yang-bicara',
     quote: 'TERUS BERKARYA, BIAR WAKTU YANG BICARA',
     lang: 'ID',
