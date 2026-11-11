@@ -4,6 +4,17 @@
 // new poster to the 'PMA.WTF - Brand Posters' folder and prepends an entry here.
 const posters = [
   {
+    id: 'warkop-at-midnight',
+    brand: 'WARKOP AT MIDNIGHT',
+    niche: 'YOGYA NIGHTS VOL. 01 art print',
+    tagline: 'One cup. A thousand stories.',
+    signs:
+      'Poster = warkop at midnight, steam and lamp glow; Frame mockup = reading corner',
+    image: 'https://drive.google.com/thumbnail?id=1v8oyIALADOmrS3aP4j9QYBofO9k8D_IH&sz=w1080',
+    date: '11 Nov 2026',
+    instagram: 'https://www.instagram.com/tugelanboto_/',
+  },
+  {
     id: 'malioboro-after-dark',
     brand: 'MALIOBORO AFTER DARK',
     niche: 'YOGYA NIGHTS VOL. 01 art print',
