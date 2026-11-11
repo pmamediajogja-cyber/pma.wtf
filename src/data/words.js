@@ -4,6 +4,14 @@
 // new word post to the 'PMA.WTF - Brand Logos' folder and prepends an entry here.
 const words = [
   {
+    id: 'terus-berkarya-biar-waktu-yang-bicara',
+    quote: 'TERUS BERKARYA, BIAR WAKTU YANG BICARA',
+    lang: 'ID',
+    image: 'https://drive.google.com/thumbnail?id=1DscnOtZxZSba28agT_8tt7ja0oPKL7QX&sz=w1080',
+    date: '11 Nov 2026',
+    instagram: 'https://www.instagram.com/_tugelanboto_/',
+  },
+  {
     id: 'jangan-lupa-bahagia-di-tengah-perjuangan',
     quote: 'JANGAN LUPA BAHAGIA DI TENGAH PERJUANGAN',
     lang: 'ID',
