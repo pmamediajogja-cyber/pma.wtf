@@ -4,6 +4,17 @@
 // new poster to the 'PMA.WTF - Brand Posters' folder and prepends an entry here.
 const posters = [
   {
+    id: 'malioboro-after-dark',
+    brand: 'MALIOBORO AFTER DARK',
+    niche: 'YOGYA NIGHTS VOL. 01 art print',
+    tagline: 'Malioboro never sleeps. It just changes its lights.',
+    signs:
+      'Poster = Malioboro street at night; Frame mockup = reading corner',
+    image: 'https://drive.google.com/thumbnail?id=17QT33POEGUMmHnOzsRneAoj1w_OYtN0R&sz=w1080',
+    date: '10 Nov 2026',
+    instagram: 'https://www.instagram.com/tugelanboto_/',
+  },
+  {
     id: 'stay-for-the-tide',
     brand: 'STAY FOR THE TIDE',
     niche: 'SEA & SALT art print',
