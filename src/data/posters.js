@@ -4,6 +4,17 @@
 // new poster to the 'PMA.WTF - Brand Posters' folder and prepends an entry here.
 const posters = [
   {
+    id: 'stay-for-the-tide',
+    brand: 'STAY FOR THE TIDE',
+    niche: 'SEA & SALT art print',
+    tagline: 'The tide waits for no one. Stay anyway.',
+    signs:
+      'Poster = beach sunset surfer; Frame mockup = studio',
+    image: 'https://drive.google.com/thumbnail?id=1zO4cqXCdJsv8aTDT72rgpbir0WeT_p2v&sz=w1080',
+    date: '10 Nov 2026',
+    instagram: 'https://www.instagram.com/tugelanboto_/',
+  },
+  {
     id: 'salt-in-the-air',
     brand: 'SALT IN THE AIR',
     niche: 'SEA & SALT art print',
