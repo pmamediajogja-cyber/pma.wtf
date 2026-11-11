@@ -5,6 +5,30 @@
 // entry here. Only metadata lives in this repo, so it never fills up.
 const comics = [
   {
+    id: 'EP 53',
+    title: 'NGECAS SAMPAI LUPA',
+    premise: 'bro numpang ngecas HP di warung kopi sampai 100%, pulang dengan tenang tapi HP-nya ketinggalan nyolok di warung',
+    date: '11 NOV 2026',
+    slides: [
+      'https://drive.google.com/thumbnail?id=1egLMMXVCir6d6x4zGyMggqi4_I8F5q9c&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1UQkkJgG_fKdJ89GibVXy-1npaasRVwWG&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1NxQLb96g7_Oez9OjwApzoI0pgCx1BNQ3&sz=w1080',
+    ],
+    instagram: 'https://www.instagram.com/imam_falahi/',
+  },
+  {
+    id: 'EP 52',
+    title: 'PULSA NYASAR',
+    premise: 'Bro isi pulsa 50 ribu salah ketik satu digit, pulsa nyasar ke nomor orang lain; ditelepon malah dibilang makasih.',
+    date: '10 NOV 2026',
+    slides: [
+      'https://drive.google.com/thumbnail?id=1xexHyYuMIStYfBwUN1N7YVyHfvZbFCs4&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1KJwTudx76wE4Ok-qPOqg3aKNq2kHw1Ax&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1qLCYp31howW-e6ubJVWjVuAOqm-w24mb&sz=w1080',
+    ],
+    instagram: 'https://www.instagram.com/imam_falahi/',
+  },
+  {
     id: 'EP 52',
     title: 'SATU KOPI, TIGA JAM',
     premise: 'Bro pesan kopi hitam di warung kopi, habis dalam 5 menit tapi nongkrong 3 jam sampai tujuh gelas kosong.',
