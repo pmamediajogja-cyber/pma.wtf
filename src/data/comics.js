@@ -5,6 +5,18 @@
 // entry here. Only metadata lives in this repo, so it never fills up.
 const comics = [
   {
+    id: 'EP 54',
+    title: 'REMOTE HILANG',
+    premise: 'bro mau nonton TV, remote hilang — dicari ke mana-mana (bawah sofa, kulkas), ternyata ada di tangan sendiri dari tadi',
+    date: '11 NOV 2026',
+    slides: [
+      'https://drive.google.com/thumbnail?id=1iZMxlhBediGKMCfGQUSHsR544XyeOJLk&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1hsOL09L5kYwyM1PZbWF0NkJdYNEILyeT&sz=w1080',
+      'https://drive.google.com/thumbnail?id=14Xe4YllAE2mHyafuIH5qFCLLJI5V7qX8&sz=w1080',
+    ],
+    instagram: 'https://www.instagram.com/imam_falahi/',
+  },
+  {
     id: 'EP 53',
     title: 'NGECAS SAMPAI LUPA',
     premise: 'bro numpang ngecas HP di warung kopi sampai 100%, pulang dengan tenang tapi HP-nya ketinggalan nyolok di warung',
