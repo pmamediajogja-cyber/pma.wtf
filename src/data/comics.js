@@ -5,6 +5,18 @@
 // entry here. Only metadata lives in this repo, so it never fills up.
 const comics = [
   {
+    id: 'EP 55',
+    title: 'CHAT DIBACA DOANG',
+    premise: 'bro kirim chat penting ke teman, dibaca (centang biru) tapi tak dibalas berjam-jam — ternyata teman online main game, lalu balas cuma ’iya’',
+    date: '11 NOV 2026',
+    slides: [
+      'https://drive.google.com/thumbnail?id=1QCHvXdHjFP9hwVC6ToVVWaN6sqozz6Oc&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1EHZHuf0oaxszzV4UiPlx6W7BOvFd8Q_r&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1mFH6ju_4oRLjP-zS8l2LahKu2hGpKJ4U&sz=w1080',
+    ],
+    instagram: 'https://www.instagram.com/imam_falahi/',
+  },
+  {
     id: 'EP 54',
     title: 'REMOTE HILANG',
     premise: 'bro mau nonton TV, remote hilang — dicari ke mana-mana (bawah sofa, kulkas), ternyata ada di tangan sendiri dari tadi',
