@@ -4,6 +4,14 @@
 // new word post to the 'PMA.WTF - Brand Logos' folder and prepends an entry here.
 const words = [
   {
+    id: 'no-excuses-just-evidence',
+    quote: 'NO EXCUSES. JUST EVIDENCE.',
+    lang: 'EN',
+    image: 'https://drive.google.com/thumbnail?id=1aJy7-41xMDovtuH0Bnpr7jVZ1BP3iam4&sz=w1080',
+    date: '11 Nov 2026',
+    instagram: 'https://www.instagram.com/_tugelanboto_/',
+  },
+  {
     id: 'semua-butuh-waktu-sabarlah-sedikit',
     quote: 'SEMUA BUTUH WAKTU, SABARLAH SEDIKIT.',
     lang: 'ID',
