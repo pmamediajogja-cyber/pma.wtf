@@ -4,6 +4,14 @@
 // new word post to the 'PMA.WTF - Brand Logos' folder and prepends an entry here.
 const words = [
   {
+    id: 'cold-world-warm-blood-still-here',
+    quote: 'COLD WORLD. WARM BLOOD. STILL HERE.',
+    lang: 'EN',
+    image: 'https://drive.google.com/thumbnail?id=1Qz2_VaBAMxbE7_54gyS1faYcwc19yBNA&sz=w1080',
+    date: '10 Nov 2026',
+    instagram: 'https://www.instagram.com/_tugelanboto_/',
+  },
+  {
     id: 'no-excuses-just-evidence',
     quote: 'NO EXCUSES. JUST EVIDENCE.',
     lang: 'EN',
