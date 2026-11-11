@@ -4,6 +4,17 @@
 // new poster to the 'PMA.WTF - Brand Posters' folder and prepends an entry here.
 const posters = [
   {
+    id: 'ride-home-slow',
+    brand: 'RIDE HOME SLOW',
+    niche: 'YOGYA NIGHTS VOL. 01 art print',
+    tagline: 'No rush. The road is the point.',
+    signs:
+      'Poster = motorcycle rider into a big sunset with volcano on the horizon; Frame mockup = living room',
+    image: 'https://drive.google.com/thumbnail?id=1-FoQtzKuhGx6CShxUCniEpaqBjGv2NuL&sz=w1080',
+    date: '11 Nov 2026',
+    instagram: 'https://www.instagram.com/tugelanboto_/',
+  },
+  {
     id: 'warkop-at-midnight',
     brand: 'WARKOP AT MIDNIGHT',
     niche: 'YOGYA NIGHTS VOL. 01 art print',
