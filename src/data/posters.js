@@ -4,6 +4,17 @@
 // new poster to the 'PMA.WTF - Brand Posters' folder and prepends an entry here.
 const posters = [
   {
+    id: 'ash-and-ember',
+    brand: 'ASH AND EMBER',
+    niche: 'MERAPI VOL. 01 art print',
+    tagline: 'Quiet fire. Steady ground.',
+    signs:
+      'Poster = glowing embers over dark volcanic slopes at night, lone pine silhouette; Frame mockup = bedroom',
+    image: 'https://drive.google.com/thumbnail?id=1NJY5NhvvzZ0nFph40vV5jSRghZtyczRT&sz=w1080',
+    date: '12 Nov 2026',
+    instagram: 'https://www.instagram.com/tugelanboto_/',
+  },
+  {
     id: 'ride-home-slow',
     brand: 'RIDE HOME SLOW',
     niche: 'YOGYA NIGHTS VOL. 01 art print',
