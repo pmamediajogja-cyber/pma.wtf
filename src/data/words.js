@@ -4,6 +4,14 @@
 // new word post to the 'PMA.WTF - Brand Logos' folder and prepends an entry here.
 const words = [
   {
+    id: 'jangan-berhenti-di-tengah-jalan',
+    quote: 'JANGAN BERHENTI DI TENGAH JALAN.',
+    lang: 'ID',
+    image: 'https://drive.google.com/thumbnail?id=17IlG0xFWYdwJGc44q4xYTOeyIAEAUlri&sz=w1080',
+    date: '12 Nov 2026',
+    instagram: 'https://www.instagram.com/_tugelanboto_/',
+  },
+  {
     id: 'made-from-pressure',
     quote: 'MADE FROM PRESSURE.',
     lang: 'EN',
