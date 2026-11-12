@@ -4,6 +4,14 @@
 // new word post to the 'PMA.WTF - Brand Logos' folder and prepends an entry here.
 const words = [
   {
+    id: 'usahamu-hari-ini-cerita-besok',
+    quote: 'USAHAMU HARI INI, CERITA BESOK',
+    lang: 'ID',
+    image: 'https://drive.google.com/thumbnail?id=1iPd3W5nIy8svlIBb5owQAYGfzpnlY6Gb&sz=w1080',
+    date: '12 Nov 2026',
+    instagram: 'https://www.instagram.com/_tugelanboto_/',
+  },
+  {
     id: 'out-of-the-dark-still-burning',
     quote: 'OUT OF THE DARK. STILL BURNING.',
     lang: 'EN',
