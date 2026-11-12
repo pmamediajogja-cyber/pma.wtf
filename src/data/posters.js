@@ -4,6 +4,17 @@
 // new poster to the 'PMA.WTF - Brand Posters' folder and prepends an entry here.
 const posters = [
   {
+    id: 'the-silent-giant',
+    brand: 'THE SILENT GIANT',
+    niche: 'MERAPI VOL. 01 art print',
+    tagline: 'Small road. Big mountain.',
+    signs:
+      'Poster = huge volcano over rice fields and a winding road, tiny rider below; Frame mockup = cozy reading corner',
+    image: 'https://drive.google.com/thumbnail?id=1eq6ZaOM9g4cRHG6EFF-T9T7EGQMnKDHr&sz=w1080',
+    date: '12 Nov 2026',
+    instagram: 'https://www.instagram.com/tugelanboto_/',
+  },
+  {
     id: 'ash-and-ember',
     brand: 'ASH AND EMBER',
     niche: 'MERAPI VOL. 01 art print',
