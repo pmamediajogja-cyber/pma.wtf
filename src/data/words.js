@@ -4,6 +4,14 @@
 // new word post to the 'PMA.WTF - Brand Logos' folder and prepends an entry here.
 const words = [
   {
+    id: 'out-of-the-dark-still-burning',
+    quote: 'OUT OF THE DARK. STILL BURNING.',
+    lang: 'EN',
+    image: 'https://drive.google.com/thumbnail?id=1PIoLGYbD69Xa2zWbJwOVIpsBQJO9TeTa&sz=w1080',
+    date: '12 Nov 2026',
+    instagram: 'https://www.instagram.com/_tugelanboto_/',
+  },
+  {
     id: 'jangan-berhenti-di-tengah-jalan',
     quote: 'JANGAN BERHENTI DI TENGAH JALAN.',
     lang: 'ID',
