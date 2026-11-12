@@ -4,6 +4,17 @@
 // new poster to the 'PMA.WTF - Brand Posters' folder and prepends an entry here.
 const posters = [
   {
+    id: 'first-cup-slow-morning',
+    brand: 'FIRST CUP, SLOW MORNING',
+    niche: 'KOPI PAGI VOL. 01 art print',
+    tagline: 'Slow morning. Strong coffee.',
+    signs:
+      'Poster = slow dawn coffee ritual at a warung; Frame mockup = cozy reading corner',
+    image: 'https://drive.google.com/thumbnail?id=1Gaipep4VPcj6WEm95YStHnZkiwhRJngA&sz=w1080',
+    date: '12 Nov 2026',
+    instagram: 'https://www.instagram.com/tugelanboto_/',
+  },
+  {
     id: 'the-silent-giant',
     brand: 'THE SILENT GIANT',
     niche: 'MERAPI VOL. 01 art print',
