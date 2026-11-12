@@ -5,6 +5,18 @@
 // entry here. Only metadata lives in this repo, so it never fills up.
 const comics = [
   {
+    id: 'EP 58',
+    title: 'TOKEN LISTRIK BUNYI TENGAH MALAM',
+    premise: 'bro tidur jam 2 pagi, meteran token listrik bunyi TIT TIT — dicuekin malah makin kencang, akhirnya beli token lewat HP tengah malam; token penuh, ngantuknya habis',
+    date: '12 NOV 2026',
+    slides: [
+      'https://drive.google.com/thumbnail?id=1foaf6bORPNk3YpnMfUBROMOWF0Dyhjfs&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1Oe2B97cuzQjx_trsz-FWfSs0pDhW0h2y&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1B-HKZEPsS7NvV5aJrMJKgQz0KEACx95n&sz=w1080',
+    ],
+    instagram: 'https://www.instagram.com/imam_falahi/',
+  },
+  {
     id: 'EP 57',
     title: 'BAJU KEBALIK',
     premise: 'Bro bangun kesiangan, buru-buru pakai baju ternyata kebalik — teman di warung kopi ketawa, saku ada di punggung, facepalm, lalu pasrah pede: Yaudah. Hari ini gue trendsetter.',
