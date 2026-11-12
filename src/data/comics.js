@@ -5,6 +5,30 @@
 // entry here. Only metadata lives in this repo, so it never fills up.
 const comics = [
   {
+    id: 'EP 57',
+    title: 'BAJU KEBALIK',
+    premise: 'Bro bangun kesiangan, buru-buru pakai baju ternyata kebalik — teman di warung kopi ketawa, saku ada di punggung, facepalm, lalu pasrah pede: Yaudah. Hari ini gue trendsetter.',
+    date: '12 NOV 2026',
+    slides: [
+      'https://drive.google.com/thumbnail?id=1yiN_BGb_vlPgHliqRxmakF2SDRSqk-Ac&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1DfEd2Hb2r6rPkrquoLzMFfVimvUAXxRb&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1ihqVGfFKKT2KLPNJ6wKkPz-bPpo8Ojsi&sz=w1080',
+    ],
+    instagram: 'https://www.instagram.com/imam_falahi/',
+  },
+  {
+    id: 'EP 56',
+    title: 'DM DARI PAK PRABOWO',
+    premise: 'bro dapat DM dari Pak Prabowo, diminta gantiin Gibran, ditolak karena masih sibuk rebahan',
+    date: '12 NOV 2026',
+    slides: [
+      'https://drive.google.com/thumbnail?id=1k1Y99EKsc3GKKRpX6-ekbDuj0jqKK9CV&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1arUc065Zzd-dH5Vjavi8K5H1QH76nlTh&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1iSgAQ5GGGi5e6b0p1nZrdW7MdUbuNTK1&sz=w1080',
+    ],
+    instagram: 'https://www.instagram.com/imam_falahi/',
+  },
+  {
     id: 'EP 55',
     title: 'CHAT DIBACA DOANG',
     premise: 'bro kirim chat penting ke teman, dibaca (centang biru) tapi tak dibalas berjam-jam — ternyata teman online main game, lalu balas cuma ’iya’',
