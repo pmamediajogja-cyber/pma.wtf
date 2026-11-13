@@ -5,6 +5,18 @@
 // entry here. Only metadata lives in this repo, so it never fills up.
 const comics = [
   {
+    id: 'EP 59',
+    title: 'KERUPUK DIHITUNG',
+    premise: 'bro makan di warteg, ambil kerupuk satu aja terus nambah-nambah, pas bayar ternyata kerupuknya dihitung lima',
+    date: '13 NOV 2026',
+    slides: [
+      'https://drive.google.com/thumbnail?id=1qB4tkyvFn8EBJ3rY-e8t3gdLk8OVaa_u&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1MH0LUHCq7feAl4zjb0l2j6tTHOkWcSyH&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1E8PcdIuANkSqSmqWZoyeyB9vh8TebOy9&sz=w1080',
+    ],
+    instagram: 'https://www.instagram.com/imam_falahi/',
+  },
+  {
     id: 'EP 58',
     title: 'TOKEN LISTRIK BUNYI TENGAH MALAM',
     premise: 'bro tidur jam 2 pagi, meteran token listrik bunyi TIT TIT — dicuekin malah makin kencang, akhirnya beli token lewat HP tengah malam; token penuh, ngantuknya habis',
