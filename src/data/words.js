@@ -4,6 +4,14 @@
 // new word post to the 'PMA.WTF - Brand Logos' folder and prepends an entry here.
 const words = [
   {
+    id: 'keep-going-the-city-is-watching',
+    quote: 'KEEP GOING. THE CITY IS WATCHING.',
+    lang: 'EN',
+    image: 'https://drive.google.com/thumbnail?id=1yRQZkkc0LFulB4lEaHHaZEpeohDhCs65&sz=w1080',
+    date: '13 Nov 2026',
+    instagram: 'https://www.instagram.com/_tugelanboto_/',
+  },
+  {
     id: 'langkah-hari-ini-jejak-untuk-nanti',
     quote: 'LANGKAH HARI INI, JEJAK UNTUK NANTI',
     lang: 'ID',
