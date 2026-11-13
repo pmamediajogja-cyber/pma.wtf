@@ -4,6 +4,17 @@
 // new poster to the 'PMA.WTF - Brand Posters' folder and prepends an entry here.
 const posters = [
   {
+    id: 'warung-kopi-forever',
+    brand: 'WARUNG KOPI, FOREVER',
+    niche: 'KOPI PAGI VOL. 01 art print',
+    tagline: 'Small stall. Big stories.',
+    signs:
+      'Poster = warm roadside warkop glowing at night, plastic stools and hanging bulb; Frame mockup = cozy reading corner with armchair and floor lamp',
+    image: 'https://drive.google.com/thumbnail?id=1gtxE4w64jMahTi-z9M4UjA03kcG-KLk3&sz=w1080',
+    date: '13 Nov 2026',
+    instagram: 'https://www.instagram.com/tugelanboto_/',
+  },
+  {
     id: 'tubruk-at-dawn',
     brand: 'TUBRUK AT DAWN',
     niche: 'KOPI PAGI VOL. 01 art print',
