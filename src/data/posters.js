@@ -4,6 +4,17 @@
 // new poster to the 'PMA.WTF - Brand Posters' folder and prepends an entry here.
 const posters = [
   {
+    id: 'rain-on-malioboro',
+    brand: 'RAIN ON MALIOBORO',
+    niche: 'HUJAN JOGJA VOL. 01 art print',
+    tagline: 'Rain makes the city glow.',
+    signs:
+      'Poster = rain-soaked Malioboro at dusk, neon reflections in puddles; Frame mockup = cozy reading corner',
+    image: 'https://drive.google.com/thumbnail?id=17EO3eNHRsjuuEnHOTtCglpxYlp0SSnLW&sz=w1080',
+    date: '13 Nov 2026',
+    instagram: 'https://www.instagram.com/tugelanboto_/',
+  },
+  {
     id: 'warung-kopi-forever',
     brand: 'WARUNG KOPI, FOREVER',
     niche: 'KOPI PAGI VOL. 01 art print',
