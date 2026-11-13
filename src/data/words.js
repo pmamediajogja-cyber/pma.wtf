@@ -4,6 +4,14 @@
 // new word post to the 'PMA.WTF - Brand Logos' folder and prepends an entry here.
 const words = [
   {
+    id: 'no-lights-still-shining',
+    quote: 'NO LIGHTS. STILL SHINING.',
+    lang: 'EN',
+    image: 'https://drive.google.com/thumbnail?id=1MwlYyz6GbzUvNZhBhxdQDMX8BRnZkhf-&sz=w1080',
+    date: '13 Nov 2026',
+    instagram: 'https://www.instagram.com/_tugelanboto_/',
+  },
+  {
     id: 'usahamu-hari-ini-cerita-besok',
     quote: 'USAHAMU HARI INI, CERITA BESOK',
     lang: 'ID',
