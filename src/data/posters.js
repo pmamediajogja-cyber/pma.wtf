@@ -4,6 +4,17 @@
 // new poster to the 'PMA.WTF - Brand Posters' folder and prepends an entry here.
 const posters = [
   {
+    id: 'tubruk-at-dawn',
+    brand: 'TUBRUK AT DAWN',
+    niche: 'KOPI PAGI VOL. 01 art print',
+    tagline: 'Brewed slow. Drunk slower.',
+    signs:
+      'Poster = warm dawn kopi tubruk moment over a quiet Jogja street; Frame mockup = cozy reading corner',
+    image: 'https://drive.google.com/thumbnail?id=1R0D7ZT7mjysamOdERAaXIQjcYn_bHp8z&sz=w1080',
+    date: '13 Nov 2026',
+    instagram: 'https://www.instagram.com/tugelanboto_/',
+  },
+  {
     id: 'first-cup-slow-morning',
     brand: 'FIRST CUP, SLOW MORNING',
     niche: 'KOPI PAGI VOL. 01 art print',
