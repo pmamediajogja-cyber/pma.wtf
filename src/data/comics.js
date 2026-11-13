@@ -5,6 +5,18 @@
 // entry here. Only metadata lives in this repo, so it never fills up.
 const comics = [
   {
+    id: 'EP 60',
+    title: 'SANDAL TERTUKAR',
+    premise: 'bro ngopi di warung kopi, sandal hitamnya tertukar — pulang pakai sandal pink kekecilan, besoknya ketemu pemiliknya di warung yang sama, tukeran lagi',
+    date: '13 NOV 2026',
+    slides: [
+      'https://drive.google.com/thumbnail?id=1a0GuZXhKzeJSgrNo3U-_qjlgriKTVDEm&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1acTw2bjnaLNIssVOUBuQDZ2k_NXHzL0J&sz=w1080',
+      'https://drive.google.com/thumbnail?id=123tbvjVD94KpMvt5QiMgjf2qDVhXEl-v&sz=w1080',
+    ],
+    instagram: 'https://www.instagram.com/imam_falahi/',
+  },
+  {
     id: 'EP 59',
     title: 'KERUPUK DIHITUNG',
     premise: 'bro makan di warteg, ambil kerupuk satu aja terus nambah-nambah, pas bayar ternyata kerupuknya dihitung lima',
