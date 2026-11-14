@@ -4,6 +4,17 @@
 // new poster to the 'PMA.WTF - Brand Posters' folder and prepends an entry here.
 const posters = [
   {
+    id: 'sate-usus-at-dusk',
+    brand: 'SATE USUS AT DUSK',
+    niche: 'ANGKRINGAN VOL. 01 art print',
+    tagline: 'Tusuk sate usus di atas bara, asap tipis, lampu gerobak kuning.',
+    signs:
+      'Poster = angkringan cart at dusk, glowing charcoal and warm lamp light; Frame mockup = cozy reading corner',
+    image: 'https://drive.google.com/thumbnail?id=1os3m9w4QFopw9LJG-qRTCnzeLdhibGUG&sz=w1080',
+    date: '14 Nov 2026',
+    instagram: 'https://www.instagram.com/tugelanboto_/',
+  },
+  {
     id: 'after-the-rain-jogja',
     brand: 'AFTER THE RAIN, JOGJA',
     niche: 'HUJAN JOGJA VOL. 01 art print',
