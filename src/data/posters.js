@@ -4,6 +4,17 @@
 // new poster to the 'PMA.WTF - Brand Posters' folder and prepends an entry here.
 const posters = [
   {
+    id: 'after-the-rain-jogja',
+    brand: 'AFTER THE RAIN, JOGJA',
+    niche: 'HUJAN JOGJA VOL. 01 art print',
+    tagline: 'Every storm leaves the city cleaner.',
+    signs:
+      'Poster = Jogja street after rain, wet asphalt mirroring the sky, Merapi silhouette in a clearing sky, cyclist riding past; Frame mockup = cozy reading corner with armchair and books',
+    image: 'https://drive.google.com/thumbnail?id=1XO17nsitMfe7ywb2twND2FGhycFoE1yf&sz=w1080',
+    date: '14 Nov 2026',
+    instagram: 'https://www.instagram.com/tugelanboto_/',
+  },
+  {
     id: 'rain-on-malioboro',
     brand: 'RAIN ON MALIOBORO',
     niche: 'HUJAN JOGJA VOL. 01 art print',
