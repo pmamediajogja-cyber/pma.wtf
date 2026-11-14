@@ -5,6 +5,18 @@
 // entry here. Only metadata lives in this repo, so it never fills up.
 const comics = [
   {
+    id: 'EP 61',
+    title: 'ES BATU JADI AIR',
+    premise: 'Bro beli es batu sekilo di warung, pulang naik motor siang bolong, es batu mencair jadi air — diminum aja, pasrah.',
+    date: '14 NOV 2026',
+    slides: [
+      'https://drive.google.com/thumbnail?id=1IbKB9QvxZuqeJC2xoTvbIWlJ5re_f4HJ&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1ivHrNICVG0MLO9xPPq-CGDY42Maurh_b&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1F_GT_FiK-HpI7KYBAbzjuk4XMuGPgV1m&sz=w1080',
+    ],
+    instagram: 'https://www.instagram.com/imam_falahi/',
+  },
+  {
     id: 'EP 60',
     title: 'SANDAL TERTUKAR',
     premise: 'bro ngopi di warung kopi, sandal hitamnya tertukar — pulang pakai sandal pink kekecilan, besoknya ketemu pemiliknya di warung yang sama, tukeran lagi',
