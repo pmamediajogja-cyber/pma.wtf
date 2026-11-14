@@ -5,6 +5,18 @@
 // entry here. Only metadata lives in this repo, so it never fills up.
 const comics = [
   {
+    id: 'EP 62',
+    title: 'HUJAN PAS JEMURAN KERING',
+    premise: 'bro jemur baju pas langit cerah, hujan datang tiba-tiba 5 menit, jemuran basah lagi 5 jam; bonus Jemur baju itu judi. Lawanmu: langit.',
+    date: '14 NOV 2026',
+    slides: [
+      'https://drive.google.com/thumbnail?id=14LrztpUv7iua2LSpY7vM4nx0cDh_192M&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1ExcLqE8lC3_hrJ6eEADuQ7JmI2cn8yuF&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1D6QfhiAn16DPFbLNZZS1bj5LgQexYMqQ&sz=w1080',
+    ],
+    instagram: 'https://www.instagram.com/imam_falahi/',
+  },
+  {
     id: 'EP 61',
     title: 'ES BATU JADI AIR',
     premise: 'Bro beli es batu sekilo di warung, pulang naik motor siang bolong, es batu mencair jadi air — diminum aja, pasrah.',
