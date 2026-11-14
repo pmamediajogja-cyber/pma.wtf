@@ -5,6 +5,18 @@
 // entry here. Only metadata lives in this repo, so it never fills up.
 const comics = [
   {
+    id: 'EP 63',
+    title: 'PAKET DATANG PAS MANDI',
+    premise: 'Bro waits all day for a courier package, goes for a 2-minute shower, courier arrives while he is singing in the shower, package failed delivery.',
+    date: '14 NOV 2026',
+    slides: [
+      'https://drive.google.com/thumbnail?id=1IpAFMzxIb4X9nuTroIXILJxZt23Pm3Fo&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1ePcK_V0FzZn9ftsnFBLUT_g2FXswH-v_&sz=w1080',
+      'https://drive.google.com/thumbnail?id=14x3b7HQ2CSrZQTcELE73h-OXKOP974Ba&sz=w1080',
+    ],
+    instagram: 'https://www.instagram.com/imam_falahi/',
+  },
+  {
     id: 'EP 62',
     title: 'HUJAN PAS JEMURAN KERING',
     premise: 'bro jemur baju pas langit cerah, hujan datang tiba-tiba 5 menit, jemuran basah lagi 5 jam; bonus Jemur baju itu judi. Lawanmu: langit.',
