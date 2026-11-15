@@ -4,6 +4,17 @@
 // new poster to the 'PMA.WTF - Brand Posters' folder and prepends an entry here.
 const posters = [
   {
+    id: 'gerobak-at-midnight',
+    brand: 'GEROBAK AT MIDNIGHT',
+    niche: 'ANGKRINGAN VOL. 01 art print',
+    tagline: 'Gerobak angkringan tetap buka saat kota sudah tidur.',
+    signs:
+      'Poster = Gerobak angkringan tetap buka saat kota sudah tidur; Frame mockup = hallway at night, warm lamp glow',
+    image: 'https://drive.google.com/thumbnail?id=1lQ2o9PFu5G8ljJRT5wQ6sSJQIRpkRG90&sz=w1080',
+    date: '15 Nov 2026',
+    instagram: 'https://www.instagram.com/tugelanboto_/',
+  },
+  {
     id: 'kopi-joss-forever',
     brand: 'KOPI JOSS, FOREVER',
     niche: 'ANGKRINGAN VOL. 01 art print',
