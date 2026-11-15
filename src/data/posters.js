@@ -4,6 +4,17 @@
 // new poster to the 'PMA.WTF - Brand Posters' folder and prepends an entry here.
 const posters = [
   {
+    id: 'senja-di-malioboro',
+    brand: 'SENJA DI MALIOBORO',
+    niche: 'SENJA JOGJA VOL. 01 art print',
+    tagline: 'Langit jingga turun pelan di atas Malioboro, kota mulai menyala satu per satu.',
+    signs:
+      'Poster = Malioboro street at sunset, big low orange sun, lamps lighting up, becak silhouette; Frame mockup = bright art studio',
+    image: 'https://drive.google.com/thumbnail?id=1QjsIzLikjz4imiw4eJAoilzezVrKmWzR&sz=w1080',
+    date: '15 Nov 2026',
+    instagram: 'https://www.instagram.com/tugelanboto_/',
+  },
+  {
     id: 'gerobak-at-midnight',
     brand: 'GEROBAK AT MIDNIGHT',
     niche: 'ANGKRINGAN VOL. 01 art print',
