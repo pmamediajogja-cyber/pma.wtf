@@ -4,6 +4,17 @@
 // new poster to the 'PMA.WTF - Brand Posters' folder and prepends an entry here.
 const posters = [
   {
+    id: 'kopi-joss-forever',
+    brand: 'KOPI JOSS, FOREVER',
+    niche: 'ANGKRINGAN VOL. 01 art print',
+    tagline: 'Arang membara dicelup ke kopi, bunyi joss-nya penanda malam dimulai.',
+    signs:
+      'Poster = glowing charcoal dipped in black coffee under a starry dusk sky; Frame mockup = warm cafe wall with coffee cups and rattan lamp',
+    image: 'https://drive.google.com/thumbnail?id=1I31UGMqOT25akE7eIg1nVrJMZCZ_bQwE&sz=w1080',
+    date: '15 Nov 2026',
+    instagram: 'https://www.instagram.com/tugelanboto_/',
+  },
+  {
     id: 'sate-usus-at-dusk',
     brand: 'SATE USUS AT DUSK',
     niche: 'ANGKRINGAN VOL. 01 art print',
