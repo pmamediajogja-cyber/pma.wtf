@@ -4,6 +4,17 @@
 // new poster to the 'PMA.WTF - Brand Posters' folder and prepends an entry here.
 const posters = [
   {
+    id: 'pulang-saat-senja',
+    brand: 'PULANG SAAT SENJA',
+    niche: 'SENJA JOGJA VOL. 01 art print',
+    tagline: 'Jalan pulang terasa paling tenang saat langit berubah jingga.',
+    signs:
+      'Poster = lone motorbike rider heading home down a quiet Jogja lane at dusk, orange sky and banana trees; Frame mockup = bright art studio wall',
+    image: 'https://drive.google.com/thumbnail?id=1DqSVcCZu77NKhZsBWuZwXU4KNiPuHij0&sz=w1080',
+    date: '16 Nov 2026',
+    instagram: 'https://www.instagram.com/tugelanboto_/',
+  },
+  {
     id: 'senja-di-malioboro',
     brand: 'SENJA DI MALIOBORO',
     niche: 'SENJA JOGJA VOL. 01 art print',
