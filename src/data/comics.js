@@ -5,6 +5,66 @@
 // entry here. Only metadata lives in this repo, so it never fills up.
 const comics = [
   {
+    id: 'EP 67',
+    title: 'DORONG MOTOR',
+    premise: 'Bro naik caferacer, bensin habis di tengah jalan, dorong motor 1 KM sampai SPBU — pas mau bayar ternyata dompet ketinggalan di rumah.',
+    date: '16 NOV 2026',
+    slides: [
+      'https://drive.google.com/thumbnail?id=18tTKyXHKRktWFNgTFjMt0zzitfG-uSHS&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1scfNlO-OrMeENblpmVKcEoiQAjC8qrv4&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1KwTiDIBtNWj6qdN5Q0j1Y5AItMytXYkq&sz=w1080',
+    ],
+    instagram: 'https://www.instagram.com/imam_falahi/',
+  },
+  {
+    id: 'EP 66',
+    title: 'ES TEH MANIS',
+    premise: 'bro pesan es teh manis di warteg, es batunya segunung sampai tehnya tinggal sedikit — diseruput habis sekali teguk, esnya masih penuh',
+    date: '16 NOV 2026',
+    slides: [
+      'https://drive.google.com/thumbnail?id=1nWNODCrgNIJdmMI1vZV6JBh3btqvhkxX&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1x42jL8I1BwGUWYxLqQ6AxEcWOZnNZhxl&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1BhMoOE_IrTBRm6RizqdVPId_Dd75b0tI&sz=w1080',
+    ],
+    instagram: 'https://www.instagram.com/imam_falahi/',
+  },
+  {
+    id: 'EP 65',
+    title: 'KOPI PANAS BANGET',
+    premise: 'Bro pesan kopi panas di warung kopi, ditiup dulu tetap kepanasan sampai lidah terbakar, ngomong sama kopinya, lalu nyeruput lagi karena tetap enak.',
+    date: '15 NOV 2026',
+    slides: [
+      'https://drive.google.com/thumbnail?id=1eVx986bosztaqFBiuYVX0EbolN0Kn5w7&sz=w1080',
+      'https://drive.google.com/thumbnail?id=10ywLXJBSD9YOWSOTMwUbjOppJSwQG2MA&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1mgJN0ABXaZzRDWwfIvsieNqs5ug2fMC4&sz=w1080',
+    ],
+    instagram: 'https://www.instagram.com/imam_falahi/',
+  },
+  {
+    id: 'EP 65',
+    title: 'TIDUR DI ANGKOT',
+    premise: 'bro naik angkot sore, ketiduran, kelewatan 3 halte, turun di terminal, jalan kaki pulang',
+    date: '15 NOV 2026',
+    slides: [
+      'https://drive.google.com/thumbnail?id=1ad66qWFliDBgjVnO8gbbwuaYyFrnbYTZ&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1w4ZiSg8qPuEOfzPFV2o2gJqPctW59uaI&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1KzgEuDQiWG1k1DsGvV7k9Q83Hk9BEk4o&sz=w1080',
+    ],
+    instagram: 'https://www.instagram.com/imam_falahi/',
+  },
+  {
+    id: 'EP 64',
+    title: 'NASI MENTAH',
+    premise: 'Bro masak nasi di rice cooker tapi lupa pencet tombol masak — nasi masih mentah, akhirnya makan mie.',
+    date: '15 NOV 2026',
+    slides: [
+      'https://drive.google.com/thumbnail?id=1wbKhO_nOkCMSF09LCP3NLO1a9X4Q_XGj&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1oTC5uJk6DoP05HOrIqIjO9lxpzgEuUV_&sz=w1080',
+      'https://drive.google.com/thumbnail?id=16-BYaAjrMRsCucaUDPxZS4dhkySexl6q&sz=w1080',
+    ],
+    instagram: 'https://www.instagram.com/imam_falahi/',
+  },
+  {
     id: 'EP 63',
     title: 'PAKET DATANG PAS MANDI',
     premise: 'Bro waits all day for a courier package, goes for a 2-minute shower, courier arrives while he is singing in the shower, package failed delivery.',
