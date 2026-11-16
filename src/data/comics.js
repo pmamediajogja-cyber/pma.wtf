@@ -5,6 +5,18 @@
 // entry here. Only metadata lives in this repo, so it never fills up.
 const comics = [
   {
+    id: 'EP 68',
+    title: 'WIFI MATI PAS ADEGAN SERU',
+    premise: 'bro nonton film di laptop, WiFi mati pas adegan paling seru — restart router, angkat router tinggi-tinggi, marahin router, lalu pasrah',
+    date: '16 NOV 2026',
+    slides: [
+      'https://drive.google.com/thumbnail?id=1-3AGXHT8GdWVYwg9-wx-yK-5QmSGipwJ&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1B7c_4qwVjdowdMQykFl-LGIALnLgYP0y&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1zFml-euFfGpgrg01SiIRh5T5dBaiaGt6&sz=w1080',
+    ],
+    instagram: 'https://www.instagram.com/imam_falahi/',
+  },
+  {
     id: 'EP 67',
     title: 'DORONG MOTOR',
     premise: 'Bro naik caferacer, bensin habis di tengah jalan, dorong motor 1 KM sampai SPBU — pas mau bayar ternyata dompet ketinggalan di rumah.',
