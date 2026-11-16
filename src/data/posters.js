@@ -4,6 +4,17 @@
 // new poster to the 'PMA.WTF - Brand Posters' folder and prepends an entry here.
 const posters = [
   {
+    id: 'embun-di-malioboro',
+    brand: 'EMBUN DI MALIOBORO',
+    niche: 'PAGI JOGJA VOL. 01 art print',
+    tagline: 'Malioboro masih sepi, embun belum hilang, kota baru saja bangun.',
+    signs:
+      'Poster = quiet Malioboro street at dawn, mist and becak; Frame mockup = cozy reading corner',
+    image: 'https://drive.google.com/thumbnail?id=1jx-O-RskAgkBe_uG25Cu7gTJvJtGLbrk&sz=w1080',
+    date: '16 Nov 2026',
+    instagram: 'https://www.instagram.com/tugelanboto_/',
+  },
+  {
     id: 'pulang-saat-senja',
     brand: 'PULANG SAAT SENJA',
     niche: 'SENJA JOGJA VOL. 01 art print',
