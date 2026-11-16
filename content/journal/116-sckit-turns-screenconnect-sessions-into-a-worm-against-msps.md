@@ -1,0 +1,18 @@
+---
+id: "116"
+date: "16 NOV 2026"
+tag: "CYBERSECURITY / MSP ATTACK"
+category: "CYBERSECURITY"
+title: "SCKit Turns ScreenConnect Sessions Into a Worm Against MSPs"
+excerpt: "A worm-like toolkit called SCKit hijacked ConnectWise ScreenConnect to hit 288 endpoints across 48 organizations in 90 minutes — then tried to turn the technician's own support session into the infection vector."
+source: "BleepingComputer"
+url: "https://www.bleepingcomputer.com/news/security/new-worm-like-sckit-malware-targets-msps-in-screenconnect-attacks/"
+tags: ["SCKit", "ScreenConnect", "MSP", "ConnectWise", "malware", "supply chain", "cybersecurity"]
+hashtags: ["#SCKit", "#ScreenConnect", "#MSP", "#Cybersecurity", "#Malware"]
+---
+
+Serangan terhadap ConnectWise ScreenConnect pada 11 November 2026 bergerak dengan kecepatan yang jarang terlihat: menurut laporan terbaru Huntress, setidaknya 288 endpoint di 48 organisasi kena dalam waktu 90 menit, dan sekitar sepertiganya sudah tumbang dalam 10 menit pertama. Penyerang masuk lewat cloud-hosted ScreenConnect dan memakai fitur sah Run Command untuk memasang klien remote-access nakal di perangkat pelanggan. Dugaan akses awalnya mengarah ke RMM+, ekstensi pihak ketiga ScreenConnect: versi 1.0.31 dan 1.0.32 punya celah autentikasi — kalau administrator tidak pernah mengisi shared access key, kuncinya tetap kosong, dan penyerang bisa mengirim perintah tanpa login ke ScreenConnect apalagi melewati MFA. Sebagai respons, ConnectWise menonaktifkan lima ekstensi pihak ketiga yang berpotensi terkait di sekitar 400 lingkungan partner.
+
+Yang membuat serangan ini naik kelas adalah toolkit di baliknya: SCKit, kumpulan 16 skrip dan komponen yang dirancang untuk bertahan dan menyebar lewat jalur dukungan teknis itu sendiri. Komponen paling baru, RelayTrap, menggantikan proses ScreenConnect Guest yang sah di endpoint terinfeksi lalu menunggu teknisi MSP tersambung. Begitu teknisi connect, RelayTrap mencoba membalik arah transfer file — dari endpoint pelanggan ke workstation teknisi — dengan mengeksploitasi CVE-2026-84869, kerentanan file-transfer sisi klien yang sudah dipatch di ScreenConnect 26.6.5. Kalau berhasil, komponen lain mencuri cookie autentikasi ScreenConnect dari browser teknisi dan memakai sesi yang sudah terautentikasi itu untuk menyebar ke endpoint lain lewat fitur sah Shared Toolbox. Kode RelayTrap sendiri dikirim sebagai file sumber C# yang dikompilasi di mesin korban lewat PowerShell, lengkap dengan komentar yang sangat detail sampai peneliti menduga kode itu dibuat dengan bantuan LLM.
+
+Pandangan PMA: ini serangan yang menyerang asumsi paling dasar dari pekerjaan MSP — bahwa sesi remote support adalah alat bantu, bukan jalur infeksi. RMM+ menunjukkan betapa rapuhnya rantai itu: satu ekstensi pihak ketiga dengan kunci kosong bisa membuka pintu ke puluhan organisasi sekaligus, tanpa satu pun login yang tercatat. Dan RelayTrap menunjukkan penyerang sudah berpikir selangkah lebih jauh: bukan cuma membobol pelanggan, tapi membalikkan sesi teknisi untuk membobol MSP-nya. Kabar baiknya, patch 26.6.5 terbukti menahan exploit ini — Blackpoint mereproduksinya dan gagal, Huntress tidak menemukan satu pun takeover konsol yang berhasil di log yang mereka periksa. Jadi pelajarannya konkret: pastikan klien ScreenConnect sudah di 26.6.5 atau lebih baru, nonaktifkan ekstensi pihak ketiga yang tidak dikenal, dan jangan pernah membuka sesi interaktif ke endpoint yang dicurigai terinfeksi — selidiki dengan alat keamanan terpisah. Kepercayaan adalah aset MSP; sekali sesi teknisi berubah jadi vektor, yang bocor bukan satu pelanggan, tapi seluruh portofolio.
