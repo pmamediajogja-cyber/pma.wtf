@@ -5,6 +5,18 @@
 // entry here. Only metadata lives in this repo, so it never fills up.
 const comics = [
   {
+    id: 'EP 70',
+    title: 'OTW PADAHAL MASIH REBAHAN',
+    premise: 'bro bilang OTW ke teman padahal masih rebahan di kasur — sampai warung kopi 2 jam kemudian dengan rambut basah; bonus: OTW itu bukan janji, itu doa.',
+    date: '17 NOV 2026',
+    slides: [
+      'https://drive.google.com/thumbnail?id=1hXMvg3QxCCpP1QA1ADYXGW8gs-N11TJm&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1eGPmGpcVTbT0bH5C226IGvD-WUHF3Wyh&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1lNnk3O7XugTEmw5ibaBWSRii1vY1worj&sz=w1080',
+    ],
+    instagram: 'https://www.instagram.com/imam_falahi/',
+  },
+  {
     id: 'EP 69',
     title: 'BUBUR DIA DUK',
     premise: 'bro pesan bubur ayam, bangga jadi tim tidak diaduk, makan dari pinggir — sendoknya selip, bubur tercampur, facepalm lalu cicip: enak juga',
