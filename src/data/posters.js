@@ -4,6 +4,17 @@
 // new poster to the 'PMA.WTF - Brand Posters' folder and prepends an entry here.
 const posters = [
   {
+    id: 'langit-masih-gelap',
+    brand: 'LANGIT MASIH GELAP',
+    niche: 'SUBUH JOGJA VOL. 01 art print',
+    tagline: 'Kota belum bangun, langit masih gelap, tapi hari sudah mulai bergerak.',
+    signs:
+      'Poster = Jogja street before dawn, becak and glowing angkringan lamp under a dark indigo sky; Frame mockup = bright creative studio',
+    image: 'https://drive.google.com/thumbnail?id=1mdgp46dMy52Ke86CvrFI0B3xrX5HpKE7&sz=w1080',
+    date: '17 Nov 2026',
+    instagram: 'https://www.instagram.com/tugelanboto_/',
+  },
+  {
     id: 'sarapan-di-warung',
     brand: 'SARAPAN DI WARUNG',
     niche: 'PAGI JOGJA VOL. 01 art print',
