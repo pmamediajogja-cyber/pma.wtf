@@ -4,6 +4,17 @@
 // new poster to the 'PMA.WTF - Brand Posters' folder and prepends an entry here.
 const posters = [
   {
+    id: 'sarapan-di-warung',
+    brand: 'SARAPAN DI WARUNG',
+    niche: 'PAGI JOGJA VOL. 01 art print',
+    tagline: 'Nasi hangat, teh panas, dan obrolan ringan sebelum hari dimulai.',
+    signs:
+      'Poster = warung pagi yang hangat dan tenang; Frame mockup = dinding kafe',
+    image: 'https://drive.google.com/thumbnail?id=1S4giVY7suXc6cX-S7kgRttov8ChrExJz&sz=w1080',
+    date: '17 Nov 2026',
+    instagram: 'https://www.instagram.com/tugelanboto_/',
+  },
+  {
     id: 'embun-di-malioboro',
     brand: 'EMBUN DI MALIOBORO',
     niche: 'PAGI JOGJA VOL. 01 art print',
