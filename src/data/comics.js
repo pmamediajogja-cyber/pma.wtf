@@ -5,6 +5,18 @@
 // entry here. Only metadata lives in this repo, so it never fills up.
 const comics = [
   {
+    id: 'EP 69',
+    title: 'BUBUR DIA DUK',
+    premise: 'bro pesan bubur ayam, bangga jadi tim tidak diaduk, makan dari pinggir — sendoknya selip, bubur tercampur, facepalm lalu cicip: enak juga',
+    date: '17 NOV 2026',
+    slides: [
+      'https://drive.google.com/thumbnail?id=11WM3ONyAVj8uU1Ey89Ct9UKn3dp4Bcsg&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1TmiVktB90fCkuZpPwOl5ENTLEE-veL7V&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1gFXMVmu5-XYiTRXD4bxwBIkmTF9W6ZiX&sz=w1080',
+    ],
+    instagram: 'https://www.instagram.com/imam_falahi/',
+  },
+  {
     id: 'EP 68',
     title: 'WIFI MATI PAS ADEGAN SERU',
     premise: 'bro nonton film di laptop, WiFi mati pas adegan paling seru — restart router, angkat router tinggi-tinggi, marahin router, lalu pasrah',
