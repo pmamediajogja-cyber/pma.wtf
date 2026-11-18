@@ -5,6 +5,18 @@
 // entry here. Only metadata lives in this repo, so it never fills up.
 const comics = [
   {
+    id: 'EP 71',
+    title: 'NYAMUK JAM 2 PAGI',
+    premise: 'bro mau tidur jam 2 pagi, diganggu nyamuk — sembunyi di bawah selimut, nyamuk tetap nemu dia, akhirnya pasrah tidur bareng nyamuk',
+    date: '18 NOV 2026',
+    slides: [
+      'https://drive.google.com/thumbnail?id=18kBl38sln3v0R4MA6POXj0P2WYlIuOC-&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1YP-lrmMRxJiZpihemn9ORkspNx2U_Tmh&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1Laj-zAv8fXAmdE6kWEDV4jP6Or_Qi9gs&sz=w1080',
+    ],
+    instagram: 'https://www.instagram.com/imam_falahi/',
+  },
+  {
     id: 'EP 70',
     title: 'OTW PADAHAL MASIH REBAHAN',
     premise: 'bro bilang OTW ke teman padahal masih rebahan di kasur — sampai warung kopi 2 jam kemudian dengan rambut basah; bonus: OTW itu bukan janji, itu doa.',
