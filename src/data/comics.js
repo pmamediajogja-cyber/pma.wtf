@@ -5,6 +5,18 @@
 // entry here. Only metadata lives in this repo, so it never fills up.
 const comics = [
   {
+    id: 'EP 72',
+    title: 'SANDAL JEPIT PUTUS',
+    premise: 'bro jalan santai ke warung kopi, sandal jepitnya putus di tengah jalan',
+    date: '18 NOV 2026',
+    slides: [
+      'https://drive.google.com/thumbnail?id=18JvMgqCL0pqS_aMSoxZCvmAhQmMAhW5F&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1Y7pbVJQU9IiHCvMlCO-ADzw4bslaR3GH&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1f3gw_yLRM7OKnI3suWNnfZM83ZA2KnjD&sz=w1080',
+    ],
+    instagram: 'https://www.instagram.com/imam_falahi/',
+  },
+  {
     id: 'EP 71',
     title: 'NYAMUK JAM 2 PAGI',
     premise: 'bro mau tidur jam 2 pagi, diganggu nyamuk — sembunyi di bawah selimut, nyamuk tetap nemu dia, akhirnya pasrah tidur bareng nyamuk',
