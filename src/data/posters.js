@@ -4,6 +4,17 @@
 // new poster to the 'PMA.WTF - Brand Posters' folder and prepends an entry here.
 const posters = [
   {
+    id: 'kota-di-spion',
+    brand: 'KOTA DI SPION',
+    niche: 'JALAN PULANG VOL. 01 art print',
+    tagline: 'Lampu kota mengecil di spion, rumah makin dekat di depan.',
+    signs:
+      'Poster = night road home, rider heading away from city lights, mirror showing shrinking city; Frame mockup = creative studio wall',
+    image: 'https://drive.google.com/thumbnail?id=1QPkp3hgm2ukSVEgwggUSnMeZtYSpCsHU&sz=w1080',
+    date: '19 Nov 2026',
+    instagram: 'https://www.instagram.com/tugelanboto_/',
+  },
+  {
     id: 'langit-masih-gelap',
     brand: 'LANGIT MASIH GELAP',
     niche: 'SUBUH JOGJA VOL. 01 art print',
