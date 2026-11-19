@@ -4,6 +4,17 @@
 // new poster to the 'PMA.WTF - Brand Posters' folder and prepends an entry here.
 const posters = [
   {
+    id: 'lampu-kota-menyala',
+    brand: 'LAMPU KOTA MENYALA',
+    niche: 'MALAM JOGJA VOL. 01 art print',
+    tagline: 'Lampu kota menyala satu-satu, Jogja mulai bercerita pelan.',
+    signs:
+      'Poster = Jogja night street, lamps lighting one by one; Frame mockup = reading corner',
+    image: 'https://drive.google.com/thumbnail?id=1zwdsZE1hCTYqifD-2M0F2Qwer_9jB_3V&sz=w1080',
+    date: '19 Nov 2026',
+    instagram: 'https://www.instagram.com/tugelanboto_/',
+  },
+  {
     id: 'kopi-penutup-hari',
     brand: 'KOPI PENUTUP HARI',
     niche: 'JALAN PULANG VOL. 01 art print',
