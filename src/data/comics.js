@@ -5,6 +5,18 @@
 // entry here. Only metadata lives in this repo, so it never fills up.
 const comics = [
   {
+    id: 'EP 74',
+    title: 'KEMBALIAN PERMEN',
+    premise: 'bro bayar parkir 5 ribu, kembaliannya permen — ngomong sama permen, nyoba bayar pakai permen ditolak, akhirnya makan permen pasrah',
+    date: '19 NOV 2026',
+    slides: [
+      'https://drive.google.com/thumbnail?id=1iuljZMOY7HxpkginGwZ8TXy6z6hI1rn-&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1XNN9_dqh7ckziWC3ijAy9sX2LhP9j4am&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1_NHeXSr8cpaLt4WNW3RhlabH0X3eZTxR&sz=w1080',
+    ],
+    instagram: 'https://www.instagram.com/imam_falahi/',
+  },
+  {
     id: 'EP 73',
     title: 'UANG KECUCI',
     premise: 'bro cuci baju lupa cek kantong celana, uang 50 ribu ikut kecuci — nemu uang basah, diperas, dijemur di jemuran kayak baju',
