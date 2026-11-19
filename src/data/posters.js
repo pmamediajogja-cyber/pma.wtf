@@ -4,6 +4,17 @@
 // new poster to the 'PMA.WTF - Brand Posters' folder and prepends an entry here.
 const posters = [
   {
+    id: 'kopi-penutup-hari',
+    brand: 'KOPI PENUTUP HARI',
+    niche: 'JALAN PULANG VOL. 01 art print',
+    tagline: 'Sampai rumah, kopi terakhir diseduh pelan — hari ini resmi selesai.',
+    signs:
+      'Poster = warm dusk home, steaming kopi tubruk, rattan lamp and bicycle by the door; Frame mockup = cozy reading corner with bookshelf and armchair',
+    image: 'https://drive.google.com/thumbnail?id=1-aGuZk2VuaZbWSHenuOpL-lrK5spg2wf&sz=w1080',
+    date: '19 Nov 2026',
+    instagram: 'https://www.instagram.com/tugelanboto_/',
+  },
+  {
     id: 'kota-di-spion',
     brand: 'KOTA DI SPION',
     niche: 'JALAN PULANG VOL. 01 art print',
