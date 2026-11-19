@@ -5,6 +5,18 @@
 // entry here. Only metadata lives in this repo, so it never fills up.
 const comics = [
   {
+    id: 'EP 73',
+    title: 'UANG KECUCI',
+    premise: 'bro cuci baju lupa cek kantong celana, uang 50 ribu ikut kecuci — nemu uang basah, diperas, dijemur di jemuran kayak baju',
+    date: '19 NOV 2026',
+    slides: [
+      'https://drive.google.com/thumbnail?id=1pimMXNfXHpDuk5wV1qPzgsI0zfk_guSe&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1lrg1drkIqNBc8qtunbVfoKNBHlsRDScy&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1OypiNuqhtp2UiFtQH-cVp300KfbEtoRp&sz=w1080',
+    ],
+    instagram: 'https://www.instagram.com/imam_falahi/',
+  },
+  {
     id: 'EP 72',
     title: 'SANDAL JEPIT PUTUS',
     premise: 'bro jalan santai ke warung kopi, sandal jepitnya putus di tengah jalan',
