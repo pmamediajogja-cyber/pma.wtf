@@ -5,6 +5,18 @@
 // entry here. Only metadata lives in this repo, so it never fills up.
 const comics = [
   {
+    id: 'EP 77',
+    title: 'JOK MOTOR PANAS',
+    premise: 'Bro parks his black caferacer in the midday sun and comes back to a scorching-hot seat.',
+    date: '20 NOV 2026',
+    slides: [
+      'https://drive.google.com/thumbnail?id=1yVfDBxgWW_9IAuy8Rifd4uWRcdqmN3td&sz=w1080',
+      'https://drive.google.com/thumbnail?id=17JYH4ZU5ZfoHWoSCL0qlM2t3bszPib1u&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1mP22AfqMFcw76sIbyJ1pmJf0h4IpWRCy&sz=w1080',
+    ],
+    instagram: 'https://www.instagram.com/imam_falahi/',
+  },
+  {
     id: 'EP 76',
     title: 'NAWAR 500 PERAK',
     premise: 'Bro menawar harga sayur di pasar dari Rp10.000 jadi Rp9.500 dan bangga menang 500 perak, padahal nawarnya setengah jam',
