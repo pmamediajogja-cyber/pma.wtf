@@ -4,6 +4,17 @@
 // new poster to the 'PMA.WTF - Brand Posters' folder and prepends an entry here.
 const posters = [
   {
+    id: 'warung-terakhir-buka',
+    brand: 'WARUNG TERAKHIR BUKA',
+    niche: 'MALAM JOGJA VOL. 01 art print',
+    tagline: 'Warung terakhir masih buka, kopinya masih panas buat yang belum pulang.',
+    signs:
+      'Poster = last warung still glowing at night, warm lamp light against deep indigo; Frame mockup = cafe wall',
+    image: 'https://drive.google.com/thumbnail?id=1NMFRbCNx6uo66rZvrkrZ9EH4sZmnNQ7a&sz=w1080',
+    date: '20 Nov 2026',
+    instagram: 'https://www.instagram.com/tugelanboto_/',
+  },
+  {
     id: 'lampu-kota-menyala',
     brand: 'LAMPU KOTA MENYALA',
     niche: 'MALAM JOGJA VOL. 01 art print',
