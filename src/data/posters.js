@@ -4,6 +4,17 @@
 // new poster to the 'PMA.WTF - Brand Posters' folder and prepends an entry here.
 const posters = [
   {
+    id: 'kopi-tubruk-malam',
+    brand: 'KOPI TUBRUK MALAM',
+    niche: 'WARUNG KOPI VOL. 01 art print',
+    tagline: 'Kopi tubruk panas, malam masih panjang di warung ujung jalan.',
+    signs:
+      'Poster = warm night at a street coffee stall, steaming kopi tubruk under a glowing lantern; Frame mockup = cozy reading corner',
+    image: 'https://drive.google.com/thumbnail?id=1jfoaj1Kxxe7YXIFAzU2NyU-YvcckpKKp&sz=w1080',
+    date: '20 Nov 2026',
+    instagram: 'https://www.instagram.com/tugelanboto_/',
+  },
+  {
     id: 'warung-terakhir-buka',
     brand: 'WARUNG TERAKHIR BUKA',
     niche: 'MALAM JOGJA VOL. 01 art print',
