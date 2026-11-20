@@ -5,6 +5,30 @@
 // entry here. Only metadata lives in this repo, so it never fills up.
 const comics = [
   {
+    id: 'EP 76',
+    title: 'NAWAR 500 PERAK',
+    premise: 'Bro menawar harga sayur di pasar dari Rp10.000 jadi Rp9.500 dan bangga menang 500 perak, padahal nawarnya setengah jam',
+    date: '20 NOV 2026',
+    slides: [
+      'https://drive.google.com/thumbnail?id=1Afl8GMfI3tnmTKAOjG9HMN96MsAXhfcF&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1ODXbieAeWyWm3JE83maq-3ypXMC_BasD&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1kxaijuY_PZpy3cuqEWcGlbvY8BYsItXq&sz=w1080',
+    ],
+    instagram: 'https://www.instagram.com/imam_falahi/',
+  },
+  {
+    id: 'EP 75',
+    title: 'GAS HABIS PAS MASAK MIE',
+    premise: 'bro laper masak mie, gas habis pas mie baru masuk — goyang tabung kosong, tabung cadangan juga kosong, akhirnya makan mie setengah mateng pasrah',
+    date: '19 NOV 2026',
+    slides: [
+      'https://drive.google.com/thumbnail?id=1QTE1vAT3NO9habnzhHHGvy2Jw0xv1g8J&sz=w1080',
+      'https://drive.google.com/thumbnail?id=17RWYl1RFiTmlebOQydqRTyO9wcQbyL4n&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1EupZBzbRQk5BDgzTauldewS2LzJvXAF1&sz=w1080',
+    ],
+    instagram: 'https://www.instagram.com/imam_falahi/',
+  },
+  {
     id: 'EP 74',
     title: 'KEMBALIAN PERMEN',
     premise: 'bro bayar parkir 5 ribu, kembaliannya permen — ngomong sama permen, nyoba bayar pakai permen ditolak, akhirnya makan permen pasrah',
