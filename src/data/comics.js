@@ -5,6 +5,18 @@
 // entry here. Only metadata lives in this repo, so it never fills up.
 const comics = [
   {
+    id: 'EP 80',
+    title: 'LAUK FAVORIT HABIS',
+    premise: 'bro ke warteg, antri panjang, ayam goreng favoritnya habis pas giliran dia — tinggal tahu tempe, akhirnya malah ketagihan tambah tahu tempe',
+    date: '21 NOV 2026',
+    slides: [
+      'https://drive.google.com/thumbnail?id=1dkT72lB_SGc8iZ68zBeIlkoPe1xYnwPg&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1nzdLOcEZCTp0p-1_eVPI8KjxI7oxWJ5Y&sz=w1080',
+      'https://drive.google.com/thumbnail?id=16qsklrpTf3_ZuaxgvgVdBYCYpNI-4vQ1&sz=w1080',
+    ],
+    instagram: 'https://www.instagram.com/imam_falahi/',
+  },
+  {
     id: 'EP 79',
     title: 'SEPATU PUTIH KENA BECEK',
     premise: 'bro pakai sepatu putih baru, hati-hati hindarin genangan, malah keinjek becek — coba dibersihin pakai tisu tetap coklat, akhirnya pasrah: sekarang sepatu coklat',
