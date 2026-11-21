@@ -5,6 +5,18 @@
 // entry here. Only metadata lives in this repo, so it never fills up.
 const comics = [
   {
+    id: 'EP 79',
+    title: 'SEPATU PUTIH KENA BECEK',
+    premise: 'bro pakai sepatu putih baru, hati-hati hindarin genangan, malah keinjek becek — coba dibersihin pakai tisu tetap coklat, akhirnya pasrah: sekarang sepatu coklat',
+    date: '21 NOV 2026',
+    slides: [
+      'https://drive.google.com/thumbnail?id=1VHcePCleDjihD2KEu66bHZv6WWmw8NG6&sz=w1080',
+      'https://drive.google.com/thumbnail?id=12yXI7ObCyrGPmx7HdEY65ZGkjiUX6KwO&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1xg2bhiDBlDa9Wr1qbVZfN2JVjIFWHxVz&sz=w1080',
+    ],
+    instagram: 'https://www.instagram.com/imam_falahi/',
+  },
+  {
     id: 'EP 78',
     title: 'KIPAS ANGIN MATI PAS GERAH',
     premise: 'Bro lagi gerah di kost, kipas angin tiba-tiba mati — digoyang, ditiup balik, dikipas pakai kardus, akhirnya pasrah rebahan pakai kipas kertas.',
