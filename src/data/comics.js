@@ -5,6 +5,18 @@
 // entry here. Only metadata lives in this repo, so it never fills up.
 const comics = [
   {
+    id: 'EP 78',
+    title: 'KIPAS ANGIN MATI PAS GERAH',
+    premise: 'Bro lagi gerah di kost, kipas angin tiba-tiba mati — digoyang, ditiup balik, dikipas pakai kardus, akhirnya pasrah rebahan pakai kipas kertas.',
+    date: '21 NOV 2026',
+    slides: [
+      'https://drive.google.com/thumbnail?id=11h2ls3kx_lnKsioOAyqS6hQAIJ5nSet3&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1rqw6U_hz7plIbKOmHyQvs6LqPmIIwe8H&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1eIRP5u3-9Sf4cLO_Km0Bs8zvETNWjhlB&sz=w1080',
+    ],
+    instagram: 'https://www.instagram.com/imam_falahi/',
+  },
+  {
     id: 'EP 77',
     title: 'JOK MOTOR PANAS',
     premise: 'Bro parks his black caferacer in the midday sun and comes back to a scorching-hot seat.',
