@@ -5,6 +5,18 @@
 // entry here. Only metadata lives in this repo, so it never fills up.
 const comics = [
   {
+    id: 'EP 81',
+    title: 'KOPI TUMPAH DI LAPTOP',
+    premise: 'bro kerja WFH, sikunya nyenggol gelas kopi sampai tumpah ke keyboard laptop — panik keringin pakai handuk, laptop selamat, kopi dipindah ke lantai',
+    date: '22 NOV 2026',
+    slides: [
+      'https://drive.google.com/thumbnail?id=1dUk1OlDtoSoIoFFkAHRhJWRd9Je6mhzg&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1B0Prdc3NtZG-4ZdktOr6Urr3MUikCnNE&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1CroG9B94lkTwM0sdcC9GHVAajIHQ2Om7&sz=w1080',
+    ],
+    instagram: 'https://www.instagram.com/imam_falahi/',
+  },
+  {
     id: 'EP 80',
     title: 'LAUK FAVORIT HABIS',
     premise: 'bro ke warteg, antri panjang, ayam goreng favoritnya habis pas giliran dia — tinggal tahu tempe, akhirnya malah ketagihan tambah tahu tempe',
