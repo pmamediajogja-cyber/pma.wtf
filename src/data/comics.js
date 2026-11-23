@@ -5,6 +5,18 @@
 // entry here. Only metadata lives in this repo, so it never fills up.
 const comics = [
   {
+    id: 'EP 83',
+    title: 'MOTOR KEJEPIT DI PARKIRAN',
+    premise: 'bro parkir caferacer di parkiran padat, pas pulang motornya kejepit di antara dua motor lain dan nggak bisa keluar — digoyang, ngomong sama motornya, akhirnya pasrah duduk di atas motor sambil main HP',
+    date: '23 NOV 2026',
+    slides: [
+      'https://drive.google.com/thumbnail?id=1Af4QcThuqXgUyE4xe-0lOPdCflQy_dK1&sz=w1080',
+      'https://drive.google.com/thumbnail?id=141FXTf1Wfe8oVX3Pp0N11ZZhStwYZHq8&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1CFo2s_wRdqP-57itpFXCYSBaKAZfV24e&sz=w1080',
+    ],
+    instagram: 'https://www.instagram.com/imam_falahi/',
+  },
+  {
     id: 'EP 82',
     title: 'KOPI TUMPAH DI CELANA',
     premise: 'bro nongkrong di warung kopi, es kopi tumpah ke celana — dikipas, ditutupin tas, teman nanya Ngompol ya, dijawab INI KOPI',
