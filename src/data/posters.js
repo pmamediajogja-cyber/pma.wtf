@@ -4,6 +4,17 @@
 // new poster to the 'PMA.WTF - Brand Posters' folder and prepends an entry here.
 const posters = [
   {
+    id: 'duduk-sampai-pagi',
+    brand: 'DUDUK SAMPAI PAGI',
+    niche: 'WARUNG KOPI VOL. 01 art print',
+    tagline: 'Duduk lama, cerita panjang — warung kopi tak pernah buru-buru.',
+    signs:
+      'Poster = quiet night at a street coffee cart, a man sipping steaming coffee under a warm bulb, snack jars on the counter; Frame mockup = cozy reading corner',
+    image: 'https://drive.google.com/thumbnail?id=1J_YcjUGK0o919fGOk6lfTQP3YC4BkOYA&sz=w1080',
+    date: '21 Nov 2026',
+    instagram: 'https://www.instagram.com/tugelanboto_/',
+  },
+  {
     id: 'beringin-kembar',
     brand: 'BERINGIN KEMBAR',
     niche: 'ALUN-ALUN VOL. 01 art print',
