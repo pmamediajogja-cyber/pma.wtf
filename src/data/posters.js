@@ -4,6 +4,17 @@
 // new poster to the 'PMA.WTF - Brand Posters' folder and prepends an entry here.
 const posters = [
   {
+    id: 'beringin-kembar',
+    brand: 'BERINGIN KEMBAR',
+    niche: 'ALUN-ALUN VOL. 01 art print',
+    tagline: 'Dua beringin, satu alun-alun — Jogja selalu punya tempat untuk pulang.',
+    signs:
+      'Poster = two giant banyan trees on the open alun-alun at dusk, warm orange and deep teal; Frame mockup = hallway wall',
+    image: 'https://drive.google.com/thumbnail?id=11r6fZTZTnMQvGqwyyFWtkhEajp_ZR9_w&sz=w1080',
+    date: '23 Nov 2026',
+    instagram: 'https://www.instagram.com/tugelanboto_/',
+  },
+  {
     id: 'kopi-tubruk-malam',
     brand: 'KOPI TUBRUK MALAM',
     niche: 'WARUNG KOPI VOL. 01 art print',
