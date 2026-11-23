@@ -4,6 +4,17 @@
 // new poster to the 'PMA.WTF - Brand Posters' folder and prepends an entry here.
 const posters = [
   {
+    id: 'masangin-tengah-malam',
+    brand: 'MASANGIN TENGAH MALAM',
+    niche: 'ALUN-ALUN VOL. 01 art print',
+    tagline: 'Jalan lurus mata tertutup, kalau sampai berarti hati sedang tenang.',
+    signs:
+      'Poster = blindfolded walk between the twin banyan trees at midnight, lanterns and stars; Frame mockup = hallway wall',
+    image: 'https://drive.google.com/thumbnail?id=1TpTfaVfeErZnGD1-0ZAREDmF_R0LpvkU&sz=w1080',
+    date: '23 Nov 2026',
+    instagram: 'https://www.instagram.com/tugelanboto_/',
+  },
+  {
     id: 'duduk-sampai-pagi',
     brand: 'DUDUK SAMPAI PAGI',
     niche: 'WARUNG KOPI VOL. 01 art print',
