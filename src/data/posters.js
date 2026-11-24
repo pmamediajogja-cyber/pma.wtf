@@ -4,6 +4,17 @@
 // new poster to the 'PMA.WTF - Brand Posters' folder and prepends an entry here.
 const posters = [
   {
+    id: 'senja-di-alun-alun',
+    brand: 'SENJA DI ALUN-ALUN',
+    niche: 'ALUN-ALUN VOL. 01 art print',
+    tagline: 'Langit jingga di atas alun-alun, kota pelan-pelan menyalakan lampu.',
+    signs:
+      'Poster = twin banyan trees at dusk, orange sunset sky, city lights turning on; Frame mockup = warm cafe wall',
+    image: 'https://drive.google.com/thumbnail?id=1JlIRwlM2W-JvsPEbIKByG8TtWgW8F32g&sz=w1080',
+    date: '24 Nov 2026',
+    instagram: 'https://www.instagram.com/tugelanboto_/',
+  },
+  {
     id: 'masangin-tengah-malam',
     brand: 'MASANGIN TENGAH MALAM',
     niche: 'ALUN-ALUN VOL. 01 art print',
