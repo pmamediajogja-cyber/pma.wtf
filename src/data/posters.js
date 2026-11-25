@@ -4,6 +4,17 @@
 // new poster to the 'PMA.WTF - Brand Posters' folder and prepends an entry here.
 const posters = [
   {
+    id: 'malioboro-tak-pernah-tidur',
+    brand: 'MALIOBORO TAK PERNAH TIDUR',
+    niche: 'MALIOBORO VOL. 01 art print',
+    tagline: 'Tengah malam pun masih ramai, kota ini memang susah tidur.',
+    signs:
+      'Poster = Malioboro street at night, lamps and becak, the city never sleeps; Frame mockup = cozy reading corner',
+    image: 'https://drive.google.com/thumbnail?id=1MkxduiI6vYtvPwkkCbxgkJeUHiBifaxw&sz=w1080',
+    date: '25 Nov 2026',
+    instagram: 'https://www.instagram.com/tugelanboto_/',
+  },
+  {
     id: 'senja-di-alun-alun',
     brand: 'SENJA DI ALUN-ALUN',
     niche: 'ALUN-ALUN VOL. 01 art print',
