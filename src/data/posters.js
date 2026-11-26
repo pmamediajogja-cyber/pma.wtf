@@ -4,6 +4,17 @@
 // new poster to the 'PMA.WTF - Brand Posters' folder and prepends an entry here.
 const posters = [
   {
+    id: 'ombak-di-parangtritis',
+    brand: 'OMBAK DI PARANGTRITIS',
+    niche: 'PANTAI SELATAN VOL. 01 art print',
+    tagline: 'Ombak datang, pikiran pulang.',
+    signs:
+      'Poster = big curling wave and fishing boat at Parangtritis; Frame mockup = reading corner',
+    image: 'https://drive.google.com/thumbnail?id=1vo4maaJ9vKoKw84LCZOyqTWF7FEC9o9A&sz=w1080',
+    date: '26 Nov 2026',
+    instagram: 'https://www.instagram.com/tugelanboto_/',
+  },
+  {
     id: 'malioboro-tak-pernah-tidur',
     brand: 'MALIOBORO TAK PERNAH TIDUR',
     niche: 'MALIOBORO VOL. 01 art print',
