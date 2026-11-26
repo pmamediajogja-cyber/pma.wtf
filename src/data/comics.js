@@ -5,6 +5,18 @@
 // entry here. Only metadata lives in this repo, so it never fills up.
 const comics = [
   {
+    id: 'EP 84',
+    title: 'SPOILER DARI TEMAN',
+    premise: 'Bro menghindari spoiler film favorit seharian, teman kirim chat spoiler detik sebelum dia nonton.',
+    date: '26 NOV 2026',
+    slides: [
+      'https://drive.google.com/thumbnail?id=1d4eTQ8aXgRiEAhOG93Ws-DTGBF-zRYJG&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1kzBvWr0dWHzeCsXUuRsEXEA_qUexngQv&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1LRRlSnhHyFu61LE2-wHmOKfAg7hWtjdp&sz=w1080',
+    ],
+    instagram: 'https://www.instagram.com/imam_falahi/',
+  },
+  {
     id: 'EP 83',
     title: 'MOTOR KEJEPIT DI PARKIRAN',
     premise: 'bro parkir caferacer di parkiran padat, pas pulang motornya kejepit di antara dua motor lain dan nggak bisa keluar — digoyang, ngomong sama motornya, akhirnya pasrah duduk di atas motor sambil main HP',
