@@ -4,6 +4,17 @@
 // new poster to the 'PMA.WTF - Brand Posters' folder and prepends an entry here.
 const posters = [
   {
+    id: 'warung-di-atas-awan',
+    brand: 'WARUNG DI ATAS AWAN',
+    niche: 'KALIURANG VOL. 01 art print',
+    tagline: 'Makan sederhana, pemandangan luar biasa.',
+    signs:
+      'Poster = warung di atas lautan awan, Merapi di kejauhan; Frame mockup = cafe wall',
+    image: 'https://drive.google.com/thumbnail?id=1lFVm-KT2F4N6_GKAOcfYZ6eQM5OsNXmR&sz=w1080',
+    date: '27 Nov 2026',
+    instagram: 'https://www.instagram.com/tugelanboto_/',
+  },
+  {
     id: 'ombak-di-parangtritis',
     brand: 'OMBAK DI PARANGTRITIS',
     niche: 'PANTAI SELATAN VOL. 01 art print',
