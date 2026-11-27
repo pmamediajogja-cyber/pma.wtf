@@ -5,6 +5,18 @@
 // entry here. Only metadata lives in this repo, so it never fills up.
 const comics = [
   {
+    id: 'EP 85',
+    title: 'ANTRI ATM',
+    premise: 'Bro antre ATM panjang, orang depan lama banget, pas giliran dia ATM-nya habis duit — pasrah ngopi di trotoar.',
+    date: '27 NOV 2026',
+    slides: [
+      'https://drive.google.com/thumbnail?id=1Oil6bCQfcNvUpIh7qkd1z7vtWDAKEs67&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1VOvftDlSYsRyvi7RhR7Zp2auGe1sX56h&sz=w1080',
+      'https://drive.google.com/thumbnail?id=19w2V2hurBjj11lYJk-oJBtPbthfGtwJN&sz=w1080',
+    ],
+    instagram: 'https://www.instagram.com/imam_falahi/',
+  },
+  {
     id: 'EP 84',
     title: 'SPOILER DARI TEMAN',
     premise: 'Bro menghindari spoiler film favorit seharian, teman kirim chat spoiler detik sebelum dia nonton.',
