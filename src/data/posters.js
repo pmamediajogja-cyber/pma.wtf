@@ -4,6 +4,17 @@
 // new poster to the 'PMA.WTF - Brand Posters' folder and prepends an entry here.
 const posters = [
   {
+    id: 'senja-di-baron',
+    brand: 'SENJA DI BARON',
+    niche: 'GUNUNGKIDUL VOL. 01 art print',
+    tagline: 'Perahu nelayan pulang di Pantai Baron, mercusuar kecil menyala, langit jingga.',
+    signs:
+      'Poster = jukung pulang sore di Pantai Baron, mercusuar kecil di tebing, langit jingga; Frame mockup = living room',
+    image: 'https://drive.google.com/thumbnail?id=1dJMoX4ScrxaLTAamUJM5uPRYPU11Y7rr&sz=w1080',
+    date: '28 Nov 2026',
+    instagram: 'https://www.instagram.com/tugelanboto_/',
+  },
+  {
     id: 'gondola-di-timang',
     brand: 'GONDOLA DI TIMANG',
     niche: 'Gunungkidul art print',
