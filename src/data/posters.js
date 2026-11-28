@@ -4,6 +4,17 @@
 // new poster to the 'PMA.WTF - Brand Posters' folder and prepends an entry here.
 const posters = [
   {
+    id: 'gondola-di-timang',
+    brand: 'GONDOLA DI TIMANG',
+    niche: 'Gunungkidul art print',
+    tagline: 'Gondola kayu di atas ombak Pantai Timang, tebing karang, langit senja.',
+    signs:
+      'Gondola kayu = keberanian menyeberang; Tebing karang = kokohnya alam Gunungkidul; Langit senja = hangatnya pulang sore',
+    image: 'https://drive.google.com/thumbnail?id=1I1Ijq8P2BDy6tLPz4_LpbRcvcbBIzovA&sz=w1080',
+    date: '28 Nov 2026',
+    instagram: 'https://www.instagram.com/tugelanboto_/',
+  },
+  {
     id: 'warung-di-atas-awan',
     brand: 'WARUNG DI ATAS AWAN',
     niche: 'KALIURANG VOL. 01 art print',
