@@ -5,6 +5,18 @@
 // entry here. Only metadata lives in this repo, so it never fills up.
 const comics = [
   {
+    id: 'EP 86',
+    title: 'BAJU PUTIH JADI PINK',
+    premise: 'bro cuci baju putih bareng baju merah, baju putihnya jadi pink — facepalm, digosok tetap pink, akhirnya dipakai pede ke warung kopi',
+    date: '28 NOV 2026',
+    slides: [
+      'https://drive.google.com/thumbnail?id=1lsEIu_unsSshyaVR-UcihgIXta_CTLIE&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1dC9tLTsatvHwQ4cYIVTsZVdOj1gPLx6D&sz=w1080',
+      'https://drive.google.com/thumbnail?id=1w9bxWzcIf4S_O5WhdMWzl2ziXacCjE4S&sz=w1080',
+    ],
+    instagram: 'https://www.instagram.com/imam_falahi/',
+  },
+  {
     id: 'EP 85',
     title: 'ANTRI ATM',
     premise: 'Bro antre ATM panjang, orang depan lama banget, pas giliran dia ATM-nya habis duit — pasrah ngopi di trotoar.',
